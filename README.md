@@ -12,3 +12,13 @@
 * It is named `AddressBook Level 3` (`AB3` for short) because it was initially created as a part of a series of `AddressBook` projects (`Level 1`, `Level 2`, `Level 3` ...).
 * For the detailed documentation of this project, see the **[Address Book Product Website](https://se-education.org/addressbook-level3)**.
 * This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
+
+# Project Direction: Evolve
+____
+## *ConnectUs*
+
+With thousands of students in SoC, we might miss out on opportunities to connect with fellow computing students who share interests and take the same courses.
+Therefore, we want to create ConnectUs, the ultimate contact management app designed exclusively for NUS computing students. With ConnectUs, students can unlock a world of possibilities very easily.
+
+
+> ConnectUs - Connecting students, creating futures.
