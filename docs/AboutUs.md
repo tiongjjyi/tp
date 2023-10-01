@@ -9,25 +9,25 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Devanshu Bisht
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/devanshubisht.png" width="200px">
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/devanshubisht)]
+[[portfolio](team/devanshubisht.md)]
 
 * Role: Project Advisor
 
-### Jane Doe
+### Phinehas Tan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/phinehastan.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/phiphi-tan)]
+[[portfolio](team/phiphi-tan.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Deliverables and Deadlines
+* Responsibilities: Ensure project deliverables are done on time and in the right format
 
 ### Johnny Doe
 
@@ -38,22 +38,22 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Tiong Jjyi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/tiongjjyi.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/tiongjjyi)]
+[[portfolio](team/tiongjjyi.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Scheduling and tracking
+* Responsibilities: In charge of defining, assigning, and tracking project tasks.
 
-### James Doe
+### Gallen Ong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/gongg21.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/gongg21)]
+[[portfolio](team/gongg21.md)]
 
 * Role: Developer
 * Responsibilities: In charge of command logic and integration.
