@@ -26,8 +26,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/phiphi-tan)]
 [[portfolio](team/phiphi-tan.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Deliverables and Deadlines
+* Responsibilities: Ensure project deliverables are done on time and in the right format
 
 ### Johnny Doe
 
