@@ -1,5 +1,5 @@
 ---
-  layout: default.md
+  layout: page
   title: "Testing guide"
   pageNav: 3
 ---
