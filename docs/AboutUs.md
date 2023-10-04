@@ -22,7 +22,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Phinehas Tan
 
-<img src="images/phinehastan.png" width="200px">
+<img src="images/phiphi-tan.png" width="200px">
 
 [[github](http://github.com/phiphi-tan)]
 [[portfolio](team/phiphi-tan.md)]
