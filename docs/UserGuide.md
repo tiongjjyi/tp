@@ -53,7 +53,7 @@ Format: `create n/Name p/PHONE_NUMBER e/EMAIL`
 * EMAIL: string ending with @u.nus.edu
 
 Examples:
-* `create n/Alex Yeoh p/87438807 e/alexyeoh@u.nus.edu`
+* `create n/Alex Yeoh p/87438807 e/alexyeo@u.nus.edu`
 * `create n/Ben Koh p/94572431 e/benkoh@u.nus.edu`
 
 Command succeeds: Success message shown to user, profile created successfully and stored in database, change in GUI.
