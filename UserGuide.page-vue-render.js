@@ -23,7 +23,7 @@ with(this){return _c('p',[_v("Format: "),_c('code',{pre:true,attrs:{"class":"hlj
 with(this){return _c('ul',[_c('li',[_v("NAME: string")]),_v(" "),_c('li',[_v("PHONE_NUMBER: int of length 8")]),_v(" "),_c('li',[_v("EMAIL: string ending with @u.nus.edu")])])}
 },function anonymous(
 ) {
-with(this){return _c('ul',[_c('li',[_c('code',{pre:true,attrs:{"class":"hljs inline no-lang"}},[_v("create n/Alex Yeoh p/87438807 e/alexyeoh@u.nus.edu")])]),_v(" "),_c('li',[_c('code',{pre:true,attrs:{"class":"hljs inline no-lang"}},[_v("create n/Ben Koh p/94572431 e/benkoh@u.nus.edu")])])])}
+with(this){return _c('ul',[_c('li',[_c('code',{pre:true,attrs:{"class":"hljs inline no-lang"}},[_v("create n/Alex Yeoh p/87438807 e/alexyeo@u.nus.edu")])]),_v(" "),_c('li',[_c('code',{pre:true,attrs:{"class":"hljs inline no-lang"}},[_v("create n/Ben Koh p/94572431 e/benkoh@u.nus.edu")])])])}
 },function anonymous(
 ) {
 with(this){return _c('h3',{attrs:{"id":"deleting-profile-delete-coming-soon"}},[_v("Deleting profile: "),_c('code',{pre:true,attrs:{"class":"hljs inline no-lang"}},[_v("delete")]),_v(" [coming soon]"),_c('a',{staticClass:"fa fa-anchor",attrs:{"href":"#deleting-profile-delete-coming-soon","onclick":"event.stopPropagation()"}})])}
