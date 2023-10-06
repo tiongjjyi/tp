@@ -92,6 +92,7 @@
       "src": "UserGuide.md",
       "title": "User Guide",
       "headings": {
+        "codesphere-user-guide": "CodeSphere User Guide",
         "features": "Features",
         "features-2": "Features",
         "creating-profile-create-coming-soon": "Creating profile : create [coming soon]",
