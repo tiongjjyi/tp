@@ -26,7 +26,7 @@ public class ParserUtilTest {
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
-    private static final StudentRank INVALID_TAG = null;
+    private static final String INVALID_TAG = "im a invalid tag";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -179,7 +179,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseTags_collectionWithInvalidTags_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTags(Arrays.asList(VALID_TAG_1.toString(), INVALID_TAG.toString())));
+        assertThrows(ParseException.class, () -> ParserUtil.parseTags(
+                Arrays.asList(VALID_TAG_1.toString(), INVALID_TAG.toString())));
     }
 
     @Test
