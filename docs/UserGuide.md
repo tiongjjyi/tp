@@ -14,7 +14,7 @@ CodeSphere is a **desktop student information management app, optimised for use 
 * Editing a student: `edit`
 * Deleting student: `delete`
 * Tagging a student: `tag`
-* Exiting the app: `exit`
+* Exit the app: `exit`
 
 
 --------------------------------------------------------------------------------------------------------------------
