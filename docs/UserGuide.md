@@ -6,7 +6,7 @@ pageNav: 3
 
 # CodeSphere User Guide
 
-CodeSphere is a **desktop student information management app, optimised for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). It is an app targeted at aiding Computer Science Teaching Assistants in the NUS School of Computing.
+CodeSphere is a **desktop contact management app, optimised for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). It is an app targeted at connecting Year 1 Computer Science students in the NUS School of Computing.
 
 ### Features
 * Viewing help: `help`
