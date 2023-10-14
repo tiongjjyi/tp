@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.tag.StudentRank;
 import seedu.address.model.tag.Tag;
 
@@ -12,13 +13,13 @@ import seedu.address.model.tag.Tag;
  */
 class JsonAdaptedTag {
 
-    private final StudentRank ranking;
+    private final String ranking;
 
     /**
      * Constructs a {@code JsonAdaptedTag} with the given {@code tagName}.
      */
     @JsonCreator
-    public JsonAdaptedTag(StudentRank ranking) {
+    public JsonAdaptedTag(String ranking) {
         this.ranking = ranking;
     }
 
@@ -26,12 +27,12 @@ class JsonAdaptedTag {
      * Converts a given {@code Tag} into this class for Jackson use.
      */
     public JsonAdaptedTag(Tag source) {
-        ranking = source.ranking;
+        ranking = source.ranking.toString();
     }
 
     @JsonValue
     public String getTagName() {
-        return ranking.toString();
+        return ranking;
     }
 
     /**
@@ -40,10 +41,10 @@ class JsonAdaptedTag {
      * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
      */
     public Tag toModelType() throws IllegalValueException {
-        if (!Tag.isValidTagName(ranking.toString())) {
+        if (!Tag.isValidTagName(ranking)) {
             throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(ranking);
+        return ParserUtil.parseTag(ranking);
     }
 
 }
