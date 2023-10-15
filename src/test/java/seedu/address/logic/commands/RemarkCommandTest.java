@@ -37,7 +37,8 @@ public class RemarkCommandTest {
         Student firstPerson = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
         Student editedPerson = new StudentBuilder(firstPerson).withRemark(REMARK_STUB).build();
 
-        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_STUDENT, new Remark(editedPerson.getRemark().value));
+        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_STUDENT,
+                new Remark(editedPerson.getRemark().value));
 
         String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedPerson);
 
@@ -68,10 +69,12 @@ public class RemarkCommandTest {
         showStudentAtIndex(model, INDEX_FIRST_STUDENT);
 
         Student firstPerson = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
-        Student editedPerson = new StudentBuilder(model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased()))
+        Student editedPerson = new StudentBuilder(model.getFilteredStudentList()
+                .get(INDEX_FIRST_STUDENT.getZeroBased()))
                 .withRemark(REMARK_STUB).build();
 
-        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_STUDENT, new Remark(editedPerson.getRemark().value));
+        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_STUDENT,
+                new Remark(editedPerson.getRemark().value));
 
         String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedPerson);
 
