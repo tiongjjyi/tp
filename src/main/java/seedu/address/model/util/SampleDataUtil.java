@@ -21,18 +21,18 @@ public class SampleDataUtil {
     public static Student[] getSampleStudents() {
 
         return new Student[] {
-                new Student(new Name("Alex Yeoh"), new Course("CS2103T"), new Email("alexyeoh@u.nus.edu"), EMPTY_REMARK,
-                        getTagSet("GOOD")),
-                new Student(new Name("Bernice Yu"), new Course("CS2103T"), new Email("berniceyu@u.nus.edu"),
-                        EMPTY_REMARK, getTagSet("GOOD")),
-                new Student(new Name("Charlotte Oliveiro"), new Course("CS2103T"), new Email("charlotte@u.nus.edu"),
-                        EMPTY_REMARK, getTagSet("POOR")),
-                new Student(new Name("David Li"), new Course("CS2103T"), new Email("lidavid@u.nus.edu"), EMPTY_REMARK,
-                        getTagSet("POOR")),
-                new Student(new Name("Irfan Ibrahim"), new Course("CS2103T"), new Email("irfan@u.nus.edu"),
-                        EMPTY_REMARK, getTagSet("AVERAGE")),
-                new Student(new Name("Roy Balakrishnan"), new Course("CS2103T"), new Email("royb@u.nus.edu"),
-                        EMPTY_REMARK, getTagSet("AVERAGE"))
+            new Student(new Name("Alex Yeoh"), new Course("CS2103T"), new Email("alexyeoh@u.nus.edu"), EMPTY_REMARK,
+                    getTagSet("GOOD")),
+            new Student(new Name("Bernice Yu"), new Course("CS2103T"), new Email("berniceyu@u.nus.edu"),
+                    EMPTY_REMARK, getTagSet("GOOD")),
+            new Student(new Name("Charlotte Oliveiro"), new Course("CS2103T"), new Email("charlotte@u.nus.edu"),
+                    EMPTY_REMARK, getTagSet("POOR")),
+            new Student(new Name("David Li"), new Course("CS2103T"), new Email("lidavid@u.nus.edu"), EMPTY_REMARK,
+                    getTagSet("POOR")),
+            new Student(new Name("Irfan Ibrahim"), new Course("CS2103T"), new Email("irfan@u.nus.edu"),
+                    EMPTY_REMARK, getTagSet("AVERAGE")),
+            new Student(new Name("Roy Balakrishnan"), new Course("CS2103T"), new Email("royb@u.nus.edu"),
+                    EMPTY_REMARK, getTagSet("AVERAGE"))
         };
     }
 
