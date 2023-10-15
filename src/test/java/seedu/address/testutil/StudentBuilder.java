@@ -3,7 +3,6 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Course;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -25,7 +24,6 @@ public class StudentBuilder {
     private Name name;
     private Course course;
     private Email email;
-    private Address address;
     private Remark remark;
     private Set<Tag> tags;
 
