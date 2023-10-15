@@ -77,7 +77,7 @@ public class ModelManager implements Model {
     //=========== AddressBook ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyStudentList addressBook) {
+    public void setStudentList(ReadOnlyStudentList addressBook) {
         this.studentList.resetData(addressBook);
     }
 
@@ -93,12 +93,12 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deletePerson(Student target) {
+    public void deleteStudent(Student target) {
         studentList.removeStudent(target);
     }
 
     @Override
-    public void addPerson(Student student) {
+    public void addStudent(Student student) {
         studentList.addStudent(student);
         updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
     }

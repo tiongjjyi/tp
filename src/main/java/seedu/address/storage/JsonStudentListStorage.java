@@ -45,8 +45,8 @@ public class JsonStudentListStorage implements StudentListStorage {
     public Optional<ReadOnlyStudentList> readStudentList(Path filePath) throws DataLoadingException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableAddressBook> jsonAddressBook = JsonUtil.readJsonFile(
-                filePath, JsonSerializableAddressBook.class);
+        Optional<JsonSerializableStudentList> jsonAddressBook = JsonUtil.readJsonFile(
+                filePath, JsonSerializableStudentList.class);
         if (!jsonAddressBook.isPresent()) {
             return Optional.empty();
         }
@@ -74,7 +74,7 @@ public class JsonStudentListStorage implements StudentListStorage {
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableAddressBook(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableStudentList(addressBook), filePath);
     }
 
 }

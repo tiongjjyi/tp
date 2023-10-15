@@ -47,7 +47,7 @@ public interface Model {
     /**
      * Replaces address book data with the data in {@code addressBook}.
      */
-    void setAddressBook(ReadOnlyStudentList addressBook);
+    void setStudentList(ReadOnlyStudentList addressBook);
 
     /** Returns the AddressBook */
     ReadOnlyStudentList getStudentList();
@@ -61,13 +61,13 @@ public interface Model {
      * Deletes the given person.
      * The person must exist in the address book.
      */
-    void deletePerson(Student target);
+    void deleteStudent(Student target);
 
     /**
      * Adds the given person.
      * {@code person} must not already exist in the address book.
      */
-    void addPerson(Student student);
+    void addStudent(Student student);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
