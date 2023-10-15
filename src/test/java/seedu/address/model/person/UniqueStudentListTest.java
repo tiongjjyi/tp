@@ -28,18 +28,18 @@ public class UniqueStudentListTest {
     }
 
     @Test
-    public void contains_StudentNotInList_returnsFalse() {
+    public void contains_studentNotInList_returnsFalse() {
         assertFalse(uniqueStudentList.contains(ALICE));
     }
 
     @Test
-    public void contains_StudentInList_returnsTrue() {
+    public void contains_studentInList_returnsTrue() {
         uniqueStudentList.add(ALICE);
         assertTrue(uniqueStudentList.contains(ALICE));
     }
 
     @Test
-    public void contains_StudentWithSameIdentityFieldsInList_returnsTrue() {
+    public void contains_studentWithSameIdentityFieldsInList_returnsTrue() {
         uniqueStudentList.add(ALICE);
         Student editedAlice = new StudentBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
@@ -114,7 +114,7 @@ public class UniqueStudentListTest {
     }
 
     @Test
-    public void remove_StudentDoesNotExist_throwsStudentNotFoundException() {
+    public void remove_studentDoesNotExist_throwsStudentNotFoundException() {
         assertThrows(StudentNotFoundException.class, () -> uniqueStudentList.remove(ALICE));
     }
 
@@ -148,8 +148,8 @@ public class UniqueStudentListTest {
     @Test
     public void setStudents_list_replacesOwnListWithProvidedList() {
         uniqueStudentList.add(ALICE);
-        List<Student> StudentList = Collections.singletonList(BOB);
-        uniqueStudentList.setStudents(StudentList);
+        List<Student> studentList = Collections.singletonList(BOB);
+        uniqueStudentList.setStudents(studentList);
         UniqueStudentList expectedUniqueStudentList = new UniqueStudentList();
         expectedUniqueStudentList.add(BOB);
         assertEquals(expectedUniqueStudentList, uniqueStudentList);

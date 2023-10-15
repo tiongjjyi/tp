@@ -92,12 +92,12 @@ public class JsonStudentListStorageTest {
     }
 
     /**
-     * Saves {@code StudentList} at the specified {@code filePath}.
+     * Saves {@code studentList} at the specified {@code filePath}.
      */
-    private void saveStudentList(ReadOnlyStudentList StudentList, String filePath) {
+    private void saveStudentList(ReadOnlyStudentList studentList, String filePath) {
         try {
             new JsonStudentListStorage(Paths.get(filePath))
-                    .saveStudentList(StudentList, addToTestDataPathIfNotNull(filePath));
+                    .saveStudentList(studentList, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }

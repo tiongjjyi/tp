@@ -24,9 +24,9 @@ public class JsonSerializableStudentListTest {
     public void toModelType_typicalPersonsFile_success() throws Exception {
         JsonSerializableStudentList dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
                 JsonSerializableStudentList.class).get();
-        StudentList StudentListFromFile = dataFromFile.toModelType();
+        StudentList studentListFromFile = dataFromFile.toModelType();
         StudentList typicalPersonsStudentList = TypicalStudents.getTypicalStudentList();
-        assertEquals(StudentListFromFile, typicalPersonsStudentList);
+        assertEquals(studentListFromFile, typicalPersonsStudentList);
     }
 
     @Test

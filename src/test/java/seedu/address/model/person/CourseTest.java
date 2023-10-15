@@ -40,21 +40,21 @@ public class CourseTest {
 
     @Test
     public void equals() {
-        Course Course = new Course("CS2101");
+        Course course = new Course("CS2101");
 
         // same values -> returns true
-        assertTrue(Course.equals(new Course("CS2101")));
+        assertTrue(course.equals(new Course("CS2101")));
 
         // same object -> returns true
-        assertTrue(Course.equals(Course));
+        assertTrue(course.equals(course));
 
         // null -> returns false
-        assertFalse(Course.equals(null));
+        assertFalse(course.equals(null));
 
         // different types -> returns false
-        assertFalse(Course.equals(5.0f));
+        assertFalse(course.equals(5.0f));
 
         // different values -> returns false
-        assertFalse(Course.equals(new Course("CS2100")));
+        assertFalse(course.equals(new Course("CS2100")));
     }
 }

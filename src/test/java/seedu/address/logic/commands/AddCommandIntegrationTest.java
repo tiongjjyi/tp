@@ -40,8 +40,8 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_duplicateStudent_throwsCommandException() {
-        Student StudentInList = model.getStudentList().getStudentList().get(0);
-        assertCommandFailure(new AddCommand(StudentInList), model,
+        Student studentInList = model.getStudentList().getStudentList().get(0);
+        assertCommandFailure(new AddCommand(studentInList), model,
                 AddCommand.MESSAGE_DUPLICATE_STUDENT);
     }
 

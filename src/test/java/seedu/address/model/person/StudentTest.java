@@ -3,9 +3,9 @@ package seedu.address.model.person;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_COURSE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_COURSE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalStudents.ALICE;
@@ -13,15 +13,14 @@ import static seedu.address.testutil.TypicalStudents.BOB;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.person.Student;
 import seedu.address.testutil.StudentBuilder;
 
 public class StudentTest {
 
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Student Student = new StudentBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> Student.getTags().remove(0));
+        Student student = new StudentBuilder().build();
+        assertThrows(UnsupportedOperationException.class, () -> student.getTags().remove(0));
     }
 
     @Test

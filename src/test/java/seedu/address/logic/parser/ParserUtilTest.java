@@ -77,26 +77,26 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseCOURSE_null_throwsNullPointerException() {
+    public void parseCourse_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseCourse((String) null));
     }
 
     @Test
-    public void parseCOURSE_invalidValue_throwsParseException() {
+    public void parseCourse_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseCourse(INVALID_COURSE));
     }
 
     @Test
-    public void parseCOURSE_validValueWithoutWhitespace_returnsCOURSE() throws Exception {
-        Course expectedCOURSE = new Course(VALID_COURSE);
-        assertEquals(expectedCOURSE, ParserUtil.parseCourse(VALID_COURSE));
+    public void parseCourse_validValueWithoutWhitespace_returnsCourse() throws Exception {
+        Course expectedCourse = new Course(VALID_COURSE);
+        assertEquals(expectedCourse, ParserUtil.parseCourse(VALID_COURSE));
     }
 
     @Test
-    public void parseCOURSE_validValueWithWhitespace_returnsTrimmedCOURSE() throws Exception {
-        String COURSEWithWhitespace = WHITESPACE + VALID_COURSE + WHITESPACE;
-        Course expectedCOURSE = new Course(VALID_COURSE);
-        assertEquals(expectedCOURSE, ParserUtil.parseCourse(COURSEWithWhitespace));
+    public void parseCourse_validValueWithWhitespace_returnsTrimmedCourse() throws Exception {
+        String courseWithWhitespace = WHITESPACE + VALID_COURSE + WHITESPACE;
+        Course expectedCourse = new Course(VALID_COURSE);
+        assertEquals(expectedCourse, ParserUtil.parseCourse(courseWithWhitespace));
     }
 
     @Test

@@ -100,7 +100,7 @@ public class EditCommandParserTest {
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_STUDENT;
         String userInput = targetIndex.getOneBased() + COURSE_DESC_BOB + TAG_DESC_HUSBAND
-                + EMAIL_DESC_AMY  + NAME_DESC_AMY + TAG_DESC_FRIEND;
+                + EMAIL_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
 
         EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withCourse(VALID_COURSE_BOB).withEmail(VALID_EMAIL_AMY)
@@ -169,7 +169,7 @@ public class EditCommandParserTest {
         // mulltiple valid fields repeated
         userInput = targetIndex.getOneBased() + COURSE_DESC_AMY + EMAIL_DESC_AMY
                 + TAG_DESC_FRIEND + COURSE_DESC_AMY + EMAIL_DESC_AMY + TAG_DESC_FRIEND
-                + COURSE_DESC_BOB  + EMAIL_DESC_BOB + TAG_DESC_HUSBAND;
+                + COURSE_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND;
 
         assertParseFailure(parser, userInput,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_COURSE, PREFIX_EMAIL));

@@ -33,7 +33,7 @@ public class AddCommandTest {
     }
 
     @Test
-    public void execute_StudentAcceptedByModel_addSuccessful() throws Exception {
+    public void execute_studentAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingStudentAdded modelStub = new ModelStubAcceptingStudentAdded();
         Student validStudent = new StudentBuilder().build();
 
@@ -41,7 +41,7 @@ public class AddCommandTest {
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validStudent)),
                 commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validStudent), modelStub.StudentsAdded);
+        assertEquals(Arrays.asList(validStudent), modelStub.studentsAdded);
     }
 
     @Test
@@ -181,18 +181,18 @@ public class AddCommandTest {
      * A Model stub that always accept the Student being added.
      */
     private class ModelStubAcceptingStudentAdded extends ModelStub {
-        final ArrayList<Student> StudentsAdded = new ArrayList<>();
+        final ArrayList<Student> studentsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasStudent(Student Student) {
-            requireNonNull(Student);
-            return StudentsAdded.stream().anyMatch(Student::isSameStudent);
+        public boolean hasStudent(Student student) {
+            requireNonNull(student);
+            return studentsAdded.stream().anyMatch(student::isSameStudent);
         }
 
         @Override
-        public void addStudent(Student Student) {
-            requireNonNull(Student);
-            StudentsAdded.add(Student);
+        public void addStudent(Student student) {
+            requireNonNull(student);
+            studentsAdded.add(student);
         }
 
         @Override

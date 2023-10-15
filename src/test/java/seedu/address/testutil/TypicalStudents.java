@@ -1,8 +1,5 @@
 package seedu.address.testutil;
 
-import seedu.address.model.StudentList;
-import seedu.address.model.person.Student;
-
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COURSE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COURSE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
@@ -15,6 +12,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import seedu.address.model.StudentList;
+import seedu.address.model.person.Student;
 
 /**
  * A utility class containing a list of {@code Student} objects to be used in tests.
@@ -60,8 +60,8 @@ public class TypicalStudents {
      */
     public static StudentList getTypicalStudentList() {
         StudentList sl = new StudentList();
-        for (Student Student : getTypicalStudents()) {
-            sl.addStudent(Student);
+        for (Student student : getTypicalStudents()) {
+            sl.addStudent(student);
         }
         return sl;
     }

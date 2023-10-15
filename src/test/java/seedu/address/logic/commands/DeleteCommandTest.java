@@ -29,14 +29,14 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Student StudentToDelete = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
+        Student studentToDelete = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_STUDENT);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_STUDENT_SUCCESS,
-                Messages.format(StudentToDelete));
+                Messages.format(studentToDelete));
 
         ModelManager expectedModel = new ModelManager(model.getStudentList(), new UserPrefs());
-        expectedModel.deleteStudent(StudentToDelete);
+        expectedModel.deleteStudent(studentToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
@@ -53,14 +53,14 @@ public class DeleteCommandTest {
     public void execute_validIndexFilteredList_success() {
         showStudentAtIndex(model, INDEX_FIRST_STUDENT);
 
-        Student StudentToDelete = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
+        Student studentToDelete = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_STUDENT);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_STUDENT_SUCCESS,
-                Messages.format(StudentToDelete));
+                Messages.format(studentToDelete));
 
         Model expectedModel = new ModelManager(model.getStudentList(), new UserPrefs());
-        expectedModel.deleteStudent(StudentToDelete);
+        expectedModel.deleteStudent(studentToDelete);
         showNoStudent(expectedModel);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);

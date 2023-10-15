@@ -59,18 +59,18 @@ public class StudentListTest {
     }
 
     @Test
-    public void hasStudent_StudentNotInStudentList_returnsFalse() {
+    public void hasStudent_studentNotInStudentList_returnsFalse() {
         assertFalse(StudentList.hasStudent(ALICE));
     }
 
     @Test
-    public void hasStudent_StudentInStudentList_returnsTrue() {
+    public void hasStudent_studentInStudentList_returnsTrue() {
         StudentList.addStudent(ALICE);
         assertTrue(StudentList.hasStudent(ALICE));
     }
 
     @Test
-    public void hasStudent_StudentWithSameIdentityFieldsInStudentList_returnsTrue() {
+    public void hasStudent_studentWithSameIdentityFieldsInStudentList_returnsTrue() {
         StudentList.addStudent(ALICE);
         Student editedAlice = new StudentBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
@@ -92,15 +92,15 @@ public class StudentListTest {
      * A stub ReadOnlyStudentList whose Students list can violate interface constraints.
      */
     private static class StudentListStub implements ReadOnlyStudentList {
-        private final ObservableList<Student> Students = FXCollections.observableArrayList();
+        private final ObservableList<Student> students = FXCollections.observableArrayList();
 
-        StudentListStub(Collection<Student> Students) {
-            this.Students.setAll(Students);
+        StudentListStub(Collection<Student> students) {
+            this.students.setAll(students);
         }
 
         @Override
         public ObservableList<Student> getStudentList() {
-            return Students;
+            return students;
         }
     }
 

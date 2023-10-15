@@ -24,9 +24,9 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonStudentListStorage StudentListStorage = new JsonStudentListStorage(getTempFilePath("ab"));
+        JsonStudentListStorage studentListStorage = new JsonStudentListStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(StudentListStorage, userPrefsStorage);
+        storageManager = new StorageManager(studentListStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -48,7 +48,7 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void StudentListReadSave() throws Exception {
+    public void studentListReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
          * {@link JsonStudentListStorage} class.
