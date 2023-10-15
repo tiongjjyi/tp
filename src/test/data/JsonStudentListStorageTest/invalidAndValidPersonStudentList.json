@@ -2,10 +2,12 @@
   "persons": [ {
     "name": "Valid Person",
     "course": "CS2103T",
-    "email": "hans@example.com"
+    "email": "hans@example.com",
+    "remark" : ""
   }, {
     "name": "Person With Invalid Course Field",
     "course": "123CS2103T",
-    "email": "hans@example.com"
+    "email": "hans@example.com",
+    "remark" : ""
   } ]
 }

@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -105,17 +106,13 @@ public class Student {
 
     @Override
     public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append(" Course: ")
-                .append(getCourse())
-                .append(" Email: ")
-                .append(getEmail())
-                .append(" Remark: ")
-                .append(getRemark())
-                .append(" Tags: ");
-        getTags().forEach(builder::append);
-        return builder.toString();
+        return new ToStringBuilder(this)
+                .add("name", name)
+                .add("course", course)
+                .add("email", email)
+                .add("remark", remark)
+                .add("tags", tags)
+                .toString();
     }
 
 }
