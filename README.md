@@ -3,15 +3,17 @@
 ![Ui](docs/images/Ui.png)
 
 ##  CodeSphere
-CodeSphere is a desktop contact management app, optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
-It is an app targeted at connecting Year 1 Computer Science students in the NUS School of Computing.
+CodeSphere is a desktop contact management app,optimised for use via a Command Line Interface (CLI)
+while still having the benefits of a Graphical User Interface (GUI).
+It is an app targeted at enabling Teaching Assistants in NUS School of Computing to better manage their students.
 
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
 ### Features
-- Create profile: create
-- Deleting profile: delete
-- Adding profile information: add
-- Removing profile information: remove
-- Show your own profile: show
-- Exiting the app: exit
+- Viewing help: <code>help</code>
+- Adding a student: <code>add</code>
+- Editing a student: <code>edit</code>
+- Deleting a student: <code>delete</code>
+- Tagging a student: <code>tag</code>
+- Adding a remark: <code>remark</code>
+- Exiting the app: <code>exit</code>
