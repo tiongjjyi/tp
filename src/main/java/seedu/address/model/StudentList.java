@@ -100,7 +100,7 @@ public class StudentList implements ReadOnlyStudentList {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("students", students)
+                .add("Students", students)
                 .toString();
     }
 

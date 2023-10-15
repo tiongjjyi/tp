@@ -39,7 +39,7 @@ public class EditStudentDescriptorTest {
         EditStudentDescriptor editedAmy = new EditStudentDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
-        // different COURSE -> returns false
+        // different course -> returns false
         editedAmy = new EditStudentDescriptorBuilder(DESC_AMY).withCourse(VALID_COURSE_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
@@ -56,9 +56,9 @@ public class EditStudentDescriptorTest {
     public void toStringMethod() {
         EditStudentDescriptor editPersonDescriptor = new EditStudentDescriptor();
         String expected = EditStudentDescriptor.class.getCanonicalName() + "{name="
-                + editPersonDescriptor.getName().orElse(null) + ", COURSE="
+                + editPersonDescriptor.getName().orElse(null) + ", course="
                 + editPersonDescriptor.getCourse().orElse(null) + ", email="
-                + editPersonDescriptor.getEmail().orElse(null) + ", address="
+                + editPersonDescriptor.getEmail().orElse(null) + ", tags="
                 + editPersonDescriptor.getTags().orElse(null) + "}";
         assertEquals(expected, editPersonDescriptor.toString());
     }

@@ -100,7 +100,7 @@ public class Student {
     public String toString() {
         return new ToStringBuilder(this)
                 .add("name", name)
-                .add("phone", course)
+                .add("course", course)
                 .add("email", email)
                 .add("tags", tags)
                 .toString();

@@ -128,16 +128,12 @@ public class AddCommandParserTest {
         assertParseFailure(parser, VALID_NAME_BOB + COURSE_DESC_BOB + EMAIL_DESC_BOB,
                 expectedMessage);
 
-        // missing COURSE prefix
+        // missing course prefix
         assertParseFailure(parser, NAME_DESC_BOB + VALID_COURSE_BOB + EMAIL_DESC_BOB,
                 expectedMessage);
 
         // missing email prefix
         assertParseFailure(parser, NAME_DESC_BOB + COURSE_DESC_BOB + VALID_EMAIL_BOB,
-                expectedMessage);
-
-        // missing address prefix
-        assertParseFailure(parser, NAME_DESC_BOB + COURSE_DESC_BOB + EMAIL_DESC_BOB,
                 expectedMessage);
 
         // all prefixes missing

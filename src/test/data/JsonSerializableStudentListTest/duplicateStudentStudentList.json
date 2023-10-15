@@ -1,0 +1,12 @@
+{
+  "persons": [ {
+    "name": "Alice Pauline",
+    "course": "CS2103T",
+    "email": "alice@example.com",
+    "tags": [ "friends" ]
+  }, {
+    "name": "Alice Pauline",
+    "course": "CS2103T",
+    "email": "pauline@example.com"
+  } ]
+}
