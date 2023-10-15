@@ -1,12 +1,12 @@
 package seedu.address.storage;
 
-import seedu.address.commons.exceptions.DataLoadingException;
-import seedu.address.model.ReadOnlyStudentList;
-import seedu.address.model.StudentList;
-
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
+
+import seedu.address.commons.exceptions.DataLoadingException;
+import seedu.address.model.ReadOnlyStudentList;
+import seedu.address.model.StudentList;
 
 /**
  * Represents a storage for {@link StudentList}.
