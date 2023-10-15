@@ -23,23 +23,23 @@ import seedu.address.testutil.StudentBuilder;
 
 public class StudentListTest {
 
-    private final StudentList StudentList = new StudentList();
+    private final StudentList studentList = new StudentList();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), StudentList.getStudentList());
+        assertEquals(Collections.emptyList(), studentList.getStudentList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> StudentList.resetData(null));
+        assertThrows(NullPointerException.class, () -> studentList.resetData(null));
     }
 
     @Test
     public void resetData_withValidReadOnlyStudentList_replacesData() {
         StudentList newData = getTypicalStudentList();
-        StudentList.resetData(newData);
-        assertEquals(newData, StudentList);
+        studentList.resetData(newData);
+        assertEquals(newData, studentList);
     }
 
     @Test
@@ -50,42 +50,42 @@ public class StudentListTest {
         List<Student> newStudents = Arrays.asList(ALICE, editedAlice);
         StudentListStub newData = new StudentListStub(newStudents);
 
-        assertThrows(DuplicateStudentException.class, () -> StudentList.resetData(newData));
+        assertThrows(DuplicateStudentException.class, () -> studentList.resetData(newData));
     }
 
     @Test
     public void hasStudent_nullStudent_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> StudentList.hasStudent(null));
+        assertThrows(NullPointerException.class, () -> studentList.hasStudent(null));
     }
 
     @Test
     public void hasStudent_studentNotInStudentList_returnsFalse() {
-        assertFalse(StudentList.hasStudent(ALICE));
+        assertFalse(studentList.hasStudent(ALICE));
     }
 
     @Test
     public void hasStudent_studentInStudentList_returnsTrue() {
-        StudentList.addStudent(ALICE);
-        assertTrue(StudentList.hasStudent(ALICE));
+        studentList.addStudent(ALICE);
+        assertTrue(studentList.hasStudent(ALICE));
     }
 
     @Test
     public void hasStudent_studentWithSameIdentityFieldsInStudentList_returnsTrue() {
-        StudentList.addStudent(ALICE);
+        studentList.addStudent(ALICE);
         Student editedAlice = new StudentBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(StudentList.hasStudent(editedAlice));
+        assertTrue(studentList.hasStudent(editedAlice));
     }
 
     @Test
     public void getStudentList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> StudentList.getStudentList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> studentList.getStudentList().remove(0));
     }
 
     @Test
     public void toStringMethod() {
-        String expected = StudentList.class.getCanonicalName() + "{Students=" + StudentList.getStudentList() + "}";
-        assertEquals(expected, StudentList.toString());
+        String expected = StudentList.class.getCanonicalName() + "{Students=" + studentList.getStudentList() + "}";
+        assertEquals(expected, studentList.toString());
     }
 
     /**
