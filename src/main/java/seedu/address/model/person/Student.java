@@ -7,7 +7,6 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -22,16 +21,18 @@ public class Student {
     private final Email email;
 
     // Data fields
+    private final Remark remark;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, Course course, Email email, Set<Tag> tags) {
+    public Student(Name name, Course course, Email email, Remark remark, Set<Tag> tags) {
         requireAllNonNull(name, course, email, tags);
         this.name = name;
         this.course = course;
         this.email = email;
+        this.remark = remark;
         this.tags.addAll(tags);
     }
 
@@ -47,6 +48,10 @@ public class Student {
         return email;
     }
 
+    public Remark getRemark() {
+        return remark;
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -56,7 +61,7 @@ public class Student {
     }
 
     /**
-     * Returns true if both students have the same name.
+     * Returns true if both persons of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSameStudent(Student otherStudent) {
@@ -65,7 +70,8 @@ public class Student {
         }
 
         return otherStudent != null
-                && otherStudent.getName().equals(getName());
+                && otherStudent.getName().equals(getName())
+                && (otherStudent.getCourse().equals(getCourse()) || otherStudent.getEmail().equals(getEmail()));
     }
 
     /**
@@ -84,10 +90,11 @@ public class Student {
         }
 
         Student otherStudent = (Student) other;
-        return name.equals(otherStudent.name)
-                && course.equals(otherStudent.course)
-                && email.equals(otherStudent.email)
-                && tags.equals(otherStudent.tags);
+
+        return otherStudent.getName().equals(getName())
+                && otherStudent.getCourse().equals(getCourse())
+                && otherStudent.getEmail().equals(getEmail())
+                && otherStudent.getTags().equals(getTags());
     }
 
     @Override
@@ -98,12 +105,17 @@ public class Student {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this)
-                .add("name", name)
-                .add("course", course)
-                .add("email", email)
-                .add("tags", tags)
-                .toString();
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getName())
+                .append(" Course: ")
+                .append(getCourse())
+                .append(" Email: ")
+                .append(getEmail())
+                .append(" Remark: ")
+                .append(getRemark())
+                .append(" Tags: ");
+        getTags().forEach(builder::append);
+        return builder.toString();
     }
 
 }

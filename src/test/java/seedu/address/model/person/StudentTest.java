@@ -90,6 +90,7 @@ public class StudentTest {
         String expected = Student.class.getCanonicalName() + "{name=" + ALICE.getName()
                 + ", course=" + ALICE.getCourse()
                 + ", email=" + ALICE.getEmail() + ", tags=" + ALICE.getTags() + "}";
+
         assertEquals(expected, ALICE.toString());
     }
 }

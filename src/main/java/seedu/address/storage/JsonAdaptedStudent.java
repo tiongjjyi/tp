@@ -14,6 +14,7 @@ import seedu.address.model.person.Course;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Student;
+import seedu.address.model.person.Remark;
 import seedu.address.model.tag.Tag;
 
 
@@ -28,17 +29,19 @@ class JsonAdaptedStudent {
     private final String course;
     private final String email;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
+    private final String remark;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("course") String course,
-                              @JsonProperty("email") String email,
+                              @JsonProperty("email") String email, @JsonProperty("remark") String remark,
                               @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
         this.course = course;
         this.email = email;
+        this.remark = remark;
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -51,6 +54,7 @@ class JsonAdaptedStudent {
         name = source.getName().fullName;
         course = source.getCourse().value;
         email = source.getEmail().value;
+        remark = source.getRemark().value;
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -92,7 +96,14 @@ class JsonAdaptedStudent {
         final Email modelEmail = new Email(email);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Student(modelName, modelCourse, modelEmail, modelTags);
+
+        if (remark == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
+        }
+
+        final Remark modelRemark = new Remark(remark);
+
+        return new Student(modelName, modelCourse, modelEmail, modelRemark, modelTags);
     }
 
 }

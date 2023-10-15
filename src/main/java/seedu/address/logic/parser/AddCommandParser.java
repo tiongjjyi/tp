@@ -15,6 +15,7 @@ import seedu.address.model.person.Course;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Student;
+import seedu.address.model.person.Remark;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -41,8 +42,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         Course course = ParserUtil.parseCourse(argMultimap.getValue(PREFIX_COURSE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-
-        Student student = new Student(name, course, email, tagList);
+        Remark remark = new Remark(""); // add command does not allow adding remarks straight away
+        Student student = new Student(name, course, email, remark, tagList);
 
         return new AddCommand(student);
     }
