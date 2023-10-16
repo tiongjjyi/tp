@@ -1,0 +1,8 @@
+{
+  "persons": [ {
+    "name": "Hans Muster",
+    "course": "CS2103T",
+    "remark" : "",
+    "email": "invalid@email!3e"
+  } ]
+}

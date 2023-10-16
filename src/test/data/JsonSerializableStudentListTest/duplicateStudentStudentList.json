@@ -1,0 +1,14 @@
+{
+  "persons": [ {
+    "name": "Alice Pauline",
+    "course": "CS2103T",
+    "email": "alice@example.com",
+    "remark" : "",
+    "tags": [ "friends" ]
+  }, {
+    "name": "Alice Pauline",
+    "course": "CS2103T",
+    "remark" : "",
+    "email": "pauline@example.com"
+  } ]
+}
