@@ -29,7 +29,7 @@ public class Student {
      * Every field must be present and not null.
      */
     public Student(Name name, Course course, Email email, Remark remark, Set<Tag> tags) {
-        requireAllNonNull(name, course, email, tags);
+        requireAllNonNull(name, course, email, remark, tags);
         this.name = name;
         this.course = course;
         this.email = email;
@@ -95,13 +95,14 @@ public class Student {
         return otherStudent.getName().equals(getName())
                 && otherStudent.getCourse().equals(getCourse())
                 && otherStudent.getEmail().equals(getEmail())
+                && otherStudent.getRemark().equals(getRemark())
                 && otherStudent.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, course, email, tags);
+        return Objects.hash(name, course, email, remark, tags);
     }
 
     @Override
