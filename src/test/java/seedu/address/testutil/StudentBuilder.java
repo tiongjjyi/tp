@@ -3,10 +3,10 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Course;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Remark;
 import seedu.address.model.person.Student;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
@@ -19,11 +19,12 @@ public class StudentBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_COURSE = "CS2103T";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
+    public static final String DEFAULT_REMARK = "She likes aardvarks.";
 
     private Name name;
     private Course course;
     private Email email;
-    private Address address;
+    private Remark remark;
     private Set<Tag> tags;
 
     /**
@@ -33,6 +34,7 @@ public class StudentBuilder {
         name = new Name(DEFAULT_NAME);
         course = new Course(DEFAULT_COURSE);
         email = new Email(DEFAULT_EMAIL);
+        remark = new Remark(DEFAULT_REMARK);
         tags = new HashSet<>();
     }
 
@@ -43,6 +45,7 @@ public class StudentBuilder {
         name = personToCopy.getName();
         course = personToCopy.getCourse();
         email = personToCopy.getEmail();
+        remark = personToCopy.getRemark();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -78,8 +81,15 @@ public class StudentBuilder {
         return this;
     }
 
-    public Student build() {
-        return new Student(name, course, email, tags);
+    /**
+     * Sets the {@code Remark} of the {@code Person} that we are building.
+     */
+    public StudentBuilder withRemark(String remark) {
+        this.remark = new Remark(remark);
+        return this;
     }
 
+    public Student build() {
+        return new Student(name, course, email, remark, tags);
+    }
 }
