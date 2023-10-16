@@ -18,7 +18,7 @@ public class MessagesTest {
 
         String errorMessage = Messages.getErrorMessageForDuplicatePrefixes(duplicatePrefixes);
 
-        String expectedErrorMessage = "Multiple values specified for the following single-valued field(s): n/ c/";
+        String expectedErrorMessage = Messages.MESSAGE_DUPLICATE_FIELDS + "n/ c/";
         assertEquals(expectedErrorMessage, errorMessage);
     }
 
