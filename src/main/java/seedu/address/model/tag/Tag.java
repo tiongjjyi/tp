@@ -10,19 +10,20 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Tag {
 
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
+    public static final String MESSAGE_CONSTRAINTS_ENUMS = "Tags names should be GOOD/AVERAGE/POOR";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
-    public final String tagName;
+    public final StudentRank ranking;
 
     /**
      * Constructs a {@code Tag}.
      *
-     * @param tagName A valid tag name.
+     * @param ranking A valid tag name.
      */
-    public Tag(String tagName) {
-        requireNonNull(tagName);
-        checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
-        this.tagName = tagName;
+    public Tag(StudentRank ranking) {
+        requireNonNull(ranking);
+        checkArgument(isValidTagName(ranking.toString()), MESSAGE_CONSTRAINTS);
+        this.ranking = ranking;
     }
 
     /**
@@ -44,19 +45,19 @@ public class Tag {
         }
 
         Tag otherTag = (Tag) other;
-        return tagName.equals(otherTag.tagName);
+        return ranking.toString().equals(otherTag.ranking.toString());
     }
 
     @Override
     public int hashCode() {
-        return tagName.hashCode();
+        return ranking.hashCode();
     }
 
     /**
      * Format state as text for viewing.
      */
     public String toString() {
-        return '[' + tagName + ']';
+        return '[' + ranking.toString() + ']';
     }
 
 }

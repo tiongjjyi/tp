@@ -4,6 +4,9 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.parser.ParserUtil;
+
 public class TagTest {
 
     @Test
@@ -12,9 +15,9 @@ public class TagTest {
     }
 
     @Test
-    public void constructor_invalidTagName_throwsIllegalArgumentException() {
-        String invalidTagName = "";
-        assertThrows(IllegalArgumentException.class, () -> new Tag(invalidTagName));
+    public void constructor_invalidTagName_throwsIllegalValueException() {
+        String invalidTagName = "#invalid";
+        assertThrows(IllegalValueException.class, () -> ParserUtil.parseTag(invalidTagName));
     }
 
     @Test

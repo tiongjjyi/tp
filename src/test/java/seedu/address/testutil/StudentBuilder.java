@@ -8,6 +8,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Remark;
 import seedu.address.model.person.Student;
+import seedu.address.model.tag.StudentRank;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -60,7 +61,7 @@ public class StudentBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
-    public StudentBuilder withTags(String ... tags) {
+    public StudentBuilder withTags(StudentRank ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }

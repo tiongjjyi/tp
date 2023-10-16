@@ -6,7 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COURSE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_AVERAGE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_GOOD;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalStudents.ALICE;
 import static seedu.address.testutil.TypicalStudents.BOB;
@@ -33,7 +34,7 @@ public class StudentTest {
 
         // same name, all other attributes different -> returns false
         Student editedAlice = new StudentBuilder(ALICE).withCourse(VALID_COURSE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+                .withTags(VALID_TAG_AVERAGE).build();
         assertFalse(ALICE.isSameStudent(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -81,7 +82,7 @@ public class StudentTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false
-        editedAlice = new StudentBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
+        editedAlice = new StudentBuilder(ALICE).withTags(VALID_TAG_GOOD).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 

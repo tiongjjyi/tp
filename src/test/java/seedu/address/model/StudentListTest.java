@@ -3,7 +3,7 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_GOOD;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalStudents.ALICE;
 import static seedu.address.testutil.TypicalStudents.getTypicalStudentList;
@@ -45,7 +45,7 @@ public class StudentListTest {
     @Test
     public void resetData_withDuplicateStudents_throwsDuplicateStudentException() {
         // Two Students with the same identity fields
-        Student editedAlice = new StudentBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
+        Student editedAlice = new StudentBuilder(ALICE).withTags(VALID_TAG_GOOD)
                 .build();
         List<Student> newStudents = Arrays.asList(ALICE, editedAlice);
         StudentListStub newData = new StudentListStub(newStudents);
@@ -72,7 +72,7 @@ public class StudentListTest {
     @Test
     public void hasStudent_studentWithSameIdentityFieldsInStudentList_returnsTrue() {
         studentList.addStudent(ALICE);
-        Student editedAlice = new StudentBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
+        Student editedAlice = new StudentBuilder(ALICE).withTags(VALID_TAG_GOOD)
                 .build();
         assertTrue(studentList.hasStudent(editedAlice));
     }

@@ -9,6 +9,7 @@ import seedu.address.model.person.Course;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Student;
+import seedu.address.model.tag.StudentRank;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -66,7 +67,7 @@ public class EditStudentDescriptorBuilder {
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
      * that we are building.
      */
-    public EditStudentDescriptorBuilder withTags(String... tags) {
+    public EditStudentDescriptorBuilder withTags(StudentRank... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
         return this;

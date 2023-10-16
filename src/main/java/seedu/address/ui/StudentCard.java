@@ -53,7 +53,7 @@ public class StudentCard extends UiPart<Region> {
         email.setText(student.getEmail().value);
         remark.setText(student.getRemark().value);
         student.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .sorted(Comparator.comparing(tag -> tag.ranking))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.ranking.toString())));
     }
 }
