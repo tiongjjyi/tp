@@ -1,0 +1,52 @@
+{
+  "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
+  "persons" : [ {
+    "name" : "Alice Pauline",
+    "course" : "CS2103T",
+    "email" : "alice@example.com",
+    "remark" : "",
+    "tags" : [ "friends" ]
+
+  }, {
+    "name" : "Benson Meier",
+    "course" : "CS2103T",
+    "email" : "johnd@example.com",
+    "remark" : "",
+    "tags" : [ "owesMoney", "friends" ]
+
+  }, {
+    "name" : "Carl Kurz",
+    "course" : "CS2103T",
+    "email" : "heinz@example.com",
+    "remark" : "",
+    "tags" : [ ]
+
+  }, {
+    "name" : "Daniel Meier",
+    "course" : "CS2103T",
+    "email" : "cornelia@example.com",
+    "remark" : "",
+    "tags" : [ "friends" ]
+
+  }, {
+    "name" : "Elle Meyer",
+    "course" : "CS2103T",
+    "email" : "werner@example.com",
+    "remark" : "",
+    "tags" : [ ]
+
+  }, {
+    "name" : "Fiona Kunz",
+    "course" : "CS2103T",
+    "email" : "lydia@example.com",
+    "remark" : "",
+    "tags" : [ ]
+
+  }, {
+    "name" : "George Best",
+    "course" : "CS2103T",
+    "email" : "anna@example.com",
+    "remark" : "",
+    "tags" : [ ]
+  } ]
+}
