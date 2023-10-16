@@ -94,7 +94,7 @@ public class PersonTest {
     @Test
     public void toStringMethod() {
         String expected = "Alice Pauline Phone: 94351253 Email: alice@example.com Address: 123,"
-                + " Jurong West Ave 6, #08-111 Remark: She likes aardvarks. Tags: [friends]";
+                + " Jurong West Ave 6, #08-111 Remark: She likes aardvarks. Tags: [AVERAGE]";
         assertEquals(expected, ALICE.toString());
     }
 }
