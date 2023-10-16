@@ -234,7 +234,7 @@ public class EditCommand extends Command {
                     .add("name", name)
                     .add("course", course)
                     .add("email", email)
-                    .add("email", remark)
+                    .add("remark", remark)
                     .add("tags", tags)
                     .toString();
         }
