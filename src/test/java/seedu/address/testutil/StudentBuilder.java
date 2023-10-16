@@ -20,7 +20,7 @@ public class StudentBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_COURSE = "CS2103T";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_REMARK = "She likes aardvarks.";
+    public static final String DEFAULT_REMARK = "Likes skiing.";
 
     private Name name;
     private Course course;
@@ -35,7 +35,7 @@ public class StudentBuilder {
         name = new Name(DEFAULT_NAME);
         course = new Course(DEFAULT_COURSE);
         email = new Email(DEFAULT_EMAIL);
-        remark = new Remark(DEFAULT_REMARK);
+        remark = new Remark("");
         tags = new HashSet<>();
     }
 

@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COURSE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
@@ -41,6 +42,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_COURSE + "COURSE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_REMARK + "REMARK] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_COURSE + "CS2103T "
@@ -96,7 +98,7 @@ public class EditCommand extends Command {
         Name updatedName = editStudentDescriptor.getName().orElse(studentToEdit.getName());
         Course updatedCourse = editStudentDescriptor.getCourse().orElse(studentToEdit.getCourse());
         Email updatedEmail = editStudentDescriptor.getEmail().orElse(studentToEdit.getEmail());
-        Remark updatedRemark = studentToEdit.getRemark(); // edit command does not allow editing remarks
+        Remark updatedRemark = editStudentDescriptor.getRemark().orElse(studentToEdit.getRemark());
         Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
 
         return new Student(updatedName, updatedCourse, updatedEmail, updatedRemark, updatedTags);
@@ -134,6 +136,7 @@ public class EditCommand extends Command {
         private Name name;
         private Course course;
         private Email email;
+        private Remark remark;
         private Set<Tag> tags;
 
         public EditStudentDescriptor() {}
@@ -146,6 +149,7 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setCourse(toCopy.course);
             setEmail(toCopy.email);
+            setRemark(toCopy.remark);
             setTags(toCopy.tags);
         }
 
@@ -153,7 +157,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, course, email, tags);
+            return CollectionUtil.isAnyNonNull(name, course, email, remark, tags);
         }
 
         public void setName(Name name) {
@@ -178,6 +182,14 @@ public class EditCommand extends Command {
 
         public Optional<Email> getEmail() {
             return Optional.ofNullable(email);
+        }
+
+        public void setRemark(Remark remark) {
+            this.remark = remark;
+        }
+
+        public Optional<Remark> getRemark() {
+            return Optional.ofNullable(remark);
         }
 
         /**
@@ -212,6 +224,7 @@ public class EditCommand extends Command {
             return Objects.equals(name, otherEditStudentDescriptor.name)
                     && Objects.equals(course, otherEditStudentDescriptor.course)
                     && Objects.equals(email, otherEditStudentDescriptor.email)
+                    && Objects.equals(remark, otherEditStudentDescriptor.remark)
                     && Objects.equals(tags, otherEditStudentDescriptor.tags);
         }
 
@@ -221,6 +234,7 @@ public class EditCommand extends Command {
                     .add("name", name)
                     .add("course", course)
                     .add("email", email)
+                    .add("remark", remark)
                     .add("tags", tags)
                     .toString();
         }
