@@ -1,14 +1,12 @@
 ---
 layout: page
-title: "User Guide"
+title: User Guide
 ---
-
-# CodeSphere User Guide
 
 CodeSphere is a **desktop contact management app, optimised for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). It is an app targeted at connecting Year 1 Computer Science students in the NUS School of Computing.
 
 * Table of Contents
-  {:toc}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -64,7 +62,8 @@ CodeSphere is a **desktop contact management app, optimised for use via a Comman
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
-  </div>
+
+</div>
 
 ### Adding a student : `add` [coming soon]
 
