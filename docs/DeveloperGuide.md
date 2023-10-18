@@ -1,19 +1,16 @@
 ---
   layout: page
-  title: "Developer Guide"
+  title: Developer Guide
   pageNav: 3
 ---
-
-# CodeSphere Developer Guide
-
-<!-- * Table of Contents -->
-<page-nav-print />
+* Table of Contents
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
 
-_{ list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well }_
+* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -22,7 +19,6 @@ _{ list here sources of all reused/adapted ideas, code, documentation, and third
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
-## **Appendix: Requirements**
 
 ### Product scope
 
@@ -114,6 +110,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 7.  Ensure that only authorized users can access and manipulate profile information.
 
 *{More to be added}*
+
+## **Appendix: Requirements**
 
 ### Glossary
 
