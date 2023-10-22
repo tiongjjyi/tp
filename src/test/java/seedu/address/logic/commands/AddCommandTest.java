@@ -19,12 +19,12 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyStudentList;
 import seedu.address.model.ReadOnlyCourseList;
+import seedu.address.model.ReadOnlyStudentList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.StudentList;
-import seedu.address.model.person.Student;
 import seedu.address.model.course.Course;
+import seedu.address.model.person.Student;
 import seedu.address.testutil.StudentBuilder;
 
 public class AddCommandTest {
