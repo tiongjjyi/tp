@@ -48,7 +48,6 @@ public class Course {
 
     /**
      * Adds a student to the course being taught by the TA.
-     * 
      * @param student A student to be added to the course.
      */
     public void addItem(Student student) {

@@ -5,5 +5,5 @@ package seedu.address.logic.parser;
  */
 public enum Stages {
     HOME,
-    COURSE 
+    COURSE
 }
