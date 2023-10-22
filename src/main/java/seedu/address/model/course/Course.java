@@ -3,8 +3,8 @@ package seedu.address.model.course;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import seedu.address.model.person.UniqueStudentList;
 import seedu.address.model.person.Student;
+import seedu.address.model.person.UniqueStudentList;
 
 /**
  * Represents a Students's course in the student list.

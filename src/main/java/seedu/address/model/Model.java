@@ -5,8 +5,8 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Student;
 import seedu.address.model.course.Course;
+import seedu.address.model.person.Student;
 
 /**
  * The API of the Model component.
