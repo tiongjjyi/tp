@@ -59,11 +59,11 @@ public class ParserUtil {
      */
     public static Course parseCourse(String phone) throws ParseException {
         requireNonNull(phone);
-        String trimmedPhone = phone.trim();
-        if (!Course.isValidCourse(trimmedPhone)) {
+        String trimmedCourse = phone.trim();
+        if (!Course.isValidCourse(trimmedCourse)) {
             throw new ParseException(Course.MESSAGE_CONSTRAINTS);
         }
-        return new Course(trimmedPhone);
+        return new Course(trimmedCourse);
     }
 
     /**
