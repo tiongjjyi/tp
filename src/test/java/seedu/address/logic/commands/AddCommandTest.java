@@ -20,9 +20,11 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyStudentList;
+import seedu.address.model.ReadOnlyCourseList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.StudentList;
 import seedu.address.model.person.Student;
+import seedu.address.model.course.Course;
 import seedu.address.testutil.StudentBuilder;
 
 public class AddCommandTest {
@@ -155,6 +157,46 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredStudentList(Predicate<Student> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addCourse(Course course) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setCourseList(ReadOnlyCourseList newData) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyCourseList getCourseList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasCourse(Course course) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteCourse(Course target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setCourse(Course target, Course editedCourse) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Course> getFilteredCourseList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredCourseList(Predicate<Course> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }

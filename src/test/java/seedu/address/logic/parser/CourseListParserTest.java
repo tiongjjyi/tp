@@ -34,7 +34,7 @@ import seedu.address.testutil.StudentUtil;
 
 public class CourseListParserTest {
 
-    private final StudentListParser parser = new StudentListParser();
+    private final CodeSphereParser parser = new CodeSphereParser();
 
     @Test
     public void parseCommand_add() throws Exception {
