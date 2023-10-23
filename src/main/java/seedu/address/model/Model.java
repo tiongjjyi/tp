@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.course.Course;
 import seedu.address.model.person.Student;
 
 /**
@@ -13,6 +14,9 @@ import seedu.address.model.person.Student;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Student> PREDICATE_SHOW_ALL_STUDENTS = unused -> true;
+
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Course> PREDICATE_SHOW_ALL_COURSES = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -53,6 +57,15 @@ public interface Model {
     ReadOnlyStudentList getStudentList();
 
     /**
+     * Replaces address book data with the data in {@code addressBook}.
+     */
+    void setCourseList(ReadOnlyCourseList addressBook);
+
+    /** Returns the AddressBook */
+    ReadOnlyCourseList getCourseList();
+
+
+    /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
     boolean hasStudent(Student student);
@@ -84,4 +97,37 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredStudentList(Predicate<Student> predicate);
+
+    /**
+     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     */
+    boolean hasCourse(Course course);
+
+    /**
+     * Deletes the given person.
+     * The person must exist in the address book.
+     */
+    void deleteCourse(Course target);
+
+    /**
+     * Adds the given person.
+     * {@code person} must not already exist in the address book.
+     */
+    void addCourse(Course course);
+
+    /**
+     * Replaces the given person {@code target} with {@code editedPerson}.
+     * {@code target} must exist in the address book.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     */
+    void setCourse(Course target, Course editedCourse);
+
+    /** Returns an unmodifiable view of the filtered person list */
+    ObservableList<Course> getFilteredCourseList();
+
+    /**
+     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredCourseList(Predicate<Course> predicate);
 }

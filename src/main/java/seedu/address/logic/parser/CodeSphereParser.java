@@ -23,13 +23,13 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Parses user input.
  */
-public class StudentListParser {
+public class CodeSphereParser {
 
     /**
      * Used for initial separation of command word and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
-    private static final Logger logger = LogsCenter.getLogger(StudentListParser.class);
+    private static final Logger logger = LogsCenter.getLogger(CodeSphereParser.class);
 
     /**
      * Parses user input into command for execution.
@@ -46,8 +46,71 @@ public class StudentListParser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
-        switch (commandWord) {
 
+        Stages currentStage = StageManager.getStage();
+
+        switch (currentStage) {
+        case HOME:
+            return parseHomeStageCommand(commandWord, arguments);
+        case COURSE:
+            return parseCourseStageCommand(commandWord, arguments);
+        default:
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        }
+    }
+
+    /**
+     * Parses user input into command for execution.
+     *
+     * @param commandWord command word
+     * @param arguments arguments
+     * @return the command based on the user input
+     * @throws ParseException if the user input does not conform the expected format
+     */
+    private Command parseHomeStageCommand(String commandWord, String arguments) throws ParseException {
+        switch (commandWord) {
+        case AddCommand.COMMAND_WORD:
+            return new AddCommandParser().parse(arguments);
+
+        case EditCommand.COMMAND_WORD:
+            return new EditCommandParser().parse(arguments);
+
+        case DeleteCommand.COMMAND_WORD:
+            return new DeleteCommandParser().parse(arguments);
+
+        case ClearCommand.COMMAND_WORD:
+            return new ClearCommand();
+
+        case FindCommand.COMMAND_WORD:
+            return new FindCommandParser().parse(arguments);
+
+        case RemarkCommand.COMMAND_WORD:
+            return new RemarkCommandParser().parse(arguments);
+
+        case ListCommand.COMMAND_WORD:
+            return new ListCommand();
+
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
+
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
+
+        default:
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        }
+    }
+
+    /**
+     * Parses user input into command for execution.
+     *
+     * @param commandWord command word
+     * @param arguments arguments
+     * @return the command based on the user input
+     * @throws ParseException if the user input does not conform the expected format
+     */
+    private Command parseCourseStageCommand(String commandWord, String arguments) throws ParseException {
+        switch (commandWord) {
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
 

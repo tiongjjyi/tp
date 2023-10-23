@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.course.Course;
 import seedu.address.model.person.Student;
 /**
  * Represents the in-memory model of the address book data.
@@ -19,8 +20,10 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final StudentList studentList;
+    private final CourseList courseList;
     private final UserPrefs userPrefs;
     private final FilteredList<Student> filteredStudents;
+    private final FilteredList<Course> filteredCourses;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -33,6 +36,9 @@ public class ModelManager implements Model {
         this.studentList = new StudentList(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredStudents = new FilteredList<>(this.studentList.getStudentList());
+
+        this.courseList = new CourseList();
+        filteredCourses = new FilteredList<>(this.courseList.getCourseList());
     }
 
     public ModelManager() {
@@ -144,4 +150,73 @@ public class ModelManager implements Model {
                 && filteredStudents.equals(otherModelManager.filteredStudents);
     }
 
+    //=========== CodeSphere ================================================================================
+
+    @Override
+    public void setCourseList(ReadOnlyCourseList addressBook) {
+        this.courseList.resetData(addressBook);
+    }
+
+    @Override
+    public ReadOnlyCourseList getCourseList() {
+        return courseList;
+    }
+
+    @Override
+    public boolean hasCourse(Course Course) {
+        requireNonNull(Course);
+        return courseList.hasCourse(Course);
+    }
+
+    @Override
+    public void deleteCourse(Course target) {
+        courseList.removeCourse(target);
+    }
+
+    @Override
+    public void addCourse(Course Course) {
+        courseList.addCourse(Course);
+        updateFilteredCourseList(PREDICATE_SHOW_ALL_COURSES);
+    }
+
+    @Override
+    public void setCourse(Course target, Course editedCourse) {
+        requireAllNonNull(target, editedCourse);
+
+        courseList.setCourse(target, editedCourse);
+    }
+
+    //=========== Filtered Course List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Course} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Course> getFilteredCourseList() {
+        return filteredCourses;
+    }
+
+    @Override
+    public void updateFilteredCourseList(Predicate<Course> predicate) {
+        requireNonNull(predicate);
+        filteredCourses.setPredicate(predicate);
+    }
+
+    // @Override
+    // public boolean equals(Object other) {
+    //     if (other == this) {
+    //         return true;
+    //     }
+
+    //     // instanceof handles nulls
+    //     if (!(other instanceof ModelManager)) {
+    //         return false;
+    //     }
+
+    //     ModelManager otherModelManager = (ModelManager) other;
+    //     return courseList.equals(otherModelManager.courseList)
+    //             && userPrefs.equals(otherModelManager.userPrefs)
+    //             && filteredCourses.equals(otherModelManager.filteredCourses);
+    // }
 }
