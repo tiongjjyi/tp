@@ -14,7 +14,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.CodeSphereParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
+import seedu.address.model.ReadOnlyCourseList;
 import seedu.address.model.ReadOnlyStudentList;
+import seedu.address.model.course.Course;
 import seedu.address.model.person.Student;
 import seedu.address.storage.Storage;
 
@@ -74,6 +76,11 @@ public class LogicManager implements Logic {
     @Override
     public Path getStudentListFilePath() {
         return model.getAddressBookFilePath();
+    }
+
+    @Override
+    public ObservableList<Course> getCourseList() {
+        return model.getFilteredCourseList();
     }
 
     @Override

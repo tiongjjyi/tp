@@ -7,7 +7,7 @@ import seedu.address.model.person.Student;
 import seedu.address.model.person.UniqueStudentList;
 
 /**
- * Represents a Students's course in the student list.
+ * Represents a Student's course in the student list.
  * Guarantees: immutable; is valid as declared in {@link #isValidCourse(String)}
  */
 public class Course {

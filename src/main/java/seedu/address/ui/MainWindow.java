@@ -1,12 +1,10 @@
 package seedu.address.ui;
 
-import java.io.IOException;
 import java.util.logging.Logger;
 
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -35,9 +33,12 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
+    private SplashWindow splashWindow;
     private StudentListPanel studentListPanel;
+    private CourseListPanel courseListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    boolean isHomeScreen = true;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -46,7 +47,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane itemListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -113,17 +114,27 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Fills up all the placeholders of this window.
      */
-    void fillInnerParts() {
+    void fillInnerParts() throws InterruptedException {
 
         loadSplashScreen();
 
-        FadeTransition fadeIn = new FadeTransition(Duration.seconds(1.5), personListPanelPlaceholder);
+        FadeTransition fadeIn = new FadeTransition(Duration.seconds(1), itemListPanelPlaceholder);
         fadeIn.setFromValue(0);
         fadeIn.setToValue(1);
+
+        FadeTransition fadeOut = new FadeTransition(Duration.seconds(1), itemListPanelPlaceholder);
+        fadeOut.setFromValue(1);
+        fadeOut.setToValue(0);
+
         fadeIn.play();
-        fadeIn.setOnFinished(event -> {
-            loadStudentListPanel();
+        fadeIn.setOnFinished( (e) -> {
+            fadeOut.play();
+            fadeOut.setOnFinished( event -> {
+                itemListPanelPlaceholder.setOpacity(1);
+                switchPanels();
+            });
         });
+
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -136,14 +147,32 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     void loadSplashScreen() {
-        personListPanelPlaceholder.getChildren().clear();
-        SplashWindow splashWindow = new SplashWindow();
-        personListPanelPlaceholder.getChildren().add(splashWindow.getRoot());
+        itemListPanelPlaceholder.getChildren().clear();
+        splashWindow = new SplashWindow();
+        itemListPanelPlaceholder.getChildren().add(splashWindow.getRoot());
     }
     void loadStudentListPanel() {
-        personListPanelPlaceholder.getChildren().clear();
+        itemListPanelPlaceholder.getChildren().clear();
         studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
-        personListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+        itemListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+    }
+
+    void loadCourseListPanel() {
+        itemListPanelPlaceholder.getChildren().clear();
+        courseListPanel = new CourseListPanel(logic.getCourseList());
+        itemListPanelPlaceholder.getChildren().add(courseListPanel.getRoot());
+    }
+
+    void switchPanels() {
+        System.out.println("Button is clicked!");
+        if (isHomeScreen) {
+            loadStudentListPanel();
+            isHomeScreen = false;
+        } else {
+            //loadCourseListPanel();
+            loadSplashScreen();
+            isHomeScreen = true;
+        }
     }
 
     /**

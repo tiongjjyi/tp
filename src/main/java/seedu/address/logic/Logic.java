@@ -7,7 +7,9 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.ReadOnlyCourseList;
 import seedu.address.model.ReadOnlyStudentList;
+import seedu.address.model.course.Course;
 import seedu.address.model.person.Student;
 
 /**
@@ -32,6 +34,9 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Student> getFilteredStudentList();
+
+    /** Returns an unmodifiable view of the list of courses */
+    ObservableList<Course> getCourseList();
 
     /**
      * Returns the user prefs' student list file path.
