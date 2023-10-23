@@ -1,15 +1,19 @@
 package seedu.address.ui;
 
+import java.io.IOException;
 import java.util.logging.Logger;
 
+import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
@@ -110,8 +114,16 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
-        personListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+
+        loadSplashScreen();
+
+        FadeTransition fadeIn = new FadeTransition(Duration.seconds(1.5), personListPanelPlaceholder);
+        fadeIn.setFromValue(0);
+        fadeIn.setToValue(1);
+        fadeIn.play();
+        fadeIn.setOnFinished(event -> {
+            loadStudentListPanel();
+        });
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -121,6 +133,17 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+    }
+
+    void loadSplashScreen() {
+        personListPanelPlaceholder.getChildren().clear();
+        SplashWindow splashWindow = new SplashWindow();
+        personListPanelPlaceholder.getChildren().add(splashWindow.getRoot());
+    }
+    void loadStudentListPanel() {
+        personListPanelPlaceholder.getChildren().clear();
+        studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
+        personListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
     }
 
     /**
