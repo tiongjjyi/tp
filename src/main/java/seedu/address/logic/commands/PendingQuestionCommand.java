@@ -71,7 +71,8 @@ public class PendingQuestionCommand extends Command {
      * {@code personToEdit}.
      */
     private String generateSuccessMessage(Student studentToEdit) {
-        String message = !pendingQuestion.value.isEmpty() ? MESSAGE_ADD_PENDING_QUESTION_SUCCESS : MESSAGE_DELETE_PENDING_QUESTION_SUCCESS;
+        String message = !pendingQuestion.value.isEmpty()
+                ? MESSAGE_ADD_PENDING_QUESTION_SUCCESS : MESSAGE_DELETE_PENDING_QUESTION_SUCCESS;
         return String.format(message, studentToEdit);
     }
     @Override

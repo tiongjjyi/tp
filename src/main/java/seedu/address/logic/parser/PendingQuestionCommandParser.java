@@ -27,7 +27,9 @@ public class PendingQuestionCommandParser implements Parser<PendingQuestionComma
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (IllegalValueException ive) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, PendingQuestionCommand.MESSAGE_USAGE), ive);
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                            PendingQuestionCommand.MESSAGE_USAGE), ive);
         }
 
         String pendingQuestion = argMultimap.getValue(PREFIX_PENDINGQUESTION).orElse("");

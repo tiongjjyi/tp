@@ -129,7 +129,7 @@ public class CodeSphereParser {
             return new RemarkCommandParser().parse(arguments);
 
         case PendingQuestionCommand.COMMAND_WORD:
-             return new PendingQuestionCommandParser().parse(arguments);
+            return new PendingQuestionCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
