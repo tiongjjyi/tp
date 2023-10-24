@@ -21,11 +21,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Course;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Remark;
-import seedu.address.model.person.Student;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -100,8 +96,9 @@ public class EditCommand extends Command {
         Email updatedEmail = editStudentDescriptor.getEmail().orElse(studentToEdit.getEmail());
         Remark updatedRemark = editStudentDescriptor.getRemark().orElse(studentToEdit.getRemark());
         Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
+        Attendance updatedAttendance = editStudentDescriptor.getAttendance().orElse(studentToEdit.getAttendance());
 
-        return new Student(updatedName, updatedCourse, updatedEmail, updatedRemark, updatedTags);
+        return new Student(updatedName, updatedCourse, updatedEmail, updatedRemark, updatedTags, updatedAttendance);
     }
 
     @Override
@@ -137,6 +134,7 @@ public class EditCommand extends Command {
         private Course course;
         private Email email;
         private Remark remark;
+        private Attendance attendance;
         private Set<Tag> tags;
 
         public EditStudentDescriptor() {}
@@ -151,6 +149,7 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setRemark(toCopy.remark);
             setTags(toCopy.tags);
+            setAttendance(toCopy.attendance);
         }
 
         /**
@@ -190,6 +189,14 @@ public class EditCommand extends Command {
 
         public Optional<Remark> getRemark() {
             return Optional.ofNullable(remark);
+        }
+
+        public void setAttendance(Attendance remark) {
+            this.attendance = attendance;
+        }
+
+        public Optional<Attendance> getAttendance() {
+            return Optional.ofNullable(attendance);
         }
 
         /**

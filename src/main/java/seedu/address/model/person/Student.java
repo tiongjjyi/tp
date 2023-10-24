@@ -24,17 +24,19 @@ public class Student {
     // Data fields
     private final Remark remark;
     private final Set<Tag> tags = new HashSet<>();
+    private final Attendance attendance;
 
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, Course course, Email email, Remark remark, Set<Tag> tags) {
-        requireAllNonNull(name, course, email, remark, tags);
+    public Student(Name name, Course course, Email email, Remark remark, Set<Tag> tags, Attendance attendance) {
+        requireAllNonNull(name, course, email, remark, tags, attendance);
         this.name = name;
         this.course = course;
         this.email = email;
         this.remark = remark;
         this.tags.addAll(tags);
+        this.attendance = attendance;
     }
 
     public Name getName() {
@@ -51,6 +53,10 @@ public class Student {
 
     public Remark getRemark() {
         return remark;
+    }
+
+    public Attendance getAttendance() {
+        return attendance;
     }
 
     /**
@@ -113,6 +119,7 @@ public class Student {
                 .add("email", email)
                 .add("remark", remark)
                 .add("tags", tags)
+                .add("attendance", attendance)
                 .toString();
     }
 

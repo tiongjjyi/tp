@@ -115,6 +115,7 @@ public class StudentList implements ReadOnlyStudentList {
             return true;
         }
 
+
         // instanceof handles nulls
         if (!(other instanceof StudentList)) {
             return false;

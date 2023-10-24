@@ -10,11 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Course;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Remark;
-import seedu.address.model.person.Student;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -29,6 +25,7 @@ class JsonAdaptedStudent {
     private final String email;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final String remark;
+    private final boolean attendance;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -36,11 +33,13 @@ class JsonAdaptedStudent {
     @JsonCreator
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("course") String course,
                               @JsonProperty("email") String email, @JsonProperty("remark") String remark,
+                              @JsonProperty("attendance") boolean attendance,
                               @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
         this.course = course;
         this.email = email;
         this.remark = remark;
+        this.attendance = attendance;
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -54,6 +53,7 @@ class JsonAdaptedStudent {
         course = source.getCourse().value;
         email = source.getEmail().value;
         remark = source.getRemark().value;
+        attendance = source.getAttendance().isPresent();
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -93,6 +93,7 @@ class JsonAdaptedStudent {
             throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
         }
         final Email modelEmail = new Email(email);
+        final Attendance modelAttendance = new Attendance(attendance);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
@@ -102,7 +103,7 @@ class JsonAdaptedStudent {
 
         final Remark modelRemark = new Remark(remark);
 
-        return new Student(modelName, modelCourse, modelEmail, modelRemark, modelTags);
+        return new Student(modelName, modelCourse, modelEmail, modelRemark, modelTags, modelAttendance);
     }
 
 }

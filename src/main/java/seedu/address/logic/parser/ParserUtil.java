@@ -9,10 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Course;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Remark;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.StudentRank;
 import seedu.address.model.tag.Tag;
 
@@ -103,11 +100,11 @@ public class ParserUtil {
         if (!Tag.isValidTagName(trimmedTag)) {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
-        if (trimmedTag.equals(StudentRank.GOOD.toString())) {
+        if (trimmedTag.equals(StudentRank.GOOD.toString()) || trimmedTag.equals("good")) {
             return new Tag(StudentRank.GOOD);
-        } else if (trimmedTag.equals(StudentRank.POOR.toString())) {
+        } else if (trimmedTag.equals(StudentRank.POOR.toString()) || trimmedTag.equals("poor")) {
             return new Tag(StudentRank.POOR);
-        } else if (trimmedTag.equals(StudentRank.AVERAGE.toString())) {
+        } else if (trimmedTag.equals(StudentRank.AVERAGE.toString()) || trimmedTag.equals("average")) {
             return new Tag(StudentRank.AVERAGE);
         } else {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS_ENUMS);
@@ -125,4 +122,24 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    /**
+     * Parses {@code attendance} into a boolean value to represent attendance (true for present, false for absent).
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code attendance} is invalid.
+     */
+    public static Attendance parseAttendance(String attendance) throws ParseException {
+        requireNonNull(attendance);
+        String trimmedAttendance = attendance.trim().toLowerCase();
+
+        if (trimmedAttendance.equals("present")) {
+            return new Attendance(true);
+        } else if (trimmedAttendance.equals("absent")) {
+            return new Attendance(false);
+        } else {
+            throw new ParseException("Attendance can only be 'present' or 'absent'");
+        }
+    }
+
 }

@@ -6,11 +6,7 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.ReadOnlyStudentList;
 import seedu.address.model.StudentList;
-import seedu.address.model.person.Course;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Remark;
-import seedu.address.model.person.Student;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.StudentRank;
 import seedu.address.model.tag.Tag;
 
@@ -22,17 +18,17 @@ public class SampleDataUtil {
     public static Student[] getSampleStudents() {
         return new Student[] {
             new Student(new Name("Alex Yeoh"), new Course("CS2103T"), new Email("alexyeoh@u.nus.edu"), EMPTY_REMARK,
-                    getTagSet(StudentRank.GOOD)),
+                    getTagSet(StudentRank.GOOD), new Attendance(true)),
             new Student(new Name("Bernice Yu"), new Course("CS2103T"), new Email("berniceyu@u.nus.edu"),
-                    EMPTY_REMARK, getTagSet(StudentRank.POOR)),
+                    EMPTY_REMARK, getTagSet(StudentRank.POOR), new Attendance(true)),
             new Student(new Name("Charlotte Oliveiro"), new Course("CS2103T"), new Email("charlotte@u.nus.edu"),
-                    EMPTY_REMARK, getTagSet(StudentRank.POOR)),
+                    EMPTY_REMARK, getTagSet(StudentRank.POOR), new Attendance(true)),
             new Student(new Name("David Li"), new Course("CS2103T"), new Email("lidavid@u.nus.edu"), EMPTY_REMARK,
-                    getTagSet(StudentRank.AVERAGE)),
+                    getTagSet(StudentRank.AVERAGE), new Attendance(true)),
             new Student(new Name("Irfan Ibrahim"), new Course("CS2103T"), new Email("irfan@u.nus.edu"),
-                    EMPTY_REMARK, getTagSet(StudentRank.GOOD)),
+                    EMPTY_REMARK, getTagSet(StudentRank.GOOD), new Attendance(true)),
             new Student(new Name("Roy Balakrishnan"), new Course("CS2103T"), new Email("royb@u.nus.edu"),
-                    EMPTY_REMARK, getTagSet(StudentRank.GOOD))
+                    EMPTY_REMARK, getTagSet(StudentRank.GOOD), new Attendance(true))
         };
     }
 
