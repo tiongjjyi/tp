@@ -12,6 +12,7 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.PendingQuestion;
 import seedu.address.model.person.Remark;
 import seedu.address.model.person.Student;
 import seedu.address.model.tag.Tag;
@@ -39,8 +40,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        Remark remark = new Remark(""); // add command does not allow adding remarks straight away
-        Student student = new Student(name, email, remark, tagList);
+        Remark remark = new Remark("");
+        PendingQuestion pendingQuestion = new PendingQuestion(""); // add command does not allow adding pending question straight away
+        Student student = new Student(name, email, remark, pendingQuestion, tagList);
 
         return new AddCommand(student);
     }

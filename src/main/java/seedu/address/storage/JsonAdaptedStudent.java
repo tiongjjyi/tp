@@ -10,10 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Remark;
-import seedu.address.model.person.Student;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -27,6 +24,7 @@ class JsonAdaptedStudent {
     private final String email;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final String remark;
+    private final String pendingQuestion;
 
     /**
      * Constructs a {@code JsonAdaptedStudent} with the given student details.
@@ -34,10 +32,12 @@ class JsonAdaptedStudent {
     @JsonCreator
     public JsonAdaptedStudent(@JsonProperty("name") String name,
                               @JsonProperty("email") String email, @JsonProperty("remark") String remark,
+                              @JsonProperty("pending question") String pendingQuestion,
                               @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
         this.email = email;
         this.remark = remark;
+        this.pendingQuestion = pendingQuestion;
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -50,6 +50,7 @@ class JsonAdaptedStudent {
         name = source.getName().fullName;
         email = source.getEmail().value;
         remark = source.getRemark().value;
+        pendingQuestion = source.getPendingQuestion().value;
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -90,7 +91,13 @@ class JsonAdaptedStudent {
 
         final Remark modelRemark = new Remark(remark);
 
-        return new Student(modelName, modelEmail, modelRemark, modelTags);
+        if (pendingQuestion == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, PendingQuestion.class.getSimpleName()));
+        }
+
+        final PendingQuestion modelPendingQuestion = new PendingQuestion(pendingQuestion);
+
+        return new Student(modelName, modelEmail, modelRemark, modelPendingQuestion, modelTags);
     }
 
 }

@@ -23,15 +23,17 @@ public class Student {
     // Data fields
     private final Remark remark;
     private final Set<Tag> tags = new HashSet<>();
+    private final PendingQuestion pendingQuestion;
 
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, Email email, Remark remark, Set<Tag> tags) {
+    public Student(Name name, Email email, Remark remark, PendingQuestion pendingQuestion, Set<Tag> tags) {
         requireAllNonNull(name, email, remark, tags);
         this.name = name;
         this.email = email;
         this.remark = remark;
+        this.pendingQuestion = pendingQuestion;
         this.tags.addAll(tags);
     }
 
@@ -45,6 +47,10 @@ public class Student {
 
     public Remark getRemark() {
         return remark;
+    }
+
+    public PendingQuestion getPendingQuestion() {
+        return pendingQuestion;
     }
 
     /**
@@ -89,6 +95,7 @@ public class Student {
         return otherStudent.getName().equals(getName())
                 && otherStudent.getEmail().equals(getEmail())
                 && otherStudent.getRemark().equals(getRemark())
+                && otherStudent.getPendingQuestion().equals(getPendingQuestion())
                 && otherStudent.getTags().equals(getTags());
     }
 
@@ -104,6 +111,7 @@ public class Student {
                 .add("name", name)
                 .add("email", email)
                 .add("remark", remark)
+                .add("pending question", pendingQuestion)
                 .add("tags", tags)
                 .toString();
     }

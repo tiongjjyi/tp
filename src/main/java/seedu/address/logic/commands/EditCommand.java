@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COURSE_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PENDINGQUESTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_COURSES;
@@ -25,6 +26,7 @@ import seedu.address.model.Model;
 import seedu.address.model.course.Course;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.PendingQuestion;
 import seedu.address.model.person.Remark;
 import seedu.address.model.person.Student;
 import seedu.address.model.tag.Tag;
@@ -43,6 +45,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_REMARK + "REMARK] "
+            + "[" + PREFIX_PENDINGQUESTION + "PENDING QUESTION] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_COURSE_NAME + "CS2103T "
@@ -100,9 +103,10 @@ public class EditCommand extends Command {
         Name updatedName = editStudentDescriptor.getName().orElse(studentToEdit.getName());
         Email updatedEmail = editStudentDescriptor.getEmail().orElse(studentToEdit.getEmail());
         Remark updatedRemark = editStudentDescriptor.getRemark().orElse(studentToEdit.getRemark());
+        PendingQuestion updatedPq = editStudentDescriptor.getPendingQuestion().orElse(studentToEdit.getPendingQuestion());
         Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
 
-        return new Student(updatedName, updatedEmail, updatedRemark, updatedTags);
+        return new Student(updatedName, updatedEmail, updatedRemark, updatedPq, updatedTags);
     }
 
     @Override
@@ -137,6 +141,7 @@ public class EditCommand extends Command {
         private Name name;
         private Email email;
         private Remark remark;
+        private PendingQuestion pendingQuestion;
         private Set<Tag> tags;
 
         public EditStudentDescriptor() {}
@@ -149,6 +154,7 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setEmail(toCopy.email);
             setRemark(toCopy.remark);
+            setPendingQuestion(toCopy.pendingQuestion);
             setTags(toCopy.tags);
         }
 
@@ -156,7 +162,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, email, remark, tags);
+            return CollectionUtil.isAnyNonNull(name, email, remark, pendingQuestion, tags);
         }
 
         public void setName(Name name) {
@@ -179,9 +185,19 @@ public class EditCommand extends Command {
             this.remark = remark;
         }
 
+
         public Optional<Remark> getRemark() {
             return Optional.ofNullable(remark);
         }
+
+        public void setPendingQuestion(PendingQuestion pq) {
+            this.pendingQuestion = pendingQuestion;
+        }
+
+        public Optional<PendingQuestion> getPendingQuestion() {
+            return Optional.ofNullable(pendingQuestion);
+        }
+
 
         /**
          * Sets {@code tags} to this object's {@code tags}.
@@ -215,6 +231,7 @@ public class EditCommand extends Command {
             return Objects.equals(name, otherEditStudentDescriptor.name)
                     && Objects.equals(email, otherEditStudentDescriptor.email)
                     && Objects.equals(remark, otherEditStudentDescriptor.remark)
+                    && Objects.equals(pendingQuestion, otherEditStudentDescriptor.pendingQuestion)
                     && Objects.equals(tags, otherEditStudentDescriptor.tags);
         }
 
@@ -224,6 +241,7 @@ public class EditCommand extends Command {
                     .add("name", name)
                     .add("email", email)
                     .add("remark", remark)
+                    .add("pending question", pendingQuestion)
                     .add("tags", tags)
                     .toString();
         }
