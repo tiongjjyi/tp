@@ -28,5 +28,4 @@ public class SelectCommandParser implements Parser<SelectCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SelectCommand.MESSAGE_USAGE), ive);
         }
     }
-
 }

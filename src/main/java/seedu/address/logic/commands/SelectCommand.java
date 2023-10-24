@@ -67,5 +67,4 @@ public class SelectCommand extends Command {
         SelectCommand e = (SelectCommand) other;
         return index.equals(e.index);
     }
-
 }
