@@ -3,7 +3,6 @@ package seedu.address.model.person;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_COURSE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_AVERAGE;
@@ -33,7 +32,7 @@ public class StudentTest {
         assertFalse(ALICE.isSameStudent(null));
 
         // same name, all other attributes different -> returns false
-        Student editedAlice = new StudentBuilder(ALICE).withCourse(VALID_COURSE_BOB).withEmail(VALID_EMAIL_BOB)
+        Student editedAlice = new StudentBuilder(ALICE).withEmail(VALID_EMAIL_BOB)
                 .withTags(VALID_TAG_AVERAGE).build();
         assertFalse(ALICE.isSameStudent(editedAlice));
 
@@ -73,10 +72,6 @@ public class StudentTest {
         Student editedAlice = new StudentBuilder(ALICE).withName(VALID_NAME_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different phone -> returns false
-        editedAlice = new StudentBuilder(ALICE).withCourse(VALID_COURSE_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
-
         // different email -> returns false
         editedAlice = new StudentBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
@@ -89,7 +84,6 @@ public class StudentTest {
     @Test
     public void toStringMethod() {
         String expected = Student.class.getCanonicalName() + "{name=" + ALICE.getName()
-                + ", course=" + ALICE.getCourse()
                 + ", email=" + ALICE.getEmail()
                 + ", remark=" + ALICE.getRemark()
                 + ", tags=" + ALICE.getTags() + "}";

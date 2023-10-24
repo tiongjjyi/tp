@@ -49,7 +49,6 @@ public class StudentCard extends UiPart<Region> {
         this.student = student;
         id.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
-        course.setText(student.getCourse().value);
         email.setText(student.getEmail().value);
         remark.setText(student.getRemark().value);
         student.getTags().stream()

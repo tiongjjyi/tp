@@ -1,14 +1,10 @@
 package seedu.address.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.logic.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COURSE_DISPLAYED_INDEX;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.commands.CommandTestUtil.COURSE_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_AVERAGE;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalStudents.AMY;
+import static seedu.address.testutil.TypicalCourses.CS2100;
 
 import java.io.IOException;
 import java.nio.file.AccessDeniedException;
@@ -18,20 +14,18 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.*;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.course.Course;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyStudentList;
+import seedu.address.model.ReadOnlyCourseList;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Student;
-import seedu.address.storage.JsonStudentListStorage;
+import seedu.address.storage.JsonCourseListStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
-import seedu.address.testutil.StudentBuilder;
+import seedu.address.testutil.CourseBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy IO exception");
@@ -45,10 +39,10 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonStudentListStorage addressBookStorage =
-                new JsonStudentListStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonCourseListStorage courseListStorage =
+                new JsonCourseListStorage(temporaryFolder.resolve("courseList.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(courseListStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -61,13 +55,13 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+        assertCommandException(deleteCommand, MESSAGE_INVALID_COURSE_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_validCommand_success() throws Exception {
-        String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
+        String exitCommand = ExitCommand.COMMAND_WORD;
+        assertCommandSuccess(exitCommand, ExitCommand.MESSAGE_EXIT_ACKNOWLEDGEMENT, model);
     }
 
     @Test
@@ -83,8 +77,8 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void getFilteredStudentList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredStudentList().remove(0));
+    public void getFilteredCourseList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredCourseList().remove(0));
     }
 
     /**
@@ -123,7 +117,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getStudentList(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getCourseList(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -150,9 +144,9 @@ public class LogicManagerTest {
         Path prefPath = temporaryFolder.resolve("ExceptionUserPrefs.json");
 
         // Inject LogicManager with an AddressBookStorage that throws the IOException e when saving
-        JsonStudentListStorage addressBookStorage = new JsonStudentListStorage(prefPath) {
+        JsonCourseListStorage courseListStorage = new JsonCourseListStorage(prefPath) {
             @Override
-            public void saveStudentList(ReadOnlyStudentList studentList, Path filePath)
+            public void saveCourseList(ReadOnlyCourseList courseList, Path filePath)
                     throws IOException {
                 throw e;
             }
@@ -160,16 +154,15 @@ public class LogicManagerTest {
 
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(courseListStorage, userPrefsStorage);
 
         logic = new LogicManager(model, storage);
 
-        // Triggers the saveAddressBook method by executing an add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + COURSE_DESC_AMY
-                + EMAIL_DESC_AMY + TAG_DESC_AVERAGE;
-        Student expectedStudent = new StudentBuilder(AMY).build();
+        // Triggers the saveCourseList method by executing an add course command
+        String addCourseCommand = AddCourseCommand.COMMAND_WORD + " c/CS2100";
+        Course expectedCourse = new CourseBuilder(CS2100).build();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addStudent(expectedStudent);
-        assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
+        expectedModel.addCourse(expectedCourse);
+        assertCommandFailure(addCourseCommand, CommandException.class, expectedMessage, expectedModel);
     }
 }

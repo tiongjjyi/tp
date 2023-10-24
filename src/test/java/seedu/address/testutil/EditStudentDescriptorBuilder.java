@@ -34,7 +34,6 @@ public class EditStudentDescriptorBuilder {
     public EditStudentDescriptorBuilder(Student student) {
         descriptor = new EditStudentDescriptor();
         descriptor.setName(student.getName());
-        descriptor.setCourse(student.getCourse());
         descriptor.setEmail(student.getEmail());
         descriptor.setRemark(student.getRemark());
         descriptor.setTags(student.getTags());
@@ -45,14 +44,6 @@ public class EditStudentDescriptorBuilder {
      */
     public EditStudentDescriptorBuilder withName(String name) {
         descriptor.setName(new Name(name));
-        return this;
-    }
-
-    /**
-     * Sets the {@code Phone} of the {@code EditPersonDescriptor} that we are building.
-     */
-    public EditStudentDescriptorBuilder withCourse(String course) {
-        descriptor.setCourse(new Course(course));
         return this;
     }
 

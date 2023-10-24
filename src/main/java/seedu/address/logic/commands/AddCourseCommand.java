@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_COURSE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COURSE_NAME;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -18,16 +18,16 @@ public class AddCourseCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a course to the course list. "
             + "Parameters: "
-            + PREFIX_COURSE + "COURSE ";
+            + PREFIX_COURSE_NAME + "COURSE_NAME ";
 
 
     public static final String MESSAGE_SUCCESS = "New Course added: %1$s";
-    public static final String MESSAGE_DUPLICATE_Course = "This Course already exists in the Course list";
+    public static final String MESSAGE_DUPLICATE_COURSE = "This Course already exists in the Course list";
 
     private final Course toAdd;
 
     /**
-     * Creates an AddCourseCommand to add the specified {@code Person}
+     * Creates an AddCourseCommand to add the specified {@code Course}
      */
     public AddCourseCommand(Course Course) {
         requireNonNull(Course);
@@ -39,7 +39,7 @@ public class AddCourseCommand extends Command {
         requireNonNull(model);
 
         if (model.hasCourse(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_Course);
+            throw new CommandException(MESSAGE_DUPLICATE_COURSE);
         }
 
         model.addCourse(toAdd);

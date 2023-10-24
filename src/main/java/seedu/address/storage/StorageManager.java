@@ -7,24 +7,25 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataLoadingException;
+import seedu.address.model.ReadOnlyCourseList;
 import seedu.address.model.ReadOnlyStudentList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of CodeSphere data in local storage.
  */
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private StudentListStorage studentListStorage;
-    private UserPrefsStorage userPrefsStorage;
+    private final CourseListStorage courseListStorage;
+    private final UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code CourseListStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(StudentListStorage studentListStorage, UserPrefsStorage userPrefsStorage) {
-        this.studentListStorage = studentListStorage;
+    public StorageManager(CourseListStorage courseListStorage, UserPrefsStorage userPrefsStorage) {
+        this.courseListStorage = courseListStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -46,33 +47,33 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ AddressBook methods ==============================
+    // ================ CourseList methods ==============================
 
     @Override
-    public Path getStudentListFilePath() {
-        return studentListStorage.getStudentListFilePath();
+    public Path getCourseListFilePath() {
+        return courseListStorage.getCourseListFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyStudentList> readStudentList() throws DataLoadingException {
-        return readStudentList(studentListStorage.getStudentListFilePath());
+    public Optional<ReadOnlyCourseList> readCourseList() throws DataLoadingException {
+        return readCourseList(courseListStorage.getCourseListFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyStudentList> readStudentList(Path filePath) throws DataLoadingException {
+    public Optional<ReadOnlyCourseList> readCourseList(Path filePath) throws DataLoadingException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return studentListStorage.readStudentList(filePath);
+        return courseListStorage.readCourseList(filePath);
     }
 
     @Override
-    public void saveStudentList(ReadOnlyStudentList addressBook) throws IOException {
-        saveStudentList(addressBook, studentListStorage.getStudentListFilePath());
+    public void saveCourseList(ReadOnlyCourseList courseList) throws IOException {
+        saveCourseList(courseList, courseListStorage.getCourseListFilePath());
     }
 
     @Override
-    public void saveStudentList(ReadOnlyStudentList addressBook, Path filePath) throws IOException {
+    public void saveCourseList(ReadOnlyCourseList courseList, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        studentListStorage.saveStudentList(addressBook, filePath);
+        courseListStorage.saveCourseList(courseList, filePath);
     }
 
 }

@@ -49,84 +49,42 @@ public interface Model {
     void setAddressBookFilePath(Path addressBookFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces course list data with the data in {@code courseList}.
      */
-    void setStudentList(ReadOnlyStudentList addressBook);
+    void setCourseList(ReadOnlyCourseList courseList);
 
-    /** Returns the AddressBook */
-    ReadOnlyStudentList getStudentList();
-
-    /**
-     * Replaces address book data with the data in {@code addressBook}.
-     */
-    void setCourseList(ReadOnlyCourseList addressBook);
-
-    /** Returns the AddressBook */
+    /** Returns the CourseList */
     ReadOnlyCourseList getCourseList();
 
-
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
-     */
-    boolean hasStudent(Student student);
-
-    /**
-     * Deletes the given person.
-     * The person must exist in the address book.
-     */
-    void deleteStudent(Student target);
-
-    /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
-     */
-    void addStudent(Student student);
-
-    /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
-     */
-    void setStudent(Student target, Student editedStudent);
-
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Student> getFilteredStudentList();
-
-    /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateFilteredStudentList(Predicate<Student> predicate);
-
-    /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a course with the same identity as {@code course} exists in the course list.
      */
     boolean hasCourse(Course course);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given course.
+     * The course must exist in the course list.
      */
-    void deleteCourse(Course target);
+    void deleteCourse(Course course);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds the given course.
+     * {@code course} must not already exist in the course list.
      */
     void addCourse(Course course);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * Replaces the given course {@code course} with {@code editedCourse}.
+     * {@code course} must exist in the address book.
+     * The course name of {@code editedCourse} must not be the same as another existing course in the course list.
      */
     void setCourse(Course target, Course editedCourse);
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /** Returns an unmodifiable view of the filtered course list */
     ObservableList<Course> getFilteredCourseList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered course list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredCourseList(Predicate<Course> predicate);

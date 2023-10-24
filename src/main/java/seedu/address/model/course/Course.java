@@ -1,63 +1,115 @@
 package seedu.address.model.course;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.UniqueStudentList;
 
+import java.util.Objects;
+
 /**
- * Represents a Student's course in the student list.
- * Guarantees: immutable; is valid as declared in {@link #isValidCourse(String)}
+ * Represents a Course in the course list.
+ * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Course {
+
+    // Course identity field
+    public final CourseName courseName;
+
+    // Course data field
+    private final UniqueStudentList students;
+    private final FilteredList<Student> filteredStudents;
 
 
     public static final String MESSAGE_CONSTRAINTS =
             "Course code should contain a two- or three-letter prefix, "
                     + "four digits course code and an optional one-letter suffix";
     public static final String VALIDATION_REGEX = "\\w{2,3}\\d{4}\\w?";
-    public final String value;
-    private final UniqueStudentList students;
 
     /**
-     * Constructs a {@code Course}.
-     *
-     * @param course A valid course code.
+     * Every field must be present and not null.
      */
-    public Course(String course) {
-        requireNonNull(course);
-        checkArgument(isValidCourse(course), MESSAGE_CONSTRAINTS);
-        value = course;
-        students = new UniqueStudentList();
+    public Course(CourseName courseName) {
+        requireNonNull(courseName);
+        this.courseName = courseName;
+        this.students = new UniqueStudentList();
+        this.filteredStudents = new FilteredList<>(this.students.asUnmodifiableObservableList());
     }
 
     /**
-     * Returns the course code.
+     * Returns the course name.
      */
-    public String getCourse() {
-        return value;
+    public CourseName getCourseName() {
+        return courseName;
     }
 
     /**
-     * Returns true if a given string is a valid phone number.
+     * Returns the list of students in the course.
      */
-    public static boolean isValidCourse(String test) {
-        return test.matches(VALIDATION_REGEX);
+    public UniqueStudentList getStudentList() {
+        return students;
+    }
+
+    /**
+     * Returns the list of students in the course.
+     */
+    public int getCourseSize() {
+        return this.students.size();
     }
 
     /**
      * Adds a student to the course being taught by the TA.
      * @param student A student to be added to the course.
      */
-    public void addItem(Student student) {
+    public boolean hasStudent(Student student) {
+        return this.students.contains(student);
+    }
+
+    /**
+     * Adds a student to the course being taught by the TA.
+     * @param student A student to be added to the course.
+     */
+    public void addStudent(Student student) {
         this.students.add(student);
     }
 
+    /**
+     * Sets a student to the course being taught by the TA.
+     * @param target The target student to be replaced.
+     * @param editedStudent The student to be set.
+     */
+    public void setStudent(Student target, Student editedStudent) {
+        this.students.setStudent(target, editedStudent);
+    }
 
     /**
-     * Returns true if both persons of the same name have at least one other identity field that is the same.
-     * This defines a weaker notion of equality between two persons.
+     * Removes a student from the course being taught by the TA.
+     * @param student A student to be removed from the course.
+     */
+    public void removeStudent(Student student) {
+        this.students.remove(student);
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Student} backed by the internal list of
+     * {@code versionedStudentList}
+     */
+    public ObservableList<Student> getFilteredStudentList() {
+        return this.filteredStudents;
+    }
+
+    public void updateFilteredStudentList(NameContainsKeywordsPredicate predicate) {
+        requireNonNull(predicate);
+        filteredStudents.setPredicate(predicate);
+    }
+
+    /**
+     * Returns true if both courses are of the same name.
+     * This defines a weaker notion of equality between two courses.
      */
     public boolean isSameCourse(Course otherCourse) {
         if (otherCourse == this) {
@@ -65,12 +117,14 @@ public class Course {
         }
 
         return otherCourse != null
-                && otherCourse.getCourse().equals(getCourse());
+                && otherCourse.getCourseName().equals(getCourseName());
     }
 
     @Override
     public String toString() {
-        return value;
+        return new ToStringBuilder(this)
+                .add("course name", courseName)
+                .toString();
     }
 
     @Override
@@ -85,12 +139,12 @@ public class Course {
         }
 
         Course otherCourse = (Course) other;
-        return value.equals(otherCourse.value);
+        return courseName.equals(otherCourse.courseName);
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return Objects.hash(courseName);
     }
 
 }

@@ -7,21 +7,25 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showStudentAtIndex;
+import static seedu.address.testutil.TypicalCourses.getTypicalCourseList;
+import static seedu.address.testutil.TypicalCourses.getTypicalCourses;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
-import static seedu.address.testutil.TypicalStudents.getTypicalStudentList;
 
+import javafx.stage.Stage;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
+import seedu.address.logic.parser.StageManager;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.StudentList;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.course.Course;
 import seedu.address.model.person.Remark;
 import seedu.address.model.person.Student;
 import seedu.address.testutil.StudentBuilder;
+import seedu.address.testutil.TypicalCourses;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for RemarkCommand.
@@ -30,11 +34,15 @@ public class RemarkCommandTest {
 
     private static final String REMARK_STUB = "Some remark";
 
-    private Model model = new ModelManager(getTypicalStudentList(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalCourseList(), new UserPrefs());
 
     @Test
     public void execute_addRemarkUnfilteredList_success() {
-        Student firstPerson = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
+        Course validCourse = getTypicalCourses().get(1);
+        StageManager stageManager = StageManager.getCurrent();
+        stageManager.setCourseStage(validCourse);
+
+        Student firstPerson = validCourse.getStudentList().getStudent(INDEX_FIRST_STUDENT);
         Student editedPerson = new StudentBuilder(firstPerson).withRemark(REMARK_STUB).build();
 
         RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_STUDENT,
@@ -42,7 +50,7 @@ public class RemarkCommandTest {
 
         String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new StudentList(model.getStudentList()), new UserPrefs());
+        Model expectedModel = new ModelManager(new CourseList(model.getCourseList()), new UserPrefs());
         expectedModel.setStudent(firstPerson, editedPerson);
 
         assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
@@ -58,7 +66,7 @@ public class RemarkCommandTest {
 
         String expectedMessage = String.format(RemarkCommand.MESSAGE_DELETE_REMARK_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new StudentList(model.getStudentList()), new UserPrefs());
+        Model expectedModel = new ModelManager(new CourseList(model.getCourseList()), new UserPrefs());
         expectedModel.setStudent(firstPerson, editedPerson);
 
         assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
@@ -78,7 +86,7 @@ public class RemarkCommandTest {
 
         String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new StudentList(model.getStudentList()), new UserPrefs());
+        Model expectedModel = new ModelManager(new CourseList(model.getCourseList()), new UserPrefs());
         expectedModel.setStudent(firstPerson, editedPerson);
 
         assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);

@@ -15,19 +15,10 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyStudentList;
-import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.StudentList;
-import seedu.address.model.UserPrefs;
+import seedu.address.model.*;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.storage.JsonStudentListStorage;
-import seedu.address.storage.JsonUserPrefsStorage;
-import seedu.address.storage.Storage;
-import seedu.address.storage.StorageManager;
-import seedu.address.storage.StudentListStorage;
-import seedu.address.storage.UserPrefsStorage;
+import seedu.address.storage.*;
+import seedu.address.storage.JsonCourseListStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
@@ -57,7 +48,7 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        StudentListStorage studentListStorage = new JsonStudentListStorage(userPrefs.getStudentListFilePath());
+        CourseListStorage studentListStorage = new JsonCourseListStorage(userPrefs.getStudentListFilePath());
         storage = new StorageManager(studentListStorage, userPrefsStorage);
 
         model = initModelManager(storage, userPrefs);
@@ -73,21 +64,21 @@ public class MainApp extends Application {
      * or an empty student list will be used instead if errors occur when reading {@code storage}'s student list.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        logger.info("Using data file : " + storage.getStudentListFilePath());
+        logger.info("Using data file : " + storage.getCourseListFilePath());
 
-        Optional<ReadOnlyStudentList> studentListOptional;
-        ReadOnlyStudentList initialData;
+        Optional<ReadOnlyCourseList> courseListOptional;
+        ReadOnlyCourseList initialData;
         try {
-            studentListOptional = storage.readStudentList();
-            if (!studentListOptional.isPresent()) {
-                logger.info("Creating a new data file " + storage.getStudentListFilePath()
+            courseListOptional = storage.readCourseList();
+            if (!courseListOptional.isPresent()) {
+                logger.info("Creating a new data file " + storage.getCourseListFilePath()
                         + " populated with a sample StudentList.");
             }
-            initialData = studentListOptional.orElseGet(SampleDataUtil::getSampleStudentList);
+            initialData = courseListOptional.orElseGet(SampleDataUtil::getSampleCourseList);
         } catch (DataLoadingException e) {
-            logger.warning("Data file at " + storage.getStudentListFilePath() + " could not be loaded."
+            logger.warning("Data file at " + storage.getCourseListFilePath() + " could not be loaded."
                     + " Will be starting with an empty StudentList.");
-            initialData = new StudentList();
+            initialData = new CourseList();
         }
 
         return new ModelManager(initialData, userPrefs);
