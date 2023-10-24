@@ -22,8 +22,8 @@ public class JsonSerializableStudentListTest {
 
     @Test
     public void toModelType_typicalPersonsFile_success() throws Exception {
-        JsonSerializableStudentList dataFromFile = JsonUtil.readJsonFile(TYPICAL_STUDENTS_FILE,
-                JsonSerializableStudentList.class).get();
+        JsonSerializableCourseList dataFromFile = JsonUtil.readJsonFile(TYPICAL_STUDENTS_FILE,
+                JsonSerializableCourseList.class).get();
         StudentList addressBookFromFile = dataFromFile.toModelType();
         StudentList typicalPersonsAddressBook = TypicalStudents.getTypicalStudentList();
         assertEquals(addressBookFromFile, typicalPersonsAddressBook);
@@ -31,16 +31,16 @@ public class JsonSerializableStudentListTest {
 
     @Test
     public void toModelType_invalidPersonFile_throwsIllegalValueException() throws Exception {
-        JsonSerializableStudentList dataFromFile = JsonUtil.readJsonFile(INVALID_STUDENTS_FILE,
-                JsonSerializableStudentList.class).get();
+        JsonSerializableCourseList dataFromFile = JsonUtil.readJsonFile(INVALID_STUDENTS_FILE,
+                JsonSerializableCourseList.class).get();
         assertThrows(IllegalValueException.class, dataFromFile::toModelType);
     }
 
     @Test
     public void toModelType_duplicatePersons_throwsIllegalValueException() throws Exception {
-        JsonSerializableStudentList dataFromFile = JsonUtil.readJsonFile(DUPLICATE_STUDENTS_FILE,
-                JsonSerializableStudentList.class).get();
-        assertThrows(IllegalValueException.class, JsonSerializableStudentList.MESSAGE_DUPLICATE_PERSON,
+        JsonSerializableCourseList dataFromFile = JsonUtil.readJsonFile(DUPLICATE_STUDENTS_FILE,
+                JsonSerializableCourseList.class).get();
+        assertThrows(IllegalValueException.class, JsonSerializableCourseList.MESSAGE_DUPLICATE_PERSON,
                 dataFromFile::toModelType);
     }
 

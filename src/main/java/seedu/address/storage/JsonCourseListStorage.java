@@ -15,19 +15,19 @@ import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.ReadOnlyStudentList;
 
 /**
- * A class to access AddressBook data stored as a json file on the hard disk.
+ * A class to access CodeSphere data stored as a json file on the hard disk.
  */
-public class JsonStudentListStorage implements StudentListStorage {
+public class JsonCodeSphereStorage implements CodeSphereStorage {
 
-    private static final Logger logger = LogsCenter.getLogger(JsonStudentListStorage.class);
+    private static final Logger logger = LogsCenter.getLogger(JsonCodeSphereStorage.class);
 
     private Path filePath;
 
-    public JsonStudentListStorage(Path filePath) {
+    public JsonCodeSphereStorage(Path filePath) {
         this.filePath = filePath;
     }
 
-    public Path getStudentListFilePath() {
+    public Path getCodeSphereFilePath() {
         return filePath;
     }
 

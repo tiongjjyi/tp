@@ -5,34 +5,35 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataLoadingException;
+import seedu.address.model.ReadOnlyCourseList;
 import seedu.address.model.ReadOnlyStudentList;
-import seedu.address.model.StudentList;
+import seedu.address.model.CourseList;
 
 /**
- * Represents a storage for {@link StudentList}.
+ * Represents a storage for {@link CourseList}.
  */
-public interface StudentListStorage {
+public interface CodeSphereStorage {
 
     /**
      * Returns the file path of the data file.
      */
-    Path getStudentListFilePath();
+    Path getCourseListFilePath();
 
     /**
-     * Returns AddressBook data as a {@link ReadOnlyStudentList}.
+     * Returns CodeSphere data as a {@link ReadOnlyCourseList}.
      * Returns {@code Optional.empty()} if storage file is not found.
      *
      * @throws DataLoadingException if loading the data from storage failed.
      */
-    Optional<ReadOnlyStudentList> readStudentList() throws DataLoadingException;
+    Optional<ReadOnlyCourseList> readCourseList() throws DataLoadingException;
 
     /**
-     * @see #getStudentListFilePath()
+     * @see #getCourseListFilePath() ()
      */
-    Optional<ReadOnlyStudentList> readStudentList(Path filePath) throws DataLoadingException;
+    Optional<ReadOnlyCourseList> readCourseList(Path filePath) throws DataLoadingException;
 
     /**
-     * Saves the given {@link ReadOnlyStudentList} to the storage.
+     * Saves the given {@link ReadOnlyCourseList} to the storage.
      * @param addressBook cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
