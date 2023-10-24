@@ -87,9 +87,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasCourse(Course Course) {
-        requireNonNull(Course);
-        return courseList.hasCourse(Course);
+    public boolean hasCourse(Course course) {
+        requireNonNull(course);
+        return courseList.hasCourse(course);
     }
 
     @Override
@@ -98,8 +98,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addCourse(Course Course) {
-        courseList.addCourse(Course);
+    public void addCourse(Course course) {
+        courseList.addCourse(course);
         updateFilteredCourseList(PREDICATE_SHOW_ALL_COURSES);
     }
 
@@ -129,18 +129,18 @@ public class ModelManager implements Model {
 
     @Override
     public boolean equals(Object other) {
-         if (other == this) {
-             return true;
-         }
+        if (other == this) {
+            return true;
+        }
 
-         // instanceof handles nulls
-         if (!(other instanceof ModelManager)) {
-             return false;
-         }
+        // instanceof handles nulls
+        if (!(other instanceof ModelManager)) {
+            return false;
+        }
 
-         ModelManager otherModelManager = (ModelManager) other;
-         return courseList.equals(otherModelManager.courseList)
-                 && userPrefs.equals(otherModelManager.userPrefs)
-                 && filteredCourses.equals(otherModelManager.filteredCourses);
+        ModelManager otherModelManager = (ModelManager) other;
+        return courseList.equals(otherModelManager.courseList)
+                && userPrefs.equals(otherModelManager.userPrefs)
+                && filteredCourses.equals(otherModelManager.filteredCourses);
     }
 }

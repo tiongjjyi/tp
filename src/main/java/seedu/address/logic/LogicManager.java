@@ -15,9 +15,7 @@ import seedu.address.logic.parser.CodeSphereParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyCourseList;
-import seedu.address.model.ReadOnlyStudentList;
 import seedu.address.model.course.Course;
-import seedu.address.model.person.Student;
 import seedu.address.storage.Storage;
 
 /**

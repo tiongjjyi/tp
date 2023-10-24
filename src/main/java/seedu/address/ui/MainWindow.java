@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -10,11 +11,14 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.StageManager;
+import seedu.address.logic.parser.Stages;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -31,7 +35,9 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
+    private SplashWindow splashWindow;
     private StudentListPanel studentListPanel;
+    private CourseListPanel courseListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -42,7 +48,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane itemListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -109,18 +115,52 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Fills up all the placeholders of this window.
      */
-    void fillInnerParts() {
-        studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
-        personListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+    void fillInnerParts() throws InterruptedException {
+
+        loadSplashScreen();
+
+        FadeTransition fadeIn = new FadeTransition(Duration.seconds(1), itemListPanelPlaceholder);
+        fadeIn.setFromValue(0);
+        fadeIn.setToValue(1);
+
+        FadeTransition fadeOut = new FadeTransition(Duration.seconds(1), itemListPanelPlaceholder);
+        fadeOut.setFromValue(1);
+        fadeOut.setToValue(0);
+
+        fadeIn.play();
+        fadeIn.setOnFinished(fadein -> {
+            fadeOut.play();
+            fadeOut.setOnFinished(fadeout -> {
+                itemListPanelPlaceholder.setOpacity(1);
+                loadCourseListPanel();
+            });
+        });
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getStudentListFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getCourseListFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+    }
+
+    void loadSplashScreen() {
+        itemListPanelPlaceholder.getChildren().clear();
+        splashWindow = new SplashWindow();
+        itemListPanelPlaceholder.getChildren().add(splashWindow.getRoot());
+    }
+    void loadStudentListPanel() {
+        itemListPanelPlaceholder.getChildren().clear();
+        studentListPanel = new StudentListPanel(StageManager.getSelectedCourse().getFilteredStudentList());
+        itemListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+    }
+
+    void loadCourseListPanel() {
+        itemListPanelPlaceholder.getChildren().clear();
+        courseListPanel = new CourseListPanel(logic.getFilteredCourseList());
+        itemListPanelPlaceholder.getChildren().add(courseListPanel.getRoot());
     }
 
     /**
@@ -178,12 +218,24 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
+
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            Stages current = StageManager.getStage();
+            if (current == Stages.COURSE) {
+                System.out.println("Stage is COURSE");
+                loadStudentListPanel();
+
+            } else if (current == Stages.HOME) {
+                System.out.println("Stage is HOME");
+                loadCourseListPanel();
+
             }
 
             return commandResult;

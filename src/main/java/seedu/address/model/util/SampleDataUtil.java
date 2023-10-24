@@ -41,12 +41,12 @@ public class SampleDataUtil {
 
     public static Course[] getSampleCourses() {
         return new Course[] {
-                new Course(new CourseName("CS1101S")),
-                new Course(new CourseName("CS1231S")),
-                new Course(new CourseName("CS2030S")),
-                new Course(new CourseName("CS2040S")),
-                new Course(new CourseName("CS2100")),
-                new Course(new CourseName("CS2103T")),
+            new Course(new CourseName("CS1101S")),
+            new Course(new CourseName("CS1231S")),
+            new Course(new CourseName("CS2030S")),
+            new Course(new CourseName("CS2040S")),
+            new Course(new CourseName("CS2100")),
+            new Course(new CourseName("CS2103T")),
         };
     }
 

@@ -5,15 +5,12 @@ import static seedu.address.testutil.TypicalCourses.getTypicalCourseList;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.StudentList;
-import seedu.address.model.UserPrefs;
+import seedu.address.model.*;
 
 public class ClearCommandTest {
 
     @Test
-    public void execute_emptyStudentList_success() {
+    public void execute_emptyCourseList_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
@@ -21,10 +18,10 @@ public class ClearCommandTest {
     }
 
     @Test
-    public void execute_nonEmptyStudentList_success() {
+    public void execute_nonEmptyCourseList_success() {
         Model model = new ModelManager(getTypicalCourseList(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalCourseList(), new UserPrefs());
-        expectedModel.setStudentList(new StudentList());
+        expectedModel.setCourseList(new CourseList());
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }
