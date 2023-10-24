@@ -1,8 +1,6 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.COURSE_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.COURSE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_COURSE_DESC;
@@ -15,13 +13,11 @@ import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_AVERAGE;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_GOOD;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_POOR;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_COURSE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_AVERAGE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_GOOD;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_POOR;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_COURSE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -33,7 +29,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.model.course.Course;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Student;
@@ -47,7 +42,7 @@ public class AddCommandParserTest {
         Student expectedStudent = new StudentBuilder(BOB).withTags(VALID_TAG_GOOD).build();
 
         // whitespace only preamble
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + COURSE_DESC_BOB + EMAIL_DESC_BOB
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + EMAIL_DESC_BOB
                 + TAG_DESC_GOOD, new AddCommand(expectedStudent));
 
 
@@ -55,22 +50,18 @@ public class AddCommandParserTest {
         Student expectedStudentMultipleTags = new StudentBuilder(BOB).withTags(VALID_TAG_POOR, VALID_TAG_AVERAGE)
                 .build();
         assertParseSuccess(parser,
-                NAME_DESC_BOB + COURSE_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_POOR + TAG_DESC_AVERAGE,
+                NAME_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_POOR + TAG_DESC_AVERAGE,
                 new AddCommand(expectedStudentMultipleTags));
     }
 
     @Test
     public void parse_repeatedNonTagValue_failure() {
-        String validExpectedStudentString = NAME_DESC_BOB + COURSE_DESC_BOB + EMAIL_DESC_BOB
+        String validExpectedStudentString = NAME_DESC_BOB + EMAIL_DESC_BOB
                 + TAG_DESC_AVERAGE;
 
         // multiple names
         assertParseFailure(parser, NAME_DESC_AMY + validExpectedStudentString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME));
-
-        // multiple COURSEs
-        assertParseFailure(parser, COURSE_DESC_AMY + validExpectedStudentString,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_COURSE));
 
         // multiple emails
         assertParseFailure(parser, EMAIL_DESC_AMY + validExpectedStudentString,
@@ -78,9 +69,9 @@ public class AddCommandParserTest {
 
         // multiple fields repeated
         assertParseFailure(parser,
-                validExpectedStudentString + COURSE_DESC_AMY + EMAIL_DESC_AMY + NAME_DESC_AMY
+                validExpectedStudentString + EMAIL_DESC_AMY + NAME_DESC_AMY
                         + validExpectedStudentString,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME, PREFIX_EMAIL, PREFIX_COURSE));
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME, PREFIX_EMAIL));
 
         // invalid value followed by valid value
 
@@ -94,7 +85,7 @@ public class AddCommandParserTest {
 
         // invalid COURSE
         assertParseFailure(parser, INVALID_COURSE_DESC + validExpectedStudentString,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_COURSE));
+                Messages.getErrorMessageForDuplicatePrefixes());
 
         // valid value followed by invalid value
 
@@ -108,7 +99,7 @@ public class AddCommandParserTest {
 
         // invalid COURSE
         assertParseFailure(parser, validExpectedStudentString + INVALID_COURSE_DESC,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_COURSE));
+                Messages.getErrorMessageForDuplicatePrefixes());
 
     }
 
@@ -116,7 +107,7 @@ public class AddCommandParserTest {
     public void parse_optionalFieldsMissing_success() {
         // zero tags
         Student expectedStudent = new StudentBuilder(AMY).withTags().build();
-        assertParseSuccess(parser, NAME_DESC_AMY + COURSE_DESC_AMY + EMAIL_DESC_AMY,
+        assertParseSuccess(parser, NAME_DESC_AMY + EMAIL_DESC_AMY,
                 new AddCommand(expectedStudent));
     }
 
@@ -126,42 +117,34 @@ public class AddCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
         // missing name prefix
-        assertParseFailure(parser, VALID_NAME_BOB + COURSE_DESC_BOB + EMAIL_DESC_BOB,
-                expectedMessage);
-
-        // missing course prefix
-        assertParseFailure(parser, NAME_DESC_BOB + VALID_COURSE_BOB + EMAIL_DESC_BOB,
+        assertParseFailure(parser, VALID_NAME_BOB + EMAIL_DESC_BOB,
                 expectedMessage);
 
         // missing email prefix
-        assertParseFailure(parser, NAME_DESC_BOB + COURSE_DESC_BOB + VALID_EMAIL_BOB,
+        assertParseFailure(parser, NAME_DESC_BOB + VALID_EMAIL_BOB,
                 expectedMessage);
 
         // all prefixes missing
-        assertParseFailure(parser, VALID_NAME_BOB + VALID_COURSE_BOB + VALID_EMAIL_BOB,
+        assertParseFailure(parser, VALID_NAME_BOB + VALID_EMAIL_BOB,
                 expectedMessage);
     }
 
     @Test
     public void parse_invalidValue_failure() {
         // invalid name
-        assertParseFailure(parser, INVALID_NAME_DESC + COURSE_DESC_BOB + EMAIL_DESC_BOB
+        assertParseFailure(parser, INVALID_NAME_DESC + EMAIL_DESC_BOB
                 + TAG_DESC_GOOD + TAG_DESC_AVERAGE, Name.MESSAGE_CONSTRAINTS);
 
-        // invalid COURSE
-        assertParseFailure(parser, NAME_DESC_BOB + INVALID_COURSE_DESC + EMAIL_DESC_BOB
-                + TAG_DESC_GOOD + TAG_DESC_AVERAGE, Course.MESSAGE_CONSTRAINTS);
-
         // invalid email
-        assertParseFailure(parser, NAME_DESC_BOB + COURSE_DESC_BOB + INVALID_EMAIL_DESC
+        assertParseFailure(parser, NAME_DESC_BOB + INVALID_EMAIL_DESC
                 + TAG_DESC_GOOD + TAG_DESC_AVERAGE, Email.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
-        assertParseFailure(parser, INVALID_NAME_DESC + COURSE_DESC_BOB + EMAIL_DESC_BOB,
+        assertParseFailure(parser, INVALID_NAME_DESC + EMAIL_DESC_BOB,
                 Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
-        assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + COURSE_DESC_BOB + EMAIL_DESC_BOB
+        assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + EMAIL_DESC_BOB
                 + TAG_DESC_AVERAGE + TAG_DESC_GOOD,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }

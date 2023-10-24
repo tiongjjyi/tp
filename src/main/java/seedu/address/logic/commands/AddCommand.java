@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_COURSE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -9,8 +8,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.StageManager;
+import seedu.address.model.course.Course;
 import seedu.address.model.Model;
 import seedu.address.model.person.Student;
+import seedu.address.model.person.exceptions.DuplicateStudentException;
 
 /**
  * Adds a student to the student list.
@@ -22,12 +24,10 @@ public class AddCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to the student list. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + PREFIX_COURSE + "COURSE "
             + PREFIX_EMAIL + "EMAIL "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
-            + PREFIX_COURSE + "CS2103T "
             + PREFIX_EMAIL + "johnd@u.nus.edu "
             + PREFIX_TAG + "GOOD";
 
@@ -48,11 +48,14 @@ public class AddCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasStudent(toAdd)) {
+        StageManager stageManager = StageManager.getCurrent();
+        Course course = stageManager.getCurrentCourse();
+
+        try {
+            course.addStudent(toAdd);
+        } catch (DuplicateStudentException e) {
             throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
         }
-
-        model.addStudent(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
 

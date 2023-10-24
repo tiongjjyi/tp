@@ -18,12 +18,10 @@ import seedu.address.model.util.SampleDataUtil;
 public class StudentBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
-    public static final String DEFAULT_COURSE = "CS2103T";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_REMARK = "Likes skiing.";
 
     private Name name;
-    private Course course;
     private Email email;
     private Remark remark;
     private Set<Tag> tags;
@@ -33,7 +31,6 @@ public class StudentBuilder {
      */
     public StudentBuilder() {
         name = new Name(DEFAULT_NAME);
-        course = new Course(DEFAULT_COURSE);
         email = new Email(DEFAULT_EMAIL);
         remark = new Remark("");
         tags = new HashSet<>();
@@ -44,7 +41,6 @@ public class StudentBuilder {
      */
     public StudentBuilder(Student personToCopy) {
         name = personToCopy.getName();
-        course = personToCopy.getCourse();
         email = personToCopy.getEmail();
         remark = personToCopy.getRemark();
         tags = new HashSet<>(personToCopy.getTags());
@@ -67,14 +63,6 @@ public class StudentBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Person} that we are building.
-     */
-    public StudentBuilder withCourse(String course) {
-        this.course = new Course(course);
-        return this;
-    }
-
-    /**
      * Sets the {@code Email} of the {@code Person} that we are building.
      */
     public StudentBuilder withEmail(String email) {
@@ -91,6 +79,6 @@ public class StudentBuilder {
     }
 
     public Student build() {
-        return new Student(name, course, email, remark, tags);
+        return new Student(name, email, remark, tags);
     }
 }

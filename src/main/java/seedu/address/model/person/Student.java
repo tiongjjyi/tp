@@ -8,7 +8,6 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.course.Course;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -19,7 +18,6 @@ public class Student {
 
     // Identity fields
     private final Name name;
-    private final Course course;
     private final Email email;
 
     // Data fields
@@ -29,10 +27,9 @@ public class Student {
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, Course course, Email email, Remark remark, Set<Tag> tags) {
-        requireAllNonNull(name, course, email, remark, tags);
+    public Student(Name name, Email email, Remark remark, Set<Tag> tags) {
+        requireAllNonNull(name, email, remark, tags);
         this.name = name;
-        this.course = course;
         this.email = email;
         this.remark = remark;
         this.tags.addAll(tags);
@@ -40,10 +37,6 @@ public class Student {
 
     public Name getName() {
         return name;
-    }
-
-    public Course getCourse() {
-        return course;
     }
 
     public Email getEmail() {
@@ -73,7 +66,7 @@ public class Student {
 
         return otherStudent != null
                 && otherStudent.getName().equals(getName())
-                && (otherStudent.getCourse().equals(getCourse()) || otherStudent.getEmail().equals(getEmail()));
+                && otherStudent.getEmail().equals(getEmail());
     }
 
     /**
@@ -94,7 +87,6 @@ public class Student {
         Student otherStudent = (Student) other;
 
         return otherStudent.getName().equals(getName())
-                && otherStudent.getCourse().equals(getCourse())
                 && otherStudent.getEmail().equals(getEmail())
                 && otherStudent.getRemark().equals(getRemark())
                 && otherStudent.getTags().equals(getTags());
@@ -103,14 +95,13 @@ public class Student {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, course, email, remark, tags);
+        return Objects.hash(name, email, remark, tags);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("name", name)
-                .add("course", course)
                 .add("email", email)
                 .add("remark", remark)
                 .add("tags", tags)

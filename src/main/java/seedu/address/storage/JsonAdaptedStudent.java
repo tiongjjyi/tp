@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.course.Course;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Remark;
@@ -22,23 +21,21 @@ import seedu.address.model.tag.Tag;
  */
 class JsonAdaptedStudent {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Student's %s field is missing!";
 
     private final String name;
-    private final String course;
     private final String email;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final String remark;
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     * Constructs a {@code JsonAdaptedStudent} with the given student details.
      */
     @JsonCreator
-    public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("course") String course,
+    public JsonAdaptedStudent(@JsonProperty("name") String name,
                               @JsonProperty("email") String email, @JsonProperty("remark") String remark,
                               @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
-        this.course = course;
         this.email = email;
         this.remark = remark;
         if (tags != null) {
@@ -51,7 +48,6 @@ class JsonAdaptedStudent {
      */
     public JsonAdaptedStudent(Student source) {
         name = source.getName().fullName;
-        course = source.getCourse().value;
         email = source.getEmail().value;
         remark = source.getRemark().value;
         tags.addAll(source.getTags().stream()
@@ -78,14 +74,6 @@ class JsonAdaptedStudent {
         }
         final Name modelName = new Name(name);
 
-        if (course == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Course.class.getSimpleName()));
-        }
-        if (!Course.isValidCourse(course)) {
-            throw new IllegalValueException(Course.MESSAGE_CONSTRAINTS);
-        }
-        final Course modelCourse = new Course(course);
-
         if (email == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
         }
@@ -102,7 +90,7 @@ class JsonAdaptedStudent {
 
         final Remark modelRemark = new Remark(remark);
 
-        return new Student(modelName, modelCourse, modelEmail, modelRemark, modelTags);
+        return new Student(modelName, modelEmail, modelRemark, modelTags);
     }
 
 }
