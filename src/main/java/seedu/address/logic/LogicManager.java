@@ -79,11 +79,6 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Course> getCourseList() {
-        return model.getFilteredCourseList();
-    }
-
-    @Override
     public GuiSettings getGuiSettings() {
         return model.getGuiSettings();
     }

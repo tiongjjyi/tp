@@ -30,6 +30,6 @@ public class CourseCard extends UiPart<Region> {
         super(FXML);
         this.course = course;
         id.setText(displayedIndex + ". ");
-        courseName.setText(course.getCourse());
+        courseName.setText(course.getCourseName().fullCourseName);
     }
 }

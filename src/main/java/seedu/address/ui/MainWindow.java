@@ -17,6 +17,8 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.StageManager;
+import seedu.address.logic.parser.Stages;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -131,7 +133,8 @@ public class MainWindow extends UiPart<Stage> {
             fadeOut.play();
             fadeOut.setOnFinished( event -> {
                 itemListPanelPlaceholder.setOpacity(1);
-                switchPanels();
+                loadCourseListPanel();
+                //loadStudentListPanel();
             });
         });
 
@@ -139,7 +142,7 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getStudentListFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getCourseListFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
@@ -153,13 +156,13 @@ public class MainWindow extends UiPart<Stage> {
     }
     void loadStudentListPanel() {
         itemListPanelPlaceholder.getChildren().clear();
-        studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
+        studentListPanel = new StudentListPanel(StageManager.getSelectedCourse().getFilteredStudentList());
         itemListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
     }
 
     void loadCourseListPanel() {
         itemListPanelPlaceholder.getChildren().clear();
-        courseListPanel = new CourseListPanel(logic.getCourseList());
+        courseListPanel = new CourseListPanel(logic.getFilteredCourseList());
         itemListPanelPlaceholder.getChildren().add(courseListPanel.getRoot());
     }
 
@@ -230,12 +233,24 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
+
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            Stages current = StageManager.getStage();
+            if (current == Stages.COURSE) {
+                System.out.println("Stage is COURSE");
+                loadStudentListPanel();
+
+            } else if (current == Stages.HOME) {
+                System.out.println("Stage is HOME");
+                loadCourseListPanel();
+
             }
 
             return commandResult;

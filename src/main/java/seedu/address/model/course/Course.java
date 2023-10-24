@@ -10,6 +10,7 @@ import seedu.address.model.person.Student;
 import seedu.address.model.person.UniqueStudentList;
 
 import java.util.Objects;
+import java.util.function.Predicate;
 
 /**
  * Represents a Course in the course list.
@@ -102,7 +103,7 @@ public class Course {
         return this.filteredStudents;
     }
 
-    public void updateFilteredStudentList(NameContainsKeywordsPredicate predicate) {
+    public void updateFilteredStudentList(Predicate<Student> predicate) {
         requireNonNull(predicate);
         filteredStudents.setPredicate(predicate);
     }
