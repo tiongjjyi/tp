@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.course.Course;
+import seedu.address.model.course.CourseName;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.tag.StudentRank;
@@ -79,25 +80,25 @@ public class ParserUtilTest {
 
     @Test
     public void parseCourse_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseCourse((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseCourseName((String) null));
     }
 
     @Test
     public void parseCourse_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseCourse(INVALID_COURSE));
+        assertThrows(ParseException.class, () -> ParserUtil.parseCourseName(INVALID_COURSE));
     }
 
     @Test
     public void parseCourse_validValueWithoutWhitespace_returnsCourse() throws Exception {
-        Course expectedCourse = new Course(VALID_COURSE);
-        assertEquals(expectedCourse, ParserUtil.parseCourse(VALID_COURSE));
+        Course expectedCourse = new Course(new CourseName(VALID_COURSE));
+        assertEquals(expectedCourse, ParserUtil.parseCourseName(VALID_COURSE));
     }
 
     @Test
     public void parseCourse_validValueWithWhitespace_returnsTrimmedCourse() throws Exception {
         String courseWithWhitespace = WHITESPACE + VALID_COURSE + WHITESPACE;
-        Course expectedCourse = new Course(VALID_COURSE);
-        assertEquals(expectedCourse, ParserUtil.parseCourse(courseWithWhitespace));
+        Course expectedCourse = new Course(new CourseName(VALID_COURSE));
+        assertEquals(expectedCourse, ParserUtil.parseCourseName(courseWithWhitespace));
     }
 
     @Test

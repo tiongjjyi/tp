@@ -4,12 +4,16 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
+import javafx.stage.Stage;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.StageManager;
 import seedu.address.model.Model;
+import seedu.address.model.course.Course;
 import seedu.address.model.person.Student;
+import seedu.address.model.person.UniqueStudentList;
 
 /**
  * Deletes a student identified using it's displayed index from the student list.
@@ -34,14 +38,16 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Student> lastShownList = model.getFilteredStudentList();
+        StageManager stageManager = StageManager.getCurrent();
+        Course course = stageManager.getCurrentCourse();
+        UniqueStudentList lastShownList = course.getStudentList();
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+        if (targetIndex.getZeroBased() >= course.getCourseSize()) {
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
-        Student studentToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deleteStudent(studentToDelete);
+        Student studentToDelete = lastShownList.getStudent(targetIndex);
+        course.removeStudent(studentToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_STUDENT_SUCCESS, Messages.format(studentToDelete)));
     }
 

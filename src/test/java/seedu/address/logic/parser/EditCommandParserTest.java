@@ -1,24 +1,19 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.COURSE_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.COURSE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_COURSE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_COURSE_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_AVERAGE;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_GOOD;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_COURSE_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_COURSE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_AVERAGE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_GOOD;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_COURSE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -78,12 +73,8 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
-        assertParseFailure(parser, "1" + INVALID_COURSE_DESC, Course.MESSAGE_CONSTRAINTS); // invalid course
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
-
-        // invalid COURSE followed by valid email
-        assertParseFailure(parser, "1" + INVALID_COURSE_DESC + EMAIL_DESC_AMY, Course.MESSAGE_CONSTRAINTS);
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Person} being edited,
         // parsing it together with a valid tag results in error
@@ -92,19 +83,18 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_GOOD + TAG_DESC_AVERAGE, Tag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_COURSE_AMY,
+        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC,
                 Name.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_STUDENT;
-        String userInput = targetIndex.getOneBased() + COURSE_DESC_BOB + TAG_DESC_AVERAGE
+        String userInput = targetIndex.getOneBased() + TAG_DESC_AVERAGE
                 + EMAIL_DESC_AMY + NAME_DESC_AMY + TAG_DESC_AVERAGE;
 
         EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withCourse(VALID_COURSE_BOB).withEmail(VALID_EMAIL_AMY)
-                .withTags(VALID_TAG_AVERAGE, VALID_TAG_AVERAGE).build();
+                .withEmail(VALID_EMAIL_AMY).withTags(VALID_TAG_AVERAGE, VALID_TAG_AVERAGE).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -113,10 +103,9 @@ public class EditCommandParserTest {
     @Test
     public void parse_someFieldsSpecified_success() {
         Index targetIndex = INDEX_FIRST_STUDENT;
-        String userInput = targetIndex.getOneBased() + COURSE_DESC_BOB + EMAIL_DESC_AMY;
+        String userInput = targetIndex.getOneBased() + EMAIL_DESC_AMY;
 
-        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withCourse(VALID_COURSE_BOB)
-                .withEmail(VALID_EMAIL_AMY).build();
+        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withEmail(VALID_EMAIL_AMY).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -129,12 +118,6 @@ public class EditCommandParserTest {
         String userInput = targetIndex.getOneBased() + NAME_DESC_AMY;
         EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
-        assertParseSuccess(parser, userInput, expectedCommand);
-
-        // course
-        userInput = targetIndex.getOneBased() + COURSE_DESC_AMY;
-        descriptor = new EditStudentDescriptorBuilder().withCourse(VALID_COURSE_AMY).build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // email
@@ -158,29 +141,27 @@ public class EditCommandParserTest {
 
         // valid followed by invalid
         Index targetIndex = INDEX_FIRST_STUDENT;
-        String userInput = targetIndex.getOneBased() + INVALID_COURSE_DESC + COURSE_DESC_BOB;
-
-        assertParseFailure(parser, userInput, Messages.getErrorMessageForDuplicatePrefixes(PREFIX_COURSE));
+        String userInput = targetIndex.getOneBased() + INVALID_COURSE_NAME_DESC;
 
         // invalid followed by valid
-        userInput = targetIndex.getOneBased() + COURSE_DESC_BOB + INVALID_COURSE_DESC;
+        userInput = targetIndex.getOneBased()+ INVALID_COURSE_NAME_DESC;
 
-        assertParseFailure(parser, userInput, Messages.getErrorMessageForDuplicatePrefixes(PREFIX_COURSE));
+        assertParseFailure(parser, userInput, Messages.getErrorMessageForDuplicatePrefixes());
 
-        // mulltiple valid fields repeated
-        userInput = targetIndex.getOneBased() + COURSE_DESC_AMY + EMAIL_DESC_AMY
-                + TAG_DESC_GOOD + COURSE_DESC_AMY + EMAIL_DESC_AMY + TAG_DESC_GOOD
-                + COURSE_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_AVERAGE;
+        // multiple valid fields repeated
+        userInput = targetIndex.getOneBased() + EMAIL_DESC_AMY
+                + TAG_DESC_GOOD + EMAIL_DESC_AMY + TAG_DESC_GOOD
+                + EMAIL_DESC_BOB + TAG_DESC_AVERAGE;
 
         assertParseFailure(parser, userInput,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_COURSE, PREFIX_EMAIL));
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_EMAIL));
 
         // multiple invalid values
-        userInput = targetIndex.getOneBased() + INVALID_COURSE_DESC + INVALID_EMAIL_DESC
-                + INVALID_COURSE_DESC + INVALID_EMAIL_DESC;
+        userInput = targetIndex.getOneBased() + INVALID_COURSE_NAME_DESC + INVALID_EMAIL_DESC
+                + INVALID_COURSE_NAME_DESC + INVALID_EMAIL_DESC;
 
         assertParseFailure(parser, userInput,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_COURSE, PREFIX_EMAIL));
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_EMAIL));
     }
 
     @Test

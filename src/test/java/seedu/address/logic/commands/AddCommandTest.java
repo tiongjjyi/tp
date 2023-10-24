@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalCourses.CS2100;
 import static seedu.address.testutil.TypicalStudents.ALICE;
 
 import java.nio.file.Path;
@@ -18,13 +19,13 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.StageManager;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyCourseList;
-import seedu.address.model.ReadOnlyStudentList;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.StudentList;
 import seedu.address.model.course.Course;
 import seedu.address.model.person.Student;
+import seedu.address.testutil.CourseBuilder;
 import seedu.address.testutil.StudentBuilder;
 
 public class AddCommandTest {
@@ -36,21 +37,26 @@ public class AddCommandTest {
 
     @Test
     public void execute_studentAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingStudentAdded modelStub = new ModelStubAcceptingStudentAdded();
         Student validStudent = new StudentBuilder().build();
-
+        Course validCourse = new CourseBuilder().build();
+        ModelStubWithCourse modelStub = new ModelStubWithCourse(validCourse);
+        StageManager stageManager = StageManager.getCurrent();
+        stageManager.setCourseStage(validCourse);
         CommandResult commandResult = new AddCommand(validStudent).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validStudent)),
                 commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validStudent), modelStub.studentsAdded);
     }
 
     @Test
-    public void execute_duplicateStudent_throwsCommandException() {
+    public void execute_duplicateStudent_throwsDuplicateStudentException() {
         Student validStudent = new StudentBuilder().build();
+        Course validCourse = new CourseBuilder().build();
+        validCourse.addStudent(validStudent);
+        ModelStubWithCourse modelStub = new ModelStubWithCourse(validCourse);
+        StageManager stageManager = StageManager.getCurrent();
+        stageManager.setCourseStage(validCourse);
         AddCommand addCommand = new AddCommand(validStudent);
-        ModelStub modelStub = new ModelStubWithStudent(validStudent);
 
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_STUDENT, () -> addCommand.execute(modelStub));
     }
@@ -121,46 +127,6 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addStudent(Student student) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setStudentList(ReadOnlyStudentList newData) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ReadOnlyStudentList getStudentList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean hasStudent(Student student) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void deleteStudent(Student target) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setStudent(Student target, Student editedStudent) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableList<Student> getFilteredStudentList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void updateFilteredStudentList(Predicate<Student> predicate) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void addCourse(Course course) {
             throw new AssertionError("This method should not be called.");
         }
@@ -202,44 +168,14 @@ public class AddCommandTest {
     }
 
     /**
-     * A Model stub that contains a single Student.
+     * A Model stub that contains a single Course.
      */
-    private class ModelStubWithStudent extends ModelStub {
-        private final Student student;
+    private class ModelStubWithCourse extends ModelStub {
+        private final Course course;
 
-        ModelStubWithStudent(Student student) {
-            requireNonNull(student);
-            this.student = student;
-        }
-
-        @Override
-        public boolean hasStudent(Student student) {
-            requireNonNull(student);
-            return this.student.isSameStudent(student);
-        }
-    }
-
-    /**
-     * A Model stub that always accept the Student being added.
-     */
-    private class ModelStubAcceptingStudentAdded extends ModelStub {
-        final ArrayList<Student> studentsAdded = new ArrayList<>();
-
-        @Override
-        public boolean hasStudent(Student student) {
-            requireNonNull(student);
-            return studentsAdded.stream().anyMatch(student::isSameStudent);
-        }
-
-        @Override
-        public void addStudent(Student student) {
-            requireNonNull(student);
-            studentsAdded.add(student);
-        }
-
-        @Override
-        public ReadOnlyStudentList getStudentList() {
-            return new StudentList();
+        ModelStubWithCourse(Course course) {
+            requireNonNull(course);
+            this.course = course;
         }
     }
 

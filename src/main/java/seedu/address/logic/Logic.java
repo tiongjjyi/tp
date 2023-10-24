@@ -7,8 +7,8 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyStudentList;
-import seedu.address.model.person.Student;
+import seedu.address.model.ReadOnlyCourseList;
+import seedu.address.model.course.Course;
 
 /**
  * API of the Logic component
@@ -24,19 +24,19 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the StudentList.
+     * Returns the CourseList.
      *
-     * @see seedu.address.model.Model#getStudentList()
+     * @see seedu.address.model.Model#getCourseList()
      */
-    ReadOnlyStudentList getStudentList();
+    ReadOnlyCourseList getCourseList();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Student> getFilteredStudentList();
+    /** Returns an unmodifiable view of the filtered list of courses */
+    ObservableList<Course> getFilteredCourseList();
 
     /**
-     * Returns the user prefs' student list file path.
+     * Returns the user prefs' course list file path.
      */
-    Path getStudentListFilePath();
+    Path getCourseListFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

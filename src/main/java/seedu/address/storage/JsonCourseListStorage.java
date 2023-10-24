@@ -12,47 +12,47 @@ import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
-import seedu.address.model.ReadOnlyStudentList;
+import seedu.address.model.ReadOnlyCourseList;
 
 /**
  * A class to access CodeSphere data stored as a json file on the hard disk.
  */
-public class JsonCodeSphereStorage implements CodeSphereStorage {
+public class JsonCourseListStorage implements CourseListStorage {
 
-    private static final Logger logger = LogsCenter.getLogger(JsonCodeSphereStorage.class);
+    private static final Logger logger = LogsCenter.getLogger(JsonCourseListStorage.class);
 
     private Path filePath;
 
-    public JsonCodeSphereStorage(Path filePath) {
+    public JsonCourseListStorage(Path filePath) {
         this.filePath = filePath;
     }
 
-    public Path getCodeSphereFilePath() {
+    public Path getCourseListFilePath() {
         return filePath;
     }
 
     @Override
-    public Optional<ReadOnlyStudentList> readStudentList() throws DataLoadingException {
-        return readStudentList(filePath);
+    public Optional<ReadOnlyCourseList> readCourseList() throws DataLoadingException {
+        return readCourseList(filePath);
     }
 
     /**
-     * Similar to {@link #readStudentList()}.
+     * Similar to {@link #readCourseList()}.
      *
      * @param filePath location of the data. Cannot be null.
      * @throws DataLoadingException if loading the data from storage failed.
      */
-    public Optional<ReadOnlyStudentList> readStudentList(Path filePath) throws DataLoadingException {
+    public Optional<ReadOnlyCourseList> readCourseList(Path filePath) throws DataLoadingException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableStudentList> jsonAddressBook = JsonUtil.readJsonFile(
-                filePath, JsonSerializableStudentList.class);
-        if (!jsonAddressBook.isPresent()) {
+        Optional<JsonSerializableCourseList> jsonCourseList = JsonUtil.readJsonFile(
+                filePath, JsonSerializableCourseList.class);
+        if (!jsonCourseList.isPresent()) {
             return Optional.empty();
         }
 
         try {
-            return Optional.of(jsonAddressBook.get().toModelType());
+            return Optional.of(jsonCourseList.get().toModelType());
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataLoadingException(ive);
@@ -60,21 +60,21 @@ public class JsonCodeSphereStorage implements CodeSphereStorage {
     }
 
     @Override
-    public void saveStudentList(ReadOnlyStudentList addressBook) throws IOException {
-        saveStudentList(addressBook, filePath);
+    public void saveCourseList(ReadOnlyCourseList courseList) throws IOException {
+        saveCourseList(courseList, filePath);
     }
 
     /**
-     * Similar to {@link #saveStudentList(ReadOnlyStudentList)}.
+     * Similar to {@link #saveCourseList(ReadOnlyCourseList)}.
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveStudentList(ReadOnlyStudentList addressBook, Path filePath) throws IOException {
-        requireNonNull(addressBook);
+    public void saveCourseList(ReadOnlyCourseList courseList, Path filePath) throws IOException {
+        requireNonNull(courseList);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableStudentList(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableCourseList(courseList), filePath);
     }
 
 }

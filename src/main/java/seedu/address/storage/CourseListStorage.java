@@ -6,13 +6,12 @@ import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.model.ReadOnlyCourseList;
-import seedu.address.model.ReadOnlyStudentList;
 import seedu.address.model.CourseList;
 
 /**
  * Represents a storage for {@link CourseList}.
  */
-public interface CodeSphereStorage {
+public interface CourseListStorage {
 
     /**
      * Returns the file path of the data file.
@@ -34,14 +33,14 @@ public interface CodeSphereStorage {
 
     /**
      * Saves the given {@link ReadOnlyCourseList} to the storage.
-     * @param addressBook cannot be null.
+     * @param courseList cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveStudentList(ReadOnlyStudentList addressBook) throws IOException;
+    void saveCourseList(ReadOnlyCourseList courseList) throws IOException;
 
     /**
-     * @see #saveStudentList(ReadOnlyStudentList)
+     * @see #saveCourseList(ReadOnlyCourseList) (ReadOnlyCourseList)
      */
-    void saveStudentList(ReadOnlyStudentList addressBook, Path filePath) throws IOException;
+    void saveCourseList(ReadOnlyCourseList courseList, Path filePath) throws IOException;
 
 }

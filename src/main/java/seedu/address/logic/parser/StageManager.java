@@ -1,13 +1,29 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
+
+import javafx.stage.Stage;
 import seedu.address.model.course.Course;
 
 /**
  * This class manages the stages of the application.
  */
 public class StageManager {
+    private static StageManager current;
     private static Stages currentStage = Stages.HOME;
     private static Course selectedCourse = null;
+
+    private StageManager() {
+
+    }
+
+    public static StageManager getCurrent() {
+        if (current == null) {
+            current = new StageManager();
+            return current;
+        }
+        return current;
+    }
 
     public static Stages getStage() {
         return currentStage;
@@ -17,12 +33,13 @@ public class StageManager {
         return selectedCourse;
     }
 
-    public static void setCourseStage(Course selectedCourse) {
+    public void setCourseStage(Course selectedCourse) {
+        requireNonNull(selectedCourse);
         StageManager.currentStage = Stages.COURSE;
         StageManager.selectedCourse = selectedCourse;
     }
 
-    public static void setHomeStage() {
+    public void setHomeStage() {
         StageManager.currentStage = Stages.HOME;
         StageManager.selectedCourse = null;
     }
@@ -30,4 +47,5 @@ public class StageManager {
     public Course getCurrentCourse() {
         return selectedCourse;
     }
+
 }

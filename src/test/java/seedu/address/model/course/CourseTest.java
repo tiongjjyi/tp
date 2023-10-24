@@ -1,62 +1,69 @@
-package seedu.address.model.person;
+package seedu.address.model.course;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_COURSE_NAME_2100;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_COURSE_NAME_2101;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalCourses.CS2100;
+import static seedu.address.testutil.TypicalCourses.CS2103T;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.course.Course;
+import seedu.address.testutil.CourseBuilder;
+import seedu.address.testutil.StudentBuilder;
 
 public class CourseTest {
 
     @Test
-    public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Course(null));
-    }
+    public void isSameCourse() {
+        // same object -> returns true
+        assertTrue(CS2100.isSameCourse(CS2100));
 
-    @Test
-    public void constructor_invalidCourse_throwsIllegalArgumentException() {
-        String invalidCourse = "";
-        assertThrows(IllegalArgumentException.class, () -> new Course(invalidCourse));
-    }
+        // null -> returns false
+        assertFalse(CS2100.isSameCourse(null));
 
-    @Test
-    public void isValidCourse() {
-        // null Course number
-        assertThrows(NullPointerException.class, () -> Course.isValidCourse(null));
+        // different course name -> returns false
+        assertFalse(CS2100.isSameCourse(CS2103T));
 
-        // invalid Course numbers
-        assertFalse(Course.isValidCourse("")); // empty string
-        assertFalse(Course.isValidCourse(" ")); // spaces only
-        assertFalse(Course.isValidCourse("91")); // less than 3 numbers
-        assertFalse(Course.isValidCourse("Course")); // non-numeric
-        assertFalse(Course.isValidCourse("9011p041")); // alphabets within digits
-        assertFalse(Course.isValidCourse("9312 1534")); // spaces within digits
+        // course name differs in case -> returns false
+        Course editedCS2100 = new CourseBuilder(CS2100).withCourseName(VALID_COURSE_NAME_2100.toLowerCase()).build();
+        assertFalse(CS2100.isSameCourse(editedCS2100));
 
-        // valid Course numbers
-        assertTrue(Course.isValidCourse("CS2103T"));
-        assertTrue(Course.isValidCourse("CS2101"));
-        assertTrue(Course.isValidCourse("MA2001"));
+        // course name has trailing spaces -> returns false
+        String courseNameWithTrailingSpaces = VALID_COURSE_NAME_2100 + " ";
+        editedCS2100 = new CourseBuilder(CS2100).withCourseName(courseNameWithTrailingSpaces).build();
+        assertFalse(CS2100.isSameCourse(editedCS2100));
     }
 
     @Test
     public void equals() {
-        Course course = new Course("CS2101");
-
         // same values -> returns true
-        assertTrue(course.equals(new Course("CS2101")));
+        Course CS2100Copy = new CourseBuilder(CS2100).build();
+        assertTrue(CS2100.equals(CS2100Copy));
 
         // same object -> returns true
-        assertTrue(course.equals(course));
+        assertTrue(CS2100.equals(CS2100));
 
         // null -> returns false
-        assertFalse(course.equals(null));
+        assertFalse(CS2100.equals(null));
 
-        // different types -> returns false
-        assertFalse(course.equals(5.0f));
+        // different type -> returns false
+        assertFalse(CS2100.equals(5));
 
-        // different values -> returns false
-        assertFalse(course.equals(new Course("CS2100")));
+        // different Student -> returns false
+        assertFalse(CS2100.equals(CS2103T));
+
+        // different course name name -> returns false
+        Course editedCS2100 = new CourseBuilder(CS2100).withCourseName(VALID_COURSE_NAME_2101).build();
+        assertFalse(CS2100.equals(editedCS2100));
+    }
+
+    @Test
+    public void toStringMethod() {
+        String expected = Course.class.getCanonicalName() + "{course name=" + CS2100.getCourseName() + "}";
+
+        assertEquals(expected, CS2100.toString());
     }
 }

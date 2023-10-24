@@ -3,10 +3,10 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalStudents.ALICE;
-import static seedu.address.testutil.TypicalStudents.HOON;
-import static seedu.address.testutil.TypicalStudents.IDA;
-import static seedu.address.testutil.TypicalStudents.getTypicalStudentList;
+import static seedu.address.testutil.TypicalCourses.CS1231S;
+import static seedu.address.testutil.TypicalCourses.CS2100;
+import static seedu.address.testutil.TypicalCourses.CS2103T;
+import static seedu.address.testutil.TypicalCourses.getTypicalCourseList;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -18,21 +18,20 @@ import org.junit.jupiter.api.io.TempDir;
 import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.model.CourseList;
 import seedu.address.model.ReadOnlyCourseList;
-import seedu.address.model.ReadOnlyStudentList;
-import seedu.address.model.StudentList;
 
-public class JsonStudentListStorageTest {
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonStudentListStorageTest");
+public class JsonCourseListStorageTest {
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test",
+            "data", "JsonCourseListStorageTest");
 
     @TempDir
     public Path testFolder;
 
     @Test
-    public void readStudentList_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> readStudentList(null));
+    public void readCourseList_nullFilePath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> readCourseList(null));
     }
 
-    private java.util.Optional<ReadOnlyCourseList> readStudentList(String filePath) throws Exception {
+    private java.util.Optional<ReadOnlyCourseList> readCourseList(String filePath) throws Exception {
         return new JsonCourseListStorage(Paths.get(filePath)).readCourseList(addToTestDataPathIfNotNull(filePath));
     }
 
@@ -44,52 +43,52 @@ public class JsonStudentListStorageTest {
 
     @Test
     public void read_missingFile_emptyResult() throws Exception {
-        assertFalse(readStudentList("NonExistentFile.json").isPresent());
+        assertFalse(readCourseList("NonExistentFile.json").isPresent());
     }
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataLoadingException.class, () -> readStudentList("notJsonFormatStudentList.json"));
+        assertThrows(DataLoadingException.class, () -> readCourseList("notJsonFormatCourseList.json"));
     }
 
     @Test
-    public void readStudentList_invalidPersonStudentList_throwDataLoadingException() {
-        assertThrows(DataLoadingException.class, () -> readStudentList("invalidPersonStudentList.json"));
+    public void readCourseList_invalidCourseCourseList_throwDataLoadingException() {
+        assertThrows(DataLoadingException.class, () -> readCourseList("invalidCourseCourseList.json"));
     }
 
     @Test
-    public void readStudentList_invalidAndValidPersonStudentList_throwDataLoadingException() {
-        assertThrows(DataLoadingException.class, () -> readStudentList("invalidAndValidPersonStudentList.json"));
+    public void readCourseList_invalidAndValidCourseList_throwDataLoadingException() {
+        assertThrows(DataLoadingException.class, () -> readCourseList("invalidAndValidCourseList.json"));
     }
 
     @Test
-    public void readAndSaveStudentList_allInOrder_success() throws Exception {
-        Path filePath = testFolder.resolve("TempStudentList.json");
+    public void readAndSaveCourseList_allInOrder_success() throws Exception {
+        Path filePath = testFolder.resolve("TempCourseList.json");
         CourseList original = getTypicalCourseList();
-        JsonCourseListStorage jsonStudentListStorage = new JsonCourseListStorage(filePath);
+        JsonCourseListStorage jsonCourseListStorage = new JsonCourseListStorage(filePath);
 
         // Save in new file and read back
-        jsonStudentListStorage.saveCourseList(original, filePath);
-        ReadOnlyCourseList readBack = jsonStudentListStorage.readCourseList(filePath).get();
+        jsonCourseListStorage.saveCourseList(original, filePath);
+        ReadOnlyCourseList readBack = jsonCourseListStorage.readCourseList(filePath).get();
         assertEquals(original, new CourseList(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addCourse(HOON);
-        original.removeCourse(ALICE);
-        jsonStudentListStorage.saveCourseList(original, filePath);
-        readBack = jsonStudentListStorage.readCourseList(filePath).get();
+        original.addCourse(CS2100);
+        original.removeCourse(CS1231S);
+        jsonCourseListStorage.saveCourseList(original, filePath);
+        readBack = jsonCourseListStorage.readCourseList(filePath).get();
         assertEquals(original, new CourseList(readBack));
 
         // Save and read without specifying file path
-        original.addCourse(IDA);
-        jsonStudentListStorage.saveCourseList(original); // file path not specified
-        readBack = jsonStudentListStorage.readCourseList().get(); // file path not specified
+        original.addCourse(CS2103T);
+        jsonCourseListStorage.saveCourseList(original); // file path not specified
+        readBack = jsonCourseListStorage.readCourseList().get(); // file path not specified
         assertEquals(original, new CourseList(readBack));
 
     }
 
     @Test
-    public void saveStudentList_nullStudentList_throwsNullPointerException() {
+    public void saveCourseList_nullCourseList_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> saveCourseList(null, "SomeFile.json"));
     }
 
@@ -106,7 +105,7 @@ public class JsonStudentListStorageTest {
     }
 
     @Test
-    public void saveStudentList_nullFilePath_throwsNullPointerException() {
+    public void saveCourseList_nullFilePath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> saveCourseList(new CourseList(), null));
     }
 }

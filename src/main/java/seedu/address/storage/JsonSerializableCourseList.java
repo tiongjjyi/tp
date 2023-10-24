@@ -9,35 +9,35 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.ReadOnlyStudentList;
-import seedu.address.model.StudentList;
-import seedu.address.model.person.Student;
+import seedu.address.model.ReadOnlyCourseList;
+import seedu.address.model.CourseList;
+import seedu.address.model.course.Course;
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable CourseList that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
-class JsonSerializableStudentList {
+@JsonRootName(value = "CourseList")
+class JsonSerializableCourseList {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_PERSON = "Course list contains duplicate course(s).";
 
-    private final List<JsonAdaptedStudent> persons = new ArrayList<>();
+    private final List<JsonAdaptedCourse> persons = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableStudentList(@JsonProperty("persons") List<JsonAdaptedStudent> persons) {
+    public JsonSerializableCourseList(@JsonProperty("courses") List<JsonAdaptedCourse> courses) {
         this.persons.addAll(persons);
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyCourseList} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableCourseList}.
      */
-    public JsonSerializableStudentList(ReadOnlyStudentList source) {
-        persons.addAll(source.getStudentList().stream().map(JsonAdaptedStudent::new).collect(Collectors.toList()));
+    public JsonSerializableCourseList(ReadOnlyCourseList source) {
+        persons.addAll(source.getCourseList().stream().map(JsonAdaptedCourse::new).collect(Collectors.toList()));
     }
 
     /**
@@ -45,16 +45,16 @@ class JsonSerializableStudentList {
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public StudentList toModelType() throws IllegalValueException {
-        StudentList studentList = new StudentList();
-        for (JsonAdaptedStudent jsonAdaptedStudent : persons) {
-            Student student = jsonAdaptedStudent.toModelType();
-            if (studentList.hasStudent(student)) {
+    public CourseList toModelType() throws IllegalValueException {
+        CourseList courseList = new CourseList();
+        for (JsonAdaptedCourse jsonAdaptedCourse : persons) {
+            Course course = jsonAdaptedCourse.toModelType();
+            if (courseList.hasCourse(course)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            studentList.addStudent(student);
+            courseList.addCourse(course);
         }
-        return studentList;
+        return courseList;
     }
 
 }

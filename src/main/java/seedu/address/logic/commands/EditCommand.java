@@ -1,12 +1,12 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_COURSE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COURSE_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_COURSES;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -20,6 +20,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.StageManager;
 import seedu.address.model.Model;
 import seedu.address.model.course.Course;
 import seedu.address.model.person.Email;
@@ -40,12 +41,11 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_COURSE + "COURSE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_REMARK + "REMARK] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_COURSE + "CS2103T "
+            + PREFIX_COURSE_NAME + "CS2103T "
             + PREFIX_EMAIL + "johndoe@u.nus.edu";
 
     public static final String MESSAGE_EDIT_STUDENT_SUCCESS = "Edited student: %1$s";
@@ -70,7 +70,9 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Student> lastShownList = model.getFilteredStudentList();
+        StageManager stageManager = StageManager.getCurrent();
+        Course course = stageManager.getCurrentCourse();
+        List<Student> lastShownList = course.getFilteredStudentList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
@@ -79,12 +81,12 @@ public class EditCommand extends Command {
         Student studentToEdit = lastShownList.get(index.getZeroBased());
         Student editedStudent = createEditedStudent(studentToEdit, editStudentDescriptor);
 
-        if (!studentToEdit.isSameStudent(editedStudent) && model.hasStudent(editedStudent)) {
+        if (!studentToEdit.isSameStudent(editedStudent) && course.hasStudent(editedStudent)) {
             throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
         }
 
-        model.setStudent(studentToEdit, editedStudent);
-        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+        course.setStudent(studentToEdit, editedStudent);
+        model.updateFilteredCourseList(PREDICATE_SHOW_ALL_COURSES);
         return new CommandResult(String.format(MESSAGE_EDIT_STUDENT_SUCCESS, Messages.format(editedStudent)));
     }
 
@@ -96,12 +98,11 @@ public class EditCommand extends Command {
         assert studentToEdit != null;
 
         Name updatedName = editStudentDescriptor.getName().orElse(studentToEdit.getName());
-        Course updatedCourse = editStudentDescriptor.getCourse().orElse(studentToEdit.getCourse());
         Email updatedEmail = editStudentDescriptor.getEmail().orElse(studentToEdit.getEmail());
         Remark updatedRemark = editStudentDescriptor.getRemark().orElse(studentToEdit.getRemark());
         Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
 
-        return new Student(updatedName, updatedCourse, updatedEmail, updatedRemark, updatedTags);
+        return new Student(updatedName, updatedEmail, updatedRemark, updatedTags);
     }
 
     @Override
@@ -134,7 +135,6 @@ public class EditCommand extends Command {
      */
     public static class EditStudentDescriptor {
         private Name name;
-        private Course course;
         private Email email;
         private Remark remark;
         private Set<Tag> tags;
@@ -147,7 +147,6 @@ public class EditCommand extends Command {
          */
         public EditStudentDescriptor(EditStudentDescriptor toCopy) {
             setName(toCopy.name);
-            setCourse(toCopy.course);
             setEmail(toCopy.email);
             setRemark(toCopy.remark);
             setTags(toCopy.tags);
@@ -157,7 +156,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, course, email, remark, tags);
+            return CollectionUtil.isAnyNonNull(name, email, remark, tags);
         }
 
         public void setName(Name name) {
@@ -166,14 +165,6 @@ public class EditCommand extends Command {
 
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
-        }
-
-        public void setCourse(Course course) {
-            this.course = course;
-        }
-
-        public Optional<Course> getCourse() {
-            return Optional.ofNullable(course);
         }
 
         public void setEmail(Email email) {
@@ -222,7 +213,6 @@ public class EditCommand extends Command {
 
             EditStudentDescriptor otherEditStudentDescriptor = (EditStudentDescriptor) other;
             return Objects.equals(name, otherEditStudentDescriptor.name)
-                    && Objects.equals(course, otherEditStudentDescriptor.course)
                     && Objects.equals(email, otherEditStudentDescriptor.email)
                     && Objects.equals(remark, otherEditStudentDescriptor.remark)
                     && Objects.equals(tags, otherEditStudentDescriptor.tags);
@@ -232,7 +222,6 @@ public class EditCommand extends Command {
         public String toString() {
             return new ToStringBuilder(this)
                     .add("name", name)
-                    .add("course", course)
                     .add("email", email)
                     .add("remark", remark)
                     .add("tags", tags)

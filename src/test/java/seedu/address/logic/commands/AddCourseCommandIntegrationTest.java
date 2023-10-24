@@ -8,16 +8,16 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.Messages;
+import seedu.address.model.course.Course;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Student;
-import seedu.address.testutil.StudentBuilder;
+import seedu.address.testutil.CourseBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
  */
-public class AddCommandIntegrationTest {
+public class AddCourseCommandIntegrationTest {
 
     private Model model;
 
@@ -27,22 +27,22 @@ public class AddCommandIntegrationTest {
     }
 
     @Test
-    public void execute_newStudent_success() {
-        Student validStudent = new StudentBuilder().build();
+    public void execute_newCourse_success() {
+        Course validCourse = new CourseBuilder().build();
 
         Model expectedModel = new ModelManager(model.getCourseList(), new UserPrefs());
-        expectedModel.addStudent(validStudent);
+        expectedModel.addCourse(validCourse);
 
-        assertCommandSuccess(new AddCommand(validStudent), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validStudent)),
+        assertCommandSuccess(new AddCourseCommand(validCourse), model,
+                String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validCourse)),
                 expectedModel);
     }
 
     @Test
-    public void execute_duplicateStudent_throwsCommandException() {
-        Student studentInList = model.getStudentList().getStudentList().get(0);
-        assertCommandFailure(new AddCommand(studentInList), model,
-                AddCommand.MESSAGE_DUPLICATE_STUDENT);
+    public void execute_duplicateCourse_throwsCommandException() {
+        Course courseInList = model.getCourseList().getCourseList().get(0);
+        assertCommandFailure(new AddCourseCommand(courseInList), model,
+                AddCourseCommand.MESSAGE_DUPLICATE_COURSE);
     }
 
 }

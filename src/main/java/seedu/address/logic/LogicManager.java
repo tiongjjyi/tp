@@ -14,7 +14,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.CodeSphereParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
+import seedu.address.model.ReadOnlyCourseList;
 import seedu.address.model.ReadOnlyStudentList;
+import seedu.address.model.course.Course;
 import seedu.address.model.person.Student;
 import seedu.address.storage.Storage;
 
@@ -31,7 +33,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final CodeSphereParser studentListParser;
+    private final CodeSphereParser codeSphereParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -39,7 +41,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        studentListParser = new CodeSphereParser();
+        codeSphereParser = new CodeSphereParser();
     }
 
     @Override
@@ -47,11 +49,11 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = studentListParser.parseCommand(commandText);
+        Command command = codeSphereParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {
-            storage.saveStudentList(model.getStudentList());
+            storage.saveCourseList(model.getCourseList());
         } catch (AccessDeniedException e) {
             throw new CommandException(String.format(FILE_OPS_PERMISSION_ERROR_FORMAT, e.getMessage()), e);
         } catch (IOException ioe) {
@@ -62,17 +64,17 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyStudentList getStudentList() {
-        return model.getStudentList();
+    public ReadOnlyCourseList getCourseList() {
+        return model.getCourseList();
     }
 
     @Override
-    public ObservableList<Student> getFilteredStudentList() {
-        return model.getFilteredStudentList();
+    public ObservableList<Course> getFilteredCourseList() {
+        return model.getFilteredCourseList();
     }
 
     @Override
-    public Path getStudentListFilePath() {
+    public Path getCourseListFilePath() {
         return model.getAddressBookFilePath();
     }
 
