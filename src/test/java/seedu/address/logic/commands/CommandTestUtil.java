@@ -65,6 +65,7 @@ public class CommandTestUtil {
     public static final String INVALID_COURSE_NAME_DESC = " " + "911CS"; // 'a' not allowed in COURSEs
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_COURSE_DESC = " " + PREFIX_COURSE_NAME + "1101"; //missing letter prefix
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

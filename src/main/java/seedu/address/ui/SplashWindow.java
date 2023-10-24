@@ -2,8 +2,6 @@ package seedu.address.ui;
 
 import javafx.scene.layout.Region;
 
-
-/**
 /**
  * A UI for the splash window
  */

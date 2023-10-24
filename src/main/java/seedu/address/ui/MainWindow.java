@@ -40,7 +40,6 @@ public class MainWindow extends UiPart<Stage> {
     private CourseListPanel courseListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
-    boolean isHomeScreen = true;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -129,15 +128,13 @@ public class MainWindow extends UiPart<Stage> {
         fadeOut.setToValue(0);
 
         fadeIn.play();
-        fadeIn.setOnFinished( (e) -> {
+        fadeIn.setOnFinished(fadein -> {
             fadeOut.play();
-            fadeOut.setOnFinished( event -> {
+            fadeOut.setOnFinished(fadeout -> {
                 itemListPanelPlaceholder.setOpacity(1);
                 loadCourseListPanel();
-                //loadStudentListPanel();
             });
         });
-
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -164,18 +161,6 @@ public class MainWindow extends UiPart<Stage> {
         itemListPanelPlaceholder.getChildren().clear();
         courseListPanel = new CourseListPanel(logic.getFilteredCourseList());
         itemListPanelPlaceholder.getChildren().add(courseListPanel.getRoot());
-    }
-
-    void switchPanels() {
-        System.out.println("Button is clicked!");
-        if (isHomeScreen) {
-            loadStudentListPanel();
-            isHomeScreen = false;
-        } else {
-            //loadCourseListPanel();
-            loadSplashScreen();
-            isHomeScreen = true;
-        }
     }
 
     /**

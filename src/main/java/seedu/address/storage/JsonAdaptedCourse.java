@@ -51,7 +51,8 @@ class JsonAdaptedCourse {
     public Course toModelType() throws IllegalValueException {
 
         if (courseName == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, CourseName.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    CourseName.class.getSimpleName()));
         }
         if (!CourseName.isValidCourseName(courseName)) {
             throw new IllegalValueException(CourseName.MESSAGE_CONSTRAINTS);

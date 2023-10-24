@@ -2,15 +2,16 @@ package seedu.address.model.course;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Objects;
+import java.util.function.Predicate;
+
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.UniqueStudentList;
 
-import java.util.Objects;
-import java.util.function.Predicate;
+
 
 /**
  * Represents a Course in the course list.
@@ -18,18 +19,17 @@ import java.util.function.Predicate;
  */
 public class Course {
 
+    public static final String MESSAGE_CONSTRAINTS =
+            "Course code should contain a two- or three-letter prefix, "
+                    + "four digits course code and an optional one-letter suffix";
+    public static final String VALIDATION_REGEX = "\\w{2,3}\\d{4}\\w?";
+
     // Course identity field
     public final CourseName courseName;
 
     // Course data field
     private final UniqueStudentList students;
     private final FilteredList<Student> filteredStudents;
-
-
-    public static final String MESSAGE_CONSTRAINTS =
-            "Course code should contain a two- or three-letter prefix, "
-                    + "four digits course code and an optional one-letter suffix";
-    public static final String VALIDATION_REGEX = "\\w{2,3}\\d{4}\\w?";
 
     /**
      * Every field must be present and not null.
@@ -64,6 +64,7 @@ public class Course {
 
     /**
      * Adds a student to the course being taught by the TA.
+     *
      * @param student A student to be added to the course.
      */
     public boolean hasStudent(Student student) {
@@ -72,6 +73,7 @@ public class Course {
 
     /**
      * Adds a student to the course being taught by the TA.
+     *
      * @param student A student to be added to the course.
      */
     public void addStudent(Student student) {
@@ -80,7 +82,8 @@ public class Course {
 
     /**
      * Sets a student to the course being taught by the TA.
-     * @param target The target student to be replaced.
+     *
+     * @param target        The target student to be replaced.
      * @param editedStudent The student to be set.
      */
     public void setStudent(Student target, Student editedStudent) {
@@ -89,6 +92,7 @@ public class Course {
 
     /**
      * Removes a student from the course being taught by the TA.
+     *
      * @param student A student to be removed from the course.
      */
     public void removeStudent(Student student) {
@@ -103,6 +107,10 @@ public class Course {
         return this.filteredStudents;
     }
 
+    /**
+     * Returns an unmodifiable view of the filtered list of {@code Student}
+     * @param predicate The predicate filter to run on the student list
+     */
     public void updateFilteredStudentList(Predicate<Student> predicate) {
         requireNonNull(predicate);
         filteredStudents.setPredicate(predicate);

@@ -62,9 +62,9 @@ public class CourseList implements ReadOnlyCourseList {
     /**
      * Returns true if a Course with the same identity as {@code Course} exists in the Course list.
      */
-    public boolean hasCourse(Course Course) {
-        requireNonNull(Course);
-        return courses.contains(Course);
+    public boolean hasCourse(Course course) {
+        requireNonNull(course);
+        return courses.contains(course);
     }
 
     /**

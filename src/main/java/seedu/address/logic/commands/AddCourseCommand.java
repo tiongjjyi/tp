@@ -29,9 +29,9 @@ public class AddCourseCommand extends Command {
     /**
      * Creates an AddCourseCommand to add the specified {@code Course}
      */
-    public AddCourseCommand(Course Course) {
-        requireNonNull(Course);
-        toAdd = Course;
+    public AddCourseCommand(Course course) {
+        requireNonNull(course);
+        toAdd = course;
     }
 
     @Override
