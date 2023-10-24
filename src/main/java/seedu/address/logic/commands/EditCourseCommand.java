@@ -16,6 +16,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.course.Course;
 import seedu.address.model.course.CourseName;
+import seedu.address.model.person.Student;
+import seedu.address.model.person.UniqueStudentList;
 
 /**
  * Edits the details of an existing course in the course list.
@@ -73,15 +75,21 @@ public class EditCourseCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Course} with the details of {@code courseToEdit}
-     * edited with {@code editCourseDescriptor}.
+     * Creates and returns a {@code Course} with the course name of {@code courseToEdit}
+     * edited with {@code editCourseDescriptor} but with the original student list.
      */
     private static Course createEditedCourse(Course courseToEdit, EditCourseDescriptor editCourseDescriptor) {
         assert courseToEdit != null;
 
         CourseName updatedCourseName = editCourseDescriptor.getCourseName().orElse(courseToEdit.getCourseName());
+        UniqueStudentList updatedStudentList = courseToEdit.getStudentList();
 
-        return new Course(updatedCourseName);
+        Course updatedCourse = new Course(updatedCourseName);
+        for (Student student: updatedStudentList) {
+            updatedCourse.addStudent(student);
+        }
+
+        return updatedCourse;
     }
 
     @Override
