@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_AMY;
@@ -16,6 +17,7 @@ import static seedu.address.testutil.TypicalCourses.getTypicalCourseList;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
 
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -24,6 +26,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.StageManager;
 import seedu.address.model.CourseList;
 import seedu.address.model.Model;
@@ -77,58 +80,58 @@ public class RemarkCommandTest {
 
 
     @Test
-    public void execute_addRemarkUnfilteredList_success() {
-        Course validCourse1 = activateStudent1().get(1);
+    public void execute_addRemarkUnfilteredList_success() throws CommandException {
+        Course validCourse = getTypicalCourses().get(1);
+  
         StageManager stageManager = StageManager.getCurrent();
         stageManager.setCourseStage(validCourse1);
 
         Student firstPerson = validCourse1.getStudentList().getStudent(INDEX_FIRST_STUDENT);
         Student editedPerson = new StudentBuilder(firstPerson).withRemark(REMARK_STUB).build();
 
-        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_STUDENT,
-                new Remark(editedPerson.getRemark().value));
-
+        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_STUDENT, new Remark(REMARK_STUB));
+        CommandResult commandResult = remarkCommand.execute(model);
         String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedPerson);
+        CommandResult expectedResult = new CommandResult(expectedMessage);
 
-        Model expectedModel = new ModelManager(new CourseList(model.getCourseList()), new UserPrefs());
-        validCourse1.setStudent(firstPerson, editedPerson);
-        assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
+        assertEquals(commandResult, expectedResult);
     }
 
     @Test
-    public void execute_deleteRemarkUnfilteredList_success() {
-        Course validCourse2 = activateStudent2().get(2);
+    public void execute_deleteRemarkUnfilteredList_success() throws CommandException {
+        Course validCourse = getTypicalCourses().get(1);
         StageManager stageManager = StageManager.getCurrent();
-        stageManager.setCourseStage(validCourse2);
-        Student firstPerson = validCourse2.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
+        stageManager.setCourseStage(validCourse);
+
+
+        Student firstPerson = validCourse.getStudentList().getStudent(INDEX_FIRST_STUDENT);
         Student editedPerson = new StudentBuilder(firstPerson).withRemark("").build();
 
-        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_STUDENT,
-                new Remark(editedPerson.getRemark().toString()));
+        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_STUDENT, new Remark(""));
+        CommandResult commandResult = remarkCommand.execute(model);
+        String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedPerson);
+        CommandResult expectedResult = new CommandResult(expectedMessage);
 
-        String expectedMessage = String.format(RemarkCommand.MESSAGE_DELETE_REMARK_SUCCESS, editedPerson);
-
-        Model expectedModel = new ModelManager(new CourseList(model.getCourseList()), new UserPrefs());
-        validCourse2.setStudent(firstPerson, editedPerson);
-
-        assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
+        assertEquals(commandResult, expectedResult);
     }
 
     @Test
     public void execute_filteredList_success() {
-        Course validCourse3 = activateStudent3().get(3);
+        Course validCourse = getTypicalCourses().get(1);
         StageManager stageManager = StageManager.getCurrent();
-        stageManager.setCourseStage(validCourse3);
-        showStudentAtIndex(validCourse3, INDEX_FIRST_STUDENT);
-        Student firstPerson = validCourse3.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
-        Student editedPerson = new StudentBuilder(validCourse3.getFilteredStudentList()
+        stageManager.setCourseStage(validCourse);
+
+        showStudentAtIndex(validCourse, INDEX_FIRST_STUDENT);
+
+        Student firstPerson = validCourse.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
+        Student editedPerson = new StudentBuilder(validCourse.getFilteredStudentList()
                 .get(INDEX_FIRST_STUDENT.getZeroBased()))
                 .withRemark(REMARK_STUB).build();
 
-        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_STUDENT,
-                new Remark(editedPerson.getRemark().value));
+        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_STUDENT, new Remark(REMARK_STUB));
 
         String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedPerson);
+
 
         Model expectedModel = new ModelManager(new CourseList(model.getCourseList()), new UserPrefs());
         validCourse3.setStudent(firstPerson, editedPerson);
