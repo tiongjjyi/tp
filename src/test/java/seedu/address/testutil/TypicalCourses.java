@@ -19,6 +19,7 @@ public class TypicalCourses {
     public static final Course CS2040S = new CourseBuilder().withCourseName("CS2040S").build();
     public static final Course CS2100 = new CourseBuilder().withCourseName("CS2100").build();
     public static final Course CS2103T = new CourseBuilder().withCourseName("CS2103T").build();
+    public static final Course CS3230 = new CourseBuilder().withCourseName("CS3230").build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
@@ -37,9 +38,8 @@ public class TypicalCourses {
 
     public static List<Course> getTypicalCourses() {
         List<Student> typicalStudents = TypicalStudents.getTypicalStudents();
-        CS1231S.addStudent(typicalStudents.get(0));
-        CS2030S.addStudent(typicalStudents.get(1));
-        CS2040S.addStudent(typicalStudents.get(2));
-        return new ArrayList<>(Arrays.asList(CS1101S, CS1231S, CS2030S, CS2040S));
+        System.out.println("typicalc");
+        System.out.println("end of add");
+        return new ArrayList<>(Arrays.asList(CS1101S, CS1231S, CS2030S, CS2040S, CS3230));
     }
 }

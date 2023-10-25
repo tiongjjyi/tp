@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PENDINGQUESTION;
 
 import java.util.List;
 
@@ -11,40 +11,41 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.StageManager;
 import seedu.address.model.Model;
 import seedu.address.model.course.Course;
-import seedu.address.model.person.Remark;
+import seedu.address.model.person.PendingQuestion;
 import seedu.address.model.person.Student;
 
 /**
- * Changes the remark of an existing person in the address book.
+ * Changes the pending question of an existing person in the address book.
  */
-public class RemarkCommand extends Command {
+public class PendingQuestionCommand extends Command {
 
-    public static final String COMMAND_WORD = "remark";
+    public static final String COMMAND_WORD = "pq";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the remark of the person identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the pending question of the person identified "
             + "by the index number used in the last person listing. "
-            + "Existing remark will be overwritten by the input.\n"
+            + "Existing pending question will be overwritten by the input.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_REMARK + "[REMARK]\n"
+            + PREFIX_PENDINGQUESTION + "[PENDING QUESTION]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_REMARK + "Likes to swim.";
+            + PREFIX_PENDINGQUESTION + "Likes to swim.";
 
-    public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Person: %1$s";
-    public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark from Person: %1$s";
+    public static final String MESSAGE_ADD_PENDING_QUESTION_SUCCESS = "Added pending question to Person: %1$s";
+    public static final String MESSAGE_DELETE_PENDING_QUESTION_SUCCESS = "Removed pending question from Person: %1$s";
 
     private final Index index;
-    private final Remark remark;
+    private final PendingQuestion pendingQuestion;
 
     /**
      * @param index of the person in the filtered person list to edit the remark
-     * @param remark of the person to be updated to
+     * @param pendingQuestion of the person to be updated to
      */
-    public RemarkCommand(Index index, Remark remark) {
-        requireAllNonNull(index, remark);
+    public PendingQuestionCommand(Index index, PendingQuestion pendingQuestion) {
+        requireAllNonNull(index, pendingQuestion);
 
         this.index = index;
-        this.remark = remark;
+        this.pendingQuestion = pendingQuestion;
     }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         StageManager stageManager = StageManager.getCurrent();
@@ -57,7 +58,7 @@ public class RemarkCommand extends Command {
 
         Student studentToEdit = lastShownList.get(index.getZeroBased());
         Student editedPerson = new Student(studentToEdit.getName(), studentToEdit.getEmail(),
-                remark, studentToEdit.getPendingQuestion(), studentToEdit.getTag());
+                studentToEdit.getRemark(), pendingQuestion, studentToEdit.getTag());
 
         course.setStudent(studentToEdit, editedPerson);
 
@@ -65,17 +66,17 @@ public class RemarkCommand extends Command {
     }
 
     /**
-     * Generates a command execution success message based on whether the remark is added to or removed from
-     * {@code studentToEdit}.
+     * Generates a command execution success message based on whether
+     * the remark is added to or removed from
+     * {@code personToEdit}.
      */
     private String generateSuccessMessage(Student studentToEdit) {
-        String message = !remark.value.isEmpty() ? MESSAGE_ADD_REMARK_SUCCESS : MESSAGE_DELETE_REMARK_SUCCESS;
+        String message = !pendingQuestion.value.isEmpty()
+                ? MESSAGE_ADD_PENDING_QUESTION_SUCCESS : MESSAGE_DELETE_PENDING_QUESTION_SUCCESS;
         return String.format(message, studentToEdit);
     }
-
     @Override
     public boolean equals(Object other) {
-        // short circuit if same object
         if (other == this) {
             return true;
         }
@@ -85,9 +86,8 @@ public class RemarkCommand extends Command {
             return false;
         }
 
-        // state check
-        RemarkCommand e = (RemarkCommand) other;
+        PendingQuestionCommand e = (PendingQuestionCommand) other;
         return index.equals(e.index)
-                && remark.equals(e.remark);
+                && pendingQuestion.equals(e.pendingQuestion);
     }
 }
