@@ -47,10 +47,10 @@ public class StudentCard extends UiPart<Region> {
         this.student = student;
         id.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
-        email.setText(student.getEmail().value);
-        remark.setText(student.getRemark().value);
-        pendingQuestion.setText(student.getPendingQuestion().value);
+        email.setText("Email: " + student.getEmail().value);
         tag.getChildren().add(new Label(student.getTag().ranking.toString()));
+        remark.setText("Remark: " + student.getRemark().value);
+        pendingQuestion.setText("Pending Question: " + student.getPendingQuestion().value);
     }
 }
 
