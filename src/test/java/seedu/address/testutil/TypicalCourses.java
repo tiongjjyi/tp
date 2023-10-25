@@ -6,7 +6,6 @@ import java.util.List;
 
 import seedu.address.model.CourseList;
 import seedu.address.model.course.Course;
-import seedu.address.model.person.Student;
 
 /**
  * A utility class containing a list of {@code Course} objects to be used in tests.

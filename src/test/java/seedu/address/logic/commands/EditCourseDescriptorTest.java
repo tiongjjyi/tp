@@ -9,10 +9,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_COURSE_NAME_210
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.EditCourseCommand.EditCourseDescriptor;
 import seedu.address.logic.commands.EditCommand.EditStudentDescriptor;
+import seedu.address.logic.commands.EditCourseCommand.EditCourseDescriptor;
 import seedu.address.testutil.EditCourseDescriptorBuilder;
-import seedu.address.testutil.EditStudentDescriptorBuilder;
 
 public class EditCourseDescriptorTest {
 

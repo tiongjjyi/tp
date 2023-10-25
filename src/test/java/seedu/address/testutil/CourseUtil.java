@@ -1,10 +1,11 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COURSE_NAME;
+
 import seedu.address.logic.commands.AddCourseCommand;
 import seedu.address.logic.commands.EditCourseCommand.EditCourseDescriptor;
 import seedu.address.model.course.Course;
 
-import static seedu.address.logic.parser.CliSyntax.*;
 
 /**
  * A utility class for Course.
