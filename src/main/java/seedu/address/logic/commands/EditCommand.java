@@ -9,12 +9,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_COURSES;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
@@ -105,9 +102,9 @@ public class EditCommand extends Command {
         Remark updatedRemark = editStudentDescriptor.getRemark().orElse(studentToEdit.getRemark());
         PendingQuestion updatedPq = editStudentDescriptor.getPendingQuestion()
                 .orElse(studentToEdit.getPendingQuestion());
-        Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
+        Tag updatedTag = editStudentDescriptor.getTag().orElse(studentToEdit.getTag());
 
-        return new Student(updatedName, updatedEmail, updatedRemark, updatedPq, updatedTags);
+        return new Student(updatedName, updatedEmail, updatedRemark, updatedPq, updatedTag);
     }
 
     @Override
@@ -143,7 +140,7 @@ public class EditCommand extends Command {
         private Email email;
         private Remark remark;
         private PendingQuestion pendingQuestion;
-        private Set<Tag> tags;
+        private Tag tag;
 
         public EditStudentDescriptor() {}
 
@@ -156,14 +153,14 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setRemark(toCopy.remark);
             setPendingQuestion(toCopy.pendingQuestion);
-            setTags(toCopy.tags);
+            setTag(toCopy.tag);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, email, remark, pendingQuestion, tags);
+            return CollectionUtil.isAnyNonNull(name, email, remark, pendingQuestion, tag);
         }
 
         public void setName(Name name) {
@@ -204,8 +201,8 @@ public class EditCommand extends Command {
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
          */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        public void setTag(Tag tag) {
+            this.tag = tag;
         }
 
         /**
@@ -213,8 +210,8 @@ public class EditCommand extends Command {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        public Optional<Tag> getTag() {
+            return Optional.ofNullable(tag);
         }
 
         @Override
@@ -233,7 +230,7 @@ public class EditCommand extends Command {
                     && Objects.equals(email, otherEditStudentDescriptor.email)
                     && Objects.equals(remark, otherEditStudentDescriptor.remark)
                     && Objects.equals(pendingQuestion, otherEditStudentDescriptor.pendingQuestion)
-                    && Objects.equals(tags, otherEditStudentDescriptor.tags);
+                    && Objects.equals(tag, otherEditStudentDescriptor.tag);
         }
 
         @Override
@@ -243,7 +240,7 @@ public class EditCommand extends Command {
                     .add("email", email)
                     .add("remark", remark)
                     .add("pending question", pendingQuestion)
-                    .add("tags", tags)
+                    .add("tag", tag)
                     .toString();
         }
     }

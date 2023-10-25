@@ -11,6 +11,8 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.exceptions.DuplicateStudentException;
 import seedu.address.model.person.exceptions.StudentNotFoundException;
+import seedu.address.model.tag.StudentRank;
+import seedu.address.model.tag.Tag;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
@@ -35,6 +37,27 @@ public class UniqueStudentList implements Iterable<Student> {
     public boolean contains(Student toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameStudent);
+    }
+
+    /**
+     * Returns the total number of students in the unique student list with tag GOOD.
+     */
+    public long getGoodTagCount() {
+        return internalList.stream().filter(s -> s.getTag().equals(new Tag(StudentRank.GOOD))).count();
+    }
+
+    /**
+     * Returns the total number of students in the unique student list with tag AVERAGE.
+     */
+    public long getAverageTagCount() {
+        return internalList.stream().filter(s -> s.getTag().equals(new Tag(StudentRank.AVERAGE))).count();
+    }
+
+    /**
+     * Returns the total number of students in the unique student list with tag POOR.
+     */
+    public long getPoorTagCount() {
+        return internalList.stream().filter(s -> s.getTag().equals(new Tag(StudentRank.POOR))).count();
     }
 
     /**
