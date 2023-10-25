@@ -79,6 +79,14 @@ public class StudentBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Pending Question} of the {@code Pending Question} that we are building.
+     */
+    public StudentBuilder withPendingQuestion(String pendingQuestion) {
+        this.pendingQuestion = new PendingQuestion(pendingQuestion);
+        return this;
+    }
+
     public Student build() {
         return new Student(name, email, remark, pendingQuestion, tags);
     }

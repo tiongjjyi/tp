@@ -27,7 +27,7 @@ public class PendingQuestionCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_PENDINGQUESTION + "[PENDING QUESTION]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PENDINGQUESTION + "Likes to swim.";
+            + PREFIX_PENDINGQUESTION + "What is the meaning of life?";
 
     public static final String MESSAGE_ADD_PENDING_QUESTION_SUCCESS = "Added pending question to Person: %1$s";
     public static final String MESSAGE_DELETE_PENDING_QUESTION_SUCCESS = "Removed pending question from Person: %1$s";
@@ -82,7 +82,7 @@ public class PendingQuestionCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof RemarkCommand)) {
+        if (!(other instanceof PendingQuestionCommand)) {
             return false;
         }
 
