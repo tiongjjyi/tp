@@ -13,7 +13,7 @@ import seedu.address.model.course.Course;
 
 
 /**
- * Panel containing the list of students.
+ * Panel containing the list of courses.
  */
 public class CourseListPanel extends UiPart<Region> {
     private static final String FXML = "CourseListPanel.fxml";
