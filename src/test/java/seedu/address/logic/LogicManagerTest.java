@@ -14,14 +14,16 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.address.logic.commands.*;
+import seedu.address.logic.commands.AddCourseCommand;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.course.Course;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyCourseList;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.course.Course;
 import seedu.address.storage.JsonCourseListStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;

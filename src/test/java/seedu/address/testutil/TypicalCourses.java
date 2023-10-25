@@ -6,7 +6,6 @@ import java.util.List;
 
 import seedu.address.model.CourseList;
 import seedu.address.model.course.Course;
-import seedu.address.model.person.Student;
 
 /**
  * A utility class containing a list of {@code Course} objects to be used in tests.
@@ -37,9 +36,6 @@ public class TypicalCourses {
     }
 
     public static List<Course> getTypicalCourses() {
-        List<Student> typicalStudents = TypicalStudents.getTypicalStudents();
-        System.out.println("typicalc");
-        System.out.println("end of add");
         return new ArrayList<>(Arrays.asList(CS1101S, CS1231S, CS2030S, CS2040S, CS3230));
     }
 }

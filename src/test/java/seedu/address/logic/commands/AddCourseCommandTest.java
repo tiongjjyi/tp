@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalCourses.CS2100;
-import static seedu.address.testutil.TypicalStudents.ALICE;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -19,15 +18,12 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.CourseList;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyCourseList;
-import seedu.address.model.ReadOnlyStudentList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.course.Course;
-import seedu.address.model.CourseList;
-import seedu.address.model.person.Student;
 import seedu.address.testutil.CourseBuilder;
-import seedu.address.testutil.StudentBuilder;
 
 public class AddCourseCommandTest {
 
