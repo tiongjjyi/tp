@@ -2,10 +2,7 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.tag.Tag;
@@ -21,20 +18,20 @@ public class Student {
     private final Email email;
 
     // Data fields
+    private final Tag tag;
     private final Remark remark;
-    private final Set<Tag> tags = new HashSet<>();
     private final PendingQuestion pendingQuestion;
 
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, Email email, Remark remark, PendingQuestion pendingQuestion, Set<Tag> tags) {
-        requireAllNonNull(name, email, remark, tags);
+    public Student(Name name, Email email, Remark remark, PendingQuestion pendingQuestion, Tag tag) {
+        requireAllNonNull(name, email, remark, tag);
         this.name = name;
         this.email = email;
         this.remark = remark;
         this.pendingQuestion = pendingQuestion;
-        this.tags.addAll(tags);
+        this.tag = tag;
     }
 
     public Name getName() {
@@ -53,12 +50,8 @@ public class Student {
         return pendingQuestion;
     }
 
-    /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Tag getTag() {
+        return tag;
     }
 
     /**
@@ -96,13 +89,13 @@ public class Student {
                 && otherStudent.getEmail().equals(getEmail())
                 && otherStudent.getRemark().equals(getRemark())
                 && otherStudent.getPendingQuestion().equals(getPendingQuestion())
-                && otherStudent.getTags().equals(getTags());
+                && otherStudent.getTag().equals(getTag());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, email, remark, tags);
+        return Objects.hash(name, email, remark, tag);
     }
 
     @Override
@@ -112,7 +105,7 @@ public class Student {
                 .add("email", email)
                 .add("remark", remark)
                 .add("pending question", pendingQuestion)
-                .add("tags", tags)
+                .add("tag", tag)
                 .toString();
     }
 

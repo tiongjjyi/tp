@@ -58,7 +58,7 @@ public class PendingQuestionCommand extends Command {
 
         Student studentToEdit = lastShownList.get(index.getZeroBased());
         Student editedPerson = new Student(studentToEdit.getName(), studentToEdit.getEmail(),
-                studentToEdit.getRemark(), pendingQuestion, studentToEdit.getTags());
+                studentToEdit.getRemark(), pendingQuestion, studentToEdit.getTag());
 
         course.setStudent(studentToEdit, editedPerson);
 

@@ -1,9 +1,5 @@
 package seedu.address.model.util;
 
-import java.util.Arrays;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 import seedu.address.model.CourseList;
 import seedu.address.model.ReadOnlyCourseList;
 import seedu.address.model.ReadOnlyStudentList;
@@ -27,17 +23,17 @@ public class SampleDataUtil {
     public static Student[] getSampleStudents() {
         return new Student[] {
             new Student(new Name("Alex Yeoh"), new Email("alexyeoh@u.nus.edu"), EMPTY_REMARK, EMPTY_PENDING_QUESTION,
-                    getTagSet(StudentRank.GOOD)),
+                    new Tag(StudentRank.GOOD)),
             new Student(new Name("Bernice Yu"), new Email("berniceyu@u.nus.edu"),
-                    EMPTY_REMARK, EMPTY_PENDING_QUESTION, getTagSet(StudentRank.POOR)),
+                    EMPTY_REMARK, EMPTY_PENDING_QUESTION, new Tag(StudentRank.POOR)),
             new Student(new Name("Charlotte Oliveiro"), new Email("charlotte@u.nus.edu"),
-                    EMPTY_REMARK, EMPTY_PENDING_QUESTION, getTagSet(StudentRank.POOR)),
+                    EMPTY_REMARK, EMPTY_PENDING_QUESTION, new Tag(StudentRank.POOR)),
             new Student(new Name("David Li"), new Email("lidavid@u.nus.edu"), EMPTY_REMARK, EMPTY_PENDING_QUESTION,
-                    getTagSet(StudentRank.AVERAGE)),
+                    new Tag(StudentRank.AVERAGE)),
             new Student(new Name("Irfan Ibrahim"), new Email("irfan@u.nus.edu"),
-                    EMPTY_REMARK, EMPTY_PENDING_QUESTION, getTagSet(StudentRank.GOOD)),
+                    EMPTY_REMARK, EMPTY_PENDING_QUESTION, new Tag(StudentRank.GOOD)),
             new Student(new Name("Roy Balakrishnan"), new Email("royb@u.nus.edu"),
-                    EMPTY_REMARK, EMPTY_PENDING_QUESTION, getTagSet(StudentRank.GOOD))
+                    EMPTY_REMARK, EMPTY_PENDING_QUESTION, new Tag(StudentRank.GOOD))
         };
     }
 
@@ -67,14 +63,4 @@ public class SampleDataUtil {
         }
         return sampleCl;
     }
-
-    /**
-     * Returns a tag set containing the list of strings given.
-     */
-    public static Set<Tag> getTagSet(StudentRank... ranking) {
-        return Arrays.stream(ranking)
-                .map(Tag::new)
-                .collect(Collectors.toSet());
-    }
-
 }
