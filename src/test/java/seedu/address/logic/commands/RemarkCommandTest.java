@@ -7,12 +7,19 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showStudentAtIndex;
+import static seedu.address.testutil.TypicalCourses.CS1101S;
+import static seedu.address.testutil.TypicalCourses.CS1231S;
+import static seedu.address.testutil.TypicalCourses.CS2030S;
+import static seedu.address.testutil.TypicalCourses.CS2040S;
+import static seedu.address.testutil.TypicalCourses.CS3230;
 import static seedu.address.testutil.TypicalCourses.getTypicalCourseList;
-import static seedu.address.testutil.TypicalCourses.getTypicalCourses;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
 
-import javafx.stage.Stage;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
@@ -26,7 +33,8 @@ import seedu.address.model.course.Course;
 import seedu.address.model.person.Remark;
 import seedu.address.model.person.Student;
 import seedu.address.testutil.StudentBuilder;
-import seedu.address.testutil.TypicalCourses;
+import seedu.address.testutil.TypicalStudents;
+
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for RemarkCommand.
@@ -37,13 +45,44 @@ public class RemarkCommandTest {
 
     private Model model = new ModelManager(getTypicalCourseList(), new UserPrefs());
 
+    public static List<Course> activateStudent0() {
+        List<Student> typicalStudents = TypicalStudents.getTypicalStudents();
+        CS1101S.addStudent(typicalStudents.get(0));
+        return new ArrayList<>(Arrays.asList(CS1101S, CS1231S, CS2030S, CS2040S, CS3230));
+    }
+
+    public static List<Course> activateStudent1() {
+        List<Student> typicalStudents = TypicalStudents.getTypicalStudents();
+        CS1231S.addStudent(typicalStudents.get(0));
+        return new ArrayList<>(Arrays.asList(CS1101S, CS1231S, CS2030S, CS2040S, CS3230));
+    }
+
+    public static List<Course> activateStudent2() {
+        List<Student> typicalStudents = TypicalStudents.getTypicalStudents();
+        CS2030S.addStudent(typicalStudents.get(0));
+        return new ArrayList<>(Arrays.asList(CS1101S, CS1231S, CS2030S, CS2040S, CS3230));
+    }
+
+    public static List<Course> activateStudent3() {
+        List<Student> typicalStudents = TypicalStudents.getTypicalStudents();
+        CS2040S.addStudent(typicalStudents.get(2));
+        return new ArrayList<>(Arrays.asList(CS1101S, CS1231S, CS2030S, CS2040S, CS3230));
+    }
+
+    public static List<Course> activateStudent4() {
+        List<Student> typicalStudents = TypicalStudents.getTypicalStudents();
+        CS3230.addStudent(typicalStudents.get(1));
+        return new ArrayList<>(Arrays.asList(CS1101S, CS1231S, CS2030S, CS2040S, CS3230));
+    }
+
+
     @Test
     public void execute_addRemarkUnfilteredList_success() {
-        Course validCourse = getTypicalCourses().get(1);
+        Course validCourse1 = activateStudent1().get(1);
         StageManager stageManager = StageManager.getCurrent();
-        stageManager.setCourseStage(validCourse);
+        stageManager.setCourseStage(validCourse1);
 
-        Student firstPerson = validCourse.getStudentList().getStudent(INDEX_FIRST_STUDENT);
+        Student firstPerson = validCourse1.getStudentList().getStudent(INDEX_FIRST_STUDENT);
         Student editedPerson = new StudentBuilder(firstPerson).withRemark(REMARK_STUB).build();
 
         RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_STUDENT,
@@ -52,14 +91,16 @@ public class RemarkCommandTest {
         String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedPerson);
 
         Model expectedModel = new ModelManager(new CourseList(model.getCourseList()), new UserPrefs());
-        expectedModel.setStudent(firstPerson, editedPerson);
-
+        validCourse1.setStudent(firstPerson, editedPerson);
         assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_deleteRemarkUnfilteredList_success() {
-        Student firstPerson = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
+        Course validCourse2 = activateStudent2().get(2);
+        StageManager stageManager = StageManager.getCurrent();
+        stageManager.setCourseStage(validCourse2);
+        Student firstPerson = validCourse2.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
         Student editedPerson = new StudentBuilder(firstPerson).withRemark("").build();
 
         RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_STUDENT,
@@ -68,17 +109,19 @@ public class RemarkCommandTest {
         String expectedMessage = String.format(RemarkCommand.MESSAGE_DELETE_REMARK_SUCCESS, editedPerson);
 
         Model expectedModel = new ModelManager(new CourseList(model.getCourseList()), new UserPrefs());
-        expectedModel.setStudent(firstPerson, editedPerson);
+        validCourse2.setStudent(firstPerson, editedPerson);
 
         assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_filteredList_success() {
-        showStudentAtIndex(model, INDEX_FIRST_STUDENT);
-
-        Student firstPerson = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
-        Student editedPerson = new StudentBuilder(model.getFilteredStudentList()
+        Course validCourse3 = activateStudent3().get(3);
+        StageManager stageManager = StageManager.getCurrent();
+        stageManager.setCourseStage(validCourse3);
+        showStudentAtIndex(validCourse3, INDEX_FIRST_STUDENT);
+        Student firstPerson = validCourse3.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
+        Student editedPerson = new StudentBuilder(validCourse3.getFilteredStudentList()
                 .get(INDEX_FIRST_STUDENT.getZeroBased()))
                 .withRemark(REMARK_STUB).build();
 
@@ -88,14 +131,17 @@ public class RemarkCommandTest {
         String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedPerson);
 
         Model expectedModel = new ModelManager(new CourseList(model.getCourseList()), new UserPrefs());
-        expectedModel.setStudent(firstPerson, editedPerson);
+        validCourse3.setStudent(firstPerson, editedPerson);
 
         assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidPersonIndexUnfilteredList_failure() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
+        Course validCourse0 = activateStudent0().get(0);
+        StageManager stageManager = StageManager.getCurrent();
+        stageManager.setCourseStage(validCourse0);
+        Index outOfBoundIndex = Index.fromOneBased(validCourse0.getFilteredStudentList().size() + 1);
         RemarkCommand remarkCommand = new RemarkCommand(outOfBoundIndex, new Remark(VALID_REMARK_BOB));
 
         assertCommandFailure(remarkCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
@@ -107,10 +153,13 @@ public class RemarkCommandTest {
      */
     @Test
     public void execute_invalidPersonIndexFilteredList_failure() {
-        showStudentAtIndex(model, INDEX_FIRST_STUDENT);
+        Course validCourse4 = activateStudent4().get(4);
+        StageManager stageManager = StageManager.getCurrent();
+        stageManager.setCourseStage(validCourse4);
+        showStudentAtIndex(validCourse4, INDEX_FIRST_STUDENT);
         Index outOfBoundIndex = INDEX_SECOND_STUDENT;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getStudentList().getStudentList().size());
+        assertFalse(outOfBoundIndex.getZeroBased() < validCourse4.getStudentList().size());
 
         RemarkCommand remarkCommand = new RemarkCommand(outOfBoundIndex, new Remark(VALID_REMARK_BOB));
 
