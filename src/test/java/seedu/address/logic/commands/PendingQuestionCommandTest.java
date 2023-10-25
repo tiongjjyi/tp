@@ -93,7 +93,7 @@ public class PendingQuestionCommandTest {
     }
 
     @Test
-    public void execute_deleteRemarkUnfilteredList_success() {
+    public void execute_deletePendingQuestionUnfilteredList_success() {
         Course validCourse2 = activateStudent2().get(2);
         StageManager stageManager = StageManager.getCurrent();
         stageManager.setCourseStage(validCourse2);
@@ -176,7 +176,7 @@ public class PendingQuestionCommandTest {
         System.out.println(commandWithSameValues);
 
         // same values -> returns true
-        //assertTrue(standardCommand.equals(commandWithSameValues));
+        assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
         assertTrue(standardCommand.equals(standardCommand));

@@ -11,9 +11,9 @@ public class PendingQuestion {
     public final String value;
 
     /**
-     * Constructs a {@code Remark}.
+     * Constructs a {@code Pending Question}.
      *
-     * @param pendingQuestion A valid remark.
+     * @param pendingQuestion A valid pending question.
      */
     public PendingQuestion(String pendingQuestion) {
         requireNonNull(pendingQuestion);
@@ -27,17 +27,9 @@ public class PendingQuestion {
 
     @Override
     public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(other instanceof Remark)) {
-            return false;
-        }
-
-        PendingQuestion otherPq = (PendingQuestion) other;
-        return value.equals(otherPq.value);
+        return other == this // short circuit if same object
+                || (other instanceof PendingQuestion // instanceof handles nulls
+                && value.equals(((PendingQuestion) other).value)); // state check
     }
 
     @Override
