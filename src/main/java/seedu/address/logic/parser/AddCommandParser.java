@@ -39,7 +39,6 @@ public class AddCommandParser implements Parser<AddCommand> {
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Tag tag = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get());
-        //Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Remark remark = new Remark("");
         PendingQuestion pendingQuestion = new PendingQuestion("");
         // add command does not allow adding pending question straight away

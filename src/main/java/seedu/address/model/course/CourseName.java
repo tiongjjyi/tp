@@ -10,8 +10,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class CourseName {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Course code should contain a two- or three-letter prefix, "
-                    + "four digits course code and an optional one-letter suffix";
+            "Course code should contain a two or three letter prefix, "
+                    + "a four digit course code, and an optional one letter suffix";
     public static final String VALIDATION_REGEX = "\\w{2,3}\\d{4}\\w?";
 
     public final String fullCourseName;
