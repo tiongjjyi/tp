@@ -4,10 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.course.Course;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Remark;
-import seedu.address.model.person.Student;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.StudentRank;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
@@ -20,11 +17,13 @@ public class StudentBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_REMARK = "Likes skiing.";
+    public static final String DEFAULT_PENDING_QUESTION = "What is the meaning of life?";
 
     private Name name;
     private Email email;
     private Remark remark;
     private Set<Tag> tags;
+    private PendingQuestion pendingQuestion;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -33,6 +32,7 @@ public class StudentBuilder {
         name = new Name(DEFAULT_NAME);
         email = new Email(DEFAULT_EMAIL);
         remark = new Remark("");
+        pendingQuestion = new PendingQuestion(DEFAULT_PENDING_QUESTION);
         tags = new HashSet<>();
     }
 
@@ -43,6 +43,7 @@ public class StudentBuilder {
         name = personToCopy.getName();
         email = personToCopy.getEmail();
         remark = personToCopy.getRemark();
+        pendingQuestion = personToCopy.getPendingQuestion();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -79,6 +80,6 @@ public class StudentBuilder {
     }
 
     public Student build() {
-        return new Student(name, email, remark, tags);
+        return new Student(name, email, remark, pendingQuestion, tags);
     }
 }

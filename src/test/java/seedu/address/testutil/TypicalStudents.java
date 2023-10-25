@@ -12,6 +12,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.StudentList;
 import seedu.address.model.person.Student;
 
@@ -51,6 +54,8 @@ public class TypicalStudents {
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
+    private final ObservableList<Student> internalList = FXCollections.observableArrayList();
+
 
     private TypicalStudents() {} // prevents instantiation
 
@@ -68,4 +73,5 @@ public class TypicalStudents {
     public static List<Student> getTypicalStudents() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
+
 }
