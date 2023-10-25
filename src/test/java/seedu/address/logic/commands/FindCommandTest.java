@@ -115,7 +115,7 @@ public class FindCommandTest {
         validCourse1.updateFilteredStudentList(predicate);
         Model expectedModel = new ModelManager(new CourseList(model.getCourseList()), new UserPrefs());
         System.out.println(expectedModel.equals(model));
-        //assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), validCourse1.getFilteredStudentList());
     }
 
