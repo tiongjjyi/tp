@@ -9,78 +9,171 @@ CodeSphere is a **desktop contact management app, optimised for use via a Comman
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+## **User Guide Tips**
 
-## Quick start
+### Finding what you need
 
-1. Ensure you have Java `11` or above installed in your Computer.
-
-1. Download the latest `codesphere.jar` from [here](https://github.com/AY2324S1-CS2103T-W15-4/tp/releases).
-
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
-
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar codesphere.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
-
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
-
-  * `help` : View help.
-
-  * `add n/John c/CS2101 e/e0000000@u.nus.edu` : Adds a contact named `John` to the Address Book.
-
-  * `edit 1 c/CS1101S e/susantan@u.nus.edu` : Update the first student with correct course and email.
-
-  * `remark 2 r/needs more help` Adds a remark to the student at index 2 of the displayed students list saying needs more help.
-
-  * `tag 1 t/AVERAGE` Tags the student at index 1 of the displayed students list to be AVERAGE.
-
-  * `delete 3` : Deletes the 3rd student shown in the current list.
-
-  * `exit` : Exits the app.
-
-1. Refer to the [Features](#features) below for details of each command.
-
+1. [Quick start](#quick-start) will help you set up CodeSphere.
+2. [Tutorial for Beginners](#tutorial-for-beginners) walks you through our graphical interface and also guides you on managing a course on CodeSphere.
+3. [Features](#features) will help you understand how our features can be useful for your management.
+4. [FAQ](#faq) answers the most common questions from our users. If you have questions for us, this section might just prove extremely useful!
+5. [Command Summary](#command-summary) provides a summarised list of our features for your easy reference.
+6. [Glossary](#glossary) explains some of the more complicated terms we used in the guide. If you do not understand some terms, this section might help!
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## **Quick Start**
+
+1. Ensure you have Java `11` or above installed in your Computer.
+2. Download the latest `codesphere.jar` from [here](https://github.com/AY2324S1-CS2103T-W15-4/tp/releases).
+3. Copy the file to the folder you want to use as the _home folder_ for the CodeSphere app.
+4. Double-click the file to run the app. A GUI similar to the below should appear in a few seconds. This is the home page. Note how the app contains some sample data.
+
+   ![Ui](images/Ui.png)
+
+In the command box, type in any command and hit enter to execute the command! 
+Eg. typing `help` and hitting enter after will show the Help window. Some other example commands you can try:
+* `help` : View help.
+* `select 1` : Selects and goes into the 1st course in the course list.
+* `add c/CS1101S` : Adds a course named `CS1101S` to the course list.
+* `edit 1 c/CS1231S` : Updates the first course in the course list with the edited course name.
+* `delete 3` : Deletes the third course shown in the course list.
+* `exit` : Exits the app.
+
+For a more detailed walk-through on how to use CodeSphere to start managing your students, head to [Tutorial for Beginners](#tutorial-for-beginners).
+Else, if you prefer exploring the app yourself, head to [Features](#features) below for the list of commands.
+
+--------------------------------------------------------------------------------------------------------------------
+## **Tutorial for Beginners**
+*{to be added}*
+
+--------------------------------------------------------------------------------------------------------------------
+## **Features**
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  * e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/GOOD` or as `n/John Doe`.
+  * e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/GOOD` or as `n/John Doe`.
 
 * Items with `…` after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…` can be used as ` ` (i.e. 0 times), `t/GOOD`, `t/GOOD t/AVERAGE` etc.
+  * e.g. `[t/TAG]…` can be used as ` ` (i.e. 0 times), `t/GOOD`, `t/GOOD t/AVERAGE` etc.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
-* If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
+  * e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
 
-### Adding a student : `add` [coming soon]
+### **Universal Commands**
+Commands in CodeSphere are mostly only used exclusively on the home page or the course page. However, commands in this section can be used on either page at any time.
 
-Adds a student to the list of students the user is overseeing.
+### Viewing help : `help`
 
-Format: `add n/Name c/COURSE e/EMAIL`
-* NAME: string
-* COURSE: string that is a valid course in NUS SoC
-* EMAIL: string ending with @u.nus.edu
+Shows a message explaining how to access the help page.
+
+Format: `help`
+
+### Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
+
+--------------------------------------------------------------------------------------------------------------------
+### **Home Page Commands**
+CodeSphere has a home page that displays the list of courses you are currently overseeing and have stored in the app.
+
+*{screenshot to be added}*
+
+Commands exclusive to the home page can help you:
+* `add` new courses
+* `edit` the details of existing courses
+* `delete` existing courses
+* `clear` all existing courses
+
+The `select` command brings you to the Course page of the selected course.
+
+### Adding a course : `add`
+Adds a course to the list of courses.
+
+Format: `add c/COURSENAME`
+* `COURSENAME` is a string that is a valid course in the NUS School of Computing.
 
 Examples:
-* `add n/Susan Tan c/CS1101S e/susantan@u.nus.edu`
-* `add n/Ben Koh c/CS1231S e/benkoh@u.nus.edu`
+* `add c/CS1101S`
+* `add c/CS1231S`
 
-Command succeeds: Success message shown to user, student successfully added and stored in database, change in GUI.
+### Editing a course : `edit`
+Edits the details of an existing course from the list of courses.
 
-Command failure: Users enter the command with incorrect formatting, resulting in an error message shown to the user and the student is not added and stored into the database.
+Format: `edit INDEX c/NEW_COURSENAME`
+* Edits the course at the specified `INDEX`. Existing course name will be updated to the input course name.
+* The index refers to the index number shown in the displayed course list. 
+* `NEW_COURSENAME` is a string that is a valid course in the NUS School of Computing.
+* `INDEX` must be a positive integer 1, 2, 3, ...
+
+Examples: `edit 1 c/CS1101S` Edits the course of the first course in the course list to be CS1101S.
+
+### Deleting a course : `delete`
+Deletes the specified course from the list of courses.
+
+Format: `delete INDEX`
+* Deletes the course at the specified `INDEX`.
+* The index refers to the index number shown in the displayed course list.
+* `INDEX` must be a positive integer 1, 2, 3, ...
+
+
+Examples: `delete 2` Deletes the course at index 2 of the displayed course list.
+
+### Clearing all course: `clear`
+Clears all courses in the displayed list of courses.
+
+Format: `clear`
+
+### Selecting a course: `select`
+Selects the specified course from the list of courses.
+
+Format: `select INDEX`
+* Selects the course at the specified `INDEX`.
+* The index refers to the index number shown in the displayed course list.
+* `INDEX` must be a positive integer 1, 2, 3, ...
+
+Example: `select 2` Selects the course at index 2 of the displayed course list.
+
+--------------------------------------------------------------------------------------------------------------------
+### **Course Page Commands**
+Once you have created and selected a course to manage, you can now start adding your students in the course that you wish to track!
+The Course page of a course displays the list of students that you are overseeing in your course (added by you).
+Students are arranged in order of addition.
+
+*{screenshot to be added}*
+
+Commands exclusive to the course page can help you:
+* `add` new students
+* `edit` the details of existing students
+* `delete` existing students
+* `list` all existing students in the course
+* `find` an existing student in the course
+* add a `remark` to a student
+* add a pending question `pq` to a student 
+* `remove` a remark or pending question from a student
+
+
+### Adding a student : `add`
+Adds a student to the list of students in the selected course that the user is overseeing.
+
+Format: `add n/NAME e/EMAIL t/ENUM_TAG`
+* NAME is a string that is a valid name.
+* COURSE is a string that is a valid course in the NUS School of Computing.
+* EMAIL: string ending with @u.nus.edu.
+
+Examples:
+* `add n/Susan Tan e/susantan@u.nus.edu t/GOOD`
+* `add n/Ben Koh e/benkoh@u.nus.edu t/AVERAGE`
+
 
 ### Editing a student : `edit` [coming soon]
 
@@ -121,24 +214,6 @@ Command succeeds:
 Command failure:
 * Users enter the command with incorrect formatting, resulting in an error message shown to the user and the specified student is not deleted and removed from the database.
 
-### Tagging a student `tag` [coming soon]
-
-Adds a tag to the specified student from the list of students.
-
-Format: `tag INDEX t/ [ENUM_TAG]`
-* Adds a tag for the student at the specified `INDEX`. The index refers to the index number shown in the displayed students list.
-* The index **must be a positive intege**r 1, 2, 3, …​
-* `ENUM_TAG` must be from the pre-defined enumerated tag definitions _good, average, poor_.
-
-Examples:
-* `tag 1 t/AVERAGE` Tags the student at index 1 of the displayed students list to be AVERAGE.
-
-Command succeeds:
-* Success message shown to user, the specified student is successfully tagged as a ‘average performing student’, change in GUI.
-
-Command failure:
-* Users enter the command with incorrect formatting, resulting in an error message shown to the user and tag status (whether untagged / previously tagged) of the specified student remains as it was before.
-
 ### Adding a remark for a student: `remark` [coming soon]
 
 Adds a tag to the specified student from the list of students.
@@ -156,33 +231,61 @@ Command succeeds:
 Command failure:
 * Users enter the command with incorrect formatting, resulting in an error message shown to the user and no new remark is added to the specified student.
 
-### Viewing help : `help` [coming soon]
+--------------------------------------------------------------------------------------------------------------------
+### **Miscellaneous**
 
-Shows a message explaining how to access the help page.
+### Saving the data
 
-Format: `help`
+*{to be added}*
 
+### Editing the data file
 
-### Exiting the program : `exit` [coming soon]
-
-Exits the program.
-
-Format: `exit`
-
-Command succeeds:
-*  Success message shown to user, exit the GUI.
-
-Command failure:
-* Error message shown to user.
+*{to be added}*
 
 --------------------------------------------------------------------------------------------------------------------
-## Command summary
+## **FAQ**
 
+Q: How do I transfer my data to another Computer?
+A: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CodeSphere home folder.
+
+--------------------------------------------------------------------------------------------------------------------
+## **Known Issues**
+
+1. When using multiple screens, if you move the application to a secondary screen, and later switch to using only the primary screen, 
+the GUI will open off-screen. The remedy is to delete the preferences.json file created by the application before running the application again.
+
+--------------------------------------------------------------------------------------------------------------------
+## **Command Summary**
+
+### Home Page
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME c/COURSE e/EMAIL` <br> e.g., `add n/Susan Tan c/CS1101S e/susantan@u.nus.edu`
-**Edit** | `edit INDEX [n/NAME] [c/COURSE] [e/EMAIL] [r/REMARK]` <br> e.g., `edit 1 c/CS1101S e/susantan@u.nus.edu`
-**Delete** | `delete INDEX`<br> e.g.,`delete 2`
-**Tag** | `tag INDEX t/ [ENUM_TAG]`<br> e.g., `tag 1 t/AVERAGE`
-**Remark** | `remark INDEX r/REMARK` <br> e.g., `remark 2 r/needs more help`
+**Help** | `help`
+**Add Course** | `add c/COURSENAME`<br> e.g. `add c/CS1101S`
+**Edit Course** | `edit INDEX c/NEW_COURSENAME`<br> e.g. `edit 1 c/CS1231S`
+**Delete Course** | `delete INDEX` <br> e.g. `delete 2`
+**Clear All Courses** | `clear`
+**Select Course** | `select INDEX` <br> e.g. `select 1`
 **Exit** | `exit`
+
+### Course Page
+Action | Format, Examples
+--------|------------------
+**Help** | `help`
+**Add Student** | `add n/NAME e/EMAIL t/ENUM_TAG`<br> e.g. `add n/Susan Tan e/e0123456@u.nus.edu t/GOOD`
+**Edit Student** | `edit INDEX [n/NAME] [e/EMAIL] [t/TAG] [r/REMARK]`<br> e.g. `edit 1 e/anotherEmail@u.nus.edu`
+**Delete Student** | `delete INDEX` <br> e.g. `delete 2`
+**List Students** | `list`
+**Find Student** | `find [KEYWORDS]`<br> e.g. `find JOHN`
+**Add Remark** | `remark INDEX r/REMARK`<br> e.g. `remark 1 r/needs more help`
+**Add Pending Question** | `pq INDEX pq/PENDING_QUESTION` <br> e.g. `pq 1 pq/What is a logic gate?`
+**Remove Remark/<br>Pending Question** | `remove INDEX [r/] [pq/]` <br> e.g. `remove 2 pq/`
+**Exit** | `exit`
+
+--------------------------------------------------------------------------------------------------------------------
+## **Glossary**
+
+*{to be added}*
+
+
+

@@ -39,10 +39,10 @@ public class CourseCard extends UiPart<Region> {
         this.course = course;
         id.setText(displayedIndex + ". ");
         courseName.setText(course.getCourseName().fullCourseName);
-        classSize.setText("Total number of students: " + course.getCourseSize());
-        goodTagCount.setText("GOOD tag count: " + course.getGoodTagCount());
-        averageTagCount.setText("AVERAGE tag count: " + course.getAverageTagCount());
-        poorTagCount.setText("POOR tag count: " + course.getPoorTagCount());
+        classSize.setText("Students: " + course.getCourseSize());
+        goodTagCount.setText("GOOD: " + course.getGoodTagCount());
+        averageTagCount.setText("AVERAGE: " + course.getAverageTagCount());
+        poorTagCount.setText("POOR: " + course.getPoorTagCount());
 
     }
 }

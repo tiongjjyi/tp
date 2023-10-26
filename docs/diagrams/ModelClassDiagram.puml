@@ -21,6 +21,7 @@ Class Name
 Class Email
 Class Remark
 Class Tag
+Class PendingQuestion
 
 Class I #FFFFFF
 }
@@ -47,6 +48,7 @@ UniqueStudentList -down-> "*" Student
 Student *-down-> Name
 Student *-down-> Email
 Student *-down-> Remark
-Student *-down-> "*" Tag
+Student *-down-> Tag
+Student *-down-> PendingQuestion
 
 @enduml
