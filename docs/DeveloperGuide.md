@@ -207,13 +207,16 @@ Given below is an example usage scenario and how the editing mechanism is carrie
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                               | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------- | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  |user                                   | add student profiles          | keep track of the students in my class.                 |
-| `* * *`  | user                                  | edit student profiles                 |  keep accurate and up-to-date information on each student.                                                                      |
-| `* * *`  | user                                  | delete a student profile                | remove a student if the student is no longer in my class.                                  |
-| `* * *`  | user                                  | tag students based on how well they are coping          | I can easily identify students who may need additional support. |
-| `* *`    | user                                  | add remarks for individual students    | maintain a log of anything noteworthy.                |
+| Priority | As a …​                 | I want to …​                                   | So that I can…​                                                 |
+| ------ |-------------------------|------------------------------------------------|-----------------------------------------------------------------|
+| `* * *` | user                    | add student profiles                           | keep track of the students in my class.                         |
+| `* * *` | user                    | edit student profiles                          | keep accurate and up-to-date information on each student.       |
+| `* * *` | user                    | delete a student profile                       | remove a student if the student is no longer in my class.       |
+| `* * *` | user                    | tag students based on how well they are coping | I can easily identify students who may need additional support. |
+| `* *`  | user                    | add remarks for individual students            | maintain a log of anything noteworthy.                          |
+| `* *`  | user                    | add pending question for individual students   | efficiently manage and respond to their queries.                |
+| `*`    | user with many students | sort students by name                          | locate a student easily.                                        |
+
 
 *{More to be added}*
 
@@ -267,6 +270,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. CodeSphere prompts the user to choose an existing student to be deleted.
     * 1a2. User chooses an existing student to be deleted.</br>
     Use case resumes at step 4
+
+**Use case: Add a pending question for a student**
+
+**Preconditions**: User has an existing profile.
+
+**MSS**
+
+1. User chooses to add a pending question for a student.
+2. CodeSphere displays the student’s current information.
+3. CodeSphere prompts the user to confirm the deletion.
+4. User confirms the deletion.
+5. CodeSphere deletes the student.
+   Use Case Ends.
+
+**Extensions**
+
+* 1a. CodeSphere detects that the target student does not exist.
+    * 1a1. CodeSphere prompts the user to choose an existing student to be deleted.
+    * 1a2. User chooses an existing student to be deleted.</br>
+      Use case resumes at step 4
+
+* a. At any time, the User chooses to cancel the edit.
+    * *a1. CodeSphere requests to confirm the cancellation.
+    * *a2. User confirms the cancellation.
+      Use case ends.
+
 
 *{More to be added}*
 
