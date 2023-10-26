@@ -35,7 +35,7 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private SplashWindow splashWindow;
+    private SplashPanel splashPanel;
     private CourseListPanel courseListPanel;
     private CombinedPanel combinedPanel;
     private ResultDisplay resultDisplay;
@@ -48,7 +48,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane itemListPanelPlaceholder;
+    private StackPane panelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -119,11 +119,11 @@ public class MainWindow extends UiPart<Stage> {
 
         loadSplashScreen();
 
-        FadeTransition fadeIn = new FadeTransition(Duration.seconds(1), itemListPanelPlaceholder);
+        FadeTransition fadeIn = new FadeTransition(Duration.seconds(1), panelPlaceholder);
         fadeIn.setFromValue(0);
         fadeIn.setToValue(1);
 
-        FadeTransition fadeOut = new FadeTransition(Duration.seconds(1), itemListPanelPlaceholder);
+        FadeTransition fadeOut = new FadeTransition(Duration.seconds(1), panelPlaceholder);
         fadeOut.setFromValue(1);
         fadeOut.setToValue(0);
 
@@ -131,7 +131,7 @@ public class MainWindow extends UiPart<Stage> {
         fadeIn.setOnFinished(fadein -> {
             fadeOut.play();
             fadeOut.setOnFinished(fadeout -> {
-                itemListPanelPlaceholder.setOpacity(1);
+                panelPlaceholder.setOpacity(1);
                 loadCourseListPanel();
             });
         });
@@ -147,22 +147,22 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     void loadSplashScreen() {
-        itemListPanelPlaceholder.getChildren().clear();
-        splashWindow = new SplashWindow();
-        itemListPanelPlaceholder.getChildren().add(splashWindow.getRoot());
+        panelPlaceholder.getChildren().clear();
+        splashPanel = new SplashPanel();
+        panelPlaceholder.getChildren().add(splashPanel.getRoot());
     }
 
     void loadCourseListPanel() {
-        itemListPanelPlaceholder.getChildren().clear();
+        panelPlaceholder.getChildren().clear();
         courseListPanel = new CourseListPanel(logic.getFilteredCourseList());
-        itemListPanelPlaceholder.getChildren().add(courseListPanel.getRoot());
+        panelPlaceholder.getChildren().add(courseListPanel.getRoot());
     }
 
     void loadCombinedPanel() {
-        itemListPanelPlaceholder.getChildren().clear();
+        panelPlaceholder.getChildren().clear();
         combinedPanel = new CombinedPanel(logic.getFilteredCourseList(),
                 StageManager.getSelectedCourse().getFilteredStudentList());
-        itemListPanelPlaceholder.getChildren().add(combinedPanel.getRoot());
+        panelPlaceholder.getChildren().add(combinedPanel.getRoot());
 
     }
 
