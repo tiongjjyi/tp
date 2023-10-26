@@ -74,11 +74,15 @@ The sections below give more details of each component.
 ### UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2324S1-CS2103T-W15-4/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
-
 ![Interactions Inside the Ui Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `CourseListPanel`, `CombinedPanel`, `StatusBarFooter` etc.
 All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+
+The `MainWindow` includes a `DisplayPanel`, which has three different states it can toggle between
+1) The `SplashPanel` for the opening splash window
+2) The `CombinedPanel` that displays the student list and a course list sidebar
+3) The `CoursePanel` that displays the course list
 
 The `UI` component uses the JavaFx UI framework.
 The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder.
@@ -86,8 +90,9 @@ For example, the layout of the [`MainWindow`](https://github.com/AY2324S1-CS2103
 
 The `UI` component,
 * executes user commands using the `Logic` component.
-* listens for changes to `Model` data so that the UI can be updated with the modified data.
-* keeps a reference to the `Logic` and `StageManager` component, because the `UI` relies on the `Logic` to execute commands.
+* listens for changes to `Model` data so that the `UI` can be updated with the modified data.
+* keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute the commands.
+* keeps a reference to the `StageManager` to update the `UI` with its corresponding display panel
 * depends on some classes in the `Model` component, as it displays `Course` and `Student` objects residing in the `Model`.
 
 ### Logic component
