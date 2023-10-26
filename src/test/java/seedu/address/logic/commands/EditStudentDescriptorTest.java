@@ -55,7 +55,7 @@ public class EditStudentDescriptorTest {
                 + editPersonDescriptor.getEmail().orElse(null) + ", remark="
                 + editPersonDescriptor.getRemark().orElse(null) + ", pending question="
                 + editPersonDescriptor.getPendingQuestion().orElse(null) + ", tags="
-                + editPersonDescriptor.getTags().orElse(null) + "}";
+                + editPersonDescriptor.getTag().orElse(null) + "}";
         assertEquals(expected, editPersonDescriptor.toString());
     }
 }

@@ -25,7 +25,7 @@ public class JsonAdaptedStudentTest {
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
     private static final String VALID_REMARK = BENSON.getRemark().toString();
     private static final String VALID_PENDING_QUESTION = BENSON.getPendingQuestion().toString();
-    private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
+    private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTag().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
 
