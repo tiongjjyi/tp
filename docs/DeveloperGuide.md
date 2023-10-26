@@ -79,7 +79,7 @@ The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `Re
 All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework.
-The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder.
+The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. TEST
 For example, the layout of the [`MainWindow`](https://github.com/AY2324S1-CS2103T-W15-4/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2324S1-CS2103T-W15-4/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
