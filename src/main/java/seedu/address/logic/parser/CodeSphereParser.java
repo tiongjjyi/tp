@@ -23,6 +23,7 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.PendingQuestionCommand;
 import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.logic.commands.SelectCommand;
+import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -139,6 +140,9 @@ public class CodeSphereParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case SortCommand.COMMAND_WORD:
+            return new SortCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

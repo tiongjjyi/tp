@@ -35,7 +35,6 @@ public class FindCommand extends Command {
 
         StageManager stageManager = StageManager.getCurrent();
         Course course = stageManager.getCurrentCourse();
-        UniqueStudentList studentList = course.getStudentList();
 
         // TO DO UP FIND COMMAND
         course.updateFilteredStudentList(predicate);
