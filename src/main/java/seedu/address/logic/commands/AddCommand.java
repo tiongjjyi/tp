@@ -28,11 +28,12 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "TAG\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
-            + PREFIX_EMAIL + "johnd@u.nus.edu "
-            + PREFIX_TAG + "GOOD";
+            + PREFIX_EMAIL + "e0123456@u.nus.edu "
+            + PREFIX_TAG + "good";
 
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
-    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the student list";
+    public static final String MESSAGE_DUPLICATE_STUDENT = "Possible duplicate student: "
+            + "email already exist in the student list.";
 
     private final Student toAdd;
 
