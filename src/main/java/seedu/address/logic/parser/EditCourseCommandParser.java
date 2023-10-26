@@ -15,7 +15,7 @@ public class EditCourseCommandParser implements Parser<EditCourseCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditCourseCommand
-     * and returns an EditCourseCommand object forq execution.
+     * and returns an EditCourseCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public EditCourseCommand parse(String args) throws ParseException {
