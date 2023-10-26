@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PENDINGQUESTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PENDING_QUESTION;
 
 import java.util.List;
 
@@ -25,9 +25,9 @@ public class PendingQuestionCommand extends Command {
             + "by the index number used in the last person listing. "
             + "Existing pending question will be overwritten by the input.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_PENDINGQUESTION + "[PENDING QUESTION]\n"
+            + PREFIX_PENDING_QUESTION + "[PENDING QUESTION]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PENDINGQUESTION + "What is the meaning of life?";
+            + PREFIX_PENDING_QUESTION + "What is the meaning of life?";
 
     public static final String MESSAGE_ADD_PENDING_QUESTION_SUCCESS = "Added pending question to Person: %1$s";
     public static final String MESSAGE_DELETE_PENDING_QUESTION_SUCCESS = "Removed pending question from Person: %1$s";

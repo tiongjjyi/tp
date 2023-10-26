@@ -12,6 +12,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.course.CourseName;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.PendingQuestion;
 import seedu.address.model.person.Remark;
 import seedu.address.model.tag.StudentRank;
 import seedu.address.model.tag.Tag;
@@ -89,6 +90,16 @@ public class ParserUtil {
         requireNonNull(remark);
         String trimmedRemark = remark.trim();
         return new Remark(trimmedRemark);
+    }
+
+    /**
+     * Parses a {@code String pendingQuestion} into an {@code pendingQuestion}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static PendingQuestion parsePendingQuestion(String pendingQuestion) {
+        requireNonNull(pendingQuestion);
+        String trimmedPendingQuestion = pendingQuestion.trim();
+        return new PendingQuestion(trimmedPendingQuestion);
     }
 
     /**

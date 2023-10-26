@@ -2,7 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PENDINGQUESTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PENDING_QUESTION;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -21,7 +21,7 @@ public class PendingQuestionCommandParser implements Parser<PendingQuestionComma
      */
     public PendingQuestionCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_PENDINGQUESTION);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_PENDING_QUESTION);
 
         Index index;
         try {
@@ -32,7 +32,7 @@ public class PendingQuestionCommandParser implements Parser<PendingQuestionComma
                             PendingQuestionCommand.MESSAGE_USAGE), ive);
         }
 
-        String pendingQuestion = argMultimap.getValue(PREFIX_PENDINGQUESTION).orElse("");
+        String pendingQuestion = argMultimap.getValue(PREFIX_PENDING_QUESTION).orElse("");
 
         return new PendingQuestionCommand(index, new PendingQuestion(pendingQuestion));
     }
