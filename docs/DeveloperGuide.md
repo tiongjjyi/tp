@@ -169,7 +169,7 @@ Given below is an example usage scenario and how the adding mechanism works. We 
 
 ### Edit a student
 `Student` objects are stored in their respective Course’s `UniqueStudentList`. The details (name, email, remark, pending question, tag) of a student in a course can be edited by changing the fields of the `Student` object.
-Given below is an example usage scenario and how the editing mechanism is carried out on a `Student` in a course. We will skip to where the `EditCommand#execute(`) method is called.
+Given below is an example usage scenario and how the editing mechanism is carried out on a `Student` in a course. We will skip to where the `EditCommand#execute()` method is called.
 
 * Step 1. The `EditCommand` object’s `execute()` method is called.
 * Step 2. The index provided is checked to be within bounds of the course’s student list. If it is not, a `CommandException` is thrown.
@@ -179,13 +179,25 @@ Given below is an example usage scenario and how the editing mechanism is carrie
 
 ### Edit a course
 A course’s course name can be edited by changing the `CourseName` field of a `Course` object.
-Given below is an example usage scenario and how the editing mechanism is carried out. As per the examples above, we will skip to where the `EditCourseCommand#execute(`) method is called.
+Given below is an example usage scenario and how the editing mechanism is carried out. As per the examples above, we will skip to where the `EditCourseCommand#execute()` method is called.
 
 * Step 1. The `EditCourseCommand` object’s `execute()` method is called.
 * Step 2. The index provided is checked to be within bounds of the course’s student list. If it is not, a `CommandException` is thrown.
 * Step 3. A new `Course` object, `editedCourse` is created with the edited course name.
 * Step 4. A check for duplicates in the model is done. If there is a duplicate, a `CommandException` is thrown.
 * Step 5. The original course is replaced with `editedCourse`.
+
+### Add a Pending Question to a Student
+After selecting a list of `Students` of the current `Course`, the targeted `Student` object is identified from the list of `Students`.
+A new `Student` object is created , and it will replace the old `Student` object in the list.
+Given below is an example usage scenario and how the adding pending question mechanism works. We will skip to where the `PendingQuestionCommand#execute()` method is called.
+
+* Step 1. The `execute()` method of the `PendingQuestionCommand` object is invoked.
+* Step 2. `StageManager` is used to retrieve the current `Course` by calling `StageManager#getCurrentCourse()`.
+* Step 3. The list of `Student` belong to the course object will be obtained by calling `Course#getFilteredStudentList()` and identify the targeted `Student` from the list.
+* Step 4. A check for index from user input will be done. If the index is invalid,  a `CommandException` will be thrown.
+* Step 5. A new `Student` object is created by passing in the `PendingQuestion` instance to the `Student` constructor.
+* Step 6. Update the newly created `Student` instance to replace the old `Student` instance.
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Documentation, logging, testing, configurations, dev-ops**
