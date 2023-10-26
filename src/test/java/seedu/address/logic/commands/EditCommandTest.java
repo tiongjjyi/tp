@@ -41,6 +41,9 @@ import java.util.List;
 public class EditCommandTest {
 
     private Model model = new ModelManager(getTypicalCourseList(), new UserPrefs());
+    private Course course = model.getFilteredCourseList().get(0);
+    private List<Student> typicalStudents = TypicalStudents.getTypicalStudents();
+
 
     public static List<Course> activateStudent0() {
         List<Student> typicalStudents = TypicalStudents.getTypicalStudents();
@@ -55,19 +58,20 @@ public class EditCommandTest {
     }
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Course validCourse0 = activateStudent1().get(0);
+        //Course validCourse0 = activateStudent1().get(0);
+        course.addStudent(typicalStudents.get(0));
         StageManager stageManager = StageManager.getCurrent();
-        stageManager.setCourseStage(validCourse0);
+        stageManager.setCourseStage(course);
         Student editedStudent = new StudentBuilder().build();
         EditCommand.EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(editedStudent).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_STUDENT, descriptor);
-        validCourse0.setStudent(validCourse0.getStudentList().getStudent(INDEX_FIRST_STUDENT), editedStudent);
+        course.setStudent(course.getStudentList().getStudent(INDEX_FIRST_STUDENT), editedStudent);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_STUDENT_SUCCESS,
                 Messages.format(editedStudent));
 
         Model expectedModel = new ModelManager(new CourseList(model.getCourseList()), new UserPrefs());
-        expectedModel.setCourse(model.getFilteredCourseList().get(0), validCourse0);
+        expectedModel.setCourse(model.getFilteredCourseList().get(0), course);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
