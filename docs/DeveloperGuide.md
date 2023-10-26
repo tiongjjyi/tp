@@ -182,7 +182,7 @@ Given below is an example usage scenario and how the editing mechanism is carrie
 * Step 5. The original course is replaced with `editedCourse`.
 
 --------------------------------------------------------------------------------------------------------------------
-## Documentation, logging, testing, configurations, dev-ops
+## **Documentation, logging, testing, configurations, dev-ops**
 * [Documentation guide](Documentation.md)
 * [Logging guide](Logging.md)
 * [Testing guide](Testing.md)
@@ -190,7 +190,7 @@ Given below is an example usage scenario and how the editing mechanism is carrie
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
-## Appendix: Requirements
+## **Appendix: Requirements**
 
 ### Product scope
 
@@ -318,7 +318,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **CLI**: Command Line Interface. A way to interact with a computer or software by typing text-based commands, rather than using a mouse and graphical icons.
 
 --------------------------------------------------------------------------------------------------------------------
-## Appendix: Instructions for manual testing
+## **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
