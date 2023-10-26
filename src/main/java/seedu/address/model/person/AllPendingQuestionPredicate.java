@@ -1,19 +1,15 @@
 package seedu.address.model.person;
 
-import java.util.List;
 import java.util.function.Predicate;
 
-import seedu.address.commons.util.StringUtil;
 import seedu.address.commons.util.ToStringBuilder;
 
 /**
  * Tests that a {@code Person}'s {@code PendingQuestion} exists.
  */
 public class AllPendingQuestionPredicate implements Predicate<Student> {
-    //private final List<String> keywords;
 
     public AllPendingQuestionPredicate() {
-        //this.keywords = keywords;
     }
 
     @Override
@@ -31,8 +27,6 @@ public class AllPendingQuestionPredicate implements Predicate<Student> {
         if (!(other instanceof NameContainsKeywordsPredicate)) {
             return false;
         }
-
-        //AllPendingQuestionPredicate otherAllPendingQuestionPredicate = (AllPendingQuestionPredicate) other;
         return true;
     }
 
