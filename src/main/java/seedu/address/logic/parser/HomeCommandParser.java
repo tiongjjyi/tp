@@ -1,6 +1,5 @@
 package seedu.address.logic.parser;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.address.logic.commands.HomeCommand;
@@ -16,7 +15,6 @@ public class HomeCommandParser implements Parser<HomeCommand> {
      * @throws ParseException If the user input does not conform to the expected format
      */
     public HomeCommand parse(String args) throws ParseException {
-        requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args);
         if (argMultimap.getPreamble().isEmpty()) {
             return new HomeCommand();
