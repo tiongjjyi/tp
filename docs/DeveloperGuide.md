@@ -309,7 +309,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. CodeSphere detects that the target student does not exist.
     * 1a1. CodeSphere prompts the user to choose an existing student to be tagged with a pending question.
-    * 1a2. User chooses an existing student to be deleted.</br>
+    * 1a2. User chooses an existing student to be tagged.</br>
     Use case resumes at step 4
 
 *{More to be added}*
