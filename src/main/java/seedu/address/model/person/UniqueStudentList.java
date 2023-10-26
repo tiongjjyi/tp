@@ -42,22 +42,25 @@ public class UniqueStudentList implements Iterable<Student> {
     /**
      * Returns the total number of students in the unique student list with tag GOOD.
      */
-    public long getGoodTagCount() {
-        return internalList.stream().filter(s -> s.getTag().equals(new Tag(StudentRank.GOOD))).count();
+    public int getGoodTagCount() {
+        return Math.toIntExact(internalList.stream().filter(
+                s -> s.getTag().equals(new Tag(StudentRank.GOOD))).count());
     }
 
     /**
      * Returns the total number of students in the unique student list with tag AVERAGE.
      */
-    public long getAverageTagCount() {
-        return internalList.stream().filter(s -> s.getTag().equals(new Tag(StudentRank.AVERAGE))).count();
+    public int getAverageTagCount() {
+        return Math.toIntExact(internalList.stream().filter(
+                s -> s.getTag().equals(new Tag(StudentRank.AVERAGE))).count());
     }
 
     /**
      * Returns the total number of students in the unique student list with tag POOR.
      */
-    public long getPoorTagCount() {
-        return internalList.stream().filter(s -> s.getTag().equals(new Tag(StudentRank.POOR))).count();
+    public int getPoorTagCount() {
+        return Math.toIntExact(internalList.stream().filter(
+                s -> s.getTag().equals(new Tag(StudentRank.POOR))).count());
     }
 
     /**
