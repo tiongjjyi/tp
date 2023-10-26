@@ -38,12 +38,12 @@ public class Messages {
      */
     public static String format(Student student) {
         final StringBuilder builder = new StringBuilder();
-        builder.append(student.getName())
+        builder.append("Name: ")
+                .append(student.getName())
                 .append("; Email: ")
                 .append(student.getEmail())
-                .append("; Tags: ")
+                .append("; Tag: ")
                 .append(student.getTag());
-        //student.getTags().forEach(builder::append);
         return builder.toString();
     }
 

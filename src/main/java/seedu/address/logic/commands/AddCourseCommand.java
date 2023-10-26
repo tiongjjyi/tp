@@ -22,7 +22,7 @@ public class AddCourseCommand extends Command {
 
 
     public static final String MESSAGE_SUCCESS = "New Course added: %1$s";
-    public static final String MESSAGE_DUPLICATE_COURSE = "This Course already exists in the Course list";
+    public static final String MESSAGE_DUPLICATE_COURSE = "This course already exists in the course list";
 
     private final Course toAdd;
 

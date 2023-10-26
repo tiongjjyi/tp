@@ -58,21 +58,21 @@ public class Course {
     /**
      * Returns the number of students tagged with GOOD StudentRank.
      */
-    public long getGoodTagCount() {
+    public int getGoodTagCount() {
         return this.students.getGoodTagCount();
     }
 
     /**
      * Returns the number of students tagged with AVERAGE StudentRank.
      */
-    public long getAverageTagCount() {
+    public int getAverageTagCount() {
         return this.students.getAverageTagCount();
     }
 
     /**
      * Returns the number of students tagged with POOR StudentRank.
      */
-    public long getPoorTagCount() {
+    public int getPoorTagCount() {
         return this.students.getPoorTagCount();
     }
 

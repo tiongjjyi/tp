@@ -55,8 +55,8 @@ public class Student {
     }
 
     /**
-     * Returns true if both persons of the same name have at least one other identity field that is the same.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both students have the same email.
+     * Email is used as an identifier as each student's email should be unique.
      */
     public boolean isSameStudent(Student otherStudent) {
         if (otherStudent == this) {
@@ -64,7 +64,6 @@ public class Student {
         }
 
         return otherStudent != null
-                && otherStudent.getName().equals(getName())
                 && otherStudent.getEmail().equals(getEmail());
     }
 
