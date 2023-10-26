@@ -1,7 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PENDINGQUESTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PENDING_QUESTION;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
@@ -20,13 +20,13 @@ public class PendingQuestionCommandParserTest {
     public void parse_indexSpecified_success() {
         // have pending question
         Index targetIndex = INDEX_FIRST_STUDENT;
-        String userInput = targetIndex.getOneBased() + " " + PREFIX_PENDINGQUESTION + nonEmptyPendingQuestion;
+        String userInput = targetIndex.getOneBased() + " " + PREFIX_PENDING_QUESTION + nonEmptyPendingQuestion;
         PendingQuestionCommand expectedCommand = new PendingQuestionCommand(
                 INDEX_FIRST_STUDENT, new PendingQuestion(nonEmptyPendingQuestion));
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // no pending question
-        userInput = targetIndex.getOneBased() + " " + PREFIX_PENDINGQUESTION;
+        userInput = targetIndex.getOneBased() + " " + PREFIX_PENDING_QUESTION;
         expectedCommand = new PendingQuestionCommand(INDEX_FIRST_STUDENT, new PendingQuestion(""));
         assertParseSuccess(parser, userInput, expectedCommand);
     }
