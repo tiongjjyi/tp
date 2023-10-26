@@ -13,6 +13,7 @@ import static seedu.address.testutil.TypicalCourses.CS1231S;
 import static seedu.address.testutil.TypicalCourses.CS2030S;
 import static seedu.address.testutil.TypicalCourses.CS2040S;
 import static seedu.address.testutil.TypicalCourses.CS3230;
+import static seedu.address.testutil.TypicalCourses.getTypicalCourses;
 import static seedu.address.testutil.TypicalCourses.getTypicalCourseList;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
@@ -82,11 +83,11 @@ public class RemarkCommandTest {
     @Test
     public void execute_addRemarkUnfilteredList_success() throws CommandException {
         Course validCourse = getTypicalCourses().get(1);
-  
-        StageManager stageManager = StageManager.getCurrent();
-        stageManager.setCourseStage(validCourse1);
 
-        Student firstPerson = validCourse1.getStudentList().getStudent(INDEX_FIRST_STUDENT);
+        StageManager stageManager = StageManager.getCurrent();
+        stageManager.setCourseStage(validCourse);
+
+        Student firstPerson = validCourse.getStudentList().getStudent(INDEX_FIRST_STUDENT);
         Student editedPerson = new StudentBuilder(firstPerson).withRemark(REMARK_STUB).build();
 
         RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_STUDENT, new Remark(REMARK_STUB));
@@ -134,7 +135,7 @@ public class RemarkCommandTest {
 
 
         Model expectedModel = new ModelManager(new CourseList(model.getCourseList()), new UserPrefs());
-        validCourse3.setStudent(firstPerson, editedPerson);
+        validCourse.setStudent(firstPerson, editedPerson);
 
         assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
     }

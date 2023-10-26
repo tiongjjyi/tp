@@ -63,8 +63,8 @@ Each of the other four main components (also shown in the diagram above),
 * defines its *API* in an `interface` with the same name as the Component.
 * implements its functionality using a concrete `{Component Name}Manager` class which follows the corresponding API `interface` mentioned in the previous point.
 
-For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. 
-Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), 
+For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface.
+Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component),
 as illustrated in the (partial) class diagram below.
 
 <img src="images/ComponentManagers.png" width="300" />
@@ -75,11 +75,11 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2324S1-CS2103T-W15-4/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `CourseListPanel`, `StudentGroupListPanel`, `StatusBarFooter` etc. 
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `CourseListPanel`, `StudentGroupListPanel`, `StatusBarFooter` etc.
 All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. 
-The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. 
+The `UI` component uses the JavaFx UI framework.
+The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder.
 For example, the layout of the [`MainWindow`](https://github.com/AY2324S1-CS2103T-W15-4/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2324S1-CS2103T-W15-4/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
@@ -167,7 +167,7 @@ Given below is an example usage scenario and how the editing mechanism is carrie
 * Step 1. The `EditCourseCommand` object’s `execute()` method is called.
 * Step 2. The index provided is checked to be within bounds of the course’s student list. If it is not, a `CommandException` is thrown.
 * Step 3. A new `Course` object, `editedCourse` is created with the edited course name.
-* Step 4. A check for duplicates in the model is done. If there is a duplicate, a `CommandException` is thrown. 
+* Step 4. A check for duplicates in the model is done. If there is a duplicate, a `CommandException` is thrown.
 * Step 5. The original course is replaced with `editedCourse`.
 
 --------------------------------------------------------------------------------------------------------------------
