@@ -150,6 +150,16 @@ Classes used by multiple components are in the `seedu.codesphere.commons` packag
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add a student
+After selecting a `Course` from the `UniqueCourseList`,  `Student` objects can be added into the `UniqueStudentList` of the `Course`.  Compulsory fields for the `AddCommand` include `Name`, `Email` and a performance `Tag`. The optional `Remark` and `PendingQuestion` fields cannot be added using the `AddCommand`.
+Given below is an example usage scenario and how the adding mechanism works. We will skip to where the `AddCommand#execute()` method is called.
+
+* Step 1. The `AddCommand` object’s `execute()` method is called.
+* Step 2. `StageManager` is used to obtain the current `Course` selected.
+* Step 3. A check for duplicates in the `UniqueStudentList` of the current `Course` is done. If the new `Student` to be added already exists, a `CommandException` is thrown.
+* Step 4. The new `Student` is added into the `UniqueStudentList` of the current `Course`.
+
+
 ### Edit a student
 `Student` objects are stored in their respective Course’s `UniqueStudentList`. The details (name, email, remark, pending question, tag) of a student in a course can be edited by changing the fields of the `Student` object.
 Given below is an example usage scenario and how the editing mechanism is carried out on a `Student` in a course. We will skip to where the `EditCommand#execute(`) method is called.
