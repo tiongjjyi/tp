@@ -27,7 +27,6 @@ public class FindCommand extends Command {
             + "Example: " + COMMAND_WORD + " CS";
 
     private final Predicate<Student> predicate;
-    //private final AllPendingQuestionPredicate pendingQuestionPredicate;
 
     /**
      * Constructs a FindCommand with the specified predicate for filtering.

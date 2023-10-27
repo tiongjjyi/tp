@@ -10,6 +10,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.course.CourseName;
+import seedu.address.model.course.SortCriteria;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.PendingQuestion;
@@ -120,6 +121,18 @@ public class ParserUtil {
             return new Tag(StudentRank.POOR);
         } else if (trimmedTag.toUpperCase().equals(StudentRank.AVERAGE.toString())) {
             return new Tag(StudentRank.AVERAGE);
+        } else {
+            throw new ParseException(Tag.MESSAGE_CONSTRAINTS_ENUMS);
+        }
+    }
+
+    public static SortCriteria parseSortCriteria(String sortCriteria) throws ParseException {
+        String trimmedSortCriteria = sortCriteria.trim();
+
+        if (trimmedSortCriteria.toUpperCase().equals(SortCriteria.Field.TAG.toString())) {
+            return new SortCriteria(SortCriteria.Field.TAG);
+        } else if (trimmedSortCriteria.toUpperCase().equals(SortCriteria.Field.NAME.toString())) {
+            return new SortCriteria(SortCriteria.Field.NAME);
         } else {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS_ENUMS);
         }

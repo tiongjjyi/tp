@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.course.Course;
+import seedu.address.model.course.SortCriteria;
 import seedu.address.model.person.Student;
 
 /**
@@ -56,4 +57,10 @@ public class Messages {
         return builder.toString();
     }
 
+    /**
+     * Formats the {@code sortCriteria} for display to the user.
+     */
+    public static String format(SortCriteria sortCriteria) {
+        return sortCriteria.getField().toString().toLowerCase();
+    }
 }

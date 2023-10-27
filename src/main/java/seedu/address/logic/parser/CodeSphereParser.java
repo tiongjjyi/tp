@@ -151,9 +151,9 @@ public class CodeSphereParser {
             
         case HomeCommand.COMMAND_WORD:
             return new HomeCommandParser().parse(arguments);
-  
-         case SortCommand.COMMAND_WORD:
-            return new SortCommand();
+
+        case SortCommand.COMMAND_WORD:
+            return new SortCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

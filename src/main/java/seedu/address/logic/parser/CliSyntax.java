@@ -12,5 +12,4 @@ public class CliSyntax {
     public static final Prefix PREFIX_PENDING_QUESTION = new Prefix("pq/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_COURSE_NAME = new Prefix("c/");
-
 }

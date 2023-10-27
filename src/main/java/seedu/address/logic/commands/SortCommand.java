@@ -2,12 +2,16 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.logic.Messages;
 import seedu.address.logic.parser.StageManager;
 import seedu.address.model.Model;
 import seedu.address.model.course.Course;
+import seedu.address.model.course.SortCriteria;
 import seedu.address.model.person.Student;
 
 import java.util.Comparator;
+import java.util.function.Predicate;
 
 /**
  * Finds and lists all students in the class whose name contains any of the argument keywords.
@@ -17,12 +21,25 @@ public class SortCommand extends Command {
 
     public static final String COMMAND_WORD = "sort";
 
-    public static final String MESSAGE_SUCCESS = "Sorted all students";
+    public static final String MESSAGE_SUCCESS = "Sorted students by %1$s";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all students with names containing any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " CS";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts the student list using the criteria "
+            + "(tag/name) specified.\n"
+            + "Parameters: "
+            + "CRITERIA\n"
+            + "Example: " + COMMAND_WORD + " "
+             + "tag";
+
+    private final SortCriteria sortCriteria;
+
+    /**
+     * Constructs a SortCommand with the specified sort criteria for sorting.
+     *
+     * @param sortCriteria The criteria used to sort the student list .
+     */
+    public SortCommand(SortCriteria sortCriteria) {
+        this.sortCriteria = sortCriteria;
+    }
 
     @Override
     public CommandResult execute(Model model) {
@@ -31,12 +48,30 @@ public class SortCommand extends Command {
         StageManager stageManager = StageManager.getCurrent();
         Course course = stageManager.getCurrentCourse();
 
-        // Custom comparator to sort students by their student ranks
-        Comparator<Student> tagComparator = Comparator.comparing(student -> student.getTag().ranking);
+        course.sortStudentsBy(sortCriteria);
 
-        course.updateSortedStudentList(tagComparator);
-
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(sortCriteria)));
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof SortCommand)) {
+            return false;
+        }
+
+        SortCommand otherSortCommand = (SortCommand) other;
+        return sortCriteria.equals(otherSortCommand.sortCriteria);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("sort criteria", sortCriteria)
+                .toString();
+    }
 }
