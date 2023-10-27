@@ -2,10 +2,6 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -126,6 +122,12 @@ public class ParserUtil {
         }
     }
 
+    /**
+     * Parses a {@code String sortCriteria} into a {@code SortCriteria}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code sortCriteria} is invalid.
+     */
     public static SortCriteria parseSortCriteria(String sortCriteria) throws ParseException {
         String trimmedSortCriteria = sortCriteria.trim();
 

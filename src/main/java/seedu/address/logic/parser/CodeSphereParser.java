@@ -148,7 +148,7 @@ public class CodeSphereParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
-            
+
         case HomeCommand.COMMAND_WORD:
             return new HomeCommandParser().parse(arguments);
 
@@ -159,5 +159,4 @@ public class CodeSphereParser {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
-
 }

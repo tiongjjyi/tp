@@ -144,6 +144,11 @@ public class Course {
         this.filteredStudents = new FilteredList<>(sortedStudents);
     }
 
+    /**
+     * Sorts the students in the course by the specified sort criteria.
+     *
+     * @param sortCriteria The sort criteria for sorting the students.
+     */
     public void sortStudentsBy(SortCriteria sortCriteria) {
         requireNonNull(sortCriteria);
 

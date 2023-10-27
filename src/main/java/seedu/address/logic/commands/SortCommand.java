@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SORT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -10,10 +9,6 @@ import seedu.address.logic.parser.StageManager;
 import seedu.address.model.Model;
 import seedu.address.model.course.Course;
 import seedu.address.model.course.SortCriteria;
-import seedu.address.model.person.Student;
-
-import java.util.Comparator;
-import java.util.function.Predicate;
 
 /**
  * Finds and lists all students in the class whose name contains any of the argument keywords.
