@@ -121,8 +121,9 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `CodeSphereParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `WaddleParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `CodeSphereParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `CodeSphereParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* All `XYZCommandParser` classes throw a ParseException if there are any errors with the arguments.
 
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2324S1-CS2103T-W15-4/tp/blob/master/src/main/java/seedu/address/model/Model.java)
@@ -233,6 +234,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *` | user                    | tag students based on how well they are coping | I can easily identify students who may need additional support. |
 | `* *`  | user                    | add remarks for individual students            | maintain a log of anything noteworthy.                          |
 | `* *`  | user                    | add pending question for individual students   | efficiently manage and respond to their queries.                |
+| `* *`  | user                    | see a filtered view of students for each class | efficiently manage my classes and students.                     |
+| `* *`  | user                    | sort students by their tag level               | see which students need more of my help                         |
 | `*`    | user with many students | sort students by name                          | locate a student easily.                                        |
 
 
@@ -295,25 +298,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User chooses to add a pending question for a student.
+1. User chooses to delete a student.
 2. CodeSphere displays the student’s current information.
-3. CodeSphere prompts the user to confirm the deletion.
-4. User confirms the deletion.
-5. CodeSphere deletes the student.
+3. CodeSphere prompts the user to confirm the addition.
+4. User confirms the addition.
+5. CodeSphere adds a pending question tag to the student.
    Use Case Ends.
 
 **Extensions**
 
 * 1a. CodeSphere detects that the target student does not exist.
-    * 1a1. CodeSphere prompts the user to choose an existing student to be deleted.
-    * 1a2. User chooses an existing student to be deleted.</br>
-      Use case resumes at step 4
-
-* a. At any time, the User chooses to cancel the edit.
-    * *a1. CodeSphere requests to confirm the cancellation.
-    * *a2. User confirms the cancellation.
-      Use case ends.
-
+    * 1a1. CodeSphere prompts the user to choose an existing student to be tagged with a pending question.
+    * 1a2. User chooses an existing student to be tagged.</br>
+    Use case resumes at step 4
 
 *{More to be added}*
 
