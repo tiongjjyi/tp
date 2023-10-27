@@ -52,6 +52,7 @@ CodeSphere is a **desktop contact management app, optimised for use via a Comman
 4. [FAQ](#faq) answers the most common questions from our users. If you have questions for us, this section might just prove extremely useful!
 5. [Command Summary](#command-summary) provides a summarised list of our features for your easy reference.
 6. [Glossary](#glossary) explains some of the more complicated terms we used in the guide. If you do not understand some terms, this section might help!
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Quick Start**
