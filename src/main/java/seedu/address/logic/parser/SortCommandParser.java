@@ -2,9 +2,12 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SORT;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.commands.AddCourseCommand;
 import seedu.address.logic.commands.DeleteCourseCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.RemarkCommand;
@@ -15,6 +18,7 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Remark;
 
 import java.util.Arrays;
+import java.util.stream.Stream;
 
 /**
  * Parses input arguments and creates a new SortCommand object
@@ -27,12 +31,29 @@ public class SortCommandParser implements Parser<SortCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public SortCommand parse(String args) throws ParseException {
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_SORT);
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_SORT)
+                || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+        }
+
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_SORT);
+
         try {
-            SortCriteria sortCriteria = ParserUtil.parseSortCriteria(args);
+            SortCriteria sortCriteria = ParserUtil.parseSortCriteria(argMultimap.getValue(PREFIX_SORT).get());
             return new SortCommand(sortCriteria);
         } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(SortCriteria.MESSAGE_CONSTRAINTS_ENUMS);
         }
+    }
+
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }

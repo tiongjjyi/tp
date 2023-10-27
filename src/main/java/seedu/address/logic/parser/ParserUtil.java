@@ -134,7 +134,7 @@ public class ParserUtil {
         } else if (trimmedSortCriteria.toUpperCase().equals(SortCriteria.Field.NAME.toString())) {
             return new SortCriteria(SortCriteria.Field.NAME);
         } else {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS_ENUMS);
+            throw new ParseException(SortCriteria.MESSAGE_CONSTRAINTS_ENUMS);
         }
     }
 }

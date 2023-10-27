@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SORT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -24,11 +26,11 @@ public class SortCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Sorted students by %1$s";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts the student list using the criteria "
-            + "(tag/name) specified.\n"
+            + "(tag/name) specified. "
             + "Parameters: "
-            + "CRITERIA\n"
+            + PREFIX_SORT + "CRITERIA\n"
             + "Example: " + COMMAND_WORD + " "
-             + "tag";
+            + PREFIX_SORT + "tag";
 
     private final SortCriteria sortCriteria;
 
