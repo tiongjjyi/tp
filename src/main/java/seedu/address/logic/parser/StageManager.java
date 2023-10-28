@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import javafx.stage.Stage;
 import seedu.address.model.course.Course;
 
 /**
@@ -44,6 +45,10 @@ public class StageManager {
 
     public Course getCurrentCourse() {
         return selectedCourse;
+    }
+
+    public static boolean isSelectedCourseNull() {
+        return StageManager.selectedCourse == null;
     }
 
 }
