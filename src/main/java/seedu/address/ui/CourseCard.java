@@ -31,6 +31,8 @@ public class CourseCard extends UiPart<Region> {
     @FXML
     private Label poorTagCount;
     @FXML
+    private Label pqCount;
+    @FXML
     private Label id;
 
     /**
@@ -45,6 +47,7 @@ public class CourseCard extends UiPart<Region> {
             fadeCourse();
         }
         classSize.setText("Students: " + course.getCourseSize());
+        pqCount.setText("PQ: " + course.getPendingQuestionCount());
         goodTagCount.setText(Integer.toString(course.getGoodTagCount()));
         averageTagCount.setText(Integer.toString(course.getAverageTagCount()));
         poorTagCount.setText(Integer.toString(course.getPoorTagCount()));

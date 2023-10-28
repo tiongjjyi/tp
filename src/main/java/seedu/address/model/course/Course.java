@@ -81,6 +81,13 @@ public class Course {
     }
 
     /**
+     * Returns the number of students with a non-empty pending question field.
+     */
+    public int getPendingQuestionCount() {
+        return this.students.getPendingQuestionCount();
+    }
+
+    /**
      * Adds a student to the course being taught by the TA.
      *
      * @param student A student to be added to the course.
