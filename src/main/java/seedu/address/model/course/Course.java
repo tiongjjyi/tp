@@ -145,6 +145,26 @@ public class Course {
     }
 
     /**
+     * Sorts the students in the course by the specified sort criteria.
+     *
+     * @param sortCriteria The sort criteria for sorting the students.
+     */
+    public void sortStudentsBy(SortCriteria sortCriteria) {
+        requireNonNull(sortCriteria);
+
+        Comparator<Student> tagComparator = Comparator.comparing(student -> student.getTag().ranking);
+        Comparator<Student> nameComparator = Comparator.comparing(student -> student.getName().toString(),
+                String.CASE_INSENSITIVE_ORDER);
+
+        if (sortCriteria.getField().toString().equals(SortCriteria.Field.TAG.toString())) {
+            updateSortedStudentList(tagComparator);
+        }
+        if (sortCriteria.getField().toString().equals(SortCriteria.Field.NAME.toString())) {
+            updateSortedStudentList(nameComparator);
+        }
+    }
+
+    /**
      * Returns an unmodifiable view of the filtered list of {@code Student} in the original order
      */
     public void resetFilteredStudentList() {

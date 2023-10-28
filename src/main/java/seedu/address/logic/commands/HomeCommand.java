@@ -5,6 +5,10 @@ import seedu.address.logic.parser.StageManager;
 import seedu.address.logic.parser.Stages;
 import seedu.address.model.Model;
 
+/**
+ * Represents a command to return to the home page in the application.
+ * It allows users to navigate back to the main home screen that shows a list of courses.
+ */
 public class HomeCommand extends Command {
     public static final String COMMAND_WORD = "home";
 
@@ -25,7 +29,7 @@ public class HomeCommand extends Command {
         }
 
         currStageManager.setHomeStage();
-        
+
         return new CommandResult(MESSAGE_SUCCESS, Stages.HOME);
     }
 
