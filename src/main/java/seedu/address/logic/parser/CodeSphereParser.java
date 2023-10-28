@@ -140,9 +140,6 @@ public class CodeSphereParser {
         case PendingQuestionCommand.COMMAND_WORD:
             return new PendingQuestionCommandParser().parse(arguments);
 
-        case ResetCommand.COMMAND_WORD:
-            return new ResetCommand();
-
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
@@ -154,6 +151,9 @@ public class CodeSphereParser {
 
         case SortCommand.COMMAND_WORD:
             return new SortCommandParser().parse(arguments);
+
+        case ResetCommand.COMMAND_WORD:
+            return new ResetCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
