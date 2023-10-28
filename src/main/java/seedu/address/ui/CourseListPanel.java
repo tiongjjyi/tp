@@ -8,6 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.parser.StageManager;
 import seedu.address.model.course.Course;
 
 
@@ -43,9 +44,13 @@ public class CourseListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new CourseCard(course, getIndex() + 1).getRoot());
+                if (StageManager.isSelectedCourseNull() ||
+                        StageManager.getSelectedCourse().equals(course)) {
+                    setGraphic(new CourseCard(course, getIndex() + 1, false).getRoot());
+                } else if (!StageManager.getSelectedCourse().equals(course)) {
+                    setGraphic(new CourseCard(course, getIndex() + 1, true).getRoot());
+                }
             }
         }
     }
-
 }

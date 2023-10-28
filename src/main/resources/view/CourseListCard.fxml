@@ -32,9 +32,57 @@
             <font>
                <Font name="System Italic" size="12.0" />
             </font></Label>
-      <Label fx:id="goodTagCount" styleClass="cell_small_label" text="\$goodTagCount" />
-      <Label fx:id="averageTagCount" styleClass="cell_small_label" text="\$averageTagCount"  />
-      <Label fx:id="poorTagCount" styleClass="cell_small_label" text="\$poorTagCount" />
+         <HBox>
+            <children>
+               <Label fx:id="goodTag" style="-fx-text-fill: #4f4f4f; -fx-background-color: #CAF2C2; -fx-padding: 1 3 1 3; -fx-border-radius: 2; -fx-background-radius: 2; -fx-font-size: 11;" text="GOOD">
+                  <padding>
+                     <Insets right="10.0" />
+                  </padding>
+                  <font>
+                     <Font name="System Bold" size="10.0" />
+                  </font>
+                  <HBox.margin>
+                     <Insets />
+                  </HBox.margin>
+               </Label>
+            <Label fx:id="goodTagCount" styleClass="cell_small_label" text="\$goodTagCount" translateX="5.0" />
+            </children>
+            <padding>
+               <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+            </padding>
+         </HBox>
+         <HBox>
+            <children>
+               <Label fx:id="averageTag" style="-fx-text-fill: #4f4f4f; -fx-background-color: #FFF8B8; -fx-padding: 1 3 1 3; -fx-border-radius: 2; -fx-background-radius: 2; -fx-font-size: 11;" text="AVERAGE">
+                  <padding>
+                     <Insets right="10.0" />
+                  </padding>
+                  <font>
+                     <Font name="System Bold" size="10.0" />
+                  </font>
+               </Label>
+               <Label fx:id="averageTagCount" styleClass="cell_small_label" text="\$averageTagCount" translateX="5.0" />
+            </children>
+            <padding>
+               <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+            </padding>
+         </HBox>
+         <HBox>
+            <children>
+               <Label fx:id="poorTag" style="-fx-text-fill: #4f4f4f; -fx-background-color: #FFD6C9; -fx-padding: 1 3 1 3; -fx-border-radius: 2; -fx-background-radius: 2; -fx-font-size: 11;" text="POOR">
+                  <padding>
+                     <Insets right="10.0" />
+                  </padding>
+                  <font>
+                     <Font name="System Bold" size="10.0" />
+                  </font>
+               </Label>
+               <Label fx:id="poorTagCount" styleClass="cell_small_label" text="\$poorTagCount" translateX="5.0" />
+            </children>
+            <padding>
+               <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+            </padding>
+         </HBox>
     </VBox>
       <rowConstraints>
          <RowConstraints />
