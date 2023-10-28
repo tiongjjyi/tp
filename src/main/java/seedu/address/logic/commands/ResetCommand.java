@@ -13,6 +13,10 @@ public class ResetCommand extends Command {
 
     public static final String COMMAND_WORD = "reset";
 
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Resets the student list to its original state\n"
+            + "Example: " + COMMAND_WORD;
+
     public static final String MESSAGE_SUCCESS = "Reset student list to original state";
 
     @Override
