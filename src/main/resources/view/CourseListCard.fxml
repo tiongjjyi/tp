@@ -35,6 +35,7 @@
       <Label fx:id="goodTagCount" styleClass="cell_small_label" text="\$goodTagCount" />
       <Label fx:id="averageTagCount" styleClass="cell_small_label" text="\$averageTagCount"  />
       <Label fx:id="poorTagCount" styleClass="cell_small_label" text="\$poorTagCount" />
+      <Label fx:id="pqCount" styleClass="cell_small_label" text="\$pqCount" />
     </VBox>
       <rowConstraints>
          <RowConstraints />

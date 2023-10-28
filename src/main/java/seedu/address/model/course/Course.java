@@ -10,6 +10,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.person.AllPendingQuestionPredicate;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.UniqueStudentList;
 
@@ -78,6 +79,15 @@ public class Course {
      */
     public int getPoorTagCount() {
         return this.students.getPoorTagCount();
+    }
+
+    /**
+     * Returns the number of students with a non-empty pending question field.
+     */
+    public int getPendingQuestionCount() {
+        FilteredList<Student> pqStudents = this.filteredStudents;
+        pqStudents.setPredicate(new AllPendingQuestionPredicate());
+        return pqStudents.size();
     }
 
     /**

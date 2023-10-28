@@ -29,6 +29,8 @@ public class CourseCard extends UiPart<Region> {
     @FXML
     private Label poorTagCount;
     @FXML
+    private Label pqCount;
+    @FXML
     private Label id;
 
     /**
@@ -43,6 +45,6 @@ public class CourseCard extends UiPart<Region> {
         goodTagCount.setText("GOOD: " + course.getGoodTagCount());
         averageTagCount.setText("AVERAGE: " + course.getAverageTagCount());
         poorTagCount.setText("POOR: " + course.getPoorTagCount());
-
+        pqCount.setText("PQ: " + course.getPendingQuestionCount());
     }
 }
