@@ -2,7 +2,6 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import javafx.stage.Stage;
 import seedu.address.model.course.Course;
 
 /**
