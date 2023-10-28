@@ -20,7 +20,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.HomeCommand;
-import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ResetCommand;
 import seedu.address.logic.commands.PendingQuestionCommand;
 import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.logic.commands.RemoveCommand;
@@ -140,8 +140,8 @@ public class CodeSphereParser {
         case PendingQuestionCommand.COMMAND_WORD:
             return new PendingQuestionCommandParser().parse(arguments);
 
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+        case ResetCommand.COMMAND_WORD:
+            return new ResetCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
