@@ -56,6 +56,14 @@ public class UniqueStudentList implements Iterable<Student> {
     }
 
     /**
+     * Returns the total number of students in the unique student list with non-empty pending question field.
+     */
+    public int getPendingQuestionCount() {
+        return Math.toIntExact(internalList.stream().filter(
+                s -> !s.getPendingQuestion().value.isEmpty()).count());
+    }
+
+    /**
      * Returns the total number of students in the unique student list with tag POOR.
      */
     public int getPoorTagCount() {

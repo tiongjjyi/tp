@@ -85,9 +85,7 @@ public class Course {
      * Returns the number of students with a non-empty pending question field.
      */
     public int getPendingQuestionCount() {
-        FilteredList<Student> pqStudents = this.filteredStudents;
-        pqStudents.setPredicate(new AllPendingQuestionPredicate());
-        return pqStudents.size();
+        return this.students.getPendingQuestionCount();
     }
 
     /**
