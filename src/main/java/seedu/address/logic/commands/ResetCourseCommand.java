@@ -6,7 +6,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_COURSES;
 import seedu.address.model.Model;
 
 /**
- * Resets the current listed students to the original state.
+ * Resets the current listed courses to the original state.
  */
 public class ResetCourseCommand extends Command {
 
