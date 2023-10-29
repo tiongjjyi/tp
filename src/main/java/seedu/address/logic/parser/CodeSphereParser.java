@@ -11,6 +11,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddCourseCommand;
 import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.ClearCourseCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteCourseCommand;
@@ -89,8 +90,8 @@ public class CodeSphereParser {
         case SelectCommand.COMMAND_WORD:
             return new SelectCommandParser().parse(arguments);
 
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
+        case ClearCourseCommand.COMMAND_WORD:
+            return new ClearCourseCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

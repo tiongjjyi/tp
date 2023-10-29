@@ -40,6 +40,13 @@ public class UniqueStudentList implements Iterable<Student> {
     }
 
     /**
+     * Clears all students in the student list.
+     */
+    public void clearAll() {
+        internalList.clear();
+    }
+
+    /**
      * Returns the total number of students in the unique student list with tag GOOD.
      */
     public int getGoodTagCount() {

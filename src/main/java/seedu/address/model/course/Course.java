@@ -52,6 +52,10 @@ public class Course {
         return students;
     }
 
+    public void clearStudentList() {
+        this.students.clearAll();
+    }
+
     /**
      * Returns the list of students in the course.
      */
