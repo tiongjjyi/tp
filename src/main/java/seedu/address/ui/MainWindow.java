@@ -1,5 +1,8 @@
 package seedu.address.ui;
 
+import java.awt.*;
+import java.io.IOException;
+import java.net.URI;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -149,6 +152,31 @@ public class MainWindow extends UiPart<Stage> {
             helpWindow.show();
         } else {
             helpWindow.focus();
+        }
+
+    }
+
+    /**
+     * Opens the User Guide in the default browser
+     */
+    @FXML
+    public void openUG() {
+        try {
+            Desktop.getDesktop().browse(URI.create(HelpWindow.USERGUIDE_URL));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Opens the User Guide in the default browser
+     */
+    @FXML
+    public void openDG() {
+        try {
+            Desktop.getDesktop().browse(URI.create(HelpWindow.DEVELOPERGUIDE_URL));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

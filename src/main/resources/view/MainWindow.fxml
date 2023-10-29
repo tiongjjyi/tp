@@ -28,7 +28,8 @@
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
-            <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
+            <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#openUG" text="User Guide" />
+            <MenuItem mnemonicParsing="false" onAction="#openDG" text="Developer Guide" />
           </Menu>
         </MenuBar>
 
