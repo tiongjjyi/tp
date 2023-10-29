@@ -14,7 +14,7 @@
          </padding></Pane>
       <ImageView fitWidth="500.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/codeSphere.png" />
+            <Image url="@../images/codeSphere_full.png" />
          </image>
          <StackPane.margin>
             <Insets />
