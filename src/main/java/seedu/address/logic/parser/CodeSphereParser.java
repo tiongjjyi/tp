@@ -19,12 +19,14 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCourseCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindCourseCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.HomeCommand;
 import seedu.address.logic.commands.PendingQuestionCommand;
 import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.logic.commands.RemoveCommand;
 import seedu.address.logic.commands.ResetCommand;
+import seedu.address.logic.commands.ResetCourseCommand;
 import seedu.address.logic.commands.SelectCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -81,26 +83,32 @@ public class CodeSphereParser {
         case AddCourseCommand.COMMAND_WORD:
             return new AddCourseCommandParser().parse(arguments);
 
-        case EditCourseCommand.COMMAND_WORD:
-            return new EditCourseCommandParser().parse(arguments);
+        case ClearCourseCommand.COMMAND_WORD:
+            return new ClearCourseCommand();
 
         case DeleteCourseCommand.COMMAND_WORD:
             return new DeleteCourseCommandParser().parse(arguments);
 
-        case SelectCommand.COMMAND_WORD:
-            return new SelectCommandParser().parse(arguments);
-
-        case ClearCourseCommand.COMMAND_WORD:
-            return new ClearCourseCommand();
+        case EditCourseCommand.COMMAND_WORD:
+            return new EditCourseCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
+
+        case FindCourseCommand.COMMAND_WORD:
+            return new FindCourseCommandParser().parse(arguments);
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
         case HomeCommand.COMMAND_WORD:
             return new HomeCommandParser().parse(arguments);
+
+        case ResetCourseCommand.COMMAND_WORD:
+            return new ResetCourseCommandParser().parse(arguments);
+
+        case SelectCommand.COMMAND_WORD:
+            return new SelectCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
@@ -120,29 +128,20 @@ public class CodeSphereParser {
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
 
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
+        case ClearCommand.COMMAND_WORD:
+            return new ClearCommand();
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
 
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
-
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
-
-        case RemarkCommand.COMMAND_WORD:
-            return new RemarkCommandParser().parse(arguments);
-
-        case RemoveCommand.COMMAND_WORD:
-            return new RemoveCommandParser().parse(arguments);
-
-        case PendingQuestionCommand.COMMAND_WORD:
-            return new PendingQuestionCommandParser().parse(arguments);
+        case EditCommand.COMMAND_WORD:
+            return new EditCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
+
+        case FindCommand.COMMAND_WORD:
+            return new FindCommandParser().parse(arguments);
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
@@ -150,11 +149,20 @@ public class CodeSphereParser {
         case HomeCommand.COMMAND_WORD:
             return new HomeCommandParser().parse(arguments);
 
-        case SortCommand.COMMAND_WORD:
-            return new SortCommandParser().parse(arguments);
+        case PendingQuestionCommand.COMMAND_WORD:
+            return new PendingQuestionCommandParser().parse(arguments);
+
+        case RemarkCommand.COMMAND_WORD:
+            return new RemarkCommandParser().parse(arguments);
+
+        case RemoveCommand.COMMAND_WORD:
+            return new RemoveCommandParser().parse(arguments);
 
         case ResetCommand.COMMAND_WORD:
             return new ResetCommandParser().parse(arguments);
+
+        case SortCommand.COMMAND_WORD:
+            return new SortCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
