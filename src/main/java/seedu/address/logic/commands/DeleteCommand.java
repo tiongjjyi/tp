@@ -10,7 +10,8 @@ import seedu.address.logic.parser.StageManager;
 import seedu.address.model.Model;
 import seedu.address.model.course.Course;
 import seedu.address.model.person.Student;
-import seedu.address.model.person.UniqueStudentList;
+
+import java.util.List;
 
 /**
  * Deletes a student identified using it's displayed index from the student list.
@@ -26,10 +27,10 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_STUDENT_SUCCESS = "Deleted Student: %1$s";
 
-    private final Index targetIndex;
+    private final Index index;
 
-    public DeleteCommand(Index targetIndex) {
-        this.targetIndex = targetIndex;
+    public DeleteCommand(Index index) {
+        this.index = index;
     }
 
     @Override
@@ -37,13 +38,13 @@ public class DeleteCommand extends Command {
         requireNonNull(model);
         StageManager stageManager = StageManager.getCurrent();
         Course course = stageManager.getCurrentCourse();
-        UniqueStudentList lastShownList = course.getStudentList();
+        List<Student> lastShownList = course.getFilteredStudentList();
 
-        if (targetIndex.getZeroBased() >= course.getCourseSize()) {
+        if (index.getZeroBased() >= course.getCourseSize()) {
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
-        Student studentToDelete = lastShownList.getStudent(targetIndex);
+        Student studentToDelete = lastShownList.get(index.getZeroBased());
         course.removeStudent(studentToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_STUDENT_SUCCESS, Messages.format(studentToDelete)));
     }
@@ -60,13 +61,13 @@ public class DeleteCommand extends Command {
         }
 
         DeleteCommand otherDeleteCommand = (DeleteCommand) other;
-        return targetIndex.equals(otherDeleteCommand.targetIndex);
+        return index.equals(otherDeleteCommand.index);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("targetIndex", targetIndex)
+                .add("targetIndex", index)
                 .toString();
     }
 }
