@@ -1,5 +1,8 @@
 package seedu.address.ui;
 
+import java.awt.*;
+import java.io.IOException;
+import java.net.URI;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
@@ -16,6 +19,7 @@ import seedu.address.commons.core.LogsCenter;
 public class HelpWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL = "https://ay2324s1-cs2103t-w15-4.github.io/tp/UserGuide.html";
+    public static final String DEVELOPERGUIDE_URL = "https://ay2324s1-cs2103t-w15-4.github.io/tp/DeveloperGuide.html";
     public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
@@ -23,6 +27,8 @@ public class HelpWindow extends UiPart<Stage> {
 
     @FXML
     private Button copyButton;
+    @FXML
+    private Button browserButton;
 
     @FXML
     private Label helpMessage;
@@ -98,5 +104,17 @@ public class HelpWindow extends UiPart<Stage> {
         final ClipboardContent url = new ClipboardContent();
         url.putString(USERGUIDE_URL);
         clipboard.setContent(url);
+    }
+
+    /**
+     * Opens the User Guide in the default browser
+     */
+    @FXML
+    public void openInBrowser() {
+        try {
+            Desktop.getDesktop().browse(URI.create(USERGUIDE_URL));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
