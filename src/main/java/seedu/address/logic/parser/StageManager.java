@@ -46,4 +46,8 @@ public class StageManager {
         return selectedCourse;
     }
 
+    public static boolean isSelectedCourseNull() {
+        return StageManager.selectedCourse == null;
+    }
+
 }

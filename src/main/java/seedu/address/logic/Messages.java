@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.course.Course;
+import seedu.address.model.course.SortCriteria;
 import seedu.address.model.person.Student;
 
 /**
@@ -18,6 +19,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_COURSE_DISPLAYED_INDEX = "The course index provided is invalid";
     public static final String MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX = "The person index provided is invalid";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
+    public static final String MESSAGE_COURSES_LISTED_OVERVIEW = "%1$d courses listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
 
@@ -56,4 +58,10 @@ public class Messages {
         return builder.toString();
     }
 
+    /**
+     * Formats the {@code sortCriteria} for display to the user.
+     */
+    public static String format(SortCriteria sortCriteria) {
+        return sortCriteria.getField().toString().toLowerCase();
+    }
 }

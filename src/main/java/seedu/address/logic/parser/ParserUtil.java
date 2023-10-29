@@ -2,14 +2,11 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.course.CourseName;
+import seedu.address.model.course.SortCriteria;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.PendingQuestion;
@@ -122,6 +119,24 @@ public class ParserUtil {
             return new Tag(StudentRank.AVERAGE);
         } else {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS_ENUMS);
+        }
+    }
+
+    /**
+     * Parses a {@code String sortCriteria} into a {@code SortCriteria}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code sortCriteria} is invalid.
+     */
+    public static SortCriteria parseSortCriteria(String sortCriteria) throws ParseException {
+        String trimmedSortCriteria = sortCriteria.trim();
+
+        if (trimmedSortCriteria.toUpperCase().equals(SortCriteria.Field.TAG.toString())) {
+            return new SortCriteria(SortCriteria.Field.TAG);
+        } else if (trimmedSortCriteria.toUpperCase().equals(SortCriteria.Field.NAME.toString())) {
+            return new SortCriteria(SortCriteria.Field.NAME);
+        } else {
+            throw new ParseException(SortCriteria.MESSAGE_CONSTRAINTS_ENUMS);
         }
     }
 }

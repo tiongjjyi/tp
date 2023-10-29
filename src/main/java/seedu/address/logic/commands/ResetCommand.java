@@ -1,20 +1,23 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import seedu.address.logic.parser.StageManager;
 import seedu.address.model.Model;
 import seedu.address.model.course.Course;
 
 /**
- * Lists all students in the student list to the user.
+ * Resets the current listed students to the original state.
  */
-public class ListCommand extends Command {
+public class ResetCommand extends Command {
 
-    public static final String COMMAND_WORD = "list";
+    public static final String COMMAND_WORD = "reset";
 
-    public static final String MESSAGE_SUCCESS = "Listed all students";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Resets the student list to its original state\n"
+            + "Example: " + COMMAND_WORD;
+
+    public static final String MESSAGE_SUCCESS = "Reset student list to original state";
 
     @Override
     public CommandResult execute(Model model) {
@@ -23,7 +26,6 @@ public class ListCommand extends Command {
         StageManager stageManager = StageManager.getCurrent();
         Course course = stageManager.getCurrentCourse();
 
-        // Resets the student list to its origin state
         course.resetFilteredStudentList();
 
         return new CommandResult(MESSAGE_SUCCESS);

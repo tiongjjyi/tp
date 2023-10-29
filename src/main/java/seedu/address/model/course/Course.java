@@ -52,6 +52,10 @@ public class Course {
         return students;
     }
 
+    public void clearStudentList() {
+        this.students.clearAll();
+    }
+
     /**
      * Returns the list of students in the course.
      */
@@ -78,6 +82,13 @@ public class Course {
      */
     public int getPoorTagCount() {
         return this.students.getPoorTagCount();
+    }
+
+    /**
+     * Returns the number of students with a non-empty pending question field.
+     */
+    public int getPendingQuestionCount() {
+        return this.students.getPendingQuestionCount();
     }
 
     /**
@@ -142,6 +153,26 @@ public class Course {
         requireNonNull(comparator);
         sortedStudents.setComparator(comparator);
         this.filteredStudents = new FilteredList<>(sortedStudents);
+    }
+
+    /**
+     * Sorts the students in the course by the specified sort criteria.
+     *
+     * @param sortCriteria The sort criteria for sorting the students.
+     */
+    public void sortStudentsBy(SortCriteria sortCriteria) {
+        requireNonNull(sortCriteria);
+
+        Comparator<Student> tagComparator = Comparator.comparing(student -> student.getTag().ranking);
+        Comparator<Student> nameComparator = Comparator.comparing(student -> student.getName().toString(),
+                String.CASE_INSENSITIVE_ORDER);
+
+        if (sortCriteria.getField().toString().equals(SortCriteria.Field.TAG.toString())) {
+            updateSortedStudentList(tagComparator);
+        }
+        if (sortCriteria.getField().toString().equals(SortCriteria.Field.NAME.toString())) {
+            updateSortedStudentList(nameComparator);
+        }
     }
 
     /**

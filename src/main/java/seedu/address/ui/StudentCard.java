@@ -48,7 +48,23 @@ public class StudentCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
         email.setText("Email: " + student.getEmail().value);
-        tag.getChildren().add(new Label(student.getTag().ranking.toString()));
+        String studentTag = student.getTag().ranking.toString();
+        Label label = new Label(studentTag);
+        switch (studentTag) {
+        case ("GOOD"):
+            label.setStyle("-fx-background-color: #CAF2C2");
+            break;
+        case ("AVERAGE"):
+            label.setStyle("-fx-background-color: #FFF8B8");
+            break;
+        case ("POOR"):
+            label.setStyle("-fx-background-color: #FFD6C9");
+            break;
+        default:
+            label.setStyle("-fx-background-color: #3e7b91");
+        }
+
+        tag.getChildren().add(label);
         remark.setText("Remark: " + student.getRemark().value);
         pendingQuestion.setText("Pending Question: " + student.getPendingQuestion().value);
     }

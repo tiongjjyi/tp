@@ -40,6 +40,13 @@ public class UniqueStudentList implements Iterable<Student> {
     }
 
     /**
+     * Clears all students in the student list.
+     */
+    public void clearAll() {
+        internalList.clear();
+    }
+
+    /**
      * Returns the total number of students in the unique student list with tag GOOD.
      */
     public int getGoodTagCount() {
@@ -53,6 +60,14 @@ public class UniqueStudentList implements Iterable<Student> {
     public int getAverageTagCount() {
         return Math.toIntExact(internalList.stream().filter(
                 s -> s.getTag().equals(new Tag(StudentRank.AVERAGE))).count());
+    }
+
+    /**
+     * Returns the total number of students in the unique student list with non-empty pending question field.
+     */
+    public int getPendingQuestionCount() {
+        return Math.toIntExact(internalList.stream().filter(
+                s -> !s.getPendingQuestion().value.isEmpty()).count());
     }
 
     /**
