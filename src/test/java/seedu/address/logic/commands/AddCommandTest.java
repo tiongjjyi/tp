@@ -37,7 +37,7 @@ public class AddCommandTest {
         Student validStudent = new StudentBuilder().build();
         Course validCourse = new CourseBuilder().build();
         ModelStubWithCourse modelStub = new ModelStubWithCourse(validCourse);
-        StageManager stageManager = StageManager.getCurrent();
+        StageManager stageManager = StageManager.getInstance();
         stageManager.setCourseStage(validCourse);
         CommandResult commandResult = new AddCommand(validStudent).execute(modelStub);
 
@@ -51,7 +51,7 @@ public class AddCommandTest {
         Course validCourse = new CourseBuilder().build();
         validCourse.addStudent(validStudent);
         ModelStubWithCourse modelStub = new ModelStubWithCourse(validCourse);
-        StageManager stageManager = StageManager.getCurrent();
+        StageManager stageManager = StageManager.getInstance();
         stageManager.setCourseStage(validCourse);
         AddCommand addCommand = new AddCommand(validStudent);
 

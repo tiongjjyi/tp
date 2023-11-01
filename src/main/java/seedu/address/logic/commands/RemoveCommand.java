@@ -67,7 +67,7 @@ public class RemoveCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        StageManager stageManager = StageManager.getCurrent();
+        StageManager stageManager = StageManager.getInstance();
         Course course = stageManager.getCurrentCourse();
         List<Student> lastShownList = course.getFilteredStudentList();
 

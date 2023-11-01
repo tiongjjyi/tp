@@ -26,7 +26,7 @@ public class HomeCommandTest {
         String expectedMessage = HomeCommand.MESSAGE_SUCCESS;
         
         Course validCourse = new CourseBuilder().build();
-        StageManager.getCurrent().setCourseStage(validCourse);
+        StageManager.getInstance().setCourseStage(validCourse);
 
         CommandResult commandResult = homeCommand.execute(model);
 
