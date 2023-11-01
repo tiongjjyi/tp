@@ -33,7 +33,8 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
     public static final String MESSAGE_DUPLICATE_STUDENT = "Possible duplicate student: "
-            + "email already exist in the student list.";
+            + "Email already exist in the student list.\n"
+            + "Check student details again.";
 
     private final Student toAdd;
 

@@ -21,16 +21,16 @@ public class PendingQuestionCommand extends Command {
 
     public static final String COMMAND_WORD = "pq";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the pending question of the person identified "
-            + "by the index number used in the last person listing. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the pending question of the student identified "
+            + "by the index number used in the displayed student list. "
             + "Existing pending question will be overwritten by the input.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_PENDING_QUESTION + "[PENDING QUESTION]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PENDING_QUESTION + "What is the meaning of life?";
 
-    public static final String MESSAGE_ADD_PENDING_QUESTION_SUCCESS = "Added pending question to Person: %1$s";
-    public static final String MESSAGE_DELETE_PENDING_QUESTION_SUCCESS = "Removed pending question from Person: %1$s";
+    public static final String MESSAGE_ADD_PENDING_QUESTION_SUCCESS = "Added pending question to student: %1$s";
+    public static final String MESSAGE_DELETE_PENDING_QUESTION_SUCCESS = "Removed pending question from student: %1$s";
 
     private final Index index;
     private final PendingQuestion pendingQuestion;
