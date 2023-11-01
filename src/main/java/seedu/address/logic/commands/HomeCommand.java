@@ -22,9 +22,9 @@ public class HomeCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        StageManager currStageManager = StageManager.getCurrent();
+        StageManager currStageManager = StageManager.getInstance();
 
-        if (StageManager.getStage() == Stages.HOME) {
+        if (currStageManager.getStage() == Stages.HOME) {
             return new CommandResult(MESSAGE_HOME_ALREADY);
         }
 

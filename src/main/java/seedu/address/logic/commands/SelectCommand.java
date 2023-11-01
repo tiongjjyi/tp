@@ -33,7 +33,7 @@ public class SelectCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        StageManager currStageManager = StageManager.getCurrent();
+        StageManager currStageManager = StageManager.getInstance();
         Course selectedCourse;
 
         // Get selected course

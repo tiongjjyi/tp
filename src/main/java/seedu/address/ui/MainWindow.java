@@ -217,10 +217,12 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            Stages current = StageManager.getStage();
+            StageManager stageManager = StageManager.getInstance();
+
+            Stages current = stageManager.getStage();
             if (current == Stages.COURSE) {
                 displayPanel.loadCombinedPanel(logic.getFilteredCourseList(),
-                        StageManager.getSelectedCourse().getFilteredStudentList());
+                        stageManager.getSelectedCourse().getFilteredStudentList());
 
             } else if (current == Stages.HOME) {
                 displayPanel.loadCourseListPanel(logic.getFilteredCourseList());

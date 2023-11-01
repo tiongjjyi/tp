@@ -84,7 +84,7 @@ public class RemarkCommandTest {
     public void execute_addRemarkUnfilteredList_success() throws CommandException {
         Course validCourse = getTypicalCourses().get(1);
 
-        StageManager stageManager = StageManager.getCurrent();
+        StageManager stageManager = StageManager.getInstance();
         stageManager.setCourseStage(validCourse);
 
         Student firstPerson = validCourse.getStudentList().getStudent(INDEX_FIRST_STUDENT);
@@ -101,7 +101,7 @@ public class RemarkCommandTest {
     @Test
     public void execute_deleteRemarkUnfilteredList_success() throws CommandException {
         Course validCourse = getTypicalCourses().get(1);
-        StageManager stageManager = StageManager.getCurrent();
+        StageManager stageManager = StageManager.getInstance();
         stageManager.setCourseStage(validCourse);
 
 
@@ -119,7 +119,7 @@ public class RemarkCommandTest {
     @Test
     public void execute_filteredList_success() {
         Course validCourse = getTypicalCourses().get(1);
-        StageManager stageManager = StageManager.getCurrent();
+        StageManager stageManager = StageManager.getInstance();
         stageManager.setCourseStage(validCourse);
 
         showStudentAtIndex(validCourse, INDEX_FIRST_STUDENT);
@@ -143,7 +143,7 @@ public class RemarkCommandTest {
     @Test
     public void execute_invalidPersonIndexUnfilteredList_failure() {
         Course validCourse0 = activateStudent0().get(0);
-        StageManager stageManager = StageManager.getCurrent();
+        StageManager stageManager = StageManager.getInstance();
         stageManager.setCourseStage(validCourse0);
         Index outOfBoundIndex = Index.fromOneBased(validCourse0.getFilteredStudentList().size() + 1);
         RemarkCommand remarkCommand = new RemarkCommand(outOfBoundIndex, new Remark(VALID_REMARK_BOB));
@@ -158,7 +158,7 @@ public class RemarkCommandTest {
     @Test
     public void execute_invalidPersonIndexFilteredList_failure() {
         Course validCourse4 = activateStudent4().get(4);
-        StageManager stageManager = StageManager.getCurrent();
+        StageManager stageManager = StageManager.getInstance();
         stageManager.setCourseStage(validCourse4);
         showStudentAtIndex(validCourse4, INDEX_FIRST_STUDENT);
         Index outOfBoundIndex = INDEX_SECOND_STUDENT;

@@ -58,7 +58,7 @@ public class CodeSphereParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
 
-        Stages currentStage = StageManager.getStage();
+        Stages currentStage = StageManager.getInstance().getStage();
 
         switch (currentStage) {
         case HOME:
