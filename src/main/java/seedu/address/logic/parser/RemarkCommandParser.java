@@ -14,6 +14,8 @@ import seedu.address.model.person.Remark;
  * Parses input arguments and creates a new {@code RemarkCommand} object
  */
 public class RemarkCommandParser implements Parser<RemarkCommand> {
+    public static final String MESSAGE_CONSTRAINTS =
+            "Remark should not be blank.";
     /**
      * Parses the given {@code String} of arguments in the context of the {@code RemarkCommand}
      * and returns a {@code RemarkCommand} object for execution.
@@ -32,6 +34,9 @@ public class RemarkCommandParser implements Parser<RemarkCommand> {
 
         String remark = argMultimap.getValue(PREFIX_REMARK).orElse("");
 
+        if (remark.isEmpty()) {
+            throw new ParseException(MESSAGE_CONSTRAINTS);
+        }
         return new RemarkCommand(index, new Remark(remark));
     }
 }

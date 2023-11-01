@@ -45,7 +45,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PENDING_QUESTION + "PENDING QUESTION] "
             + "[" + PREFIX_TAG + "TAG]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_EMAIL + "e9876543@u.nus.edu"
+            + PREFIX_EMAIL + "e9876543@u.nus.edu "
             + PREFIX_TAG + "average";
 
     public static final String MESSAGE_EDIT_STUDENT_SUCCESS = "Edited student: %1$s";

@@ -42,7 +42,7 @@ public class RemoveCommand extends Command {
             + PREFIX_REMARK + " "
             + PREFIX_PENDING_QUESTION;
 
-    public static final String MESSAGE_EDIT_STUDENT_SUCCESS = "Edited student: %1$s";
+    public static final String MESSAGE_EDIT_STUDENT_SUCCESS = "Remark / Pending Question removed from student: \n%1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field of remark and "
             + "pending question to remove must be provided.";
     public static final String MESSAGE_DUPLICATE_STUDENT = "Possible duplicate student: "
