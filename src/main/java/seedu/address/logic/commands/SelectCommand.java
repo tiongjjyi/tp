@@ -16,11 +16,11 @@ public class SelectCommand extends Command {
     public static final String COMMAND_WORD = "select";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": selects a course to view into "
-            + "by the index number used in the last course listing.\n"
+            + "by the index number used in the displayed course listing.\n"
             + "Parameters: INDEX (must exist in the course list)\n"
             + "Example: " + COMMAND_WORD + " 1 ";
     public static final String MESSAGE_ARGUMENTS = "Index: %1$d";
-    public static final String MESSAGE_SELECT_SUCCESS = "Selected Course: %1$s";
+    public static final String MESSAGE_SELECT_SUCCESS = "Selected course: %1$s";
     private final Index index;
 
     /**
