@@ -69,7 +69,6 @@ public class MainWindow extends UiPart<Stage> {
         setWindowDefaultSize(logic.getGuiSettings());
 
         setAccelerators();
-
         helpWindow = new HelpWindow();
     }
 
@@ -234,4 +233,5 @@ public class MainWindow extends UiPart<Stage> {
             throw e;
         }
     }
+
 }
