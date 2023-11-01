@@ -6,7 +6,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.course.Course;
-import seedu.address.model.course.SortCriteria;
+import seedu.address.model.person.SortCriteria;
 import seedu.address.model.person.Student;
 
 /**
