@@ -82,30 +82,30 @@ public class StorageManager implements Storage {
     // ================ commandStorage methods ==============================
 
     @Override
-    public void addInvalidCommand(String text) {
+    public void addInvalidInput(String text) {
         inputStorage.addInput(false, text);
     }
 
     @Override
-    public void addValidCommand(String text) {
+    public void addValidInput(String text) {
         inputStorage.addInput(true, text);
     }
 
     @Override
-    public Pair<Boolean, String> getCommand() {
+    public Pair<Boolean, String> getInput() {
         return inputStorage.getInput();
     }
 
     @Override
-    public Pair<Boolean, String> previousCommand() {
+    public Pair<Boolean, String> previousInput() {
         inputStorage.decrementPointer();
-        return getCommand();
+        return getInput();
     }
 
     @Override
-    public Pair<Boolean, String> nextCommand() {
+    public Pair<Boolean, String> nextInput() {
         inputStorage.incrementPointer();
-        return getCommand();
+        return getInput();
     }
 
 }

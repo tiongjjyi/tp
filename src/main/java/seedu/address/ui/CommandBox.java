@@ -45,7 +45,7 @@ public class CommandBox extends UiPart<Region> {
     private void setHistory() {
         commandTextField.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
             if (key.getCode() == KeyCode.UP) {
-                Pair<Boolean, String> previousCommand = storage.previousCommand();
+                Pair<Boolean, String> previousCommand = storage.previousInput();
                 setTextBox(previousCommand.getValue());
                 if (!previousCommand.getKey()) {
                     setRed();
@@ -54,7 +54,7 @@ public class CommandBox extends UiPart<Region> {
                 }
 
             } else if (key.getCode() == KeyCode.DOWN) {
-                Pair<Boolean, String> nextCommand = storage.nextCommand();
+                Pair<Boolean, String> nextCommand = storage.nextInput();
                 setTextBox(nextCommand.getValue());
                 if (!nextCommand.getKey()) {
                     setRed();

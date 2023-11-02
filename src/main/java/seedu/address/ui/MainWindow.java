@@ -247,12 +247,12 @@ public class MainWindow extends UiPart<Stage> {
                 displayPanel.loadCourseListPanel();
             }
 
-            storage.addValidCommand(commandText);
+            storage.addValidInput(commandText);
             return commandResult;
 
         } catch (CommandException | ParseException e) {
             logger.info("An error occurred while executing command: " + commandText);
-            storage.addInvalidCommand(commandText);
+            storage.addInvalidInput(commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }

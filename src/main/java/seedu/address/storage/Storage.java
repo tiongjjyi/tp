@@ -30,13 +30,13 @@ public interface Storage extends CourseListStorage, UserPrefsStorage {
     @Override
     void saveCourseList(ReadOnlyCourseList courseList) throws IOException;
 
-    void addInvalidCommand(String text);
+    void addInvalidInput(String text);
 
-    void addValidCommand(String text);
+    void addValidInput(String text);
 
-    Pair<Boolean, String> getCommand();
+    Pair<Boolean, String> getInput();
 
-    Pair<Boolean, String> previousCommand();
+    Pair<Boolean, String> previousInput();
 
-    Pair<Boolean, String> nextCommand();
+    Pair<Boolean, String> nextInput();
 }
