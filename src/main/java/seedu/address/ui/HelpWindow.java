@@ -13,13 +13,12 @@ import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 
+import static seedu.address.ui.ExternalLinks.USERGUIDE_URL;
+
 /**
  * Controller for a help page
  */
 public class HelpWindow extends UiPart<Stage> {
-
-    public static final String USERGUIDE_URL = "https://ay2324s1-cs2103t-w15-4.github.io/tp/UserGuide.html";
-    public static final String DEVELOPERGUIDE_URL = "https://ay2324s1-cs2103t-w15-4.github.io/tp/DeveloperGuide.html";
     public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);

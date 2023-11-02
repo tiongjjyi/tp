@@ -2,8 +2,8 @@ package seedu.address.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Region;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import seedu.address.model.course.Course;
 
 
@@ -36,13 +36,16 @@ public class CourseCard extends UiPart<Region> {
     /**
      * Creates a {@code StudentCode} with the given {@code Student} and index to display.
      */
-    public CourseCard(Course course, int displayedIndex, boolean isFaded) {
+    public CourseCard(Course course, int displayedIndex, boolean fade, boolean highlight) {
         super(FXML);
         this.course = course;
         id.setText(displayedIndex + ". ");
         courseName.setText(course.getCourseName().fullCourseName);
-        if (isFaded) {
+        if (fade) {
             fadeCourse();
+        }
+        if (highlight) {
+            highlightCourse();
         }
         classSize.setText("Students: " + course.getCourseSize());
         pqCount.setText("Pending Questions: " + course.getPendingQuestionCount());
@@ -51,7 +54,12 @@ public class CourseCard extends UiPart<Region> {
         poorTagCount.setText(Integer.toString(course.getPoorTagCount()));
     }
 
-    public void fadeCourse() {
+    private void fadeCourse() {
         cardPane.setOpacity(0.3);
+    }
+
+    private void highlightCourse() {
+        courseName.setStyle("-fx-text-fill: turquoise ");
+        id.setStyle("-fx-text-fill: paleturquoise");
     }
 }

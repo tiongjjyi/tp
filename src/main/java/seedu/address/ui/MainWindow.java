@@ -22,6 +22,10 @@ import seedu.address.logic.parser.StageManager;
 import seedu.address.logic.parser.Stages;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+import static seedu.address.ui.ExternalLinks.DEVELOPERGUIDE_URL;
+import static seedu.address.ui.ExternalLinks.GITHUB_URL;
+import static seedu.address.ui.ExternalLinks.USERGUIDE_URL;
+
 /**
  * The Main Window. Provides the basic application layout containing
  * a menu bar and space where other JavaFX elements can be placed.
@@ -44,7 +48,11 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane commandBoxPlaceholder;
 
     @FXML
-    private MenuItem helpMenuItem;
+    private MenuItem UGMenuItem;
+    @FXML
+    private MenuItem DGMenuItem;
+    @FXML
+    private MenuItem GHMenuItem;
 
     @FXML
     private StackPane panelPlaceholder;
@@ -77,7 +85,9 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private void setAccelerators() {
-        setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
+        setAccelerator(UGMenuItem, KeyCombination.valueOf("F1"));
+        setAccelerator(DGMenuItem, KeyCombination.valueOf("F2"));
+        setAccelerator(GHMenuItem, KeyCombination.valueOf("F3"));
     }
 
     /**
@@ -161,7 +171,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     public void openUG() {
         try {
-            Desktop.getDesktop().browse(URI.create(HelpWindow.USERGUIDE_URL));
+            Desktop.getDesktop().browse(URI.create(USERGUIDE_URL));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -173,11 +183,24 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     public void openDG() {
         try {
-            Desktop.getDesktop().browse(URI.create(HelpWindow.DEVELOPERGUIDE_URL));
+            Desktop.getDesktop().browse(URI.create(DEVELOPERGUIDE_URL));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Opens the Team's GitHub Repository in the default browser
+     */
+    @FXML
+    public void openGH() {
+        try {
+            Desktop.getDesktop().browse(URI.create(GITHUB_URL));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     void show() {
         primaryStage.show();
