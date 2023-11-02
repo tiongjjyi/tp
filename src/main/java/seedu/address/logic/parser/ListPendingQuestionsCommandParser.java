@@ -6,7 +6,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HomeCommand;
 import seedu.address.logic.commands.ListPendingQuestionsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.AllPendingQuestionPredicate;
+import seedu.address.model.person.predicates.AllPendingQuestionPredicate;
 
 /**
  * Parses input arguments and creates a new ListPendingQuestionsCommand object
