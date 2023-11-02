@@ -8,11 +8,16 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.RemoveCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.PendingQuestion;
+import seedu.address.model.person.Remark;
 
 /**
  * Parses input arguments and creates a new RemoveCommand object
  */
 public class RemoveCommandParser implements Parser<RemoveCommand> {
+    public static final String MESSAGE_CONSTRAINTS =
+            "Remark/ Pending Question should be blank." + "\nExample: remove 1 r/ pq/";
+
 
     /**
      * Parses the given {@code String} of arguments in the context of the RemoveCommand
@@ -35,11 +40,16 @@ public class RemoveCommandParser implements Parser<RemoveCommand> {
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_REMARK, PREFIX_PENDING_QUESTION);
 
         RemoveCommand.EditStudentDescriptor editStudentDescriptor = new RemoveCommand.EditStudentDescriptor();
+        String remark = argMultimap.getValue(PREFIX_REMARK).orElse("");
+        String pendingQuestion = argMultimap.getValue(PREFIX_PENDING_QUESTION).orElse("");
+        if (!remark.isEmpty() || !pendingQuestion.isEmpty()) {
+            throw new ParseException(MESSAGE_CONSTRAINTS);
+        }
         if (argMultimap.getValue(PREFIX_REMARK).isPresent()) {
-            editStudentDescriptor.setRemark(ParserUtil.parseRemark(""));
+            editStudentDescriptor.setRemark(new Remark(""));
         }
         if (argMultimap.getValue(PREFIX_PENDING_QUESTION).isPresent()) {
-            editStudentDescriptor.setPendingQuestion(ParserUtil.parsePendingQuestion(""));
+            editStudentDescriptor.setPendingQuestion(new PendingQuestion(""));
         }
 
         if (!editStudentDescriptor.isAnyFieldEdited()) {
