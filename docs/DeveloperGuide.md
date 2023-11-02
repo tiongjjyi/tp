@@ -92,8 +92,9 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the `UI` can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute the commands.
-* keeps a reference to the `StageManager` to update the `UI` with its corresponding display panel
+* keeps a reference to the `StageManager` to update the `UI` with its corresponding display panel.
 * depends on some classes in the `Model` component, as it displays `Course` and `Student` objects residing in the `Model`.
+* depdnds on some classes in the `Storage` component, as it updates to and retrieves user inputs from the `Storage`.
 
 ### Logic component
 
@@ -140,11 +141,11 @@ The `Model` component,
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/AY2324S1-CS2103T-W15-4/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
-
-<img src="images/StorageClassDiagram.png" width="550" />
+![Interactions Inside the Storage Component](images/StorageClassDiagram.png)
 
 The `Storage` component,
 * can save both CourseList data and user preference data in json format, and read them back into corresponding objects.
+* can save user inputs and retrieve them in the future 
 * inherits from both `CourseListStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
