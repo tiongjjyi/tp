@@ -49,7 +49,7 @@ public class SelectCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_COURSE_DISPLAYED_INDEX);
         }
 
-        return new CommandResult(String.format(MESSAGE_SELECT_SUCCESS, selectedCourse.getCourseName()), Stages.COURSE);
+        return new CommandResult(String.format(MESSAGE_SELECT_SUCCESS, selectedCourse.getCourseName()), Stages.SELECTED_COURSE);
     }
 
     @Override

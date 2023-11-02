@@ -9,6 +9,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyCourseList;
 import seedu.address.model.course.Course;
+import seedu.address.storage.CommandStorage;
+import seedu.address.storage.Storage;
 
 /**
  * API of the Logic component
@@ -30,8 +32,15 @@ public interface Logic {
      */
     ReadOnlyCourseList getCourseList();
 
-    /** Returns an unmodifiable view of the filtered list of courses */
+    /**
+     * Returns an unmodifiable view of the filtered list of courses
+     * */
     ObservableList<Course> getFilteredCourseList();
+
+    /**
+     * Returns the Storage
+     */
+    Storage getStorage();
 
     /**
      * Returns the user prefs' course list file path.

@@ -21,6 +21,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.StageManager;
 import seedu.address.logic.parser.Stages;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.storage.CommandStorage;
+import seedu.address.storage.Storage;
 
 import static seedu.address.ui.ExternalLinks.DEVELOPERGUIDE_URL;
 import static seedu.address.ui.ExternalLinks.GITHUB_URL;
@@ -38,6 +40,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private Stage primaryStage;
     private Logic logic;
+    private Storage storage;
 
     // Independent Ui parts residing in this Ui container
     private DisplayPanel displayPanel;
@@ -72,6 +75,7 @@ public class MainWindow extends UiPart<Stage> {
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
+        this.storage = logic.getStorage();
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
@@ -135,7 +139,7 @@ public class MainWindow extends UiPart<Stage> {
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getCourseListFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        CommandBox commandBox = new CommandBox(this::executeCommand);
+        CommandBox commandBox = new CommandBox(this::executeCommand, storage);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
@@ -161,7 +165,6 @@ public class MainWindow extends UiPart<Stage> {
         } else {
             helpWindow.focus();
         }
-
     }
 
     /**
@@ -199,7 +202,6 @@ public class MainWindow extends UiPart<Stage> {
             e.printStackTrace();
         }
     }
-
 
     void show() {
         primaryStage.show();
@@ -240,15 +242,18 @@ public class MainWindow extends UiPart<Stage> {
             StageManager stageManager = StageManager.getInstance();
 
             Stages current = stageManager.getStage();
-            if (current == Stages.COURSE) {
+            if (current == Stages.SELECTED_COURSE) {
                 displayPanel.loadCombinedPanel();
             } else if (current == Stages.HOME) {
                 displayPanel.loadCourseListPanel();
             }
 
+            storage.addValidCommand(commandText);
             return commandResult;
+
         } catch (CommandException | ParseException e) {
             logger.info("An error occurred while executing command: " + commandText);
+            storage.addInvalidCommand(commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }

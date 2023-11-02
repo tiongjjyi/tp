@@ -24,6 +24,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyCourseList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.course.Course;
+import seedu.address.storage.CommandStorage;
 import seedu.address.storage.JsonCourseListStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
@@ -44,7 +45,8 @@ public class LogicManagerTest {
         JsonCourseListStorage courseListStorage =
                 new JsonCourseListStorage(temporaryFolder.resolve("courseList.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(courseListStorage, userPrefsStorage);
+        CommandStorage commandStorage = new CommandStorage();
+        StorageManager storage = new StorageManager(courseListStorage, userPrefsStorage, commandStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -156,7 +158,8 @@ public class LogicManagerTest {
 
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(courseListStorage, userPrefsStorage);
+        CommandStorage commandStorage = new CommandStorage();
+        StorageManager storage = new StorageManager(courseListStorage, userPrefsStorage, commandStorage);
 
         logic = new LogicManager(model, storage);
 
