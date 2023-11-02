@@ -15,7 +15,7 @@ import seedu.address.model.person.Remark;
  */
 public class RemarkCommandParser implements Parser<RemarkCommand> {
     public static final String MESSAGE_CONSTRAINTS =
-            "Remark should not be blank.";
+            "Remark should not be blank." + "\nExample: remark 2 r/needs more help";
     /**
      * Parses the given {@code String} of arguments in the context of the {@code RemarkCommand}
      * and returns a {@code RemarkCommand} object for execution.

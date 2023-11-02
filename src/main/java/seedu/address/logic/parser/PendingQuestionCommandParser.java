@@ -16,7 +16,7 @@ import seedu.address.model.person.PendingQuestion;
 public class PendingQuestionCommandParser implements Parser<PendingQuestionCommand> {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Pending question should not be blank.";
+            "Pending question should not be blank." + "\nExample: pq 1 pq/What is SUT?";
     /**
      * Parses the given {@code String} of arguments in the context of the {@code PendingQuestionCommand}
      * and returns a {@code PendingQuestionCommand} object for execution.
