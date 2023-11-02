@@ -31,7 +31,7 @@ public class AddCommand extends Command {
             + PREFIX_EMAIL + "e0123456@u.nus.edu "
             + PREFIX_TAG + "good";
 
-    public static final String MESSAGE_SUCCESS = "New student added: %1$s";
+    public static final String MESSAGE_SUCCESS = "New student added: \n%1$s";
     public static final String MESSAGE_DUPLICATE_STUDENT = "Possible duplicate student: "
             + "Email already exist in the student list.\n"
             + "Check student details again.";

@@ -1,6 +1,10 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PENDING_QUESTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.function.Predicate;
 
@@ -19,10 +23,14 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all students with names containing any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " John";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds students based on specified criteria.\n"
+            + "Parameters: "
+            + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_TAG + "TAG] "
+            + "[" + PREFIX_PENDING_QUESTION + "PENDING_QUESTION] "
+            + "[" + PREFIX_REMARK + "REMARK]\n"
+            + "Note: You can only use one prefix at a time.\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "Alice";
 
     private final Predicate<Student> predicate;
 
@@ -42,7 +50,6 @@ public class FindCommand extends Command {
         StageManager stageManager = StageManager.getInstance();
         Course course = stageManager.getCurrentCourse();
 
-        // TO DO UP FIND COMMAND
         course.updateFilteredStudentList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, course.getFilteredStudentList().size()));
