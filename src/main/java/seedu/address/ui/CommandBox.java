@@ -12,8 +12,6 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-import java.util.ArrayList;
-
 /**
  * The UI component that is responsible for receiving user command inputs.
  */
@@ -29,9 +27,6 @@ public class CommandBox extends UiPart<Region> {
 
     @FXML
     private TextField commandTextField;
-
-    private ArrayList<String> stringArray;
-    int arrayPointer = 0;
 
     /**
      * Creates a {@code CommandBox} with the given {@code CommandExecutor}.
