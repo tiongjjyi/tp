@@ -22,6 +22,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FindCourseCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.HomeCommand;
+import seedu.address.logic.commands.ListPendingQuestionsCommand;
 import seedu.address.logic.commands.PendingQuestionCommand;
 import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.logic.commands.RemoveCommand;
@@ -163,6 +164,9 @@ public class CodeSphereParser {
 
         case SortCommand.COMMAND_WORD:
             return new SortCommandParser().parse(arguments);
+
+        case ListPendingQuestionsCommand.COMMAND_WORD:
+            return new ListPendingQuestionsCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
