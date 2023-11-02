@@ -50,7 +50,6 @@ public class FindCommand extends Command {
         StageManager stageManager = StageManager.getInstance();
         Course course = stageManager.getCurrentCourse();
 
-        // TO DO UP FIND COMMAND
         course.updateFilteredStudentList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, course.getFilteredStudentList().size()));
