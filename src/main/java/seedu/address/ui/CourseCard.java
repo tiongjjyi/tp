@@ -52,7 +52,7 @@ public class CourseCard extends UiPart<Region> {
         classSize.setText("Students: " + course.getCourseSize());
         pqCount.setText("Pending Questions: " + course.getPendingQuestionCount());
         if (course.getPendingQuestionCount() == 0) {
-            coursePQPane.setOpacity(0.5);
+            coursePQPane.setOpacity(0.3);
         }
         goodTagCount.setText(Integer.toString(course.getGoodTagCount()));
         averageTagCount.setText(Integer.toString(course.getAverageTagCount()));

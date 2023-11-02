@@ -77,10 +77,10 @@ public class StudentCard extends UiPart<Region> {
         pendingQuestion.setText("Pending Question: " + student.getPendingQuestion().value);
 
         if (student.getRemark().value == "") {
-            remarkPane.setOpacity(0.5);
+            remarkPane.setOpacity(0.3);
         }
         if (student.getPendingQuestion().value == "") {
-            pqPane.setOpacity(0.5);
+            pqPane.setOpacity(0.3);
         }
     }
 }
