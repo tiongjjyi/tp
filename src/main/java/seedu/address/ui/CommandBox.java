@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.util.ArrayList;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -9,8 +11,6 @@ import javafx.scene.layout.Region;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-
-import java.util.ArrayList;
 
 /**
  * The UI component that is responsible for receiving user command inputs.
@@ -22,11 +22,12 @@ public class CommandBox extends UiPart<Region> {
 
     private final CommandExecutor commandExecutor;
 
+    private ArrayList<String> stringArray;
+    private int arrayPointer = 0;
+
     @FXML
     private TextField commandTextField;
 
-    private ArrayList<String> stringArray;
-    int arrayPointer = 0;
 
     /**
      * Creates a {@code CommandBox} with the given {@code CommandExecutor}.
@@ -46,7 +47,7 @@ public class CommandBox extends UiPart<Region> {
     @FXML
     private void setHistory() {
         commandTextField.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
-            if (key.getCode()== KeyCode.UP) {
+            if (key.getCode() == KeyCode.UP) {
                 if (!stringArray.isEmpty()) {
                     if (arrayPointer < 0) {
                         arrayPointer = 0;
@@ -55,12 +56,12 @@ public class CommandBox extends UiPart<Region> {
                     setTextBox(history);
                     arrayPointer--;
                 }
-            } else if (key.getCode()== KeyCode.DOWN) {
+            } else if (key.getCode() == KeyCode.DOWN) {
                 if (!stringArray.isEmpty()) {
                     arrayPointer++;
                     if (arrayPointer >= stringArray.size()) {
-                        arrayPointer = stringArray.size() - 1;
                         clearTextBox();
+                        arrayPointer = stringArray.size() - 1;
                     } else {
                         String history = stringArray.get(arrayPointer);
                         commandTextField.setText(history);
@@ -93,7 +94,7 @@ public class CommandBox extends UiPart<Region> {
     private void handleCommandEntered() {
         String commandText = commandTextField.getText();
         stringArray.add(commandText);
-        arrayPointer = stringArray.size() -1;
+        arrayPointer = stringArray.size() - 1;
         if (commandText.equals("")) {
             return;
         }
