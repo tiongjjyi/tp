@@ -20,7 +20,7 @@ public class PQContainsKeywordsPredicate implements Predicate<Student> {
     @Override
     public boolean test(Student student) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(student.getPendingQuestion().value, keyword));
+                .anyMatch(keyword -> StringUtil.containsIgnoreCase(student.getPendingQuestion().value, keyword));
     }
 
     @Override

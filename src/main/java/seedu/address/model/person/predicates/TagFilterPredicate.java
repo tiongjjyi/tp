@@ -10,17 +10,17 @@ import seedu.address.model.person.Student;
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
  */
-public class RemarkContainsKeywordsPredicate implements Predicate<Student> {
+public class TagFilterPredicate implements Predicate<Student> {
     private final List<String> keywords;
 
-    public RemarkContainsKeywordsPredicate(List<String> keywords) {
+    public TagFilterPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
     @Override
     public boolean test(Student student) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsIgnoreCase(student.getRemark().value, keyword));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(student.getTag().getStringRanking(), keyword));
     }
 
     @Override
@@ -30,12 +30,12 @@ public class RemarkContainsKeywordsPredicate implements Predicate<Student> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof RemarkContainsKeywordsPredicate)) {
+        if (!(other instanceof TagFilterPredicate)) {
             return false;
         }
 
-        RemarkContainsKeywordsPredicate otherRemarkContainsKeywordsPredicate = (RemarkContainsKeywordsPredicate) other;
-        return keywords.equals(otherRemarkContainsKeywordsPredicate.keywords);
+        TagFilterPredicate otherTagFilterPredicate = (TagFilterPredicate) other;
+        return keywords.equals(otherTagFilterPredicate.keywords);
     }
 
     @Override
