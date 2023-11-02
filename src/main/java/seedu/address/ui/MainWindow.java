@@ -125,10 +125,9 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() throws InterruptedException {
 
-        displayPanel = new DisplayPanel();
+        displayPanel = new DisplayPanel(logic);
         panelPlaceholder.getChildren().add(displayPanel.getRoot());
-
-        displayPanel.loadStartSequence(logic.getFilteredCourseList());
+        displayPanel.loadStartSequence();
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -230,7 +229,6 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
@@ -243,12 +241,9 @@ public class MainWindow extends UiPart<Stage> {
 
             Stages current = stageManager.getStage();
             if (current == Stages.COURSE) {
-                displayPanel.loadCombinedPanel(logic.getFilteredCourseList(),
-                        stageManager.getSelectedCourse().getFilteredStudentList());
-
+                displayPanel.loadCombinedPanel();
             } else if (current == Stages.HOME) {
-                displayPanel.loadCourseListPanel(logic.getFilteredCourseList());
-
+                displayPanel.loadCourseListPanel();
             }
 
             return commandResult;

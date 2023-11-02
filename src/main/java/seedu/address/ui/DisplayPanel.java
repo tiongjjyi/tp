@@ -6,11 +6,13 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
+import seedu.address.logic.Logic;
+import seedu.address.logic.parser.StageManager;
+import seedu.address.logic.parser.Stages;
 import seedu.address.model.course.Course;
-import seedu.address.model.person.Student;
 
 /**
- * A ui for the status bar that is displayed at the footer of the application.
+ * A UI for the center display panel that displays the splash panel, course list and combined list.
  */
 public class DisplayPanel extends UiPart<Region> {
 
@@ -20,25 +22,33 @@ public class DisplayPanel extends UiPart<Region> {
     private CourseListPanel courseListPanel;
     private CombinedPanel combinedPanel;
 
+    private Logic logic;
+    private StageManager stageManager = StageManager.getInstance();
+
     @FXML
     private StackPane panelPlaceholder;
 
     /**
-     * Creates a {@code DisplayPanel} with the given {@code ObservableList<Course>}.
+     * Creates a {@code DisplayPanel} with the given {@code Logic}.
      */
-    public DisplayPanel() {
+    public DisplayPanel(Logic logic) {
         super(FXML);
+        this.logic = logic;
     }
 
-    void loadStartSequence(ObservableList<Course> courseList) {
+    /**
+     * Loads up the start sequence into the display panel.
+     * Consists of the splash panel fade in + fade out, then displays whatever is meant to be on the panel
+     */
+    void loadStartSequence() {
         splashPanel = new SplashPanel();
         panelPlaceholder.getChildren().add(splashPanel.getRoot());
 
-        FadeTransition fadeIn = new FadeTransition(Duration.seconds(1), panelPlaceholder);
+        FadeTransition fadeIn = new FadeTransition(Duration.seconds(0.5), panelPlaceholder);
         fadeIn.setFromValue(0);
         fadeIn.setToValue(1);
 
-        FadeTransition fadeOut = new FadeTransition(Duration.seconds(1), panelPlaceholder);
+        FadeTransition fadeOut = new FadeTransition(Duration.seconds(0.5), panelPlaceholder);
         fadeOut.setFromValue(1);
         fadeOut.setToValue(0);
 
@@ -47,22 +57,25 @@ public class DisplayPanel extends UiPart<Region> {
             fadeOut.play();
             fadeOut.setOnFinished(fadeout -> {
                 panelPlaceholder.setOpacity(1);
-                loadCourseListPanel(courseList);
+                if (stageManager.getStage() == Stages.HOME) {
+                    loadCourseListPanel();
+                } else if (stageManager.getStage() == Stages.COURSE) {
+                    loadCombinedPanel();
+                }
             });
         });
-
     }
 
-    void loadCourseListPanel(ObservableList<Course> courseList) {
+    void loadCourseListPanel() {
         panelPlaceholder.getChildren().clear();
-        courseListPanel = new CourseListPanel(courseList);
+        courseListPanel = new CourseListPanel(logic.getFilteredCourseList());
         panelPlaceholder.getChildren().add(courseListPanel.getRoot());
     }
 
-    void loadCombinedPanel(ObservableList<Course> courseList,
-                           ObservableList<Student> studentList) {
+    void loadCombinedPanel() {
         panelPlaceholder.getChildren().clear();
-        combinedPanel = new CombinedPanel(courseList, studentList);
+        combinedPanel = new CombinedPanel(logic.getFilteredCourseList(),
+                stageManager.getSelectedCourse().getFilteredStudentList());
         panelPlaceholder.getChildren().add(combinedPanel.getRoot());
     }
 
