@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.util.ArrayList;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -21,6 +23,9 @@ public class CommandBox extends UiPart<Region> {
     private static final String FXML = "CommandBox.fxml";
 
     private final CommandExecutor commandExecutor;
+
+    private ArrayList<String> stringArray;
+    private int arrayPointer = 0;
 
     @FXML
     private TextField commandTextField;
@@ -46,7 +51,7 @@ public class CommandBox extends UiPart<Region> {
     @FXML
     private void setHistory() {
         commandTextField.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
-            if (key.getCode()== KeyCode.UP) {
+            if (key.getCode() == KeyCode.UP) {
                 if (!stringArray.isEmpty()) {
                     if (arrayPointer < 0) {
                         arrayPointer = 0;
@@ -55,11 +60,10 @@ public class CommandBox extends UiPart<Region> {
                     setTextBox(history);
                     arrayPointer--;
                 }
-            } else if (key.getCode()== KeyCode.DOWN) {
+            } else if (key.getCode() == KeyCode.DOWN) {
                 if (!stringArray.isEmpty()) {
                     arrayPointer++;
                     if (arrayPointer >= stringArray.size()) {
-                        arrayPointer = stringArray.size() - 1;
                         clearTextBox();
                     } else {
                         String history = stringArray.get(arrayPointer);
@@ -93,7 +97,7 @@ public class CommandBox extends UiPart<Region> {
     private void handleCommandEntered() {
         String commandText = commandTextField.getText();
         stringArray.add(commandText);
-        arrayPointer = stringArray.size() -1;
+        arrayPointer = stringArray.size() - 1;
         if (commandText.equals("")) {
             return;
         }
