@@ -281,7 +281,7 @@ Adds a student to the list of students in the selected course that the user is o
 
 Edits an existing student that the user is currently overseeing.
 
-**Format:** `edit INDEX [n/NAME] [c/COURSE] [e/EMAIL] [r/REMARK]...`
+**Format:** `edit INDEX [n/NAME] [e/EMAIL] [r/REMARK]...`
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed students list.
 * The index **must be a positive integer** 1, 2, 3, ...
 * At least one of the optional fields must be provided.
@@ -290,8 +290,8 @@ Edits an existing student that the user is currently overseeing.
 * You can remove all the person’s tags by typing t/ without specifying any tags after.
 
 **Examples:**
-* `edit 1 c/CS1101S e/e0946283@u.nus.edu` Edits the course and email address of the 1st person to be CS1101S and e0946283@u.nus.edu respectively.
-* `edit 2 n/Alex Yeoh t/` Edits the name of the 2nd person to be Alex Yeoh and clears all existing tags.
+* `edit 1 e/e0946283@u.nus.edu` Edits the course and email address of the 1st person to be CS1101S and e0946283@u.nus.edu respectively.
+* `edit 2 n/Alex Yeoh t/good` Edits the name of the 2nd person to be Alex Yeoh and change the tag to GOOD.
 
 **Command succeeds:** Success message shown, student successfully edited and updated in database, change in GUI.
 
@@ -334,14 +334,6 @@ Find a student **by name** from the list of students you are overseeing in the s
 * `find John` returns `john` and `John Doe`.
 * `find Fiona Alissa` Find the student(s) with name Fiona or Alissa, and the details of the student(s) will be displayed.
 
-### Find students with pending questions: `find pq`
-Find all students with pending questions from the list of students you are overseeing in the selected course.
-
-**Format:** `find pq`
-
-**Example:**
-* `find John` returns all students with non-empty pending questions.
-* `find pq` returns all students with pending questions.
 
 ### Adding a remark for a student: `remark`
 Adds a remark to the specified student from the list of students.
@@ -360,13 +352,13 @@ Adds a remark to the specified student from the list of students.
 ### Adding a pending question for a student: `pq`
 Adds a pending question to a specified student from the list of students of a course.
 
-**Format:** `pq INDEX pq/PENDINGQUESTION`
+**Format:** `pq INDEX pq/PENDING_QUESTION`
 * Adds a pending question for the student at the specified `INDEX`.
 * The index refers to the index number shown in the displayed students list.
 * `INDEX` must be a **positive integer** 1, 2, 3, …
 
 **Example:**
-* `pq 2 pq/What is a logic gate?` Adds a pending question to the student at index 2 of the displayed student list asking the question “What is a logic gate?”. This indicates a requirement to follow-up with the student.
+* `pq 2 pq/What is a logic gate?` Adds a pending question to the student at index 2 of the displayed student ,with the question “What is a logic gate?”. This indicates a need to follow-up with the student.
 
 **Command succeeds:** Success message shown, pending question successfully added and updated in database, change in GUI.
 
@@ -375,13 +367,15 @@ Adds a pending question to a specified student from the list of students of a co
 ### Removing a remark/pending question of a student: `remove`
 Removes a remark or pending question of a specified student from the list of students.
 
-**Format:** `remove INDEX r/ pq/`
+**Format:** `remove INDEX [r/] [pq/]`
 * Removes a pending question of the student at the specified `INDEX`.
+* At least one of the optional fields must be provided.
 * The index refers to the index number shown in the displayed students list.
 * `INDEX` must be a **positive integer** 1, 2, 3, …
 
 **Example:**
 * `remove 2 pq/` Removes a pending question of the student at index 2 of the displayed students list.
+* `remove 2 r/` Removes a remark of the student at index 2 of the displayed students list.
 
 **Command succeeds:** Success message shown, remark/pending question successfully removed from student, change in GUI.
 
@@ -457,7 +451,6 @@ the GUI will open off-screen. The remedy is to delete the preferences.json file 
 | **List Student**                       | `list`                                                                                 |                              
 | **Sort Students**<br/>[coming soon]    | `sort`                                                                                 |
 | **Find Student**                       | `find KEYWORDS` e.g. `find John`                                                       |
-| **Find Pending Question**              | `find pq`                                                                              |
 | **Add Remark**                         | `remark INDEX r/REMARK`<br/>e.g. `remark 1 r/needs more help`                          |                              
 | **Add Pending Question**               | `pq INDEX r/PENDINGQUESTION`<br/>e.g. `pq 1 pq/What is a logic gate?`                  |
 | **Remove Remark/<br>Pending Question** | `remove INDEX [r/] [pq/]` e.g. `remove 2 r/`                                           |
