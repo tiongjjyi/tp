@@ -75,7 +75,7 @@ public class CommandBox extends UiPart<Region> {
      */
     @FXML
     private void clearTextBox() {
-        commandTextField.setText("");
+        commandTextField.clear();
     }
 
     /**
