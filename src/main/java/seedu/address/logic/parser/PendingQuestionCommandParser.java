@@ -14,6 +14,9 @@ import seedu.address.model.person.PendingQuestion;
  * Parses input arguments and creates a new {@code PendingQuestionCommand} object
  */
 public class PendingQuestionCommandParser implements Parser<PendingQuestionCommand> {
+
+    public static final String MESSAGE_CONSTRAINTS =
+            "Pending question should not be blank.";
     /**
      * Parses the given {@code String} of arguments in the context of the {@code PendingQuestionCommand}
      * and returns a {@code PendingQuestionCommand} object for execution.
@@ -34,6 +37,11 @@ public class PendingQuestionCommandParser implements Parser<PendingQuestionComma
 
         String pendingQuestion = argMultimap.getValue(PREFIX_PENDING_QUESTION).orElse("");
 
+        if (pendingQuestion.isEmpty()) {
+            throw new ParseException(MESSAGE_CONSTRAINTS);
+        }
+
         return new PendingQuestionCommand(index, new PendingQuestion(pendingQuestion));
     }
+
 }

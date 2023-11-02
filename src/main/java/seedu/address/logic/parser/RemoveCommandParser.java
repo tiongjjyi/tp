@@ -9,8 +9,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.RemoveCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-import java.util.List;
-
 /**
  * Parses input arguments and creates a new RemoveCommand object
  */

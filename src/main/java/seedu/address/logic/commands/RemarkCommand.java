@@ -29,8 +29,7 @@ public class RemarkCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_REMARK + "Likes to swim.";
 
-    public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to student: %1$s";
-    public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark from student: %1$s";
+    public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to student: \n%1$s";
 
     private final Index index;
     private final Remark remark;
@@ -56,22 +55,14 @@ public class RemarkCommand extends Command {
         }
 
         Student studentToEdit = lastShownList.get(index.getZeroBased());
-        Student editedPerson = new Student(studentToEdit.getName(), studentToEdit.getEmail(),
+        Student editedStudent = new Student(studentToEdit.getName(), studentToEdit.getEmail(),
                 remark, studentToEdit.getPendingQuestion(), studentToEdit.getTag());
 
-        course.setStudent(studentToEdit, editedPerson);
+        course.setStudent(studentToEdit, editedStudent);
 
-        return new CommandResult(generateSuccessMessage(editedPerson));
+        return new CommandResult(String.format(MESSAGE_ADD_REMARK_SUCCESS, Messages.format(editedStudent)));
     }
 
-    /**
-     * Generates a command execution success message based on whether the remark is added to or removed from
-     * {@code studentToEdit}.
-     */
-    private String generateSuccessMessage(Student studentToEdit) {
-        String message = !remark.value.isEmpty() ? MESSAGE_ADD_REMARK_SUCCESS : MESSAGE_DELETE_REMARK_SUCCESS;
-        return String.format(message, studentToEdit);
-    }
 
     @Override
     public boolean equals(Object other) {
