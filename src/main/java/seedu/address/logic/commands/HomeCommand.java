@@ -28,7 +28,10 @@ public class HomeCommand extends Command {
             return new CommandResult(MESSAGE_HOME_ALREADY);
         }
 
+        currStageManager.getCurrentCourse().resetFilteredStudentList();
+
         currStageManager.setHomeStage();
+        
 
         return new CommandResult(MESSAGE_SUCCESS, Stages.HOME);
     }
