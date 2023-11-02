@@ -131,6 +131,10 @@ Else, if you prefer exploring the app yourself, head to [Features](#features) be
 
 <div style="page-break-after: always"></div>
 
+### **Accessing Command History**
+CodeSphere saves all commands that you have previously entered.
+In the CLI command box, just use your 'up' and 'down' arrow keys to access any commands that you have entered before.
+
 ### **Universal Commands**
 Commands in CodeSphere are mostly only used exclusively on the [home page](#home-page-commands) or the [course page](#course-page-commands).
 However, commands in this section can be used on either page at any time.

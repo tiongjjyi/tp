@@ -1,6 +1,6 @@
 package seedu.address.ui;
 
-import java.awt.*;
+import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
 import java.util.logging.Logger;
@@ -69,7 +69,6 @@ public class MainWindow extends UiPart<Stage> {
         setWindowDefaultSize(logic.getGuiSettings());
 
         setAccelerators();
-
         helpWindow = new HelpWindow();
     }
 
@@ -236,4 +235,5 @@ public class MainWindow extends UiPart<Stage> {
             throw e;
         }
     }
+
 }
