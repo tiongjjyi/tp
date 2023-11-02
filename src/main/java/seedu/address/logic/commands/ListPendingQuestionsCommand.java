@@ -19,8 +19,7 @@ public class ListPendingQuestionsCommand extends Command {
     public static final String COMMAND_WORD = "list";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Lists all students with not-empty pending question fields "
-            + "Example: " + COMMAND_WORD + " pq";
+            + " pq: Lists all students with non-empty pending question fields";
 
     private final Predicate<Student> predicate;
 

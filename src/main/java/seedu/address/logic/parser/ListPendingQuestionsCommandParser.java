@@ -22,12 +22,13 @@ public class ListPendingQuestionsCommandParser implements Parser<ListPendingQues
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListPendingQuestionsCommand.MESSAGE_USAGE));
         }
 
         if (trimmedArgs.equalsIgnoreCase("pq")) {
             return new ListPendingQuestionsCommand(new AllPendingQuestionPredicate());
         }
-        throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HomeCommand.MESSAGE_USAGE));
+
+        throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListPendingQuestionsCommand.MESSAGE_USAGE));
     }
 }
