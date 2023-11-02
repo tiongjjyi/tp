@@ -21,7 +21,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.StageManager;
 import seedu.address.logic.parser.Stages;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.storage.CommandStorage;
 import seedu.address.storage.Storage;
 
 import static seedu.address.ui.ExternalLinks.DEVELOPERGUIDE_URL;

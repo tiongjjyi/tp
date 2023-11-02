@@ -27,8 +27,8 @@ public class StorageManagerTest {
     public void setUp() {
         JsonCourseListStorage courseListStorage = new JsonCourseListStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        CommandStorage commandStorage = new CommandStorage();
-        storageManager = new StorageManager(courseListStorage, userPrefsStorage, commandStorage);
+        InputStorage inputStorage = new InputHistory();
+        storageManager = new StorageManager(courseListStorage, userPrefsStorage, inputStorage);
     }
 
     private Path getTempFilePath(String fileName) {

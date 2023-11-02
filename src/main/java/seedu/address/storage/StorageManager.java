@@ -20,16 +20,16 @@ public class StorageManager implements Storage {
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private final CourseListStorage courseListStorage;
     private final UserPrefsStorage userPrefsStorage;
-    private final CommandStorage commandStorage;
+    private final InputStorage inputStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code CourseListStorage} and {@code UserPrefStorage}.
      */
     public StorageManager(CourseListStorage courseListStorage, UserPrefsStorage userPrefsStorage,
-                          CommandStorage commandStorage) {
+                          InputStorage inputStorage) {
         this.courseListStorage = courseListStorage;
         this.userPrefsStorage = userPrefsStorage;
-        this.commandStorage = commandStorage;
+        this.inputStorage = inputStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -83,28 +83,28 @@ public class StorageManager implements Storage {
 
     @Override
     public void addInvalidCommand(String text) {
-        commandStorage.addCommand(false, text);
+        inputStorage.addInput(false, text);
     }
 
     @Override
     public void addValidCommand(String text) {
-        commandStorage.addCommand(true, text);
+        inputStorage.addInput(true, text);
     }
 
     @Override
     public Pair<Boolean, String> getCommand() {
-        return commandStorage.getCommand();
+        return inputStorage.getInput();
     }
 
     @Override
     public Pair<Boolean, String> previousCommand() {
-        commandStorage.decrementPointer();
+        inputStorage.decrementPointer();
         return getCommand();
     }
 
     @Override
     public Pair<Boolean, String> nextCommand() {
-        commandStorage.incrementPointer();
+        inputStorage.incrementPointer();
         return getCommand();
     }
 

@@ -9,7 +9,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyCourseList;
 import seedu.address.model.course.Course;
-import seedu.address.storage.CommandStorage;
 import seedu.address.storage.Storage;
 
 /**

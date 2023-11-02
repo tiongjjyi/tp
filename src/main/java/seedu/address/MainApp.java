@@ -53,8 +53,8 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         CourseListStorage studentListStorage = new JsonCourseListStorage(userPrefs.getStudentListFilePath());
-        CommandStorage commandStorage = new CommandStorage();
-        storage = new StorageManager(studentListStorage, userPrefsStorage, commandStorage);
+        InputStorage inputStorage = new InputHistory();
+        storage = new StorageManager(studentListStorage, userPrefsStorage, inputStorage);
 
         model = initModelManager(storage, userPrefs);
 
