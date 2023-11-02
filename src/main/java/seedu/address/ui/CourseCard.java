@@ -32,6 +32,8 @@ public class CourseCard extends UiPart<Region> {
     private Label pqCount;
     @FXML
     private Label id;
+    @FXML
+    private Pane coursePQPane;
 
     /**
      * Creates a {@code StudentCode} with the given {@code Student} and index to display.
@@ -49,6 +51,9 @@ public class CourseCard extends UiPart<Region> {
         }
         classSize.setText("Students: " + course.getCourseSize());
         pqCount.setText("Pending Questions: " + course.getPendingQuestionCount());
+        if (course.getPendingQuestionCount() == 0) {
+            coursePQPane.setOpacity(0.3);
+        }
         goodTagCount.setText(Integer.toString(course.getGoodTagCount()));
         averageTagCount.setText(Integer.toString(course.getAverageTagCount()));
         poorTagCount.setText(Integer.toString(course.getPoorTagCount()));

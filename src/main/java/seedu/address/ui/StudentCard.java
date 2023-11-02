@@ -4,8 +4,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Paint;
 import seedu.address.model.person.Student;
+
+import javax.swing.text.html.ImageView;
 
 /**
  * An UI component that displays information of a {@code Student}.
@@ -38,6 +42,10 @@ public class StudentCard extends UiPart<Region> {
     private Label pendingQuestion;
     @FXML
     private FlowPane tag;
+    @FXML
+    private Pane remarkPane;
+    @FXML
+    private Pane pqPane;
 
     /**
      * Creates a {@code StudentCode} with the given {@code Student} and index to display.
@@ -47,7 +55,7 @@ public class StudentCard extends UiPart<Region> {
         this.student = student;
         id.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
-        email.setText("Email: " + student.getEmail().value);
+        email.setText(student.getEmail().value);
         String studentTag = student.getTag().ranking.toString();
         Label label = new Label(studentTag);
         switch (studentTag) {
@@ -67,6 +75,13 @@ public class StudentCard extends UiPart<Region> {
         tag.getChildren().add(label);
         remark.setText("Remark: " + student.getRemark().value);
         pendingQuestion.setText("Pending Question: " + student.getPendingQuestion().value);
+
+        if (student.getRemark().value == "") {
+            remarkPane.setOpacity(0.3);
+        }
+        if (student.getPendingQuestion().value == "") {
+            pqPane.setOpacity(0.3);
+        }
     }
 }
 
