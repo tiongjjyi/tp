@@ -11,9 +11,7 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.predicates.AllPendingQuestionPredicate;
 import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
 import seedu.address.model.person.predicates.PQContainsKeywordsPredicate;
 import seedu.address.model.person.predicates.RemarkContainsKeywordsPredicate;
@@ -26,7 +24,7 @@ public class FindCommandParser implements Parser<FindCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the
-     * FindCommand
+     * FindCommand.
      * and returns a FindCommand object for execution.
      * 
      * @throws ParseException if the user input does not conform the expected format
@@ -39,10 +37,6 @@ public class FindCommandParser implements Parser<FindCommand> {
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
-
-        // if (trimmedArgs.equals("pq")) {
-        // return new FindCommand(new AllPendingQuestionPredicate());
-        // }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_TAG, PREFIX_PENDING_QUESTION, PREFIX_REMARK);
 
@@ -68,7 +62,7 @@ public class FindCommandParser implements Parser<FindCommand> {
 
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values
-     * in the given
+     * in the given.
      * {@code ArgumentMultimap}.
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
