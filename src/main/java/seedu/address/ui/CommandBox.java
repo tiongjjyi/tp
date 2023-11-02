@@ -52,7 +52,6 @@ public class CommandBox extends UiPart<Region> {
                 } else {
                     setWhite();
                 }
-
             } else if (key.getCode() == KeyCode.DOWN) {
                 Pair<Boolean, String> nextCommand = storage.nextInput();
                 setTextBox(nextCommand.getValue());
@@ -61,6 +60,8 @@ public class CommandBox extends UiPart<Region> {
                 } else {
                     setWhite();
                 }
+            } else {
+                setWhite();
             }
         });
     }
