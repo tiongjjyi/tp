@@ -6,7 +6,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.course.CourseName;
-import seedu.address.model.course.SortCriteria;
+import seedu.address.model.person.SortCriteria;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.PendingQuestion;
@@ -72,11 +72,11 @@ public class ParserUtil {
      */
     public static Email parseEmail(String email) throws ParseException {
         requireNonNull(email);
-        String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
+        String formattedEmail = email.trim().toLowerCase();
+        if (!Email.isValidEmail(formattedEmail)) {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
-        return new Email(trimmedEmail);
+        return new Email(formattedEmail);
     }
 
     /**

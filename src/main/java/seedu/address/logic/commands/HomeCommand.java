@@ -16,15 +16,15 @@ public class HomeCommand extends Command {
             + ": returns back to the home page\n"
             + "Example: " + COMMAND_WORD;
 
-    public static final String MESSAGE_SUCCESS = "Returned to home page";
+    public static final String MESSAGE_SUCCESS = "Returned to home page.";
 
-    public static final String MESSAGE_HOME_ALREADY = "You are already at the home page";
+    public static final String MESSAGE_HOME_ALREADY = "You are already at the home page.";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        StageManager currStageManager = StageManager.getCurrent();
+        StageManager currStageManager = StageManager.getInstance();
 
-        if (StageManager.getStage() == Stages.HOME) {
+        if (currStageManager.getStage() == Stages.HOME) {
             return new CommandResult(MESSAGE_HOME_ALREADY);
         }
 

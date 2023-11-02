@@ -45,7 +45,9 @@ public class RemoveCommand extends Command {
     public static final String MESSAGE_EDIT_STUDENT_SUCCESS = "Edited student: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field of remark and "
             + "pending question to remove must be provided.";
-    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the student list.";
+    public static final String MESSAGE_DUPLICATE_STUDENT = "Possible duplicate student: "
+            + "Email already exist in the student list.\n"
+            + "Check student details again.";
 
     private final Index index;
     private final EditStudentDescriptor editStudentDescriptor;
@@ -65,7 +67,7 @@ public class RemoveCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        StageManager stageManager = StageManager.getCurrent();
+        StageManager stageManager = StageManager.getInstance();
         Course course = stageManager.getCurrentCourse();
         List<Student> lastShownList = course.getFilteredStudentList();
 

@@ -8,7 +8,7 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.parser.StageManager;
 import seedu.address.model.Model;
 import seedu.address.model.course.Course;
-import seedu.address.model.course.SortCriteria;
+import seedu.address.model.person.SortCriteria;
 
 /**
  * Finds and lists all students in the class whose name contains any of the argument keywords.
@@ -42,7 +42,7 @@ public class SortCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
 
-        StageManager stageManager = StageManager.getCurrent();
+        StageManager stageManager = StageManager.getInstance();
         Course course = stageManager.getCurrentCourse();
 
         course.sortStudentsBy(sortCriteria);

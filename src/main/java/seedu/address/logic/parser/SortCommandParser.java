@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.course.SortCriteria;
+import seedu.address.model.person.SortCriteria;
 
 /**
  * Parses input arguments and creates a new SortCommand object

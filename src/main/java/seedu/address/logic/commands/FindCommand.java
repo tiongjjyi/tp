@@ -22,7 +22,7 @@ public class FindCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all students with names containing any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " CS";
+            + "Example: " + COMMAND_WORD + " John";
 
     private final Predicate<Student> predicate;
 
@@ -39,7 +39,7 @@ public class FindCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
 
-        StageManager stageManager = StageManager.getCurrent();
+        StageManager stageManager = StageManager.getInstance();
         Course course = stageManager.getCurrentCourse();
 
         // TO DO UP FIND COMMAND

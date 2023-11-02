@@ -58,7 +58,7 @@ public class CodeSphereParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
 
-        Stages currentStage = StageManager.getStage();
+        Stages currentStage = StageManager.getInstance().getStage();
 
         switch (currentStage) {
         case HOME:
@@ -79,7 +79,7 @@ public class CodeSphereParser {
      * @throws ParseException if the user input does not conform the expected format
      */
     private Command parseHomeStageCommand(String commandWord, String arguments) throws ParseException {
-        switch (commandWord) {
+        switch (commandWord.toLowerCase()) {
         case AddCourseCommand.COMMAND_WORD:
             return new AddCourseCommandParser().parse(arguments);
 
@@ -124,7 +124,7 @@ public class CodeSphereParser {
      * @throws ParseException if the user input does not conform the expected format
      */
     private Command parseCourseStageCommand(String commandWord, String arguments) throws ParseException {
-        switch (commandWord) {
+        switch (commandWord.toLowerCase()) {
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
 

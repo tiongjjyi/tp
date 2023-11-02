@@ -88,7 +88,7 @@ public class FindCommandTest {
         validCourse0.addStudent(DANIEL);
         validCourse0.addStudent(ELLE);
         validCourse0.addStudent(FIONA);
-        StageManager stageManager = StageManager.getCurrent();
+        StageManager stageManager = StageManager.getInstance();
         stageManager.setCourseStage(validCourse0);
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
@@ -107,7 +107,7 @@ public class FindCommandTest {
         validCourse1.addStudent(DANIEL);
         validCourse1.addStudent(ELLE);
         validCourse1.addStudent(FIONA);
-        StageManager stageManager = StageManager.getCurrent();
+        StageManager stageManager = StageManager.getInstance();
         stageManager.setCourseStage(validCourse1);
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
         NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");

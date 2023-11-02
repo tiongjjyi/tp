@@ -16,7 +16,7 @@ public class ResetCourseCommand extends Command {
             + ": Resets the course list to its original state\n"
             + "Example: " + COMMAND_WORD;
 
-    public static final String MESSAGE_SUCCESS = "Reset course list to original state";
+    public static final String MESSAGE_SUCCESS = "Reset course list to original state.";
 
     @Override
     public CommandResult execute(Model model) {

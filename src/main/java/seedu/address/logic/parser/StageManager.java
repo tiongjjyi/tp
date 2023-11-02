@@ -5,49 +5,49 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.model.course.Course;
 
 /**
- * This class manages the stages of the application.
+ * This Singleton class manages the stages of the application.
  */
 public class StageManager {
-    private static StageManager current;
-    private static Stages currentStage = Stages.HOME;
-    private static Course selectedCourse = null;
+    private static StageManager singleInstance = null;
+    private Stages currentStage = Stages.HOME;
+    private Course selectedCourse = null;
 
     private StageManager() {
     }
 
-    public static StageManager getCurrent() {
-        if (current == null) {
-            current = new StageManager();
-            return current;
+    public static StageManager getInstance() {
+        if (singleInstance == null) {
+            singleInstance = new StageManager();
+            return singleInstance;
         }
-        return current;
+        return singleInstance;
     }
 
-    public static Stages getStage() {
+    public Stages getStage() {
         return currentStage;
     }
 
-    public static Course getSelectedCourse() {
+    public Course getSelectedCourse() {
         return selectedCourse;
     }
 
     public void setCourseStage(Course selectedCourse) {
         requireNonNull(selectedCourse);
-        StageManager.currentStage = Stages.COURSE;
-        StageManager.selectedCourse = selectedCourse;
+        currentStage = Stages.COURSE;
+        this.selectedCourse = selectedCourse;
     }
 
     public void setHomeStage() {
-        StageManager.currentStage = Stages.HOME;
-        StageManager.selectedCourse = null;
+        currentStage = Stages.HOME;
+        selectedCourse = null;
     }
 
     public Course getCurrentCourse() {
         return selectedCourse;
     }
 
-    public static boolean isSelectedCourseNull() {
-        return StageManager.selectedCourse == null;
+    public boolean isSelectedCourseNull() {
+        return selectedCourse == null;
     }
 
 }

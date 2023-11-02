@@ -10,6 +10,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.person.SortCriteria;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.UniqueStudentList;
 
