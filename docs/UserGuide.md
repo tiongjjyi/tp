@@ -315,12 +315,11 @@ Deletes the specified student from the list of students you are overseeing in th
 
 **Command failure:** Incorrect format results in an error message shown and the student is not removed from the database.
 
-### Listing all students: `reset`
+### Resetting student list to its original state: `reset`
 
-Shows a list of all students in the original state.
+Shows a list of all students in the original state after filtering or sorting.
 
 **Format:** `reset`
-* Used to reset the student list back to the original state after filtering or sorting.
 
 ### Sorting all students: `sort` [coming soon]
 Sorts the list of  students you are overseeing in the selected course by name or by tag.
