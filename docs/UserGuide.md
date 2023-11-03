@@ -266,13 +266,14 @@ Commands exclusive to the course page can help you:
 Adds a student to the list of students in the selected course that the user is overseeing.
 
 **Format:** `add n/NAME e/EMAIL t/ENUM_TAG`
-* `NAME`: a string that is a valid name.
-* `EMAIL`: string ending with @u.nus.edu.
-* `ENUM_TAG`: a pre-defined enumerated tag definitions GOOD, AVERAGE, POOR.
+* `NAME`: Student names are case-sensitive and should only contain alphabets and some specified special characters (, / - ‘).
+* `EMAIL`: NUS undergraduate student’s email, in the format of exxxxxxx@u.nus.edu. Alphabets in the email are case-insensitive.
+* `ENUM_TAG`: a pre-defined enumerated tag definitions GOOD, AVERAGE, POOR. Inputs for tags are case-insensitive.
 
 **Examples:**
 * `add n/Susan Tan e/e0946283@u.nus.edu t/GOOD`
-* `add n/Ben Koh e/e9739423@u.nus.edu t/AVERAGE`
+* `add n/Koh Mei Ling, Mary e/e9739423@u.nus.edu t/AVERAGE`
+* `add n/Ashley-Jane Lim e/E9739153@U.NUS.EDU t/poor`
 
 **Command succeeds:** Success message shown, student successfully added and stored in database, change in GUI.
 
@@ -284,15 +285,14 @@ Edits an existing student that the user is currently overseeing.
 
 **Format:** `edit INDEX [n/NAME] [e/EMAIL] [r/REMARK]...`
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed students list.
-* The index **must be a positive integer** 1, 2, 3, ...
-* At least one of the optional fields must be provided.
+* The index must be a positive integer (1, 2, 3, …​), and it should fall within the range of students currently displayed such that it corresponds to a valid student.
+* Optional fields are indicated by square brackets [ ], but at least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing t/ without specifying any tags after.
 
 **Examples:**
-* `edit 1 e/e0946283@u.nus.edu` Edits the course and email address of the 1st person to be CS1101S and e0946283@u.nus.edu respectively.
-* `edit 2 n/Alex Yeoh t/good` Edits the name of the 2nd person to be Alex Yeoh and change the tag to GOOD.
+* `edit 1 t/good` Edits the tag of the first student in the displayed student list to be GOOD.
+* `edit 2 n/Alex Yeoh t/average` Edits the name of the second student to be Alex Yeoh and changes the tag to AVERAGE.
 
 **Command succeeds:** Success message shown, student successfully edited and updated in database, change in GUI.
 
@@ -305,7 +305,7 @@ Deletes the specified student from the list of students you are overseeing in th
 **Format:** `delete INDEX`
 * Deletes the student at the specified `INDEX`.
 * The index refers to the index number shown in the displayed students list.
-* `INDEX` **must be a positive integer** 1, 2, 3, ...
+* The index must be a positive integer (1, 2, 3, …​), and it should fall within the range of students currently displayed such that it corresponds to a valid student.
 
 **Examples:** `delete 2` Deletes the student at index 2 of the displayed students list.
 
@@ -313,11 +313,12 @@ Deletes the specified student from the list of students you are overseeing in th
 
 **Command failure:** Incorrect format results in an error message shown and the student is not removed from the database.
 
-### Listing all students: `list`
+### Listing all students: `reset`
 
-Shows a list of all students you are overseeing in the selected course.
+Shows a list of all students in the original state.
 
-**Format:** `list`
+**Format:** `reset`
+* Used to reset the student list back to the original state after filtering or sorting.
 
 ### Sorting all students: `sort` [coming soon]
 Sorts the list of  students you are overseeing in the selected course by name or by tag.
@@ -335,6 +336,14 @@ Find a student **by name** from the list of students you are overseeing in the s
 * `find John` returns `john` and `John Doe`.
 * `find Fiona Alissa` Find the student(s) with name Fiona or Alissa, and the details of the student(s) will be displayed.
 
+### List all pending questions: `list`
+List all the students with non-empty pending question fields.
+
+**Format:** `list pq/`
+
+**Command succeeds:** Success message shown to user, no change in the database, a change in GUI is displayed.
+
+**Command failure:** Users enter the command with incorrect formatting, resulting in an error message shown to the user.
 
 ### Adding a remark for a student: `remark`
 Adds a remark to the specified student from the list of students.
