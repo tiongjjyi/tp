@@ -64,7 +64,7 @@ public class CodeSphereParser {
         switch (currentStage) {
         case HOME:
             return parseHomeStageCommand(commandWord, arguments);
-        case COURSE:
+        case SELECTED_COURSE:
             return parseCourseStageCommand(commandWord, arguments);
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

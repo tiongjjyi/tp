@@ -1,7 +1,6 @@
 package seedu.address.ui;
 
 import javafx.animation.FadeTransition;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
@@ -9,7 +8,6 @@ import javafx.util.Duration;
 import seedu.address.logic.Logic;
 import seedu.address.logic.parser.StageManager;
 import seedu.address.logic.parser.Stages;
-import seedu.address.model.course.Course;
 
 /**
  * A UI for the center display panel that displays the splash panel, course list and combined list.
@@ -59,7 +57,7 @@ public class DisplayPanel extends UiPart<Region> {
                 panelPlaceholder.setOpacity(1);
                 if (stageManager.getStage() == Stages.HOME) {
                     loadCourseListPanel();
-                } else if (stageManager.getStage() == Stages.COURSE) {
+                } else if (stageManager.getStage() == Stages.SELECTED_COURSE) {
                     loadCombinedPanel();
                 }
             });

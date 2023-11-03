@@ -1,16 +1,16 @@
 package seedu.address.ui;
 
-import java.util.ArrayList;
-
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
+import javafx.util.Pair;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.storage.Storage;
 
 /**
  * The UI component that is responsible for receiving user command inputs.
@@ -21,9 +21,7 @@ public class CommandBox extends UiPart<Region> {
     private static final String FXML = "CommandBox.fxml";
 
     private final CommandExecutor commandExecutor;
-
-    private ArrayList<String> stringArray;
-    private int arrayPointer = 0;
+    private final Storage storage;
 
     @FXML
     private TextField commandTextField;
@@ -31,10 +29,10 @@ public class CommandBox extends UiPart<Region> {
     /**
      * Creates a {@code CommandBox} with the given {@code CommandExecutor}.
      */
-    public CommandBox(CommandExecutor commandExecutor) {
+    public CommandBox(CommandExecutor commandExecutor, Storage storage) {
         super(FXML);
         this.commandExecutor = commandExecutor;
-        stringArray = new ArrayList<>();
+        this.storage = storage;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
         setHistory();
@@ -47,24 +45,23 @@ public class CommandBox extends UiPart<Region> {
     private void setHistory() {
         commandTextField.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
             if (key.getCode() == KeyCode.UP) {
-                if (!stringArray.isEmpty()) {
-                    if (arrayPointer < 0) {
-                        arrayPointer = 0;
-                    }
-                    String history = stringArray.get(arrayPointer);
-                    setTextBox(history);
-                    arrayPointer--;
+                Pair<Boolean, String> previousCommand = storage.previousInput();
+                setTextBox(previousCommand.getValue());
+                if (!previousCommand.getKey()) {
+                    setRed();
+                } else {
+                    setWhite();
                 }
             } else if (key.getCode() == KeyCode.DOWN) {
-                if (!stringArray.isEmpty()) {
-                    arrayPointer++;
-                    if (arrayPointer >= stringArray.size()) {
-                        clearTextBox();
-                    } else {
-                        String history = stringArray.get(arrayPointer);
-                        commandTextField.setText(history);
-                    }
+                Pair<Boolean, String> nextCommand = storage.nextInput();
+                setTextBox(nextCommand.getValue());
+                if (!nextCommand.getKey()) {
+                    setRed();
+                } else {
+                    setWhite();
                 }
+            } else {
+                setWhite();
             }
         });
     }
@@ -86,13 +83,30 @@ public class CommandBox extends UiPart<Region> {
     }
 
     /**
+     * Sets colour of UI text field to default (white)
+     */
+    @FXML
+    private void setWhite() {
+        commandTextField.setStyle("-fx-text-fill: white");
+    }
+
+    /**
+     * Sets colour of UI text field to red
+     */
+    @FXML
+    private void setRed() {
+        commandTextField.setStyle("-fx-text-fill: red");
+    }
+
+
+    /**
      * Handles the Enter button pressed event.
      */
     @FXML
     private void handleCommandEntered() {
+        setWhite();
         String commandText = commandTextField.getText();
-        stringArray.add(commandText);
-        arrayPointer = stringArray.size() - 1;
+
         if (commandText.equals("")) {
             return;
         }

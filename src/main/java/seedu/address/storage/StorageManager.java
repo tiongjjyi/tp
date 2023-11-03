@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import java.util.Optional;
 import java.util.logging.Logger;
 
+import javafx.util.Pair;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.model.ReadOnlyCourseList;
@@ -19,13 +20,16 @@ public class StorageManager implements Storage {
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private final CourseListStorage courseListStorage;
     private final UserPrefsStorage userPrefsStorage;
+    private final InputStorage inputStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code CourseListStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(CourseListStorage courseListStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(CourseListStorage courseListStorage, UserPrefsStorage userPrefsStorage,
+                          InputStorage inputStorage) {
         this.courseListStorage = courseListStorage;
         this.userPrefsStorage = userPrefsStorage;
+        this.inputStorage = inputStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -73,6 +77,35 @@ public class StorageManager implements Storage {
     public void saveCourseList(ReadOnlyCourseList courseList, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         courseListStorage.saveCourseList(courseList, filePath);
+    }
+
+    // ================ commandStorage methods ==============================
+
+    @Override
+    public void addInvalidInput(String text) {
+        inputStorage.addInput(false, text);
+    }
+
+    @Override
+    public void addValidInput(String text) {
+        inputStorage.addInput(true, text);
+    }
+
+    @Override
+    public Pair<Boolean, String> getInput() {
+        return inputStorage.getInput();
+    }
+
+    @Override
+    public Pair<Boolean, String> previousInput() {
+        inputStorage.decrementPointer();
+        return getInput();
+    }
+
+    @Override
+    public Pair<Boolean, String> nextInput() {
+        inputStorage.incrementPointer();
+        return getInput();
     }
 
 }

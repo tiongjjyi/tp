@@ -22,12 +22,7 @@ import seedu.address.model.ReadOnlyCourseList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.storage.CourseListStorage;
-import seedu.address.storage.JsonCourseListStorage;
-import seedu.address.storage.JsonUserPrefsStorage;
-import seedu.address.storage.Storage;
-import seedu.address.storage.StorageManager;
-import seedu.address.storage.UserPrefsStorage;
+import seedu.address.storage.*;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
@@ -58,7 +53,8 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         CourseListStorage studentListStorage = new JsonCourseListStorage(userPrefs.getStudentListFilePath());
-        storage = new StorageManager(studentListStorage, userPrefsStorage);
+        InputStorage inputStorage = new InputHistory();
+        storage = new StorageManager(studentListStorage, userPrefsStorage, inputStorage);
 
         model = initModelManager(storage, userPrefs);
 

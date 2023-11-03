@@ -33,7 +33,7 @@ public class StageManager {
 
     public void setCourseStage(Course selectedCourse) {
         requireNonNull(selectedCourse);
-        currentStage = Stages.COURSE;
+        currentStage = Stages.SELECTED_COURSE;
         this.selectedCourse = selectedCourse;
     }
 
