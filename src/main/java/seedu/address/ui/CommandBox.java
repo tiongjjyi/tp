@@ -83,28 +83,10 @@ public class CommandBox extends UiPart<Region> {
     }
 
     /**
-     * Sets colour of UI text field to default (white)
-     */
-    @FXML
-    private void setWhite() {
-        commandTextField.setStyle("-fx-text-fill: white");
-    }
-
-    /**
-     * Sets colour of UI text field to red
-     */
-    @FXML
-    private void setRed() {
-        commandTextField.setStyle("-fx-text-fill: red");
-    }
-
-
-    /**
      * Handles the Enter button pressed event.
      */
     @FXML
     private void handleCommandEntered() {
-        setWhite();
         String commandText = commandTextField.getText();
 
         if (commandText.equals("")) {
