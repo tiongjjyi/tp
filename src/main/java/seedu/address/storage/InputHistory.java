@@ -14,11 +14,7 @@ public class InputHistory implements InputStorage {
         inputPointer = -1;
     }
 
-    public void addInput(boolean isValid, String text) {
-        inputs.add(new Pair<>(isValid, text));
-        inputPointer = inputs.size();
-    }
-
+    @Override
     public Pair<Boolean, String> getInput() {
         if (inputs.isEmpty() || inputPointer == inputs.size()) {
             return new Pair<>(true, "");
@@ -26,6 +22,14 @@ public class InputHistory implements InputStorage {
         return inputs.get(inputPointer);
     }
 
+    @Override
+    public void addInput(boolean isValid, String text) {
+        inputs.add(new Pair<>(isValid, text));
+        inputPointer = inputs.size();
+    }
+
+
+    @Override
     public void decrementPointer() {
         inputPointer--;
         if (inputs.isEmpty()) {
@@ -35,6 +39,7 @@ public class InputHistory implements InputStorage {
         }
     }
 
+    @Override
     public void incrementPointer() {
         inputPointer++;
         if (inputPointer > inputs.size()) {

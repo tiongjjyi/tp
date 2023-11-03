@@ -48,20 +48,20 @@ public class CommandBox extends UiPart<Region> {
                 Pair<Boolean, String> previousCommand = storage.previousInput();
                 setTextBox(previousCommand.getValue());
                 if (!previousCommand.getKey()) {
-                    setRed();
+                    setStyleToIndicateCommandFailure();
                 } else {
-                    setWhite();
+                    setStyleToDefault();
                 }
             } else if (key.getCode() == KeyCode.DOWN) {
                 Pair<Boolean, String> nextCommand = storage.nextInput();
                 setTextBox(nextCommand.getValue());
                 if (!nextCommand.getKey()) {
-                    setRed();
+                    setStyleToIndicateCommandFailure();
                 } else {
-                    setWhite();
+                    setStyleToDefault();
                 }
             } else {
-                setWhite();
+                setStyleToDefault();
             }
         });
     }

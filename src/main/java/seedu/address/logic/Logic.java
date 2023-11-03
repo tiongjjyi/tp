@@ -32,12 +32,12 @@ public interface Logic {
     ReadOnlyCourseList getCourseList();
 
     /**
-     * Returns an unmodifiable view of the filtered list of courses
+     * Returns an unmodifiable view of the filtered list of courses.
      * */
     ObservableList<Course> getFilteredCourseList();
 
     /**
-     * Returns the Storage
+     * Returns the Storage object.
      */
     Storage getStorage();
 

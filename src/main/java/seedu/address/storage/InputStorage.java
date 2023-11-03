@@ -8,22 +8,22 @@ import javafx.util.Pair;
 public interface InputStorage {
 
     /**
-     * Returns the user input that the current pointer is pointing to as a Pair<Boolean, String>
+     * Returns the user input that the current pointer is pointing to as a Pair<Boolean, String>.
      */
     Pair<Boolean, String> getInput();
 
     /**
-     * Adds an input into storage
+     * Adds an input into storage.
      */
     void addInput(boolean isValid, String text);
 
     /**
-     * Decrements the pointer to the input
+     * Decrements the pointer to the input.
      */
     void decrementPointer();
 
     /**
-     * Increments the pointer to the input
+     * Increments the pointer to the input.
      */
     void incrementPointer();
 }
