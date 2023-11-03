@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PENDING_QUESTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
@@ -31,19 +32,20 @@ public class FindCommandParser implements Parser<FindCommand> {
      */
     public FindCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_TAG,
-                PREFIX_PENDING_QUESTION, PREFIX_REMARK);
+                PREFIX_PENDING_QUESTION, PREFIX_REMARK, PREFIX_EMAIL);
         
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_TAG, PREFIX_PENDING_QUESTION, PREFIX_REMARK)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_TAG, PREFIX_PENDING_QUESTION, PREFIX_REMARK, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_TAG, PREFIX_PENDING_QUESTION, PREFIX_REMARK);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_TAG, PREFIX_PENDING_QUESTION, PREFIX_REMARK, PREFIX_EMAIL);
 
         Optional<String> namePrefixValue = argMultimap.getValue(PREFIX_NAME);
         Optional<String> tagPrefixValue = argMultimap.getValue(PREFIX_TAG);
         Optional<String> pqPrefixValue = argMultimap.getValue(PREFIX_PENDING_QUESTION);
         Optional<String> remarkPrefixValue = argMultimap.getValue(PREFIX_REMARK);
+        Optional<String> emailPrefixValue = argMultimap.getValue(PREFIX_EMAIL);
 
         if (namePrefixValue.isPresent()) {
             return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(namePrefixValue.get())));
@@ -53,6 +55,8 @@ public class FindCommandParser implements Parser<FindCommand> {
             return new FindCommand(new PQContainsKeywordsPredicate(Arrays.asList(pqPrefixValue.get())));
         } else if (remarkPrefixValue.isPresent()) {
             return new FindCommand(new RemarkContainsKeywordsPredicate(Arrays.asList(remarkPrefixValue.get())));
+        } else if (emailPrefixValue.isPresent()){ 
+            return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(emailPrefixValue.get())));
         } else {
             // Handle the case where no prefix is present (this should not happen if you
             // check prefixes before calling parse)
