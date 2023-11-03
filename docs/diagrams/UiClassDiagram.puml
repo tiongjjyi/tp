@@ -36,6 +36,10 @@ package StageManager <<Rectangle>> {
 Class HiddenLogic #FFFFFF
 }
 
+package Storage <<Rectangle>> {
+Class HiddenLogic #FFFFFF
+}
+
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Ui
 
@@ -43,6 +47,7 @@ UiManager .up.|> Ui
 UiManager -down--> "1" MainWindow
 UiManager -right> Logic
 
+Logic -d> Storage
 
 MainWindow -up-> "0..1" HelpWindow
 
@@ -58,6 +63,7 @@ DisplayPanel *-down-> "0...1" CourseListPanel
 
 MainWindow -right> Logic
 MainWindow -right> StageManager
+MainWindow -down-> Storage
 
 CombinedPanel *-down-> "1" StudentListPanel
 CombinedPanel *-right-> "1" CourseListPanel
@@ -66,6 +72,8 @@ CourseListPanel -down-> "*" CourseCard
 CourseCard .right.> Model
 StudentListPanel -down-> "*" StudentCard
 StudentCard .right.> Model
+
+CommandBox -down> Storage
 
 'hidden arrows for organisation
 SplashPanel -[hidden]right- CombinedPanel

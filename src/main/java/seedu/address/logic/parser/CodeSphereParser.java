@@ -22,6 +22,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FindCourseCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.HomeCommand;
+import seedu.address.logic.commands.ListPendingQuestionsCommand;
 import seedu.address.logic.commands.PendingQuestionCommand;
 import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.logic.commands.RemoveCommand;
@@ -58,12 +59,12 @@ public class CodeSphereParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
 
-        Stages currentStage = StageManager.getStage();
+        Stages currentStage = StageManager.getInstance().getStage();
 
         switch (currentStage) {
         case HOME:
             return parseHomeStageCommand(commandWord, arguments);
-        case COURSE:
+        case SELECTED_COURSE:
             return parseCourseStageCommand(commandWord, arguments);
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
@@ -79,7 +80,7 @@ public class CodeSphereParser {
      * @throws ParseException if the user input does not conform the expected format
      */
     private Command parseHomeStageCommand(String commandWord, String arguments) throws ParseException {
-        switch (commandWord) {
+        switch (commandWord.toLowerCase()) {
         case AddCourseCommand.COMMAND_WORD:
             return new AddCourseCommandParser().parse(arguments);
 
@@ -124,7 +125,7 @@ public class CodeSphereParser {
      * @throws ParseException if the user input does not conform the expected format
      */
     private Command parseCourseStageCommand(String commandWord, String arguments) throws ParseException {
-        switch (commandWord) {
+        switch (commandWord.toLowerCase()) {
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
 
@@ -163,6 +164,9 @@ public class CodeSphereParser {
 
         case SortCommand.COMMAND_WORD:
             return new SortCommandParser().parse(arguments);
+
+        case ListPendingQuestionsCommand.COMMAND_WORD:
+            return new ListPendingQuestionsCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

@@ -10,6 +10,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.person.SortCriteria;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.UniqueStudentList;
 
@@ -25,7 +26,7 @@ public class Course {
     // Course data field
     private final UniqueStudentList students;
     private FilteredList<Student> filteredStudents;
-    private final SortedList<Student> sortedStudents;
+    private SortedList<Student> sortedStudents;
 
     /**
      * Every field must be present and not null.
@@ -151,7 +152,8 @@ public class Course {
      */
     public void updateSortedStudentList(Comparator<Student> comparator) {
         requireNonNull(comparator);
-        sortedStudents.setComparator(comparator);
+        this.sortedStudents = new SortedList<>(this.filteredStudents);
+        this.sortedStudents.setComparator(comparator);
         this.filteredStudents = new FilteredList<>(sortedStudents);
     }
 

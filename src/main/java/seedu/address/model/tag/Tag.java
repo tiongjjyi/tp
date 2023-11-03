@@ -33,6 +33,13 @@ public class Tag {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns string value of the enumerations.
+     */
+    public String getStringRanking() {
+        return this.ranking.toString();
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {

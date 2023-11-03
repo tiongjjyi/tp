@@ -2,15 +2,18 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
@@ -27,11 +30,67 @@
           </minWidth>
         </Label>
         <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
+            <VBox.margin>
+               <Insets top="2.0" />
+            </VBox.margin>
+            <padding>
+               <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+            </padding>
       </HBox>
-      <FlowPane fx:id="tag" />
-      <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
-      <Label fx:id="remark" styleClass="cell_small_label" text="\$remark" />
-      <Label fx:id="pendingQuestion" styleClass="cell_small_label" text="\$pendingQuestion" />
+      <FlowPane fx:id="tag">
+            <VBox.margin>
+               <Insets bottom="4.0" left="2.0" right="2.0" />
+            </VBox.margin></FlowPane>
+         <HBox prefHeight="17.0" prefWidth="208.0">
+            <children>
+               <ImageView fx:id="mail" fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../images/icons/email.png" />
+                  </image>
+               </ImageView>
+            <Label fx:id="email" styleClass="cell_small_label" text="\$email" translateX="6.0" />
+            </children>
+            <VBox.margin>
+               <Insets />
+            </VBox.margin>
+            <padding>
+               <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+            </padding>
+         </HBox>
+         <HBox>
+            <children>
+               <Pane fx:id="remarkPane">
+                  <children>
+                     <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../images/icons/notes.png" />
+                        </image>
+                     </ImageView>
+                  <Label fx:id="remark" layoutX="18.0" styleClass="cell_small_label" text="\$remark" translateX="3.0" />
+                  </children>
+               </Pane>
+            </children>
+            <padding>
+               <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+            </padding>
+         </HBox>
+         <HBox>
+            <children>
+               <Pane fx:id="pqPane">
+                  <children>
+                     <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../images/icons/question.png" />
+                        </image>
+                     </ImageView>
+                  <Label fx:id="pendingQuestion" layoutX="18.0" styleClass="cell_small_label" text="\$pendingQuestion" translateX="3.0" />
+                  </children>
+               </Pane>
+            </children>
+            <padding>
+               <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+            </padding>
+         </HBox>
     </VBox>
       <rowConstraints>
          <RowConstraints />

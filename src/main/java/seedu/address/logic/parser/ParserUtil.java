@@ -6,11 +6,11 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.course.CourseName;
-import seedu.address.model.course.SortCriteria;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.PendingQuestion;
 import seedu.address.model.person.Remark;
+import seedu.address.model.person.SortCriteria;
 import seedu.address.model.tag.StudentRank;
 import seedu.address.model.tag.Tag;
 
@@ -72,20 +72,23 @@ public class ParserUtil {
      */
     public static Email parseEmail(String email) throws ParseException {
         requireNonNull(email);
-        String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
+        String formattedEmail = email.trim().toLowerCase();
+        if (!Email.isValidEmail(formattedEmail)) {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
-        return new Email(trimmedEmail);
+        return new Email(formattedEmail);
     }
 
     /**
      * Parses a {@code String remark} into an {@code Remark}.
      * Leading and trailing whitespaces will be trimmed.
      */
-    public static Remark parseRemark(String remark) {
+    public static Remark parseRemark(String remark) throws ParseException {
         requireNonNull(remark);
         String trimmedRemark = remark.trim();
+        if (trimmedRemark.isEmpty()) {
+            throw new ParseException(RemarkCommandParser.MESSAGE_CONSTRAINTS);
+        }
         return new Remark(trimmedRemark);
     }
 
@@ -93,9 +96,12 @@ public class ParserUtil {
      * Parses a {@code String pendingQuestion} into an {@code pendingQuestion}.
      * Leading and trailing whitespaces will be trimmed.
      */
-    public static PendingQuestion parsePendingQuestion(String pendingQuestion) {
+    public static PendingQuestion parsePendingQuestion(String pendingQuestion) throws ParseException {
         requireNonNull(pendingQuestion);
         String trimmedPendingQuestion = pendingQuestion.trim();
+        if (trimmedPendingQuestion.isEmpty()) {
+            throw new ParseException(PendingQuestionCommandParser.MESSAGE_CONSTRAINTS);
+        }
         return new PendingQuestion(trimmedPendingQuestion);
     }
 

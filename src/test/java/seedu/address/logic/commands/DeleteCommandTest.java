@@ -34,7 +34,7 @@ public class DeleteCommandTest {
         Index targetIndex = Index.fromOneBased(0);
         Student targetStudent = course.getStudentList().getStudent(targetIndex);
 
-        StageManager stageManager = StageManager.getCurrent();
+        StageManager stageManager = StageManager.getInstance();
         stageManager.setCourseStage(course);
         CommandResult commandResult = new DeleteCommand(targetIndex).execute(model);
 
@@ -47,7 +47,7 @@ public class DeleteCommandTest {
     @Test
     public void execute_invalidIndex_throwsCommandException() throws CommandException {
         Course course = model.getFilteredCourseList().get(1);
-        StageManager stageManager = StageManager.getCurrent();
+        StageManager stageManager = StageManager.getInstance();
         stageManager.setCourseStage(course);
 
         Index outOfBoundIndex = Index.fromOneBased(course.getFilteredStudentList().size() + 1);

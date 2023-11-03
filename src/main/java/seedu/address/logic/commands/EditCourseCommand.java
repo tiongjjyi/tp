@@ -26,7 +26,7 @@ public class EditCourseCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the course identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the course name of the course identified "
             + "by the index number used in the displayed course list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
@@ -35,7 +35,7 @@ public class EditCourseCommand extends Command {
             + PREFIX_COURSE_NAME + "CS2103T ";
 
     public static final String MESSAGE_EDIT_COURSE_SUCCESS = "Edited course: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_NOT_EDITED = "The course name field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_COURSE = "This course already exists in the course list.";
 
     private final Index index;

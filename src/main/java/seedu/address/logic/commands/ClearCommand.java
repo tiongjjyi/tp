@@ -12,13 +12,13 @@ import seedu.address.model.course.Course;
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
-    public static final String MESSAGE_SUCCESS = "Student list has been cleared";
+    public static final String MESSAGE_SUCCESS = "Student list has been cleared.";
 
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        StageManager stageManager = StageManager.getCurrent();
+        StageManager stageManager = StageManager.getInstance();
         Course course = stageManager.getCurrentCourse();
 
         course.clearStudentList();

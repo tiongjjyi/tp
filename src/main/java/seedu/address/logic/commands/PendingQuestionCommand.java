@@ -21,22 +21,20 @@ public class PendingQuestionCommand extends Command {
 
     public static final String COMMAND_WORD = "pq";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the pending question of the person identified "
-            + "by the index number used in the last person listing. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds the pending question of the student identified "
+            + "by the index number used in the displayed student list. "
             + "Existing pending question will be overwritten by the input.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_PENDING_QUESTION + "[PENDING QUESTION]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PENDING_QUESTION + "What is the meaning of life?";
 
-    public static final String MESSAGE_ADD_PENDING_QUESTION_SUCCESS = "Added pending question to Person: %1$s";
-    public static final String MESSAGE_DELETE_PENDING_QUESTION_SUCCESS = "Removed pending question from Person: %1$s";
-
+    public static final String MESSAGE_ADD_PENDING_QUESTION_SUCCESS = "Added pending question to student: \n%1$s";
     private final Index index;
     private final PendingQuestion pendingQuestion;
 
     /**
-     * @param index of the person in the filtered person list to edit the remark
+     * @param index of the person in the filtered person list to edit the pending question
      * @param pendingQuestion of the person to be updated to
      */
     public PendingQuestionCommand(Index index, PendingQuestion pendingQuestion) {
@@ -48,7 +46,7 @@ public class PendingQuestionCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        StageManager stageManager = StageManager.getCurrent();
+        StageManager stageManager = StageManager.getInstance();
         Course course = stageManager.getCurrentCourse();
         List<Student> lastShownList = course.getFilteredStudentList();
 
@@ -57,24 +55,14 @@ public class PendingQuestionCommand extends Command {
         }
 
         Student studentToEdit = lastShownList.get(index.getZeroBased());
-        Student editedPerson = new Student(studentToEdit.getName(), studentToEdit.getEmail(),
+        Student editedStudent = new Student(studentToEdit.getName(), studentToEdit.getEmail(),
                 studentToEdit.getRemark(), pendingQuestion, studentToEdit.getTag());
 
-        course.setStudent(studentToEdit, editedPerson);
+        course.setStudent(studentToEdit, editedStudent);
 
-        return new CommandResult(generateSuccessMessage(editedPerson));
+        return new CommandResult(String.format(MESSAGE_ADD_PENDING_QUESTION_SUCCESS, Messages.format(editedStudent)));
     }
 
-    /**
-     * Generates a command execution success message based on whether
-     * the remark is added to or removed from
-     * {@code personToEdit}.
-     */
-    private String generateSuccessMessage(Student studentToEdit) {
-        String message = !pendingQuestion.value.isEmpty()
-                ? MESSAGE_ADD_PENDING_QUESTION_SUCCESS : MESSAGE_DELETE_PENDING_QUESTION_SUCCESS;
-        return String.format(message, studentToEdit);
-    }
     @Override
     public boolean equals(Object other) {
         if (other == this) {

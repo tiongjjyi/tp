@@ -79,7 +79,7 @@ public class PendingQuestionCommandTest {
     @Test
     public void execute_addPendingQuestionUnfilteredList_success() {
         Course validCourse1 = activateStudent1().get(1);
-        StageManager stageManager = StageManager.getCurrent();
+        StageManager stageManager = StageManager.getInstance();
         stageManager.setCourseStage(validCourse1);
 
         Student firstPerson = validCourse1.getStudentList().getStudent(INDEX_FIRST_STUDENT);
@@ -99,7 +99,7 @@ public class PendingQuestionCommandTest {
     @Test
     public void execute_deletePendingQuestionUnfilteredList_success() {
         Course validCourse2 = activateStudent2().get(2);
-        StageManager stageManager = StageManager.getCurrent();
+        StageManager stageManager = StageManager.getInstance();
         stageManager.setCourseStage(validCourse2);
         Student firstPerson = validCourse2.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
         Student editedPerson = new StudentBuilder(firstPerson).withPendingQuestion("").build();
@@ -119,7 +119,7 @@ public class PendingQuestionCommandTest {
     @Test
     public void execute_filteredList_success() {
         Course validCourse3 = activateStudent3().get(3);
-        StageManager stageManager = StageManager.getCurrent();
+        StageManager stageManager = StageManager.getInstance();
         stageManager.setCourseStage(validCourse3);
         showStudentAtIndex(validCourse3, INDEX_FIRST_STUDENT);
         Student firstPerson = validCourse3.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
@@ -142,7 +142,7 @@ public class PendingQuestionCommandTest {
     @Test
     public void execute_invalidPersonIndexUnfilteredList_failure() {
         Course validCourse0 = activateStudent0().get(0);
-        StageManager stageManager = StageManager.getCurrent();
+        StageManager stageManager = StageManager.getInstance();
         stageManager.setCourseStage(validCourse0);
         Index outOfBoundIndex = Index.fromOneBased(validCourse0.getFilteredStudentList().size() + 1);
         PendingQuestionCommand pendingQuestionCommand = new PendingQuestionCommand(
@@ -158,7 +158,7 @@ public class PendingQuestionCommandTest {
     @Test
     public void execute_invalidPersonIndexFilteredList_failure() {
         Course validCourse4 = activateStudent4().get(4);
-        StageManager stageManager = StageManager.getCurrent();
+        StageManager stageManager = StageManager.getInstance();
         stageManager.setCourseStage(validCourse4);
         showStudentAtIndex(validCourse4, INDEX_FIRST_STUDENT);
         Index outOfBoundIndex = INDEX_SECOND_STUDENT;

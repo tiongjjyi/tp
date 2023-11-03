@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_COURSE_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PENDING_QUESTION;
@@ -43,14 +42,17 @@ public class EditCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_REMARK + "REMARK] "
             + "[" + PREFIX_PENDING_QUESTION + "PENDING QUESTION] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_COURSE_NAME + "CS2103T "
-            + PREFIX_EMAIL + "johndoe@u.nus.edu";
+            + PREFIX_EMAIL + "e9876543@u.nus.edu "
+            + PREFIX_TAG + "average";
 
     public static final String MESSAGE_EDIT_STUDENT_SUCCESS = "Edited student: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the student list.";
+    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided."
+            + "\nExample: edit 1 name/John";
+    public static final String MESSAGE_DUPLICATE_STUDENT = "Possible duplicate student: "
+            + "Email already exist in the student list.\n"
+            + "Check student details again.";
 
     private final Index index;
     private final EditStudentDescriptor editStudentDescriptor;
@@ -70,7 +72,7 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        StageManager stageManager = StageManager.getCurrent();
+        StageManager stageManager = StageManager.getInstance();
         Course course = stageManager.getCurrentCourse();
         List<Student> lastShownList = course.getFilteredStudentList();
 
@@ -189,7 +191,7 @@ public class EditCommand extends Command {
         }
 
         public void setPendingQuestion(PendingQuestion pq) {
-            this.pendingQuestion = pendingQuestion;
+            this.pendingQuestion = pq;
         }
 
         public Optional<PendingQuestion> getPendingQuestion() {

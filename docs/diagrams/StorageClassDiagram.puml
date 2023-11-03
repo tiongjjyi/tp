@@ -8,7 +8,7 @@ Class HiddenOutside #FFFFFF
 
 package Storage as StoragePackage {
 
-package "UserPrefs Storage" #F4F6F6{
+package "UserPrefs Storage" #F4F6F6 {
 Class "<<interface>>\nUserPrefsStorage" as UserPrefsStorage
 Class JsonUserPrefsStorage
 }
@@ -16,7 +16,7 @@ Class JsonUserPrefsStorage
 Class "<<interface>>\nStorage" as Storage
 Class StorageManager
 
-package "CourseList Storage" #F4F6F6{
+package "CourseList Storage" #F4F6F6 {
 Class "<<interface>>\nCourseListStorage" as CourseListStorage
 Class JsonCourseListStorage
 Class JsonSerializableCourseList
@@ -25,12 +25,18 @@ Class JsonAdaptedStudent
 Class JsonAdaptedTag
 }
 
+package "Input Storage" #F4F6F6 {
+Class "<<interface>>\nInputStorage" as InputStorage
+Class InputHistory
+}
+
 }
 
 HiddenOutside ..> Storage
 StorageManager .up.|> Storage
 StorageManager -up-> "1" UserPrefsStorage
 StorageManager -up-> "1" CourseListStorage
+StorageManager --down-> "1" InputStorage
 
 Storage -left-|> UserPrefsStorage
 Storage -right-|> CourseListStorage
@@ -41,5 +47,7 @@ JsonCourseListStorage ..> JsonSerializableCourseList
 JsonSerializableCourseList --> "*" JsonAdaptedCourse
 JsonAdaptedCourse --> "*" JsonAdaptedStudent
 JsonAdaptedStudent --> "*" JsonAdaptedTag
+
+InputHistory .up.> InputStorage
 
 @enduml

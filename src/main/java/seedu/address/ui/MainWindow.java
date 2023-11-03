@@ -1,6 +1,6 @@
 package seedu.address.ui;
 
-import java.awt.*;
+import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
 import java.util.logging.Logger;
@@ -21,6 +21,11 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.StageManager;
 import seedu.address.logic.parser.Stages;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.storage.Storage;
+
+import static seedu.address.ui.ExternalLinks.DEVELOPERGUIDE_URL;
+import static seedu.address.ui.ExternalLinks.GITHUB_URL;
+import static seedu.address.ui.ExternalLinks.USERGUIDE_URL;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -34,6 +39,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private Stage primaryStage;
     private Logic logic;
+    private Storage storage;
 
     // Independent Ui parts residing in this Ui container
     private DisplayPanel displayPanel;
@@ -44,7 +50,11 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane commandBoxPlaceholder;
 
     @FXML
-    private MenuItem helpMenuItem;
+    private MenuItem UGMenuItem;
+    @FXML
+    private MenuItem DGMenuItem;
+    @FXML
+    private MenuItem GHMenuItem;
 
     @FXML
     private StackPane panelPlaceholder;
@@ -64,12 +74,12 @@ public class MainWindow extends UiPart<Stage> {
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
+        this.storage = logic.getStorage();
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
 
         setAccelerators();
-
         helpWindow = new HelpWindow();
     }
 
@@ -78,7 +88,9 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private void setAccelerators() {
-        setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
+        setAccelerator(UGMenuItem, KeyCombination.valueOf("F1"));
+        setAccelerator(DGMenuItem, KeyCombination.valueOf("F2"));
+        setAccelerator(GHMenuItem, KeyCombination.valueOf("F3"));
     }
 
     /**
@@ -116,10 +128,9 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() throws InterruptedException {
 
-        displayPanel = new DisplayPanel();
+        displayPanel = new DisplayPanel(logic);
         panelPlaceholder.getChildren().add(displayPanel.getRoot());
-
-        displayPanel.loadStartSequence(logic.getFilteredCourseList());
+        displayPanel.loadStartSequence();
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -127,7 +138,7 @@ public class MainWindow extends UiPart<Stage> {
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getCourseListFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        CommandBox commandBox = new CommandBox(this::executeCommand);
+        CommandBox commandBox = new CommandBox(this::executeCommand, storage);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
@@ -153,7 +164,6 @@ public class MainWindow extends UiPart<Stage> {
         } else {
             helpWindow.focus();
         }
-
     }
 
     /**
@@ -162,7 +172,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     public void openUG() {
         try {
-            Desktop.getDesktop().browse(URI.create(HelpWindow.USERGUIDE_URL));
+            Desktop.getDesktop().browse(URI.create(USERGUIDE_URL));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -174,7 +184,19 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     public void openDG() {
         try {
-            Desktop.getDesktop().browse(URI.create(HelpWindow.DEVELOPERGUIDE_URL));
+            Desktop.getDesktop().browse(URI.create(DEVELOPERGUIDE_URL));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Opens the Team's GitHub Repository in the default browser
+     */
+    @FXML
+    public void openGH() {
+        try {
+            Desktop.getDesktop().browse(URI.create(GITHUB_URL));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -208,7 +230,6 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
@@ -217,21 +238,24 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            Stages current = StageManager.getStage();
-            if (current == Stages.COURSE) {
-                displayPanel.loadCombinedPanel(logic.getFilteredCourseList(),
-                        StageManager.getSelectedCourse().getFilteredStudentList());
+            StageManager stageManager = StageManager.getInstance();
 
+            Stages current = stageManager.getStage();
+            if (current == Stages.SELECTED_COURSE) {
+                displayPanel.loadCombinedPanel();
             } else if (current == Stages.HOME) {
-                displayPanel.loadCourseListPanel(logic.getFilteredCourseList());
-
+                displayPanel.loadCourseListPanel();
             }
 
+            storage.addValidInput(commandText);
             return commandResult;
+
         } catch (CommandException | ParseException e) {
             logger.info("An error occurred while executing command: " + commandText);
+            storage.addInvalidInput(commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
     }
+
 }

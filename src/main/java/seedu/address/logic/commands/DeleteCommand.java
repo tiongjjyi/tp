@@ -11,6 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.course.Course;
 import seedu.address.model.person.Student;
 
+
 import java.util.List;
 
 /**
@@ -25,7 +26,7 @@ public class DeleteCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_STUDENT_SUCCESS = "Deleted Student: %1$s";
+    public static final String MESSAGE_DELETE_STUDENT_SUCCESS = "Deleted student:\n%1$s";
 
     private final Index index;
 
@@ -36,7 +37,7 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        StageManager stageManager = StageManager.getCurrent();
+        StageManager stageManager = StageManager.getInstance();
         Course course = stageManager.getCurrentCourse();
         List<Student> lastShownList = course.getFilteredStudentList();
 

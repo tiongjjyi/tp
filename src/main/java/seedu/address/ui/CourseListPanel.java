@@ -44,10 +44,13 @@ public class CourseListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                if (StageManager.isSelectedCourseNull() || StageManager.getSelectedCourse().equals(course)) {
-                    setGraphic(new CourseCard(course, getIndex() + 1, false).getRoot());
-                } else if (!StageManager.getSelectedCourse().equals(course)) {
-                    setGraphic(new CourseCard(course, getIndex() + 1, true).getRoot());
+                StageManager stageManager = StageManager.getInstance();
+                if (stageManager.isSelectedCourseNull()) {
+                    setGraphic(new CourseCard(course, getIndex() + 1, false, false).getRoot());
+                } else if (stageManager.getSelectedCourse().equals(course)) {
+                    setGraphic(new CourseCard(course, getIndex() + 1, false, true).getRoot());
+                } else if (!stageManager.getSelectedCourse().equals(course)) {
+                    setGraphic(new CourseCard(course, getIndex() + 1, true, false).getRoot());
                 }
             }
         }
