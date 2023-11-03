@@ -18,7 +18,9 @@ public class AddCourseCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a course to the course list. "
             + "Parameters: "
-            + PREFIX_COURSE_NAME + "COURSE_NAME ";
+            + PREFIX_COURSE_NAME + "COURSE_NAME \n"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_COURSE_NAME + "CS2103T";
 
 
     public static final String MESSAGE_SUCCESS = "New course added: %1$s";
