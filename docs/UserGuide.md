@@ -13,9 +13,10 @@ CodeSphere is a **desktop contact management app, optimised for use via a Comman
 2. [**Quick Start**](#quick-start)
 3. [**Tutorial for Beginners**](#tutorial-for-beginners)
 4. [**Features**](#features)
+    * [**Accessing Input History**](#accessing-input-history)
     * [**Universal Commands**](#universal-commands)
-        * [`help` Viewing help](#viewing-help--help)
-        * [`exit` Exiting the program](#exiting-the-program--exit)
+         * [`help` Viewing help](#viewing-help--help)
+         * [`exit` Exiting the program](#exiting-the-program--exit)
     * [**Home Page Commands**](#home-page-commands)
         * [`add` Adding a new course](#adding-a-course--add)
         * [`edit` Editing the details of a course](#editing-a-course--edit)
@@ -37,12 +38,12 @@ CodeSphere is a **desktop contact management app, optimised for use via a Comman
     * [**Miscellaneous**](#miscellaneous)
         * [Saving the data](#saving-the-data)
         * [Editing the data file](#editing-the-data-file)
-5. [**FAQ**](#faq)
-6. [**Known Issues**](#known-issues)
-7. [**Command summary**](#command-summary)
+6. [**FAQ**](#faq)
+7. [**Known Issues**](#known-issues)
+8. [**Command summary**](#command-summary)
     * [**Home Page**](#home-page)
     * [**Course Page**](#course-page)
-8. [**Glossary**](#glossary)
+9. [**Glossary**](#glossary)
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always"></div>
@@ -131,11 +132,12 @@ Else, if you prefer exploring the app yourself, head to [Features](#features) be
 
 <div style="page-break-after: always"></div>
 
+---
 ### **Accessing Input History**
 CodeSphere saves all inputs that you have previously entered.
 In the CLI command box, just use your 'up' and 'down' arrow keys to access any inputs that you have entered before.
 > *For your information*: Inputs that were invalid will be shown in red.
-
+---
 ### **Universal Commands**
 Commands in CodeSphere are mostly only used exclusively on the [home page](#home-page-commands) or the [course page](#course-page-commands).
 However, commands in this section can be used on either page at any time.
