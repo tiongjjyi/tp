@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PENDING_QUESTION;
 
 import java.util.function.Predicate;
 
@@ -19,7 +20,11 @@ public class ListPendingQuestionsCommand extends Command {
     public static final String COMMAND_WORD = "list";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + " pq: Lists all students with non-empty pending question fields";
+            + ": Lists all students with non-empty pending question fields\n"
+            + "Parameters: " + PREFIX_PENDING_QUESTION + "\n"
+            + "Usage: list pq/";
+
+
 
     private final Predicate<Student> predicate;
 
