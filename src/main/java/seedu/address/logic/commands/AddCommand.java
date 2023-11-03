@@ -52,6 +52,7 @@ public class AddCommand extends Command {
 
         StageManager stageManager = StageManager.getInstance();
         Course course = stageManager.getCurrentCourse();
+        course.resetFilteredStudentList();
 
         try {
             course.addStudent(toAdd);
