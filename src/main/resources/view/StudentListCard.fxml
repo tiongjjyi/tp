@@ -48,7 +48,7 @@
                      <Image url="@../images/icons/email.png" />
                   </image>
                </ImageView>
-            <Label fx:id="email" styleClass="cell_small_label" text="\$email" translateX="3.0" />
+            <Label fx:id="email" styleClass="cell_small_label" text="\$email" translateX="6.0" />
             </children>
             <VBox.margin>
                <Insets />

@@ -38,7 +38,7 @@
                      <Image url="@../images/icons/person.png" />
                   </image>
                </ImageView>
-            <Label fx:id="classSize" styleClass="cell_small_label" text="\$classSize" translateX="3.0">
+            <Label fx:id="classSize" styleClass="cell_small_label" text="\$classSize" translateX="5.0">
                   <font>
                      <Font name="System Italic" size="12.0" />
                   </font>
@@ -58,7 +58,7 @@
                         </image>
                      </ImageView>
             
-                  <Label fx:id="pqCount" layoutX="18.0" styleClass="cell_small_label" text="\$pqCount" translateX="3.0" />
+                  <Label fx:id="pqCount" layoutX="18.0" styleClass="cell_small_label" text="\$pqCount" translateX="2.0" />
                   </children>
                </Pane>
             </children>
