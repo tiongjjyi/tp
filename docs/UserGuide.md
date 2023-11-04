@@ -24,6 +24,7 @@ It is an app targeted at helping Teaching Assistants (TAs) of the NUS School of 
         * [`delete` Deleting a course](#deleting-a-course--delete)
         * [`clear` Clearing all courses](#clearing-all-courses--clear)
         * [`select` Selecting a course](#selecting-a-course--select)
+        * [`find` Finding a course](#finding-a-course--find)
     * [**Course Page Commands**](#course-page-commands)
         * [`add` Adding a student](#adding-a-student--add)
         * [`edit` Editing the details of a student](#editing-a-student--edit)
@@ -31,7 +32,7 @@ It is an app targeted at helping Teaching Assistants (TAs) of the NUS School of 
         * [`clear` Clearing all students](#clearing-all-students--clear)
         * [`reset` Resetting student list to its original state](#resetting-student-list-to-its-original-state--reset)
         * [`sort` Sorting all students](#sorting-all-students--sort)
-        * [`find` Finding a student](#finding-a-student--find)
+        * [`find` Finding a student and keywords for each student](#finding-a-student--find)
         * [`list` Finding students with pending questions](#list-all-pending-questions--list)
         * [`remark` Adding a remark for a student](#adding-a-remark-for-a-student--remark)
         * [`pq` Adding a pending question for a student](#adding-a-pending-question-for-a-student--pq)
@@ -175,6 +176,8 @@ Commands exclusive to the home page can help you:
 * `edit` the details of existing courses
 * `delete` existing courses
 * `clear` all existing courses
+* `find` finding a course
+
 
 The `select` command brings you to the Course page of the selected course.
 
@@ -243,6 +246,16 @@ Selects the specified course from the list of courses.
 **Command succeeds:** Success message shown, course successfully selected,resulting in a change in GUI.
 
 **Command failure:** Incorrect format/index results in an error message shown and the course is not selected.
+
+**Format:** `find KEYWORD`
+* The search is case-insensitive. e.g `cs` will match any course name with `CS` containted.
+* As long as the keyword is containted the course name, the course will be filtered out and displayed.
+
+**Example:** `find CS` Displays all courses with CS inside their name.
+
+**Command succeeds:** Success message shown, courses successfully filtered, resulting in a change in GUI.
+
+**Command failure:** Incorrect format results in an error message shown and the course is not filtered.
 
 [_Back to Top_](#table-of-contents)
 
@@ -462,6 +475,7 @@ the GUI will open off-screen. The remedy is to delete the preferences.json file 
 | **Delete Course**     | `delete INDEX` e.g. `delete 1`                             |
 | **Clear All Courses** | `clear`                                                    |                              
 | **Select Course**     | `select INDEX` e.g. `select 1`                             |
+| **Find Course**       | `find KEYWORD` e.g. `find CS`                              |
 | **Exit**              | `exit`                                                     |
 
 [_Back to Top_](#table-of-contents)
