@@ -8,23 +8,26 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showStudentAtIndex;
+import static seedu.address.testutil.TypicalCourses.getTypicalCourseList;
+
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.StageManager;
 import seedu.address.model.CourseList;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.course.Course;
+import seedu.address.testutil.CourseBuilder;
 
 public class HomeCommandTest {
     private Model model = new ModelManager(getTypicalCourseList(), new UserPrefs());
 
     @Test
-    public void execute_stageChangedToHome_success() {
+    public void execute_stageChangedToHome_success() throws CommandException {
         HomeCommand homeCommand = new HomeCommand();
         String expectedMessage = HomeCommand.MESSAGE_SUCCESS;
-        
         Course validCourse = new CourseBuilder().build();
         StageManager.getInstance().setCourseStage(validCourse);
 
@@ -34,7 +37,7 @@ public class HomeCommandTest {
     }
 
     @Test
-    public void execute_stageAlreadyAtHome_success() {
+    public void execute_stageAlreadyAtHome_success() throws CommandException {
         Model expectedModel = new ModelManager(new CourseList(model.getCourseList()), new UserPrefs());
         HomeCommand homeCommand = new HomeCommand();
         String expectedMessage = HomeCommand.MESSAGE_HOME_ALREADY;

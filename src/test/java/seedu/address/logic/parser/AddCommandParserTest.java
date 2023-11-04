@@ -32,6 +32,7 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Student;
+import seedu.address.model.tag.StudentRank;
 import seedu.address.testutil.StudentBuilder;
 
 public class AddCommandParserTest {
@@ -39,7 +40,7 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Student expectedStudent = new StudentBuilder(BOB).withTags(VALID_TAG_GOOD).build();
+        Student expectedStudent = new StudentBuilder(BOB).withTag(VALID_TAG_GOOD).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + EMAIL_DESC_BOB
@@ -47,7 +48,7 @@ public class AddCommandParserTest {
 
 
         // multiple tags - all accepted
-        Student expectedStudentMultipleTags = new StudentBuilder(BOB).withTags(VALID_TAG_POOR, VALID_TAG_AVERAGE)
+        Student expectedStudentMultipleTags = new StudentBuilder(BOB).withTag(VALID_TAG_POOR)
                 .build();
         assertParseSuccess(parser,
                 NAME_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_POOR + TAG_DESC_AVERAGE,
@@ -106,7 +107,7 @@ public class AddCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Student expectedStudent = new StudentBuilder(AMY).withTags().build();
+        Student expectedStudent = new StudentBuilder(AMY).withTag(StudentRank.GOOD).build();
         assertParseSuccess(parser, NAME_DESC_AMY + EMAIL_DESC_AMY,
                 new AddCommand(expectedStudent));
     }

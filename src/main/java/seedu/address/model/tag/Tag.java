@@ -40,6 +40,13 @@ public class Tag {
         return this.ranking.toString();
     }
 
+    /**
+     * Returns value of the enumerations.
+     */
+    public StudentRank getRanking() {
+        return this.ranking;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {

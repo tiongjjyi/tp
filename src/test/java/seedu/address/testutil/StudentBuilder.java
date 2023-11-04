@@ -20,12 +20,13 @@ public class StudentBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_REMARK = "Likes skiing.";
+    public static final StudentRank DEFAULT_STUDENT_RANK = StudentRank.GOOD;
     public static final String DEFAULT_PENDING_QUESTION = "What is the meaning of life?";
 
     private Name name;
     private Email email;
     private Remark remark;
-    private Set<Tag> tags;
+    private Tag tag;
     private PendingQuestion pendingQuestion;
 
     /**
@@ -36,7 +37,7 @@ public class StudentBuilder {
         email = new Email(DEFAULT_EMAIL);
         remark = new Remark("");
         pendingQuestion = new PendingQuestion(DEFAULT_PENDING_QUESTION);
-        tags = new HashSet<>();
+        tag = new Tag(DEFAULT_STUDENT_RANK);
     }
 
     /**
@@ -47,7 +48,7 @@ public class StudentBuilder {
         email = personToCopy.getEmail();
         remark = personToCopy.getRemark();
         pendingQuestion = personToCopy.getPendingQuestion();
-        tags = new HashSet<>(personToCopy.getTags());
+        tag = personToCopy.getTag();
     }
 
     /**
@@ -61,8 +62,8 @@ public class StudentBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
-    public StudentBuilder withTags(StudentRank ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+    public StudentBuilder withTag(StudentRank studentRank) {
+        this.tag = new Tag(studentRank);
         return this;
     }
 
@@ -91,6 +92,6 @@ public class StudentBuilder {
     }
 
     public Student build() {
-        return new Student(name, email, remark, pendingQuestion, tags);
+        return new Student(name, email, remark, pendingQuestion, tag);
     }
 }

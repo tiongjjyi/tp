@@ -41,7 +41,7 @@ public class UniqueStudentListTest {
     @Test
     public void contains_studentWithSameIdentityFieldsInList_returnsTrue() {
         uniqueStudentList.add(ALICE);
-        Student editedAlice = new StudentBuilder(ALICE).withTags(VALID_TAG_GOOD)
+        Student editedAlice = new StudentBuilder(ALICE).withTag(VALID_TAG_GOOD)
                 .build();
         assertTrue(uniqueStudentList.contains(editedAlice));
     }
@@ -84,7 +84,7 @@ public class UniqueStudentListTest {
     @Test
     public void setStudent_editedStudentHasSameIdentity_success() {
         uniqueStudentList.add(ALICE);
-        Student editedAlice = new StudentBuilder(ALICE).withTags(VALID_TAG_GOOD)
+        Student editedAlice = new StudentBuilder(ALICE).withTag(VALID_TAG_GOOD)
                 .build();
         uniqueStudentList.setStudent(ALICE, editedAlice);
         UniqueStudentList expectedUniqueStudentList = new UniqueStudentList();

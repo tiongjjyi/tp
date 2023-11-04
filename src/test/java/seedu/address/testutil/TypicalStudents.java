@@ -24,14 +24,14 @@ public class TypicalStudents {
 
     public static final Student ALICE = new StudentBuilder().withName("Alice Pauline")
             .withEmail("alice@example.com").withRemark("She likes aardvarks.")
-            .withTags(VALID_TAG_AVERAGE).build();
+            .withTag(VALID_TAG_AVERAGE).build();
     public static final Student BENSON = new StudentBuilder().withName("Benson Meier")
             .withEmail("johnd@example.com").withRemark("He can't take beer!")
-            .withTags(VALID_TAG_GOOD).build();
+            .withTag(VALID_TAG_GOOD).build();
     public static final Student CARL = new StudentBuilder().withName("Carl Kurz")
             .withEmail("heinz@example.com").build();
     public static final Student DANIEL = new StudentBuilder().withName("Daniel Meier")
-            .withEmail("cornelia@example.com").withTags(VALID_TAG_GOOD).build();
+            .withEmail("cornelia@example.com").withTag(VALID_TAG_GOOD).build();
     public static final Student ELLE = new StudentBuilder().withName("Elle Meyer")
             .withEmail("werner@example.com").build();
     public static final Student FIONA = new StudentBuilder().withName("Fiona Kunz")
@@ -47,9 +47,9 @@ public class TypicalStudents {
 
     // Manually added - Student's details found in {@code CommandTestUtil}
     public static final Student AMY = new StudentBuilder().withName(VALID_NAME_AMY)
-            .withEmail(VALID_EMAIL_AMY).withTags(VALID_TAG_AVERAGE).build();
+            .withEmail(VALID_EMAIL_AMY).withTag(VALID_TAG_AVERAGE).build();
     public static final Student BOB = new StudentBuilder().withName(VALID_NAME_BOB)
-            .withEmail(VALID_EMAIL_BOB).withTags(VALID_TAG_POOR)
+            .withEmail(VALID_EMAIL_BOB).withTag(VALID_TAG_POOR)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
