@@ -149,24 +149,18 @@ public class ParserUtilTest {
 
     @Test
     public void parseTags_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseTags(null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTag(null));
     }
 
     @Test
     public void parseTags_collectionWithInvalidTags_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTags(
-                Arrays.asList(VALID_TAG_1.toString(), INVALID_TAG.toString())));
-    }
-
-    @Test
-    public void parseTags_emptyCollection_returnsEmptySet() throws Exception {
-        assertTrue(ParserUtil.parseTags(Collections.emptyList()).isEmpty());
+        assertThrows(ParseException.class, () -> ParserUtil.parseTag(INVALID_TAG.toString()));
     }
 
     @Test
     public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
-        Set<Tag> actualTagSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1.toString(), VALID_TAG_2.toString()));
-        Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
+        Tag actualTagSet = ParserUtil.parseTag(VALID_TAG_1.toString());
+        Tag expectedTagSet = new Tag(VALID_TAG_1);
 
         assertEquals(expectedTagSet, actualTagSet);
     }

@@ -93,7 +93,7 @@ public class EditCommandParserTest {
                 + EMAIL_DESC_AMY + NAME_DESC_AMY + TAG_DESC_AVERAGE;
 
         EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withEmail(VALID_EMAIL_AMY).withTags(VALID_TAG_AVERAGE, VALID_TAG_AVERAGE).build();
+                .withEmail(VALID_EMAIL_AMY).withTags(VALID_TAG_AVERAGE).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -143,7 +143,7 @@ public class EditCommandParserTest {
         String userInput = targetIndex.getOneBased() + INVALID_COURSE_NAME_DESC;
 
         // invalid followed by valid
-        userInput = targetIndex.getOneBased()+ INVALID_COURSE_NAME_DESC;
+        userInput = targetIndex.getOneBased() + INVALID_COURSE_NAME_DESC;
 
         assertParseFailure(parser, userInput, Messages.getErrorMessageForDuplicatePrefixes());
 
@@ -161,16 +161,5 @@ public class EditCommandParserTest {
 
         assertParseFailure(parser, userInput,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_EMAIL));
-    }
-
-    @Test
-    public void parse_resetTags_success() {
-        Index targetIndex = INDEX_THIRD_STUDENT;
-        String userInput = targetIndex.getOneBased() + TAG_EMPTY;
-
-        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withTags().build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
-
-        assertParseSuccess(parser, userInput, expectedCommand);
     }
 }

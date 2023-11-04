@@ -27,7 +27,7 @@ public class FindCommandParser implements Parser<FindCommand> {
      * Parses the given {@code String} of arguments in the context of the
      * FindCommand.
      * and returns a FindCommand object for execution.
-     * 
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindCommand parse(String args) throws ParseException {
@@ -55,7 +55,7 @@ public class FindCommandParser implements Parser<FindCommand> {
             return new FindCommand(new PQContainsKeywordsPredicate(Arrays.asList(pqPrefixValue.get())));
         } else if (remarkPrefixValue.isPresent()) {
             return new FindCommand(new RemarkContainsKeywordsPredicate(Arrays.asList(remarkPrefixValue.get())));
-        } else if (emailPrefixValue.isPresent()){ 
+        } else if (emailPrefixValue.isPresent()){
             return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(emailPrefixValue.get())));
         } else {
             // Handle the case where no prefix is present (this should not happen if you

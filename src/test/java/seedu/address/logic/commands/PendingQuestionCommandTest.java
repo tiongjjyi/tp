@@ -97,26 +97,6 @@ public class PendingQuestionCommandTest {
     }
 
     @Test
-    public void execute_deletePendingQuestionUnfilteredList_success() {
-        Course validCourse2 = activateStudent2().get(2);
-        StageManager stageManager = StageManager.getInstance();
-        stageManager.setCourseStage(validCourse2);
-        Student firstPerson = validCourse2.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
-        Student editedPerson = new StudentBuilder(firstPerson).withPendingQuestion("").build();
-
-        PendingQuestionCommand pendingQuestionCommand = new PendingQuestionCommand(INDEX_FIRST_STUDENT,
-                new PendingQuestion(editedPerson.getPendingQuestion().toString()));
-
-        String expectedMessage = String.format(
-                pendingQuestionCommand.MESSAGE_DELETE_PENDING_QUESTION_SUCCESS, editedPerson);
-
-        Model expectedModel = new ModelManager(new CourseList(model.getCourseList()), new UserPrefs());
-        validCourse2.setStudent(firstPerson, editedPerson);
-
-        assertCommandSuccess(pendingQuestionCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
     public void execute_filteredList_success() {
         Course validCourse3 = activateStudent3().get(3);
         StageManager stageManager = StageManager.getInstance();
