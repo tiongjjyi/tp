@@ -16,7 +16,7 @@ import seedu.address.model.course.Course;
 import seedu.address.model.person.Student;
 
 /**
- * Finds and lists all students in the class whose name contains any of the argument keywords.
+ * Finds and lists all students based on specified criteria.
  * Keyword matching is case-insensitive.
  */
 public class FindCommand extends Command {
@@ -37,7 +37,7 @@ public class FindCommand extends Command {
     /**
      * Constructs a FindCommand with the specified predicate for filtering.
      *
-     * @param predicate A predicate that filters entities based on their names.
+     * @param predicate A predicate that filters entities based on the specified criteria.
      */
     public FindCommand(Predicate <Student> predicate) {
         this.predicate = predicate;

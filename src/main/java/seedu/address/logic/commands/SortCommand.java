@@ -11,8 +11,8 @@ import seedu.address.model.course.Course;
 import seedu.address.model.person.SortCriteria;
 
 /**
- * Finds and lists all students in the class whose name contains any of the argument keywords.
- * Keyword matching is case-insensitive.
+ * Sorts the student list based on specified sort criteria.
+ * Sort criteria can only be tag or name.
  */
 public class SortCommand extends Command {
 
@@ -32,7 +32,7 @@ public class SortCommand extends Command {
     /**
      * Constructs a SortCommand with the specified sort criteria for sorting.
      *
-     * @param sortCriteria The criteria used to sort the student list .
+     * @param sortCriteria The criteria used to sort the student list.
      */
     public SortCommand(SortCriteria sortCriteria) {
         this.sortCriteria = sortCriteria;
