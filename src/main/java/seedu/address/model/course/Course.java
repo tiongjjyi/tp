@@ -118,6 +118,7 @@ public class Course {
      */
     public void setStudent(Student target, Student editedStudent) {
         this.students.setStudent(target, editedStudent);
+        //this.originalStudents.setStudent(target, editedStudent);
     }
 
     /**
@@ -165,12 +166,18 @@ public class Course {
     public void sortStudentsBy(SortCriteria sortCriteria) {
         requireNonNull(sortCriteria);
 
-        Comparator<Student> tagComparator = Comparator.comparing(student -> student.getTag().ranking);
-        Comparator<Student> nameComparator = Comparator.comparing(student -> student.getName().toString(),
-                String.CASE_INSENSITIVE_ORDER);
+        Comparator<Student> tagComparator = Comparator
+                .comparing((Student student) -> student.getTag().ranking)
+                .thenComparing(student-> student.getName().toString())
+                .thenComparing(student -> student.getEmail().toString());
+
+        Comparator<Student> nameComparator = Comparator
+                .comparing((Student student) -> student.getName().toString())
+                .thenComparing(student -> student.getEmail().toString());
 
         if (sortCriteria.getField().toString().equals(SortCriteria.Field.TAG.toString())) {
             updateSortedStudentList(tagComparator);
+
         }
         if (sortCriteria.getField().toString().equals(SortCriteria.Field.NAME.toString())) {
             updateSortedStudentList(nameComparator);
