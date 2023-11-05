@@ -35,6 +35,7 @@ public class SortCommand extends Command {
      * @param sortCriteria The criteria used to sort the student list.
      */
     public SortCommand(SortCriteria sortCriteria) {
+        requireNonNull(sortCriteria);
         this.sortCriteria = sortCriteria;
     }
 
