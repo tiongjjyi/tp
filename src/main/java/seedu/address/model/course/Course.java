@@ -24,7 +24,7 @@ public class Course {
     public final CourseName courseName;
 
     // Course data field
-    private final UniqueStudentList students;
+    private final UniqueStudentList currentStudents;
     private FilteredList<Student> filteredStudents;
     private SortedList<Student> sortedStudents;
 
@@ -34,9 +34,9 @@ public class Course {
     public Course(CourseName courseName) {
         requireNonNull(courseName);
         this.courseName = courseName;
-        this.students = new UniqueStudentList();
-        this.filteredStudents = new FilteredList<>(this.students.asUnmodifiableObservableList());
-        this.sortedStudents = new SortedList<>(this.students.asUnmodifiableObservableList());
+        this.currentStudents = new UniqueStudentList();
+        this.filteredStudents = new FilteredList<>(this.currentStudents.asUnmodifiableObservableList());
+        this.sortedStudents = new SortedList<>(this.currentStudents.asUnmodifiableObservableList());
     }
 
     /**
@@ -50,46 +50,46 @@ public class Course {
      * Returns the list of students in the course.
      */
     public UniqueStudentList getStudentList() {
-        return students;
+        return currentStudents;
     }
 
     public void clearStudentList() {
-        this.students.clearAll();
+        this.currentStudents.clearAll();
     }
 
     /**
      * Returns the list of students in the course.
      */
     public int getCourseSize() {
-        return this.students.size();
+        return this.currentStudents.size();
     }
 
     /**
      * Returns the number of students tagged with GOOD StudentRank.
      */
     public int getGoodTagCount() {
-        return this.students.getGoodTagCount();
+        return this.currentStudents.getGoodTagCount();
     }
 
     /**
      * Returns the number of students tagged with AVERAGE StudentRank.
      */
     public int getAverageTagCount() {
-        return this.students.getAverageTagCount();
+        return this.currentStudents.getAverageTagCount();
     }
 
     /**
      * Returns the number of students tagged with POOR StudentRank.
      */
     public int getPoorTagCount() {
-        return this.students.getPoorTagCount();
+        return this.currentStudents.getPoorTagCount();
     }
 
     /**
      * Returns the number of students with a non-empty pending question field.
      */
     public int getPendingQuestionCount() {
-        return this.students.getPendingQuestionCount();
+        return this.currentStudents.getPendingQuestionCount();
     }
 
     /**
@@ -98,7 +98,7 @@ public class Course {
      * @param student A student to be added to the course.
      */
     public boolean hasStudent(Student student) {
-        return this.students.contains(student);
+        return this.currentStudents.contains(student);
     }
 
     /**
@@ -107,7 +107,7 @@ public class Course {
      * @param student A student to be added to the course.
      */
     public void addStudent(Student student) {
-        this.students.add(student);
+        this.currentStudents.add(student);
     }
 
     /**
@@ -117,7 +117,8 @@ public class Course {
      * @param editedStudent The student to be set.
      */
     public void setStudent(Student target, Student editedStudent) {
-        this.students.setStudent(target, editedStudent);
+        this.currentStudents.setStudent(target, editedStudent);
+        //this.originalStudents.setStudent(target, editedStudent);
     }
 
     /**
@@ -126,7 +127,7 @@ public class Course {
      * @param student A student to be removed from the course.
      */
     public void removeStudent(Student student) {
-        this.students.remove(student);
+        this.currentStudents.remove(student);
     }
 
     /**
@@ -165,12 +166,17 @@ public class Course {
     public void sortStudentsBy(SortCriteria sortCriteria) {
         requireNonNull(sortCriteria);
 
-        Comparator<Student> tagComparator = Comparator.comparing(student -> student.getTag().ranking);
-        Comparator<Student> nameComparator = Comparator.comparing(student -> student.getName().toString(),
-                String.CASE_INSENSITIVE_ORDER);
+        Comparator<Student> tagComparator = Comparator
+                .comparing((Student student) -> student.getTag().ranking)
+                .thenComparing(student -> student.getEmail().toString());
+
+        Comparator<Student> nameComparator = Comparator
+                .comparing((Student student) -> student.getName().toString(), String.CASE_INSENSITIVE_ORDER)
+                .thenComparing(student -> student.getEmail().toString());
 
         if (sortCriteria.getField().toString().equals(SortCriteria.Field.TAG.toString())) {
             updateSortedStudentList(tagComparator);
+
         }
         if (sortCriteria.getField().toString().equals(SortCriteria.Field.NAME.toString())) {
             updateSortedStudentList(nameComparator);
@@ -181,7 +187,7 @@ public class Course {
      * Returns an unmodifiable view of the filtered list of {@code Student} in the original order
      */
     public void resetFilteredStudentList() {
-        this.filteredStudents = new FilteredList<>(this.students.asUnmodifiableObservableList());
+        this.filteredStudents = new FilteredList<>(this.currentStudents.asUnmodifiableObservableList());
     }
 
     /**
