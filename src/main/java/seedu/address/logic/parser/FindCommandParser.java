@@ -48,9 +48,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         Optional<String> emailPrefixValue = argMultimap.getValue(PREFIX_EMAIL);
 
         if (namePrefixValue.isPresent()) {
-            String trimmedArgs = namePrefixValue.get();
-            String[] nameKeywords = trimmedArgs.split("\\s+");
-            return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+            return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(namePrefixValue.get())));
         } else if (tagPrefixValue.isPresent()) {
             return new FindCommand(new TagFilterPredicate(Arrays.asList(tagPrefixValue.get())));
         } else if (pqPrefixValue.isPresent()) {

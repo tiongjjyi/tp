@@ -50,17 +50,24 @@ public class StringUtil {
      * @param word cannot be null, cannot be empty, must be a single word
      */
     public static boolean containsIgnoreCase(String sentence, String word) {
-        System.out.println(word);
         requireNonNull(sentence);
         requireNonNull(word);
 
-        String preppedWord = word.trim();
+        String preppedWord = word.trim().toLowerCase();
         checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
 
         String preppedSentence = sentence.toLowerCase();
-        String wordsInPreppedSentence = word.toLowerCase();
+        System.out.println(preppedSentence);
+        String[] wordsInPreppedWord = preppedWord.split("\\s+");
+        System.out.println(wordsInPreppedWord);
 
-        return preppedSentence.contains(wordsInPreppedSentence);
+        for (String w : wordsInPreppedWord) {
+            System.out.println(w);
+            if (!preppedSentence.contains(w)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
