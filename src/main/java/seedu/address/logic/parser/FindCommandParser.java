@@ -13,6 +13,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.predicates.EmailContainsKeywordsPredicate;
 import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
 import seedu.address.model.person.predicates.PqContainsKeywordsPredicate;
 import seedu.address.model.person.predicates.RemarkContainsKeywordsPredicate;
@@ -56,7 +57,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         } else if (remarkPrefixValue.isPresent()) {
             return new FindCommand(new RemarkContainsKeywordsPredicate(Arrays.asList(remarkPrefixValue.get())));
         } else if (emailPrefixValue.isPresent()) {
-            return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(emailPrefixValue.get())));
+            return new FindCommand(new EmailContainsKeywordsPredicate(Arrays.asList(emailPrefixValue.get())));
         } else {
             // Handle the case where no prefix is present (this should not happen if you
             // check prefixes before calling parse)
