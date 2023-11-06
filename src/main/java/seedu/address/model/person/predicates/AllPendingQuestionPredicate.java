@@ -25,7 +25,7 @@ public class AllPendingQuestionPredicate implements Predicate<Student> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof NameContainsKeywordsPredicate)) {
+        if (!(other instanceof AllPendingQuestionPredicate)) {
             return false;
         }
         return true;
