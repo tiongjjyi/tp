@@ -35,7 +35,7 @@ public class PendingQuestionCommandParser implements Parser<PendingQuestionComma
                             PendingQuestionCommand.MESSAGE_USAGE), ive);
         }
 
-        String pendingQuestion = argMultimap.getValue(PREFIX_PENDING_QUESTION).orElse("");
+        String pendingQuestion = argMultimap.getAllValuesAsString(PREFIX_PENDING_QUESTION).orElse("");
 
         if (pendingQuestion.isEmpty()) {
             throw new ParseException(MESSAGE_CONSTRAINTS);
