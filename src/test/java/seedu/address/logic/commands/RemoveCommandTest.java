@@ -1,15 +1,7 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.RemoveCommand.MESSAGE_EDIT_STUDENT_SUCCESS;
-import static seedu.address.testutil.TypicalCourses.getTypicalCourseList;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
-
 import org.junit.jupiter.api.Test;
-
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.StageManager;
@@ -17,14 +9,32 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.course.Course;
+import seedu.address.model.person.PendingQuestion;
 import seedu.address.model.person.Student;
 import seedu.address.testutil.CourseBuilder;
 import seedu.address.testutil.StudentBuilder;
+import seedu.address.testutil.TypicalIndexes;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static seedu.address.logic.commands.RemoveCommand.MESSAGE_EDIT_STUDENT_SUCCESS;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalCourses.getTypicalCourseList;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 
 public class RemoveCommandTest {
-
     private static final String REMARK_STUB = "";
     private Model model = new ModelManager(getTypicalCourseList(), new UserPrefs());
+
+    @Test
+    public void constructor_nullIndex_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new RemoveCommand(null, new RemoveCommand.EditStudentDescriptor()));
+    }
+
+    @Test
+    public void constructor_nullStudentDescriptor_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new RemoveCommand(Index.fromZeroBased(0), null));
+    }
 
     @Test
     public void execute_removeRemarkUnfilteredList_success() throws CommandException {
@@ -79,29 +89,43 @@ public class RemoveCommandTest {
 
         assertEquals(commandResult, expectedResult);
     }
+
     @Test
     public void equals() {
-        RemoveCommand.EditStudentDescriptor studentDescriptor = new RemoveCommand.EditStudentDescriptor();
-        final RemoveCommand standardCommand = new RemoveCommand(INDEX_FIRST_STUDENT,
-                studentDescriptor);
-
-        // same values -> returns true
-        RemoveCommand commandWithSameValues = new RemoveCommand(INDEX_FIRST_STUDENT,
-                studentDescriptor);
-        assertTrue(standardCommand.equals(commandWithSameValues));
+        RemoveCommand.EditStudentDescriptor editStudentDescriptor = new RemoveCommand.EditStudentDescriptor();
+        RemoveCommand removeFirst = new RemoveCommand(TypicalIndexes.INDEX_FIRST_STUDENT, editStudentDescriptor);
+        RemoveCommand removeSecond = new RemoveCommand(TypicalIndexes.INDEX_SECOND_STUDENT, editStudentDescriptor);
 
         // same object -> returns true
-        assertTrue(standardCommand.equals(standardCommand));
+        assertTrue(removeFirst.equals(removeFirst));
 
-        // null -> returns false
-        assertFalse(standardCommand.equals(null));
+        // same value for Index -> returns true
+        RemoveCommand removeFirstCopy = new RemoveCommand(Index.fromZeroBased(0), editStudentDescriptor);
+        assertTrue(removeFirst.equals(removeFirstCopy));
+
+        // same value for editStudentDescriptor -> returns true
+        RemoveCommand.EditStudentDescriptor editStudentDescriptorCopy = new RemoveCommand.EditStudentDescriptor();
+        RemoveCommand removeFirstCopyESD = new RemoveCommand(TypicalIndexes.INDEX_FIRST_STUDENT, editStudentDescriptorCopy);
+        assertTrue(removeFirst.equals(removeFirstCopyESD));
 
         // different types -> returns false
-        assertFalse(standardCommand.equals(new ClearCommand()));
+        assertFalse(removeFirst.equals(1));
 
-        // different index -> returns false
-        assertFalse(standardCommand.equals(new RemoveCommand(INDEX_SECOND_STUDENT,
-                studentDescriptor)));
+        // null -> returns false
+        assertFalse(removeFirst.equals(null));
 
+        // different Index -> returns false
+        assertFalse(removeFirst.equals(removeSecond));
+    }
+
+    @Test
+    public void toStringMethod() {
+        RemoveCommand.EditStudentDescriptor editStudentDescriptor = new RemoveCommand.EditStudentDescriptor();
+        editStudentDescriptor.setPendingQuestion(new PendingQuestion(""));
+        RemoveCommand removeCommand = new RemoveCommand(TypicalIndexes.INDEX_FIRST_STUDENT, editStudentDescriptor);
+        String expected = RemoveCommand.class.getCanonicalName() + "{index=" + TypicalIndexes.INDEX_FIRST_STUDENT
+                + ", editStudentDescriptor=" + editStudentDescriptor.toString() + "}";
+
+        assertEquals(expected, removeCommand.toString());
     }
 }

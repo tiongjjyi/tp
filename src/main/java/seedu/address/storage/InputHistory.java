@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 public class InputHistory implements InputStorage {
 
+    private static final Pair<Boolean, String> EMPTY_PAIR = new Pair<>(true, "");
     private final ArrayList<Pair<Boolean, String>> inputs;
     private int inputPointer;
 
@@ -17,7 +18,7 @@ public class InputHistory implements InputStorage {
     @Override
     public Pair<Boolean, String> getInput() {
         if (inputs.isEmpty() || inputPointer == inputs.size()) {
-            return new Pair<>(true, "");
+            return EMPTY_PAIR;
         }
         return inputs.get(inputPointer);
     }
@@ -46,4 +47,14 @@ public class InputHistory implements InputStorage {
             inputPointer = inputs.size();
         }
     }
+
+
+    public int getInputPointer() {
+        return this.inputPointer;
+    }
+
+    public int getInputHistorySize() {
+        return this.inputs.size();
+    }
+
 }

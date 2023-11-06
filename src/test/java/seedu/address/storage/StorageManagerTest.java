@@ -6,6 +6,7 @@ import static seedu.address.testutil.TypicalCourses.getTypicalCourseList;
 
 import java.nio.file.Path;
 
+import javafx.util.Pair;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -65,6 +66,30 @@ public class StorageManagerTest {
     @Test
     public void getCourseListFilePath() {
         assertNotNull(storageManager.getCourseListFilePath());
+    }
+
+    @Test
+    public void alwaysReturnLatestInput() {
+        storageManager.addValidInput("TRUE_INPUT");
+        assertEquals(new Pair<>(true, "TRUE_INPUT"), storageManager.previousInput());
+        storageManager.addInvalidInput("FALSE_INPUT");
+        assertEquals(new Pair<>(false, "FALSE_INPUT"), storageManager.previousInput());
+    }
+
+    @Test
+    public void previousInput() {
+        storageManager.addValidInput("INPUT_1");
+        storageManager.addValidInput("INPUT_2");
+        storageManager.addValidInput("INPUT_3");
+        assertEquals(new Pair<>(true, "INPUT_3"), storageManager.previousInput());
+        assertEquals(new Pair<>(true, "INPUT_2"), storageManager.previousInput());
+        assertEquals(new Pair<>(true, "INPUT_1"), storageManager.previousInput());
+    }
+
+    @Test
+    public void getInputIsEmpty() {
+        storageManager.addValidInput("INPUT_1");
+        assertEquals(new Pair<>(true, ""), storageManager.getInput());
     }
 
 }
