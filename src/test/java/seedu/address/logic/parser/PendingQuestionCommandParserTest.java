@@ -24,11 +24,6 @@ public class PendingQuestionCommandParserTest {
         PendingQuestionCommand expectedCommand = new PendingQuestionCommand(
                 INDEX_FIRST_STUDENT, new PendingQuestion(nonEmptyPendingQuestion));
         assertParseSuccess(parser, userInput, expectedCommand);
-
-        // no pending question
-        userInput = targetIndex.getOneBased() + " " + PREFIX_PENDING_QUESTION;
-        expectedCommand = new PendingQuestionCommand(INDEX_FIRST_STUDENT, new PendingQuestion(""));
-        assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test

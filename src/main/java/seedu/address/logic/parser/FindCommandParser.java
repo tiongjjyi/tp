@@ -14,7 +14,7 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
-import seedu.address.model.person.predicates.PQContainsKeywordsPredicate;
+import seedu.address.model.person.predicates.PqContainsKeywordsPredicate;
 import seedu.address.model.person.predicates.RemarkContainsKeywordsPredicate;
 import seedu.address.model.person.predicates.TagFilterPredicate;
 
@@ -48,14 +48,16 @@ public class FindCommandParser implements Parser<FindCommand> {
         Optional<String> emailPrefixValue = argMultimap.getValue(PREFIX_EMAIL);
 
         if (namePrefixValue.isPresent()) {
-            return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(namePrefixValue.get())));
+            String trimmedArgs = namePrefixValue.get();
+            String[] nameKeywords = trimmedArgs.split("\\s+");
+            return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
         } else if (tagPrefixValue.isPresent()) {
             return new FindCommand(new TagFilterPredicate(Arrays.asList(tagPrefixValue.get())));
         } else if (pqPrefixValue.isPresent()) {
-            return new FindCommand(new PQContainsKeywordsPredicate(Arrays.asList(pqPrefixValue.get())));
+            return new FindCommand(new PqContainsKeywordsPredicate(Arrays.asList(pqPrefixValue.get())));
         } else if (remarkPrefixValue.isPresent()) {
             return new FindCommand(new RemarkContainsKeywordsPredicate(Arrays.asList(remarkPrefixValue.get())));
-        } else if (emailPrefixValue.isPresent()){
+        } else if (emailPrefixValue.isPresent()) {
             return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(emailPrefixValue.get())));
         } else {
             // Handle the case where no prefix is present (this should not happen if you
