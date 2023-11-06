@@ -20,7 +20,7 @@ public class TagFilterPredicate implements Predicate<Student> {
     @Override
     public boolean test(Student student) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(student.getTag().getStringRanking(), keyword));
+                .allMatch(keyword -> StringUtil.containsWordIgnoreCase(student.getTag().getStringRanking(), keyword));
     }
 
     @Override

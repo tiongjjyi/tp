@@ -20,7 +20,7 @@ public class RemarkContainsKeywordsPredicate implements Predicate<Student> {
     @Override
     public boolean test(Student student) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsIgnoreCase(student.getRemark().value, keyword));
+                .allMatch(keyword -> StringUtil.containsIgnoreCase(student.getRemark().value, keyword));
     }
 
     @Override

@@ -1,15 +1,13 @@
 package seedu.address.logic.commands;
 
-import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.StageManager;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyCourseList;
-import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.course.Course;
 import seedu.address.model.person.PendingQuestion;
 import seedu.address.model.person.Student;
@@ -17,14 +15,17 @@ import seedu.address.testutil.CourseBuilder;
 import seedu.address.testutil.StudentBuilder;
 import seedu.address.testutil.TypicalIndexes;
 
-import java.nio.file.Path;
-import java.util.function.Predicate;
-
-import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static seedu.address.logic.commands.RemoveCommand.MESSAGE_EDIT_STUDENT_SUCCESS;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalCourses.getTypicalCourseList;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 
 public class RemoveCommandTest {
+    private static final String REMARK_STUB = "";
+    private Model model = new ModelManager(getTypicalCourseList(), new UserPrefs());
+
     @Test
     public void constructor_nullIndex_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new RemoveCommand(null, new RemoveCommand.EditStudentDescriptor()));
@@ -36,41 +37,62 @@ public class RemoveCommandTest {
     }
 
     @Test
-    public void execute_studentAcceptedByModel_removeSuccessful() throws CommandException {
-        Student validStudent = new StudentBuilder().build();
+    public void execute_removeRemarkUnfilteredList_success() throws CommandException {
         Course validCourse = new CourseBuilder().build();
-        ModelStubWithCourse modelStub = new ModelStubWithCourse(validCourse, validStudent);
-        StageManager stageManager = StageManager.getInstance();
-        stageManager.setCourseStage(validCourse);
+        StageManager.getInstance().setCourseStage(validCourse);
+        validCourse.addStudent(new StudentBuilder().build());
 
-        RemoveCommand.EditStudentDescriptor editStudentDescriptor = new RemoveCommand.EditStudentDescriptor();
-        editStudentDescriptor.setPendingQuestion(new PendingQuestion(""));
-        CommandResult commandResult = new RemoveCommand(TypicalIndexes.INDEX_FIRST_STUDENT, editStudentDescriptor).execute(modelStub);
+        Student firstPerson = validCourse.getStudentList().getStudent(INDEX_FIRST_STUDENT);
+        Student editedPerson = new StudentBuilder(firstPerson).withRemark("").build();
+        RemoveCommand.EditStudentDescriptor studentDescriptor = new RemoveCommand.EditStudentDescriptor();
 
-        assertEquals(String.format(RemoveCommand.MESSAGE_EDIT_STUDENT_SUCCESS, Messages.format(validStudent)),
-                commandResult.getFeedbackToUser());
+        RemoveCommand removeCommand = new RemoveCommand(INDEX_FIRST_STUDENT, studentDescriptor);
+        CommandResult commandResult = removeCommand.execute(model);
+        String expectedMessage = String.format(MESSAGE_EDIT_STUDENT_SUCCESS, Messages.format(editedPerson));
+        CommandResult expectedResult = new CommandResult(expectedMessage);
+
+        assertEquals(commandResult, expectedResult);
     }
 
     @Test
-    public void execute_studentOutOfIndex_throwsCommandException() {
-        Student validStudent = new StudentBuilder().build();
+    public void execute_removePendingQuestionUnfilteredList_success() throws CommandException {
         Course validCourse = new CourseBuilder().build();
-        ModelStubWithCourse modelStub = new ModelStubWithCourse(validCourse,validStudent);
-        StageManager stageManager = StageManager.getInstance();
-        stageManager.setCourseStage(validCourse);
+        StageManager.getInstance().setCourseStage(validCourse);
+        validCourse.addStudent(new StudentBuilder().build());
 
-        RemoveCommand.EditStudentDescriptor editStudentDescriptor = new RemoveCommand.EditStudentDescriptor();
-        editStudentDescriptor.setPendingQuestion(new PendingQuestion(""));
-        RemoveCommand removeCommand = new RemoveCommand(TypicalIndexes.INDEX_SECOND_STUDENT, editStudentDescriptor);
+        Student firstPerson = validCourse.getStudentList().getStudent(INDEX_FIRST_STUDENT);
+        Student editedPerson = new StudentBuilder(firstPerson).withPendingQuestion("").build();
+        RemoveCommand.EditStudentDescriptor studentDescriptor = new RemoveCommand.EditStudentDescriptor();
 
-        assertThrows(CommandException.class, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX,
-                () -> removeCommand.execute(modelStub));
+        RemoveCommand removeCommand = new RemoveCommand(INDEX_FIRST_STUDENT, studentDescriptor);
+        CommandResult commandResult = removeCommand.execute(model);
+        String expectedMessage = String.format(MESSAGE_EDIT_STUDENT_SUCCESS, Messages.format(editedPerson));
+        CommandResult expectedResult = new CommandResult(expectedMessage);
+
+        assertEquals(commandResult, expectedResult);
+    }
+
+    @Test
+    public void execute_removePendingQuestionUnfilteredList_failure() throws CommandException {
+        Course validCourse = new CourseBuilder().build();
+        StageManager.getInstance().setCourseStage(validCourse);
+        validCourse.addStudent(new StudentBuilder().build());
+
+        Student firstPerson = validCourse.getStudentList().getStudent(INDEX_FIRST_STUDENT);
+        Student editedPerson = new StudentBuilder(firstPerson).withPendingQuestion("some remarks").build();
+        RemoveCommand.EditStudentDescriptor studentDescriptor = new RemoveCommand.EditStudentDescriptor();
+
+        RemoveCommand removeCommand = new RemoveCommand(INDEX_FIRST_STUDENT, studentDescriptor);
+        CommandResult commandResult = removeCommand.execute(model);
+        String expectedMessage = String.format(MESSAGE_EDIT_STUDENT_SUCCESS, Messages.format(editedPerson));
+        CommandResult expectedResult = new CommandResult(expectedMessage);
+
+        assertEquals(commandResult, expectedResult);
     }
 
     @Test
     public void equals() {
         RemoveCommand.EditStudentDescriptor editStudentDescriptor = new RemoveCommand.EditStudentDescriptor();
-        editStudentDescriptor.setPendingQuestion(new PendingQuestion(""));
         RemoveCommand removeFirst = new RemoveCommand(TypicalIndexes.INDEX_FIRST_STUDENT, editStudentDescriptor);
         RemoveCommand removeSecond = new RemoveCommand(TypicalIndexes.INDEX_SECOND_STUDENT, editStudentDescriptor);
 
@@ -83,7 +105,6 @@ public class RemoveCommandTest {
 
         // same value for editStudentDescriptor -> returns true
         RemoveCommand.EditStudentDescriptor editStudentDescriptorCopy = new RemoveCommand.EditStudentDescriptor();
-        editStudentDescriptorCopy.setPendingQuestion(new PendingQuestion(""));
         RemoveCommand removeFirstCopyESD = new RemoveCommand(TypicalIndexes.INDEX_FIRST_STUDENT, editStudentDescriptorCopy);
         assertTrue(removeFirst.equals(removeFirstCopyESD));
 
@@ -106,96 +127,5 @@ public class RemoveCommandTest {
                 + ", editStudentDescriptor=" + editStudentDescriptor.toString() + "}";
 
         assertEquals(expected, removeCommand.toString());
-    }
-
-
-    /**
-     * A default model stub that have all methods except updateFilteredCourseList methods failing.
-     */
-    private class ModelStub implements Model {
-        @Override
-        public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ReadOnlyUserPrefs getUserPrefs() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public GuiSettings getGuiSettings() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setGuiSettings(GuiSettings guiSettings) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public Path getAddressBookFilePath() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void addCourse(Course course) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setCourseList(ReadOnlyCourseList newData) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ReadOnlyCourseList getCourseList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean hasCourse(Course course) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void deleteCourse(Course target) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setCourse(Course target, Course editedCourse) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableList<Course> getFilteredCourseList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        /**
-         * Remove Command will use this method
-         */
-        @Override
-        public void updateFilteredCourseList(Predicate<Course> predicate) {
-        }
-    }
-
-    /**
-     * A Model stub that contains a single Course that contains a single student.
-     */
-    private class ModelStubWithCourse extends RemoveCommandTest.ModelStub {
-        private final Course course;
-
-        ModelStubWithCourse(Course course, Student student) {
-            requireNonNull(course);
-            this.course = course;
-            course.addStudent(student);
-        }
     }
 }
