@@ -50,6 +50,7 @@ public class StringUtil {
      * @param word cannot be null, cannot be empty, must be a single word
      */
     public static boolean containsIgnoreCase(String sentence, String word) {
+        System.out.println(word);
         requireNonNull(sentence);
         requireNonNull(word);
 
