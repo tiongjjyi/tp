@@ -1,5 +1,7 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showCourseAtIndex;
 import static seedu.address.testutil.TypicalCourses.getTypicalCourseList;
@@ -35,5 +37,23 @@ public class ResetCourseCommandTest {
     public void execute_listIsFiltered_showsEverything() {
         showCourseAtIndex(model, INDEX_FIRST_COURSE);
         assertCommandSuccess(new ResetCourseCommand(), model, ResetCourseCommand.MESSAGE_SUCCESS, expectedModel);
+    }
+
+    @Test
+    public void equals() {
+        final ResetCourseCommand standardCommand = new ResetCourseCommand();
+
+        // same values -> returns true
+        ResetCourseCommand commandWithSameValues = new ResetCourseCommand();
+        assertTrue(standardCommand.equals(commandWithSameValues));
+
+        // same object -> returns true
+        assertTrue(standardCommand.equals(standardCommand));
+
+        // null -> returns false
+        assertFalse(standardCommand.equals(null));
+
+        // different types -> returns false
+        assertFalse(standardCommand.equals(new ClearCommand()));
     }
 }
