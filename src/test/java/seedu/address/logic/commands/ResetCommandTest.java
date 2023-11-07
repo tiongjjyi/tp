@@ -1,9 +1,7 @@
 package seedu.address.logic.commands;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.Messages;
 import seedu.address.logic.parser.StageManager;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
