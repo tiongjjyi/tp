@@ -16,10 +16,14 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.course.Course;
+import seedu.address.model.person.Field;
 import seedu.address.model.person.SortCriteria;
 import seedu.address.logic.parser.StageManager;
 import seedu.address.testutil.SortCriteriaBuilder;
 
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for SortCommand.
+ */
 class SortCommandTest {
 
     private Model model = new ModelManager(getTypicalCourseList(), new UserPrefs());
@@ -31,7 +35,7 @@ class SortCommandTest {
 
     @Test
     void execute_nameSortCriteriaAcceptedByModel_sortSuccess() {
-        SortCriteria validSortCriteria = new SortCriteriaBuilder(SortCriteria.Field.NAME).build();
+        SortCriteria validSortCriteria = new SortCriteriaBuilder(Field.NAME).build();
         Course validCourse = getTypicalCourses().get(1);
 
         StageManager stageManager = StageManager.getInstance();
@@ -46,7 +50,7 @@ class SortCommandTest {
 
     @Test
     void execute_tagSortCriteriaAcceptedByModel_sortSuccess() {
-        SortCriteria validSortCriteria = new SortCriteriaBuilder(SortCriteria.Field.TAG).build();
+        SortCriteria validSortCriteria = new SortCriteriaBuilder(Field.TAG).build();
         Course validCourse = getTypicalCourses().get(1);
 
         StageManager stageManager = StageManager.getInstance();
@@ -65,11 +69,17 @@ class SortCommandTest {
         assertThrows(IllegalValueException.class, () -> ParserUtil.parseSortCriteria(invalidSortCriteria));
     }
 
+    @Test
+    public void execute_nullModel_throwsNullPointerException() {
+        SortCriteria validSortCriteria = new SortCriteriaBuilder(Field.NAME).build();
+        SortCommand sortCommand = new SortCommand(validSortCriteria);
+        assertThrows(NullPointerException.class, () -> sortCommand.execute(null));
+    }
 
     @Test
     void equals() {
-        SortCriteria validNameSortCriteria = new SortCriteriaBuilder(SortCriteria.Field.NAME).build();
-        SortCriteria validTagSortCriteria = new SortCriteriaBuilder(SortCriteria.Field.TAG).build();
+        SortCriteria validNameSortCriteria = new SortCriteriaBuilder(Field.NAME).build();
+        SortCriteria validTagSortCriteria = new SortCriteriaBuilder(Field.TAG).build();
         final SortCommand standardCommand = new SortCommand(validNameSortCriteria);
 
         // same values -> returns true
@@ -91,7 +101,7 @@ class SortCommandTest {
 
     @Test
     void toStringMethod() {
-        SortCriteria validSortCriteria = new SortCriteriaBuilder(SortCriteria.Field.NAME).build();
+        SortCriteria validSortCriteria = new SortCriteriaBuilder(Field.NAME).build();
         SortCommand sortCommand = new SortCommand(validSortCriteria);
         String expected = SortCommand.class.getCanonicalName() + "{sort criteria=" + validSortCriteria + "}";
         assertEquals(expected, sortCommand.toString());
