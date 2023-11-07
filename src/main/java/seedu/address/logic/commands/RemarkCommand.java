@@ -15,7 +15,7 @@ import seedu.address.model.person.Remark;
 import seedu.address.model.person.Student;
 
 /**
- * Changes the remark of an existing person in the address book.
+ * Changes the remark of an existing student in the student list.
  */
 public class RemarkCommand extends Command {
 
@@ -35,8 +35,8 @@ public class RemarkCommand extends Command {
     private final Remark remark;
 
     /**
-     * @param index of the person in the filtered person list to edit the remark
-     * @param remark of the person to be updated to
+     * @param index of the student in the filtered person list to edit the remark.
+     * @param remark of the person to be updated to.
      */
     public RemarkCommand(Index index, Remark remark) {
         requireAllNonNull(index, remark);

@@ -20,7 +20,7 @@ public class StudentTest {
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
         Student student = new StudentBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> student.getTags().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> student.getTag());
     }
 
     @Test
@@ -33,7 +33,7 @@ public class StudentTest {
 
         // same name, all other attributes different -> returns false
         Student editedAlice = new StudentBuilder(ALICE).withEmail(VALID_EMAIL_BOB)
-                .withTags(VALID_TAG_AVERAGE).build();
+                .withTag(VALID_TAG_AVERAGE).build();
         assertFalse(ALICE.isSameStudent(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -77,7 +77,7 @@ public class StudentTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false
-        editedAlice = new StudentBuilder(ALICE).withTags(VALID_TAG_GOOD).build();
+        editedAlice = new StudentBuilder(ALICE).withTag(VALID_TAG_GOOD).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 
@@ -86,7 +86,7 @@ public class StudentTest {
         String expected = Student.class.getCanonicalName() + "{name=" + ALICE.getName()
                 + ", email=" + ALICE.getEmail()
                 + ", remark=" + ALICE.getRemark()
-                + ", tags=" + ALICE.getTags() + "}";
+                + ", tags=" + ALICE.getTag() + "}";
 
         assertEquals(expected, ALICE.toString());
     }

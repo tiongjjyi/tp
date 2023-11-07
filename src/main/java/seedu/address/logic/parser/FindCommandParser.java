@@ -13,8 +13,9 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.predicates.EmailContainsKeywordsPredicate;
 import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
-import seedu.address.model.person.predicates.PQContainsKeywordsPredicate;
+import seedu.address.model.person.predicates.PqContainsKeywordsPredicate;
 import seedu.address.model.person.predicates.RemarkContainsKeywordsPredicate;
 import seedu.address.model.person.predicates.TagFilterPredicate;
 
@@ -27,13 +28,13 @@ public class FindCommandParser implements Parser<FindCommand> {
      * Parses the given {@code String} of arguments in the context of the
      * FindCommand.
      * and returns a FindCommand object for execution.
-     * 
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_TAG,
                 PREFIX_PENDING_QUESTION, PREFIX_REMARK, PREFIX_EMAIL);
-        
+
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_TAG, PREFIX_PENDING_QUESTION, PREFIX_REMARK, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
@@ -52,11 +53,11 @@ public class FindCommandParser implements Parser<FindCommand> {
         } else if (tagPrefixValue.isPresent()) {
             return new FindCommand(new TagFilterPredicate(Arrays.asList(tagPrefixValue.get())));
         } else if (pqPrefixValue.isPresent()) {
-            return new FindCommand(new PQContainsKeywordsPredicate(Arrays.asList(pqPrefixValue.get())));
+            return new FindCommand(new PqContainsKeywordsPredicate(Arrays.asList(pqPrefixValue.get())));
         } else if (remarkPrefixValue.isPresent()) {
             return new FindCommand(new RemarkContainsKeywordsPredicate(Arrays.asList(remarkPrefixValue.get())));
-        } else if (emailPrefixValue.isPresent()){ 
-            return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(emailPrefixValue.get())));
+        } else if (emailPrefixValue.isPresent()) {
+            return new FindCommand(new EmailContainsKeywordsPredicate(Arrays.asList(emailPrefixValue.get())));
         } else {
             // Handle the case where no prefix is present (this should not happen if you
             // check prefixes before calling parse)

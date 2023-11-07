@@ -2,6 +2,8 @@ package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.Messages.MESSAGE_WRONG_STAGE_COURSE;
+import static seedu.address.logic.Messages.MESSAGE_WRONG_STAGE_HOME;
 
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
@@ -110,7 +112,13 @@ public class CodeSphereParser {
 
         case SelectCommand.COMMAND_WORD:
             return new SelectCommandParser().parse(arguments);
+        
+        case ListPendingQuestionsCommand.COMMAND_WORD:
+            throw new ParseException(MESSAGE_WRONG_STAGE_HOME);
 
+        case SortCommand.COMMAND_WORD:
+            throw new ParseException(MESSAGE_WRONG_STAGE_HOME);
+        
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
@@ -167,6 +175,9 @@ public class CodeSphereParser {
 
         case ListPendingQuestionsCommand.COMMAND_WORD:
             return new ListPendingQuestionsCommandParser().parse(arguments);
+
+        case SelectCommand.COMMAND_WORD:
+            throw new ParseException(MESSAGE_WRONG_STAGE_COURSE);       
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

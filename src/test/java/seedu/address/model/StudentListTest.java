@@ -45,7 +45,7 @@ public class StudentListTest {
     @Test
     public void resetData_withDuplicateStudents_throwsDuplicateStudentException() {
         // Two Students with the same identity fields
-        Student editedAlice = new StudentBuilder(ALICE).withTags(VALID_TAG_GOOD)
+        Student editedAlice = new StudentBuilder(ALICE).withTag(VALID_TAG_GOOD)
                 .build();
         List<Student> newStudents = Arrays.asList(ALICE, editedAlice);
         StudentListStub newData = new StudentListStub(newStudents);
@@ -72,7 +72,7 @@ public class StudentListTest {
     @Test
     public void hasStudent_studentWithSameIdentityFieldsInStudentList_returnsTrue() {
         studentList.addStudent(ALICE);
-        Student editedAlice = new StudentBuilder(ALICE).withTags(VALID_TAG_GOOD)
+        Student editedAlice = new StudentBuilder(ALICE).withTag(VALID_TAG_GOOD)
                 .build();
         assertTrue(studentList.hasStudent(editedAlice));
     }
