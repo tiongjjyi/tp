@@ -1,13 +1,5 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_AVERAGE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_GOOD;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_POOR;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -16,6 +8,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.StudentList;
 import seedu.address.model.person.Student;
+import seedu.address.model.person.UniqueStudentList;
+
+import static seedu.address.logic.commands.CommandTestUtil.*;
 
 /**
  * A utility class containing a list of {@code Student} objects to be used in tests.
@@ -23,33 +18,33 @@ import seedu.address.model.person.Student;
 public class TypicalStudents {
 
     public static final Student ALICE = new StudentBuilder().withName("Alice Pauline")
-            .withEmail("alice@example.com").withRemark("She likes aardvarks.")
+            .withEmail("e0123456@u.nus.edu").withRemark("She likes aardvarks.")
             .withTag(VALID_TAG_AVERAGE).build();
     public static final Student BENSON = new StudentBuilder().withName("Benson Meier")
-            .withEmail("johnd@example.com").withRemark("He can't take beer!")
+            .withEmail("e0234567@u.nus.edu").withRemark("He can't take beer!")
             .withTag(VALID_TAG_GOOD).build();
     public static final Student CARL = new StudentBuilder().withName("Carl Kurz")
-            .withEmail("heinz@example.com").build();
+            .withEmail("e0345678@u.nus.edu").build();
     public static final Student DANIEL = new StudentBuilder().withName("Daniel Meier")
-            .withEmail("cornelia@example.com").withTag(VALID_TAG_GOOD).build();
+            .withEmail("e0456789@u.nus.edu").withTag(VALID_TAG_GOOD).build();
     public static final Student ELLE = new StudentBuilder().withName("Elle Meyer")
-            .withEmail("werner@example.com").build();
+            .withEmail("e0567890@u.nus.edu").build();
     public static final Student FIONA = new StudentBuilder().withName("Fiona Kunz")
-            .withEmail("lydia@example.com").build();
+            .withEmail("e0678901@u.nus.edu").build();
     public static final Student GEORGE = new StudentBuilder().withName("George Best")
-            .withEmail("anna@example.com").build();
+            .withEmail("e0789012@u.nus.edu").build();
 
     // Manually added
     public static final Student HOON = new StudentBuilder().withName("Hoon Meier")
-            .withEmail("stefan@example.com").build();
+            .withEmail("e0890123@u.nus.edu").build();
     public static final Student IDA = new StudentBuilder().withName("Ida Mueller")
-            .withEmail("hans@example.com").build();
+            .withEmail("e0912345@u.nus.edu").build();
 
     // Manually added - Student's details found in {@code CommandTestUtil}
     public static final Student AMY = new StudentBuilder().withName(VALID_NAME_AMY)
             .withEmail(VALID_EMAIL_AMY).withTag(VALID_TAG_AVERAGE).build();
     public static final Student BOB = new StudentBuilder().withName(VALID_NAME_BOB)
-            .withEmail(VALID_EMAIL_BOB).withTag(VALID_TAG_POOR)
+            .withEmail(VALID_EMAIL_BOB).withTag(VALID_TAG_POOR).withPendingQuestion(VALID_PENDING_QUESTION_BOB)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
