@@ -13,10 +13,6 @@ public class SortCriteria {
     /**
      * Enumeration representing the criteria that can be used to sort a StudentList.
      */
-    public enum Field {
-        NAME,
-        TAG
-    }
 
     /**
      * Constructs a SortCriteria object with the specified field.
@@ -46,12 +42,12 @@ public class SortCriteria {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof Field)) {
+        if (!(other instanceof SortCriteria)) {
             return false;
         }
 
-        Field otherField = (Field) other;
-        return field.toString().equals(otherField.toString());
+        SortCriteria otherSortCriteria = (SortCriteria) other;
+        return field.toString().equals(otherSortCriteria.field.toString());
     }
 
     @Override
@@ -62,6 +58,7 @@ public class SortCriteria {
     /**
      * Format state as text for viewing.
      */
+    @Override
     public String toString() {
         return '[' + field.toString() + ']';
     }

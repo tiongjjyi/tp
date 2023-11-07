@@ -1,7 +1,7 @@
 package seedu.address.testutil;
 
 import seedu.address.model.person.SortCriteria;
-import seedu.address.model.person.SortCriteria.Field;
+import seedu.address.model.person.Field;
 
 public class SortCriteriaBuilder {
 

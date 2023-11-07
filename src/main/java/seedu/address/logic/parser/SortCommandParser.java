@@ -38,6 +38,7 @@ public class SortCommandParser implements Parser<SortCommand> {
         }
     }
 
+
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
