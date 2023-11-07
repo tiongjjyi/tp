@@ -65,8 +65,10 @@ public class CourseBuilder {
 
     public Course build() {
         Course course = new Course(courseName);
-        for (Student student : students) {
-            course.addStudent(student);
+        if (students != null) {
+            for (Student student : students) {
+                course.addStudent(student);
+            }
         }
         return course;
     }

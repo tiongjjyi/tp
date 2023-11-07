@@ -41,7 +41,6 @@ public class DeleteCommandTest {
         assertEquals(String.format(DeleteCommand.MESSAGE_DELETE_STUDENT_SUCCESS, Messages.format(targetStudent)),
                 commandResult.getFeedbackToUser());
         assertEquals(false, course.hasStudent(targetStudent));
-
     }
 
     @Test

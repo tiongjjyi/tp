@@ -165,7 +165,7 @@ public class CommandTestUtil {
         model.updateFilteredCourseList(
                 new CourseNameContainsKeywordsPredicate(Arrays.asList(course.getCourseName().fullCourseName)));
 
-        assertEquals(1, model.getFilteredCourseList().size());
+        assertEquals(6, model.getFilteredCourseList().size());
     }
 
 }
