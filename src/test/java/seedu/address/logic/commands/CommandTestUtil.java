@@ -14,6 +14,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.CourseList;
 import seedu.address.model.Model;
 import seedu.address.model.course.Course;
+import seedu.address.model.course.CourseNameContainsKeywordsPredicate;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
 import seedu.address.model.tag.StudentRank;
@@ -158,11 +159,11 @@ public class CommandTestUtil {
      * {@code model}'s course list.
      */
     public static void showCourseAtIndex(Model model, Index targetIndex) {
-
         assertTrue(targetIndex.getZeroBased() < model.getFilteredCourseList().size());
 
         Course course = model.getFilteredCourseList().get(targetIndex.getZeroBased());
-        final String[] splitName = course.getCourseName().fullCourseName.split("\\s+");
+        model.updateFilteredCourseList(
+                new CourseNameContainsKeywordsPredicate(Arrays.asList(course.getCourseName().fullCourseName)));
 
         assertEquals(1, model.getFilteredCourseList().size());
     }

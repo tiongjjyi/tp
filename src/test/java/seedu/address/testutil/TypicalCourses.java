@@ -44,4 +44,8 @@ public class TypicalCourses {
     public static List<Course> getTypicalCourses() {
         return new ArrayList<>(Arrays.asList(CS1101S, CS1231S, CS2030S, CS2040S, CS3230, ST2334));
     }
+
+    public static Course getTypicalCourse() {
+        return CS2103T;
+    }
 }
