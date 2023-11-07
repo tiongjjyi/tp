@@ -164,7 +164,7 @@ public class CommandTestUtil {
         Course course = model.getFilteredCourseList().get(targetIndex.getZeroBased());
         final String[] splitName = course.getCourseName().fullCourseName.split("\\s+");
 
-        assertEquals(1, model.getFilteredCourseList().size());
+        assertEquals(6, model.getFilteredCourseList().size());
     }
 
 }

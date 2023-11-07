@@ -59,10 +59,17 @@ public class Course {
     }
 
     /**
-     * Returns the list of students in the course.
+     * Returns the size of list of students in the course.
      */
     public int getCourseSize() {
         return this.students.size();
+    }
+
+    /**
+     * Returns the size of filtered list of students in the course.
+     */
+    public int getFilteredCourseSize() {
+        return this.filteredStudents.size();
     }
 
     /**

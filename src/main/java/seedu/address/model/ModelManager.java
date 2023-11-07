@@ -20,7 +20,7 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
     private final CourseList courseList;
     private final UserPrefs userPrefs;
-    private final FilteredList<Course> filteredCourses;
+    private FilteredList<Course> filteredCourses;
 
     /**
      * Initializes a ModelManager with the given CourseList and userPrefs.
@@ -125,6 +125,11 @@ public class ModelManager implements Model {
     public void updateFilteredCourseList(Predicate<Course> predicate) {
         requireNonNull(predicate);
         filteredCourses.setPredicate(predicate);
+    }
+
+    @Override
+    public void resetFilteredCourseList() {
+        this.filteredCourses = new FilteredList<>(this.courseList.getCourseList());
     }
 
     @Override
