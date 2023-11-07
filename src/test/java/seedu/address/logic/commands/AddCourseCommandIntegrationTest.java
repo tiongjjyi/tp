@@ -34,7 +34,7 @@ public class AddCourseCommandIntegrationTest {
         expectedModel.addCourse(validCourse);
 
         assertCommandSuccess(new AddCourseCommand(validCourse), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validCourse)),
+                String.format(AddCourseCommand.MESSAGE_SUCCESS, Messages.format(validCourse)),
                 expectedModel);
     }
 
@@ -44,5 +44,4 @@ public class AddCourseCommandIntegrationTest {
         assertCommandFailure(new AddCourseCommand(courseInList), model,
                 AddCourseCommand.MESSAGE_DUPLICATE_COURSE);
     }
-
 }

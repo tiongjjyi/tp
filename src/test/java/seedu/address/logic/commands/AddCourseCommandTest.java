@@ -39,7 +39,7 @@ public class AddCourseCommandTest {
 
         CommandResult commandResult = new AddCourseCommand(validCourse).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validCourse)),
+        assertEquals(String.format(AddCourseCommand.MESSAGE_SUCCESS, Messages.format(validCourse)),
                 commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validCourse), modelStub.coursesAdded);
     }

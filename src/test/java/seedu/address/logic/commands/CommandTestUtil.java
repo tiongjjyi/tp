@@ -2,10 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_COURSE_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -36,11 +33,13 @@ public class CommandTestUtil {
     public static final String VALID_COURSE_NAME_2101 = "CS2101";
     public static final String VALID_COURSE_NAME_2102 = "CS2102";
 
-    public static final String VALID_EMAIL_AMY = "amy@example.com";
-    public static final String VALID_EMAIL_BOB = "bob@example.com";
-    public static final String VALID_EMAIL_CLARA = "clara@example.com";
+    public static final String VALID_EMAIL_AMY = "e0123456@u.nus.edu";
+    public static final String VALID_EMAIL_BOB = "e0112233@u.nus.edu";
+    public static final String VALID_EMAIL_CLARA = "e0998877@u.nus.edu";
+
     public static final String VALID_PENDING_QUESTION_AMY = "How to study more effectively?";
     public static final String VALID_PENDING_QUESTION_BOB = "How to sleep 8 hours a day?";
+
     public static final String VALID_REMARK_AMY = "Like skiing.";
     public static final String VALID_REMARK_BOB = "Favourite pastime: Eating";
 
@@ -58,15 +57,17 @@ public class CommandTestUtil {
     public static final String TAG_DESC_GOOD = " " + PREFIX_TAG + VALID_TAG_GOOD;
     public static final String TAG_DESC_POOR = " " + PREFIX_TAG + VALID_TAG_POOR;
 
+    public static final String PENDING_QUESTION_DESC_AMY = " " + PREFIX_PENDING_QUESTION + VALID_PENDING_QUESTION_AMY;
+    public static final String PENDING_QUESTION_DESC_BOB = " " + PREFIX_PENDING_QUESTION + VALID_PENDING_QUESTION_BOB;
+
     public static final String COURSE_DESC_CS2100 = " " + PREFIX_COURSE_NAME + VALID_COURSE_NAME_2100;
     public static final String COURSE_DESC_CS2101 = " " + PREFIX_COURSE_NAME + VALID_COURSE_NAME_2101;
     public static final String COURSE_DESC_CS2102 = " " + PREFIX_COURSE_NAME + VALID_COURSE_NAME_2102;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
-    public static final String INVALID_COURSE_NAME_DESC = " " + "911CS"; // 'a' not allowed in COURSEs
-    public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
-    public static final String INVALID_COURSE_DESC = " " + PREFIX_COURSE_NAME + "1101"; //missing letter prefix
+    public static final String INVALID_COURSE_NAME_DESC = " " + PREFIX_COURSE_NAME + "911CS"; // 'a' not allowed in COURSEs
+    public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // invalid email format
+    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // invalid tag name
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

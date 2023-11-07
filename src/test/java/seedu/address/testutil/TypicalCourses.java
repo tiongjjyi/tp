@@ -7,13 +7,17 @@ import java.util.List;
 import seedu.address.model.CourseList;
 import seedu.address.model.course.Course;
 
+import static seedu.address.testutil.TypicalStudents.getTypicalStudentList;
+
 /**
  * A utility class containing a list of {@code Course} objects to be used in tests.
  */
 public class TypicalCourses {
 
-    public static final Course CS1101S = new CourseBuilder().withCourseName("CS1101S").build();
-    public static final Course CS1231S = new CourseBuilder().withCourseName("CS1231S").build();
+    public static final Course CS1101S = new CourseBuilder().withCourseName("CS1101S")
+            .withStudents(getTypicalStudentList()).build();
+    public static final Course CS1231S = new CourseBuilder().withCourseName("CS1231S")
+            .withStudents(getTypicalStudentList()).build();
     public static final Course CS2030S = new CourseBuilder().withCourseName("CS2030S").build();
     public static final Course CS2040S = new CourseBuilder().withCourseName("CS2040S").build();
     public static final Course CS2100 = new CourseBuilder().withCourseName("CS2100").build();
@@ -27,7 +31,7 @@ public class TypicalCourses {
     private TypicalCourses() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical Students.
+     * Returns a {@code CourseList} with all typical Courses.
      */
     public static CourseList getTypicalCourseList() {
         CourseList cl = new CourseList();
