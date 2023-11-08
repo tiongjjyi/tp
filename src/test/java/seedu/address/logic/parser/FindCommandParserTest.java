@@ -115,5 +115,4 @@ public class FindCommandParserTest {
         assertParseFailure(parser, EMAIL_DESC_AMY + NAME_DESC_AMY,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
-
 }
