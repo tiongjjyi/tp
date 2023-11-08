@@ -14,6 +14,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.CourseList;
 import seedu.address.model.Model;
 import seedu.address.model.course.Course;
+import seedu.address.model.course.CourseNameContainsKeywordsPredicate;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
 import seedu.address.model.tag.StudentRank;
@@ -33,10 +34,9 @@ public class CommandTestUtil {
     public static final String VALID_COURSE_NAME_2101 = "CS2101";
     public static final String VALID_COURSE_NAME_2102 = "CS2102";
 
-    public static final String VALID_EMAIL_AMY = "e0123456@u.nus.edu";
-    public static final String VALID_EMAIL_BOB = "e0112233@u.nus.edu";
-    public static final String VALID_EMAIL_CLARA = "e0998877@u.nus.edu";
-
+    public static final String VALID_EMAIL_AMY = "e0000000@u.nus.edu";
+    public static final String VALID_EMAIL_BOB = "e1111111@u.nus.edu";
+    public static final String VALID_EMAIL_CLARA = "e2222222@u.nus.edu";
     public static final String VALID_PENDING_QUESTION_AMY = "How to study more effectively?";
     public static final String VALID_PENDING_QUESTION_BOB = "How to sleep 8 hours a day?";
 
@@ -67,7 +67,7 @@ public class CommandTestUtil {
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_COURSE_NAME_DESC = " " + PREFIX_COURSE_NAME + "911CS"; // 'a' not allowed in COURSEs
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // invalid email format
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // invalid tag name
+    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // tag must be good, average or poor
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -158,11 +158,11 @@ public class CommandTestUtil {
      * {@code model}'s course list.
      */
     public static void showCourseAtIndex(Model model, Index targetIndex) {
-
         assertTrue(targetIndex.getZeroBased() < model.getFilteredCourseList().size());
 
         Course course = model.getFilteredCourseList().get(targetIndex.getZeroBased());
-        final String[] splitName = course.getCourseName().fullCourseName.split("\\s+");
+        model.updateFilteredCourseList(
+                new CourseNameContainsKeywordsPredicate(Arrays.asList(course.getCourseName().fullCourseName)));
 
         assertEquals(1, model.getFilteredCourseList().size());
     }

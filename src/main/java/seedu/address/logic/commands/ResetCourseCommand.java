@@ -25,4 +25,13 @@ public class ResetCourseCommand extends Command {
 
         return new CommandResult(MESSAGE_SUCCESS);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        return other instanceof ResetCourseCommand;
+    }
 }

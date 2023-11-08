@@ -80,9 +80,9 @@ The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `Re
 All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `MainWindow` includes a `DisplayPanel`, which has three different states it can toggle between
-1) The `SplashPanel` for the opening splash window
-2) The `CombinedPanel` that displays the student list and a course list sidebar
-3) The `CoursePanel` that displays the course list
+1. The `SplashPanel` for the opening splash window
+2. The `CombinedPanel` that displays the student list and a course list sidebar
+3. The `CoursePanel` that displays the course list
 
 The `UI` component uses the JavaFx UI framework.
 The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder.

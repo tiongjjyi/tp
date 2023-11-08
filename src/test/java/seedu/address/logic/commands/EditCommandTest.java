@@ -233,4 +233,5 @@ public class EditCommandTest {
                 + editStudentDescriptor + "}";
         assertEquals(expected, editCommand.toString());
     }
+
 }

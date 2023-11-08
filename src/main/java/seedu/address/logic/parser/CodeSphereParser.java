@@ -177,7 +177,7 @@ public class CodeSphereParser {
             return new ListPendingQuestionsCommandParser().parse(arguments);
 
         case SelectCommand.COMMAND_WORD:
-            throw new ParseException(MESSAGE_WRONG_STAGE_COURSE);       
+            throw new ParseException(MESSAGE_WRONG_STAGE_COURSE);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

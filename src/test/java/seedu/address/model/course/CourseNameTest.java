@@ -30,10 +30,12 @@ public class CourseNameTest {
         assertFalse(CourseName.isValidCourseName("91")); // less than 3 numbers
         assertFalse(CourseName.isValidCourseName("9011p041")); // alphabets within digits
         assertFalse(CourseName.isValidCourseName("9312 1534")); // spaces within digits
+        assertFalse(CourseName.isValidCourseName("Course")); // non-numeric
+        assertFalse(CourseName.isValidCourseName(" CS2100 ")); // trailing spaces
 
         // valid Course names
-        assertTrue(CourseName.isValidCourseName("Course")); // non-numeric
         assertTrue(CourseName.isValidCourseName("CS2103T"));
+        assertTrue(CourseName.isValidCourseName("cs2100"));
         assertTrue(CourseName.isValidCourseName("CS2101"));
         assertTrue(CourseName.isValidCourseName("MA2001"));
     }
@@ -44,6 +46,9 @@ public class CourseNameTest {
 
         // same values -> returns true
         assertTrue(courseName.equals(new CourseName("CS2101")));
+
+        // same values, different capitalisation -> returns true
+        assertTrue(courseName.equals(new CourseName("cs2101")));
 
         // same object -> returns true
         assertTrue(courseName.equals(courseName));

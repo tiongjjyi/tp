@@ -15,8 +15,9 @@ import seedu.address.testutil.CourseBuilder;
 import seedu.address.testutil.StudentBuilder;
 import seedu.address.testutil.TypicalIndexes;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.RemoveCommand.MESSAGE_EDIT_STUDENT_SUCCESS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalCourses.getTypicalCourseList;
@@ -105,8 +106,9 @@ public class RemoveCommandTest {
 
         // same value for editStudentDescriptor -> returns true
         RemoveCommand.EditStudentDescriptor editStudentDescriptorCopy = new RemoveCommand.EditStudentDescriptor();
-        RemoveCommand removeFirstCopyESD = new RemoveCommand(TypicalIndexes.INDEX_FIRST_STUDENT, editStudentDescriptorCopy);
-        assertTrue(removeFirst.equals(removeFirstCopyESD));
+        RemoveCommand removeFirstCopyEsd = new RemoveCommand(
+                TypicalIndexes.INDEX_FIRST_STUDENT, editStudentDescriptorCopy);
+        assertTrue(removeFirst.equals(removeFirstCopyEsd));
 
         // different types -> returns false
         assertFalse(removeFirst.equals(1));
