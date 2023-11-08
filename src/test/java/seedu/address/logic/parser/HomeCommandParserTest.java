@@ -17,5 +17,4 @@ public class HomeCommandParserTest {
         // no index specified
         assertParseFailure(parser, HomeCommand.COMMAND_WORD + PREAMBLE_NON_EMPTY , String.format(MESSAGE_INVALID_COMMAND_FORMAT, HomeCommand.MESSAGE_USAGE));
     }
-    
 }
