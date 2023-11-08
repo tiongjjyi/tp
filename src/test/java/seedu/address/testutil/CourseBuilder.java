@@ -43,9 +43,7 @@ public class CourseBuilder {
      */
     public CourseBuilder(Course courseToCopy) {
         courseName = courseToCopy.getCourseName();
-        for (Student student : courseToCopy.getStudentList()) {
-            students.add(student);
-        }
+        students = courseToCopy.getStudentList();
     }
 
     /**

@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_CS2100;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_CS2101;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_COURSE_NAME_2100;
 
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +16,7 @@ public class EditCourseDescriptorTest {
 
     @Test
     public void equals() {
-        // same values -> returns true
+        // same course name -> returns true
         EditCourseDescriptor descriptorWithSameValues = new EditCourseDescriptor(DESC_CS2100);
         assertTrue(DESC_CS2100.equals(descriptorWithSameValues));
 
@@ -34,15 +33,15 @@ public class EditCourseDescriptorTest {
         assertFalse(DESC_CS2100.equals(DESC_CS2101));
 
         // different course name -> returns false
-        EditCourseDescriptor editedCS2100 = new EditCourseDescriptorBuilder(DESC_CS2100).withCourseName(VALID_COURSE_NAME_2100).build();
-        assertFalse(DESC_CS2100.equals(editedCS2100));
+        EditCourseDescriptor editedCS2101 = new EditCourseDescriptorBuilder(DESC_CS2101).build();
+        assertFalse(DESC_CS2100.equals(editedCS2101));
 
     }
 
     @Test
     public void toStringMethod() {
         EditCourseDescriptor editCourseDescriptor = new EditCourseDescriptor();
-        String expected = EditStudentDescriptor.class.getCanonicalName() + "{course name="
+        String expected = EditCourseDescriptor.class.getCanonicalName() + "{course name="
                 + editCourseDescriptor.getCourseName().orElse(null) + "}";
         assertEquals(expected, editCourseDescriptor.toString());
     }

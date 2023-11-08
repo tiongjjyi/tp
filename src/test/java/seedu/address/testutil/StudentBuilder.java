@@ -19,6 +19,8 @@ public class StudentBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_EMAIL = "e1234567@u.nus.edu";
+    public static final String DEFAULT_REMARK = "some remark";
+    public static final String DEFAULT_PENDING_QUESTION = "some pending question?";
     public static final StudentRank DEFAULT_STUDENT_RANK = StudentRank.GOOD;
 
     private Name name;
@@ -33,8 +35,8 @@ public class StudentBuilder {
     public StudentBuilder() {
         name = new Name(DEFAULT_NAME);
         email = new Email(DEFAULT_EMAIL);
-        remark = new Remark("");
-        pendingQuestion = new PendingQuestion("");
+        remark = new Remark(DEFAULT_REMARK);
+        pendingQuestion = new PendingQuestion(DEFAULT_PENDING_QUESTION);
         tag = new Tag(DEFAULT_STUDENT_RANK);
     }
 

@@ -19,16 +19,16 @@ import seedu.address.model.course.Course;
 @JsonRootName(value = "CourseList")
 class JsonSerializableCourseList {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Course list contains duplicate course(s).";
+    public static final String MESSAGE_DUPLICATE_COURSE = "Course list contains duplicate course(s).";
 
-    private final List<JsonAdaptedCourse> persons = new ArrayList<>();
+    private final List<JsonAdaptedCourse> courses = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
      */
     @JsonCreator
     public JsonSerializableCourseList(@JsonProperty("courses") List<JsonAdaptedCourse> courses) {
-        this.persons.addAll(persons);
+        this.courses.addAll(courses);
     }
 
     /**
@@ -37,20 +37,20 @@ class JsonSerializableCourseList {
      * @param source future changes to this will not affect the created {@code JsonSerializableCourseList}.
      */
     public JsonSerializableCourseList(ReadOnlyCourseList source) {
-        persons.addAll(source.getCourseList().stream().map(JsonAdaptedCourse::new).collect(Collectors.toList()));
+        courses.addAll(source.getCourseList().stream().map(JsonAdaptedCourse::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this address book into the model's {@code CourseList} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public CourseList toModelType() throws IllegalValueException {
         CourseList courseList = new CourseList();
-        for (JsonAdaptedCourse jsonAdaptedCourse : persons) {
+        for (JsonAdaptedCourse jsonAdaptedCourse : courses) {
             Course course = jsonAdaptedCourse.toModelType();
             if (courseList.hasCourse(course)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+                throw new IllegalValueException(MESSAGE_DUPLICATE_COURSE);
             }
             courseList.addCourse(course);
         }

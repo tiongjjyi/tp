@@ -87,7 +87,7 @@ public class CodeSphereParser {
             return new AddCourseCommandParser().parse(arguments);
 
         case ClearCourseCommand.COMMAND_WORD:
-            return new ClearCourseCommand();
+            return new ClearCourseCommandParser().parse(arguments);
 
         case DeleteCourseCommand.COMMAND_WORD:
             return new DeleteCourseCommandParser().parse(arguments);
@@ -112,13 +112,13 @@ public class CodeSphereParser {
 
         case SelectCommand.COMMAND_WORD:
             return new SelectCommandParser().parse(arguments);
-        
+
         case ListPendingQuestionsCommand.COMMAND_WORD:
             throw new ParseException(MESSAGE_WRONG_STAGE_HOME);
 
         case SortCommand.COMMAND_WORD:
             throw new ParseException(MESSAGE_WRONG_STAGE_HOME);
-        
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
@@ -138,7 +138,7 @@ public class CodeSphereParser {
             return new AddCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
+            return new ClearCommandParser().parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);

@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.testutil.TypicalCourses.CS1101S;
 import static seedu.address.testutil.TypicalCourses.getTypicalCourseList;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
@@ -12,11 +13,14 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
+import seedu.address.logic.parser.*;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.course.Course;
+import seedu.address.model.course.*;
 import seedu.address.model.person.Student;
+
+import java.util.*;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -50,6 +54,11 @@ public class DeleteCourseCommandTest {
 
     @Test
     public void execute_validIndexFilteredList_success() {
+        StageManager stageManager = StageManager.getInstance();
+        stageManager.setHomeStage();
+
+        model.updateFilteredCourseList(new CourseNameContainsKeywordsPredicate(Collections.singletonList(CS1101S
+                .getCourseName().fullCourseName)));
         showCourseAtIndex(model, INDEX_FIRST_STUDENT);
 
         Course courseToDelete = model.getFilteredCourseList().get(INDEX_FIRST_STUDENT.getZeroBased());
