@@ -25,6 +25,6 @@ public class MessagesTest {
     @Test
     void format() {
         Student student = new StudentBuilder().build();
-        assertEquals(Messages.format(student), "Amy Bee; Email: amy@gmail.com; Tags: ");
+        assertEquals(Messages.format(student), "Name: Amy Bee; Email: e1234567@u.nus.edu; Tag: [GOOD]");
     }
 }

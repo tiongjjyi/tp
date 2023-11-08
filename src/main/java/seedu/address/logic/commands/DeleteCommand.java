@@ -28,10 +28,10 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_STUDENT_SUCCESS = "Deleted student:\n%1$s";
 
-    private final Index index;
+    private final Index targetIndex;
 
-    public DeleteCommand(Index index) {
-        this.index = index;
+    public DeleteCommand(Index targetIndex) {
+        this.targetIndex = targetIndex;
     }
 
     @Override
@@ -41,12 +41,13 @@ public class DeleteCommand extends Command {
         Course course = stageManager.getCurrentCourse();
         List<Student> lastShownList = course.getFilteredStudentList();
 
-        if (index.getZeroBased() >= course.getCourseSize()) {
+        if (targetIndex.getZeroBased() >= course.getFilteredCourseSize()) {
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
-        Student studentToDelete = lastShownList.get(index.getZeroBased());
+        Student studentToDelete = lastShownList.get(targetIndex.getZeroBased());
         course.removeStudent(studentToDelete);
+        course.resetFilteredStudentList();
         return new CommandResult(String.format(MESSAGE_DELETE_STUDENT_SUCCESS, Messages.format(studentToDelete)));
     }
 
@@ -62,13 +63,13 @@ public class DeleteCommand extends Command {
         }
 
         DeleteCommand otherDeleteCommand = (DeleteCommand) other;
-        return index.equals(otherDeleteCommand.index);
+        return targetIndex.equals(otherDeleteCommand.targetIndex);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("targetIndex", index)
+                .add("targetIndex", targetIndex)
                 .toString();
     }
 }

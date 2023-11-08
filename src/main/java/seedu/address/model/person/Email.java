@@ -11,7 +11,7 @@ public class Email {
 
     public static final String MESSAGE_CONSTRAINTS = "Emails should be of the format exxxxxxx@u.nus.edu";
 
-    public static final String VALIDATION_REGEX = "e\\d{7}@u.nus.edu";
+    public static final String VALIDATION_REGEX = "e\\d{7}@u[.]nus[.]edu";
 
     public final String value;
 

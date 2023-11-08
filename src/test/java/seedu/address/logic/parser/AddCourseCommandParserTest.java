@@ -37,8 +37,12 @@ public class AddCourseCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-
         // missing prefix
-        assertParseFailure(parser, INVALID_COURSE_NAME_DESC, CourseName.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, VALID_COURSE_NAME_2100,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCourseCommand.MESSAGE_USAGE));
+
+        // invalid course
+        assertParseFailure(parser, INVALID_COURSE_NAME_DESC,
+                String.format(CourseName.MESSAGE_CONSTRAINTS));
     }
 }

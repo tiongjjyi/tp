@@ -1,99 +1,81 @@
-//package seedu.address.logic.commands;
-//
-//import static org.junit.jupiter.api.Assertions.assertEquals;
-//import static org.junit.jupiter.api.Assertions.assertFalse;
-//import static org.junit.jupiter.api.Assertions.assertTrue;
-//import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
-//import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
-//import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-//import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_AVERAGE;
-//import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-//import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-//import static seedu.address.logic.commands.CommandTestUtil.showStudentAtIndex;
-//import static seedu.address.testutil.TypicalCourses.*;
-//import static seedu.address.testutil.TypicalCourses.CS3230;
-//import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
-//import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
-//import static seedu.address.testutil.TypicalStudents.getTypicalStudentList;
-//
-//import org.junit.jupiter.api.Test;
-//
-//import seedu.address.commons.core.index.Index;
-//import seedu.address.logic.Messages;
-//import seedu.address.logic.commands.EditCommand.EditStudentDescriptor;
-//import seedu.address.logic.parser.CommandParserTestUtil;
-//import seedu.address.logic.parser.StageManager;
-//import seedu.address.model.*;
-//import seedu.address.model.course.Course;
-//import seedu.address.model.course.CourseName;
-//import seedu.address.model.person.Student;
-//import seedu.address.testutil.EditStudentDescriptorBuilder;
-//import seedu.address.testutil.StudentBuilder;
-//import seedu.address.testutil.TypicalStudents;
-//
-//import java.util.ArrayList;
-//import java.util.Arrays;
-//import java.util.List;
-//
-///**
-// * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
-// */
-//public class EditCommandTest {
-//
-//    private Model model = new ModelManager(getTypicalCourseList(), new UserPrefs());
-//    private Course course = model.getFilteredCourseList().get(0);
-//    private List<Student> typicalStudents = TypicalStudents.getTypicalStudents();
-//
-//
-//    public static List<Course> activateStudent0() {
-//        List<Student> typicalStudents = TypicalStudents.getTypicalStudents();
-//        CS1101S.addStudent(typicalStudents.get(0));
-//        return new ArrayList<>(Arrays.asList(CS1101S, CS1231S, CS2030S, CS2040S, CS3230));
-//    }
-//
-//    public static List<Course> activateStudent1() {
-//        List<Student> typicalStudents = TypicalStudents.getTypicalStudents();
-//        CS1231S.addStudent(typicalStudents.get(0));
-//        return new ArrayList<>(Arrays.asList(CS1101S, CS1231S, CS2030S, CS2040S, CS3230));
-//    }
-//    @Test
-//    public void execute_allFieldsSpecifiedUnfilteredList_success() {
-//        //Course validCourse0 = activateStudent1().get(0);
-//        course.addStudent(typicalStudents.get(0));
-//        StageManager stageManager = StageManager.getCurrent();
-//        stageManager.setCourseStage(course);
-//        Student editedStudent = new StudentBuilder().build();
-//        EditCommand.EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(editedStudent).build();
-//        EditCommand editCommand = new EditCommand(INDEX_FIRST_STUDENT, descriptor);
-//        course.setStudent(course.getStudentList().getStudent(INDEX_FIRST_STUDENT), editedStudent);
-//
-//        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_STUDENT_SUCCESS,
-//                Messages.format(editedStudent));
-//
-//        Model expectedModel = new ModelManager(new CourseList(model.getCourseList()), new UserPrefs());
-//        expectedModel.setCourse(model.getFilteredCourseList().get(0), course);
-//
-//        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
-//    }
-//
+package seedu.address.logic.commands;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.testutil.TypicalCourses.*;
+import static seedu.address.testutil.TypicalCourses.CS3230;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
+import static seedu.address.testutil.TypicalStudents.getTypicalStudentList;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.Messages;
+import seedu.address.logic.commands.EditCommand.EditStudentDescriptor;
+import seedu.address.logic.parser.CommandParserTestUtil;
+import seedu.address.logic.parser.StageManager;
+import seedu.address.model.*;
+import seedu.address.model.course.Course;
+import seedu.address.model.course.CourseName;
+import seedu.address.model.person.Student;
+import seedu.address.testutil.CourseBuilder;
+import seedu.address.testutil.EditStudentDescriptorBuilder;
+import seedu.address.testutil.StudentBuilder;
+import seedu.address.testutil.TypicalStudents;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
+ */
+public class EditCommandTest {
+
+    private Model model = new ModelManager(getTypicalCourseList(), new UserPrefs());
+    private Course course = model.getFilteredCourseList().get(0);
+    private List<Student> typicalStudents = TypicalStudents.getTypicalStudents();
+
+    @Test
+    public void execute_allFieldsSpecifiedUnfilteredList_success() {
+        Course validCourse = new CourseBuilder().build();
+        StageManager.getInstance().setCourseStage(validCourse);
+        validCourse.addStudent(TypicalStudents.AMY);
+        Student editedStudent = new StudentBuilder().withName("AMY LEE").withEmail(StudentBuilder.DEFAULT_EMAIL)
+                .withTag(StudentBuilder.DEFAULT_STUDENT_RANK).build();
+        EditCommand.EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(editedStudent).build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_STUDENT, descriptor);
+        course.setStudent(course.getStudentList().getStudent(INDEX_FIRST_STUDENT), editedStudent);
+
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_STUDENT_SUCCESS,
+                Messages.format(editedStudent));
+
+        Model expectedModel = new ModelManager(new CourseList(model.getCourseList()), new UserPrefs());
+        expectedModel.setCourse(model.getFilteredCourseList().get(0), course);
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+    }
+
 //    @Test
 //    public void execute_someFieldsSpecifiedUnfilteredList_success() {
-//        Index indexLastStudent = Index.fromOneBased(model.getFilteredStudentList().size());
-//        Student lastStudent = model.getFilteredStudentList().get(indexLastStudent.getZeroBased());
+//        Course validCourse = new CourseBuilder().build();
+//        StageManager.getInstance().setCourseStage(validCourse);
+//        Index indexLastStudent = Index.fromOneBased(validCourse.getFilteredStudentList().size());
+//        Student lastStudent = validCourse.getFilteredStudentList().get(indexLastStudent.getZeroBased());
 //        StudentBuilder studentInList = new StudentBuilder(lastStudent);
-//        Student editedStudent = studentInList.withName(VALID_NAME_BOB).withCourse(VALID_COURSE_BOB)
-//                .withTags(VALID_TAG_AVERAGE).build();
+//        Student editedStudent = studentInList.withName(VALID_NAME_BOB).withEmail(VALID_EMAIL_BOB)
+//                .withTag(VALID_TAG_AVERAGE).build();
 //
 //        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB)
-//                .withCourse(VALID_COURSE_BOB).withTags(VALID_TAG_AVERAGE).build();
+//                .withEmail(VALID_EMAIL_BOB).withTags(VALID_TAG_AVERAGE).build();
 //        EditCommand editCommand = new EditCommand(indexLastStudent, descriptor);
 //
 //        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_STUDENT_SUCCESS,
 //                Messages.format(editedStudent));
 //
-//        Model expectedModel = new ModelManager(new StudentList(model.getStudentList()), new UserPrefs());
-//        expectedModel.setStudent(lastStudent, editedStudent);
-//
+//        Model expectedModel = new ModelManager(new CourseList(model.getCourseList()), new UserPrefs());
 //        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
 //    }
 //
@@ -175,39 +157,39 @@
 //        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
 //    }
 //
-//    @Test
-//    public void equals() {
-//        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_STUDENT, DESC_AMY);
-//
-//        // same values -> returns true
-//        EditStudentDescriptor copyDescriptor = new EditStudentDescriptor(DESC_AMY);
-//        EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_STUDENT, copyDescriptor);
-//        assertTrue(standardCommand.equals(commandWithSameValues));
-//
-//        // same object -> returns true
-//        assertTrue(standardCommand.equals(standardCommand));
-//
-//        // null -> returns false
-//        assertFalse(standardCommand.equals(null));
-//
-//        // different types -> returns false
-//        assertFalse(standardCommand.equals(new ClearCommand()));
-//
-//        // different index -> returns false
-//        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_STUDENT, DESC_AMY)));
-//
-//        // different descriptor -> returns false
-//        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_STUDENT, DESC_BOB)));
-//    }
-//
-//    @Test
-//    public void toStringMethod() {
-//        Index index = Index.fromOneBased(1);
-//        EditStudentDescriptor editStudentDescriptor = new EditStudentDescriptor();
-//        EditCommand editCommand = new EditCommand(index, editStudentDescriptor);
-//        String expected = EditCommand.class.getCanonicalName() + "{index=" + index + ", editStudentDescriptor="
-//                + editStudentDescriptor + "}";
-//        assertEquals(expected, editCommand.toString());
-//    }
-//
-//}
+    @Test
+    public void equals() {
+        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_STUDENT, DESC_AMY);
+
+        // same values -> returns true
+        EditStudentDescriptor copyDescriptor = new EditStudentDescriptor(DESC_AMY);
+        EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_STUDENT, copyDescriptor);
+        assertTrue(standardCommand.equals(commandWithSameValues));
+
+        // same object -> returns true
+        assertTrue(standardCommand.equals(standardCommand));
+
+        // null -> returns false
+        assertFalse(standardCommand.equals(null));
+
+        // different types -> returns false
+        assertFalse(standardCommand.equals(new ClearCommand()));
+
+        // different index -> returns false
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_STUDENT, DESC_AMY)));
+
+        // different descriptor -> returns false
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_STUDENT, DESC_BOB)));
+    }
+
+    @Test
+    public void toStringMethod() {
+        Index index = Index.fromOneBased(1);
+        EditStudentDescriptor editStudentDescriptor = new EditStudentDescriptor();
+        EditCommand editCommand = new EditCommand(index, editStudentDescriptor);
+        String expected = EditCommand.class.getCanonicalName() + "{index=" + index + ", editStudentDescriptor="
+                + editStudentDescriptor + "}";
+        assertEquals(expected, editCommand.toString());
+    }
+
+}

@@ -44,6 +44,18 @@ public class ArgumentMultimap {
     }
 
     /**
+     * Returns the concatenated values of {@code prefix}.
+     */
+    public Optional<String> getAllValuesAsString(Prefix prefix) {
+        List<String> values = getAllValues(prefix);
+        StringBuilder concatenatedValues = new StringBuilder(values.get(0));
+        for (int i = 1; i < values.size(); i++) {
+            concatenatedValues.append(" ").append(prefix.getPrefix()).append(values.get(i));
+        }
+        return values.isEmpty() ? Optional.empty() : Optional.ofNullable(concatenatedValues.toString());
+    }
+
+    /**
      * Returns all values of {@code prefix}.
      * If the prefix does not exist or has no values, this will return an empty list.
      * Modifying the returned list will not affect the underlying data structure of the ArgumentMultimap.

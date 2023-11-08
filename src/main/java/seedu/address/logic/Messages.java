@@ -15,6 +15,7 @@ import seedu.address.model.person.Student;
 public class Messages {
 
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
+
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_COURSE_DISPLAYED_INDEX = "The course index provided is invalid";
     public static final String MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX = "The student index provided is invalid";
@@ -22,6 +23,10 @@ public class Messages {
     public static final String MESSAGE_COURSES_LISTED_OVERVIEW = "%1$d course(s) listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
+    public static final String MESSAGE_WRONG_STAGE_HOME = 
+                "This command is for a selected course. Please select a course first!";
+    public static final String MESSAGE_WRONG_STAGE_COURSE = 
+                "This command is for home. Please go back home first!";
 
     /**
      * Returns an error message indicating the duplicate prefixes.

@@ -1,33 +1,54 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalCourses.getTypicalCourseList;
+import static seedu.address.testutil.TypicalCourses.getTypicalCourses;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.Messages;
+import seedu.address.logic.parser.StageManager;
 import seedu.address.model.CourseList;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.course.Course;
+import seedu.address.model.person.Field;
+import seedu.address.model.person.SortCriteria;
+import seedu.address.testutil.CourseBuilder;
+import seedu.address.testutil.SortCriteriaBuilder;
+import seedu.address.testutil.TypicalStudents;
 
 
 public class ClearCommandTest {
+    private Model model = new ModelManager(getTypicalCourseList(), new UserPrefs());
 
     @Test
-    public void execute_emptyCourseList_success() {
-        Model model = new ModelManager();
-        Model expectedModel = new ModelManager();
+    public void execute_emptyStudentList_success() {
+        Course validCourse = getTypicalCourses().get(1);
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        StageManager stageManager = StageManager.getInstance();
+        stageManager.setCourseStage(validCourse);
+
+        CommandResult commandResult = new ClearCommand().execute(model);
+        String expectedMessage = ClearCommand.MESSAGE_SUCCESS;
+        CommandResult expectedResult = new CommandResult(expectedMessage);
+
+        assertEquals(commandResult, expectedResult);
     }
 
     @Test
-    public void execute_nonEmptyCourseList_success() {
-        Model model = new ModelManager(getTypicalCourseList(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalCourseList(), new UserPrefs());
-        expectedModel.setCourseList(new CourseList());
+    public void execute_nonEmptyStudentList_success() {
+        CourseBuilder courseBuilder = new CourseBuilder().withStudents(TypicalStudents.getTypicalStudentList());
+        Course validCourse = courseBuilder.build();
+        StageManager.getInstance().setCourseStage(validCourse);
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        CommandResult commandResult = new ClearCommand().execute(model);
+        String expectedMessage = ClearCommand.MESSAGE_SUCCESS;
+        CommandResult expectedResult = new CommandResult(expectedMessage);
+
+        assertEquals(commandResult, expectedResult);
     }
 
 }

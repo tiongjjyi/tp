@@ -10,6 +10,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.person.Field;
 import seedu.address.model.person.SortCriteria;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.UniqueStudentList;
@@ -58,10 +59,17 @@ public class Course {
     }
 
     /**
-     * Returns the list of students in the course.
+     * Returns the size of list of students in the course.
      */
     public int getCourseSize() {
         return this.students.size();
+    }
+
+    /**
+     * Returns the size of filtered list of students in the course.
+     */
+    public int getFilteredCourseSize() {
+        return this.filteredStudents.size();
     }
 
     /**
@@ -175,11 +183,11 @@ public class Course {
                 .comparing((Student student) -> student.getName().toString())
                 .thenComparing(student -> student.getEmail().toString());
 
-        if (sortCriteria.getField().toString().equals(SortCriteria.Field.TAG.toString())) {
+        if (sortCriteria.getField().toString().equals(Field.TAG.toString())) {
             updateSortedStudentList(tagComparator);
 
         }
-        if (sortCriteria.getField().toString().equals(SortCriteria.Field.NAME.toString())) {
+        if (sortCriteria.getField().toString().equals(Field.NAME.toString())) {
             updateSortedStudentList(nameComparator);
         }
     }

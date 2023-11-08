@@ -43,6 +43,7 @@ public class DeleteCourseCommand extends Command {
 
         Course courseToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteCourse(courseToDelete);
+        model.resetFilteredCourseList();
         return new CommandResult(String.format(MESSAGE_DELETE_COURSE_SUCCESS, Messages.format(courseToDelete)));
     }
 

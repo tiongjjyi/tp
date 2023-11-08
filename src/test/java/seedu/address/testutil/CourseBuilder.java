@@ -4,9 +4,14 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
+import seedu.address.model.CourseList;
+import seedu.address.model.StudentList;
 import seedu.address.model.course.Course;
 import seedu.address.model.course.CourseName;
 import seedu.address.model.person.Student;
+import seedu.address.model.person.UniqueStudentList;
 
 /**
  * A utility class to help with building Person objects.
@@ -16,14 +21,21 @@ public class CourseBuilder {
     public static final String DEFAULT_COURSE_NAME = "CS2103T";
 
     private CourseName courseName;
-    private List<Student> students;
+    private UniqueStudentList students;
+    private FilteredList<Student> filteredStudents;
+    private SortedList<Student> sortedStudents;
+
+
 
     /**
      * Creates a {@code CourseBuilder} with the default details.
      */
     public CourseBuilder() {
         courseName = new CourseName(DEFAULT_COURSE_NAME);
-        students = new ArrayList<>();
+        students = new UniqueStudentList();
+        filteredStudents = new FilteredList<>(students.asUnmodifiableObservableList());
+        sortedStudents = new SortedList<>(filteredStudents);
+
     }
 
     /**
@@ -37,14 +49,27 @@ public class CourseBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code Person} that we are building.
+     * Sets the {@code CourseName} of the {@code Course} that we are building.
      */
     public CourseBuilder withCourseName(String courseName) {
         this.courseName = new CourseName(courseName);
         return this;
     }
 
+    public CourseBuilder withStudents(StudentList studentList) {
+        for (Student student : studentList.getStudentList()) {
+            this.students.add(student);
+        }
+        return this;
+    }
+
     public Course build() {
-        return new Course(courseName);
+        Course course = new Course(courseName);
+        if (students != null) {
+            for (Student student : students) {
+                course.addStudent(student);
+            }
+        }
+        return course;
     }
 }

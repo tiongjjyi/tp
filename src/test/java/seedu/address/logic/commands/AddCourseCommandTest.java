@@ -39,7 +39,7 @@ public class AddCourseCommandTest {
 
         CommandResult commandResult = new AddCourseCommand(validCourse).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validCourse)),
+        assertEquals(String.format(AddCourseCommand.MESSAGE_SUCCESS, Messages.format(validCourse)),
                 commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validCourse), modelStub.coursesAdded);
     }
@@ -156,6 +156,11 @@ public class AddCourseCommandTest {
 
         @Override
         public void updateFilteredCourseList(Predicate<Course> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void resetFilteredCourseList() {
             throw new AssertionError("This method should not be called.");
         }
     }

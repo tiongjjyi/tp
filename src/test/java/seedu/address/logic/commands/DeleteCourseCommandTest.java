@@ -45,7 +45,7 @@ public class DeleteCourseCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredCourseList().size() + 1);
         DeleteCourseCommand deleteCourseCommand = new DeleteCourseCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCourseCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCourseCommand, model, Messages.MESSAGE_INVALID_COURSE_DISPLAYED_INDEX);
     }
 
     @Test
@@ -60,22 +60,9 @@ public class DeleteCourseCommandTest {
 
         Model expectedModel = new ModelManager(model.getCourseList(), new UserPrefs());
         expectedModel.deleteCourse(courseToDelete);
-        showNoStudent(expectedModel);
+        expectedModel.resetFilteredCourseList();
 
         assertCommandSuccess(deleteCourseCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
-    public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showCourseAtIndex(model, INDEX_FIRST_STUDENT);
-
-        Index outOfBoundIndex = INDEX_SECOND_STUDENT;
-        // ensures that outOfBoundIndex is still in bounds of student list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getCourseList().getCourseList().size());
-
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
-
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     @Test

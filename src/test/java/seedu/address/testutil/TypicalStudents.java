@@ -16,6 +16,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.StudentList;
 import seedu.address.model.person.Student;
+import seedu.address.model.person.UniqueStudentList;
+
+import static seedu.address.logic.commands.CommandTestUtil.*;
 
 /**
  * A utility class containing a list of {@code Student} objects to be used in tests.
@@ -49,7 +52,7 @@ public class TypicalStudents {
     public static final Student AMY = new StudentBuilder().withName(VALID_NAME_AMY)
             .withEmail(VALID_EMAIL_AMY).withTag(VALID_TAG_AVERAGE).build();
     public static final Student BOB = new StudentBuilder().withName(VALID_NAME_BOB)
-            .withEmail(VALID_EMAIL_BOB).withTag(VALID_TAG_POOR)
+            .withEmail(VALID_EMAIL_BOB).withTag(VALID_TAG_POOR).withPendingQuestion(VALID_PENDING_QUESTION_BOB)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER

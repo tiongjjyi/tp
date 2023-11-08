@@ -88,4 +88,9 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredCourseList(Predicate<Course> predicate);
+
+    /**
+     * Returns an unmodifiable view of the filtered list of {@code Course} in the original order
+     */
+    void resetFilteredCourseList();
 }
