@@ -107,7 +107,85 @@ Else, if you prefer exploring the app yourself, head to [Features](#features) be
 <div style="page-break-after: always"></div>
 
 ## **Tutorial for Beginners**
-*{to be added}*
+*If you are not a beginner, or would like to explore CodeSphere on your own,
+feel free to skip this tutorial or jump to whichever portion you require.*
+
+###Tutorial
+1. [**Adding a course**](#tutorial-adding-a-course)
+2. [**Adding students**](#tutorial-adding-students)
+3. [**Adding remarks / pending questions**](#tutorial-adding-remarks--pending-questions)
+
+**Let's explore CodeSphere's features through the eyes of a typical TA.**  
+As you enter into the application for the first time, after a brief splash screen of the CodeSphere logo, 
+you will see an empty page. This is our `home` page, used to display a list of all the courses that you wish to manage.
+
+![Empty Homepage](images/tutorial/homepage_empty.png)
+
+At the top of the application, there is an underlined portion that we will refer to as the *Command Line*.
+This is where your commands are typed, and they are confirmed by pressing the ***ENTER*** key on your keyboard.  
+Below the Command Line is the *Result Box* (which is the outlined box),
+which will tell you the outcome of any commands that you have entered.  
+Lastly, underneath that is the *Display Panel*, which will be updated after each command is entered. 
+
+
+###Tutorial: Adding a course
+*(For demonstration purposes, we'll be using `CS1101S` as our chosen course.
+Feel free to replace this with any course of your choosing.)*  
+
+Let's begin by adding our course into our home page with the command `add c/CS1101S`.  
+You should see the course immediately appear in the list,
+and a result informing you that there is a *New course added: CS1101S*
+
+![CS1101S in Homepage](images/tutorial/homepage_CS1101S.png)
+
+###Tutorial: Adding students
+Let us add some students into this course.
+First, we will have to navigate into our CS1101S course by using the command
+`select 1`, which selects the first item in the course list.
+The course's item number is displayed beside the course name (note the **1.** beside *CS1101S* in the picture)
+
+Your application should update to look like something like this.
+The course entry (CS1101S) displays the summary statistics of all the students listed within the course (currently none).  
+*Tip: You can always refer to the Result Box to see whether the command you entered has been successful*
+
+![Empty CS1101S](images/tutorial/course_CS1101S.png)
+
+The course is currently empty, so let's add a few students into the list with the following commands:  
+*(Remember to press 'Enter' after each command)*  
+`add n/John Tan e/e0123456@u.nus.edu t/good`  
+`add n/Mary Lim e/e1234567@u.nus.edu t/average`  
+`add n/David Lee e/e2345678@u.nus.edu t/poor`
+
+>Note: When creating students, you must always include their name (`n/`), email (`e/`) and performance tag (`t/`).
+
+![Filled CS1101S](images/tutorial/course_students.png)
+
+###Tutorial: Adding remarks / pending questions
+Lastly, we shall look into adding remarks or pending questions for the students.
+Let's add a remark "Will be 15 minutes late for tutorial" to our student *John Tan* (who is number 1 in the list)
+by typing  
+`remark 1 r/Will be 15 minutes late for tutorial`.
+
+Likewise, let's note down Mary's pending question about "Tutorial 2 Question 4" through the command  
+`pq 2 pq/Tutorial 2 Question 4`.
+
+Your page should now be updated with the remark and pending question under the respective student's data entry.
+
+![Add Remark and PQ](images/tutorial/remark_pq.png)
+
+And there you have it! Your first course created, with students' details and even extra information all noted down,
+displayed to you at a glance! 
+
+>As a final tip, you can use the directional ***UP*** and ***DOWN*** keys on your keyboard to access the commands that
+you have previously entered.
+
+Feel free to explore CodeSphere's other features, such as
+[listing out all students with pending questions](#list-all-pending-questions-list),
+[sorting the students by different criteria](#sorting-all-students-sort) or even
+[finding students with certain keywords in selected field](#finding-a-student-find).  
+
+There's many features specially curated for you to manage your students with ease,
+so have fun and may your administrative work be effortless!
 
 [_Back to Top_](#table-of-contents)
 
@@ -118,7 +196,7 @@ Else, if you prefer exploring the app yourself, head to [Features](#features) be
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+**Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   * e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
