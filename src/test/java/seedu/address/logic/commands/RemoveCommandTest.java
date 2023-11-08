@@ -106,8 +106,9 @@ public class RemoveCommandTest {
 
         // same value for editStudentDescriptor -> returns true
         RemoveCommand.EditStudentDescriptor editStudentDescriptorCopy = new RemoveCommand.EditStudentDescriptor();
-        RemoveCommand removeFirstCopyESD = new RemoveCommand(TypicalIndexes.INDEX_FIRST_STUDENT, editStudentDescriptorCopy);
-        assertTrue(removeFirst.equals(removeFirstCopyESD));
+        RemoveCommand removeFirstCopyEsd = new RemoveCommand(
+                TypicalIndexes.INDEX_FIRST_STUDENT, editStudentDescriptorCopy);
+        assertTrue(removeFirst.equals(removeFirstCopyEsd));
 
         // different types -> returns false
         assertFalse(removeFirst.equals(1));
