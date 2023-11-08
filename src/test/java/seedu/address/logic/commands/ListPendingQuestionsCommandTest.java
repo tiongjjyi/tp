@@ -47,11 +47,11 @@ public class ListPendingQuestionsCommandTest {
         Course validCourse = new CourseBuilder().build();
         StageManager.getInstance().setCourseStage(validCourse);
         validCourse.addStudent(new StudentBuilder().build());
-
-        String expectedMessage = String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW,
-                validCourse.getFilteredStudentList().size());
         AllPendingQuestionPredicate predicate = new AllPendingQuestionPredicate();
         ListPendingQuestionsCommand command = new ListPendingQuestionsCommand(predicate);
+        command.execute(model);
+        String expectedMessage = String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW,
+                validCourse.getFilteredStudentList().size());
         CommandResult commandResult = command.execute(model);
         CommandResult expectedResult = new CommandResult(expectedMessage);
         assertEquals(commandResult, expectedResult);
