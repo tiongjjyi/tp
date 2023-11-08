@@ -1,8 +1,6 @@
 package seedu.address.model.course;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COURSE_NAME_2100;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COURSE_NAME_2101;
 import static seedu.address.testutil.TypicalCourses.CS2100;
@@ -11,6 +9,7 @@ import static seedu.address.testutil.TypicalCourses.CS2103T;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.CourseBuilder;
+import seedu.address.testutil.TypicalStudents;
 
 public class CourseTest {
 
@@ -25,14 +24,26 @@ public class CourseTest {
         // different course name -> returns false
         assertFalse(CS2100.isSameCourse(CS2103T));
 
-        // course name differs in case -> returns false
+        // course name differs in case -> returns true
         Course editedCS2100 = new CourseBuilder(CS2100).withCourseName(VALID_COURSE_NAME_2100.toLowerCase()).build();
-        assertFalse(CS2100.isSameCourse(editedCS2100));
+        assertTrue(CS2100.isSameCourse(editedCS2100));
 
-        // course name has trailing spaces -> returns false
-        String courseNameWithTrailingSpaces = VALID_COURSE_NAME_2100 + " ";
-        editedCS2100 = new CourseBuilder(CS2100).withCourseName(courseNameWithTrailingSpaces).build();
-        assertFalse(CS2100.isSameCourse(editedCS2100));
+        // same name but different students -> returns true
+        Course newCS2100 = new CourseBuilder(CS2100).build();
+        newCS2100.addStudent(TypicalStudents.ALICE);
+        Course differentCS2100 = new CourseBuilder(CS2100).build();
+        differentCS2100.addStudent(TypicalStudents.BOB);
+        assertTrue(newCS2100.isSameCourse(differentCS2100));
+    }
+
+    @Test
+    public void invalidCourseName_throwsIllegalArgumentException() {
+        // course name has trailing spaces -> returns true
+        String courseNameWithTrailingSpaces = VALID_COURSE_NAME_2101 + " ";
+        assertThrows(IllegalArgumentException.class,
+                () -> new CourseBuilder(CS2100).withCourseName(courseNameWithTrailingSpaces).build(),
+                "Course code should contain a two or three letter prefix, a four digit course code,"
+                        + "and an optional one letter suffix");
     }
 
     @Test
