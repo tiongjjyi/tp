@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-CodeSphere is a **desktop contact management app, optimised for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). 
+CodeSphere is a **desktop contact management app, optimised for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI).
 It is an app targeted at helping Teaching Assistants (TAs) of the NUS School of Computing manage the administration of their students better.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -67,7 +67,7 @@ It is an app targeted at helping Teaching Assistants (TAs) of the NUS School of 
 
 | Symbol/Syntax        | Meaning                                                |
 |----------------------|--------------------------------------------------------|
-| `command`            | A command or keyword present,                          |                              
+| `command`            | A command or keyword present,                          |
 | :exclamation:        | Warning or some important information for you to know. |
 | :bulb:               | Tips from us!                                          |
 | :information_source: | Information that you should take note of.              |
@@ -86,14 +86,14 @@ It is an app targeted at helping Teaching Assistants (TAs) of the NUS School of 
 
    ![Ui](images/HomePage.png)
 
-In the command box, type in any command and hit enter to execute the command! 
+In the command box, type in any command and hit enter to execute the command!
 Eg. typing `help` and hitting enter after will show the Help window. Some other example commands you can try:
 * `help` : View help.
 * `select 1` :  Selects the first course and navigates to the list of students in this course.
 * `add c/CS1101S` : Adds a course named `CS1101S` to the course list.
 * `edit 1 c/CS1231S` : Updates the first course in the course list with the edited course name.
-* `delete 3` : 
-  * If you are currently on the home page, it deletes the third course shown in the current list. 
+* `delete 3` :
+  * If you are currently on the home page, it deletes the third course shown in the current list.
   * If you are currently on the course page, it deletes the third student shown in the current list.
 
 * `exit` : Exits the app.
@@ -115,25 +115,25 @@ feel free to skip this tutorial or jump to whichever portion you require.*
 2. [**Adding students**](#tutorial-adding-students)
 3. [**Adding remarks / pending questions**](#tutorial-adding-remarks--pending-questions)
 
-**Let's explore CodeSphere's features through the eyes of a typical TA.**  
-As you enter into the application for the first time, after a brief splash screen of the CodeSphere logo, 
+**Let's explore CodeSphere's features through the eyes of a typical TA.** 
+As you enter into the application for the first time, after a brief splash screen of the CodeSphere logo,
 you will see an empty page. This is our `home` page, used to display a list of all the courses that you wish to manage.
 
 ![Empty Homepage](images/tutorial/homepage_empty.png)
 
 At the top of the application, there is an underlined portion that we will refer to as the *Command Line*.
-This is where your commands are typed, and they are confirmed by pressing the ***ENTER*** key on your keyboard.  
+This is where your commands are typed, and they are confirmed by pressing the ***ENTER*** key on your keyboard.
 Below the Command Line is the *Result Box* (which is the outlined box),
-which will tell you the outcome of any commands that you have entered.  
-Lastly, underneath that is the *Display Panel*, which will be updated after each command is entered. 
+which will tell you the outcome of any commands that you have entered.
+Lastly, underneath that is the *Display Panel*, which will be updated after each command is entered.
 
 
 ### Tutorial: Adding a course
 
 *(For demonstration purposes, we'll be using `CS1101S` as our chosen course.
-Feel free to replace this with any course of your choosing.)*  
+Feel free to replace this with any course of your choosing.)*
 
-Let's begin by adding our course into our home page with the command `add c/CS1101S`.  
+Let's begin by adding our course into our home page with the command `add c/CS1101S`.
 You should see the course immediately appear in the list,
 and a result informing you that there is a *New course added: CS1101S*
 
@@ -147,15 +147,15 @@ First, we will have to navigate into our CS1101S course by using the command
 The course's item number is displayed beside the course name (note the **1.** beside *CS1101S* in the picture)
 
 Your application should update to look like something like this.
-The course entry (CS1101S) displays the summary statistics of all the students listed within the course (currently none).  
+The course entry (CS1101S) displays the summary statistics of all the students listed within the course (currently none).
 *Tip: You can always refer to the Result Box to see whether the command you entered has been successful*
 
 ![Empty CS1101S](images/tutorial/course_CS1101S.png)
 
-The course is currently empty, so let's add a few students into the list with the following commands:  
-*(Remember to press 'Enter' after each command)*  
-`add n/John Tan e/e0123456@u.nus.edu t/good`  
-`add n/Mary Lim e/e1234567@u.nus.edu t/average`  
+The course is currently empty, so let's add a few students into the list with the following commands:
+*(Remember to press 'Enter' after each command)*
+`add n/John Tan e/e0123456@u.nus.edu t/good`
+`add n/Mary Lim e/e1234567@u.nus.edu t/average`
 `add n/David Lee e/e2345678@u.nus.edu t/poor`
 
 >:information_source: Note: When creating students, you must always include their name (`n/`), email (`e/`) and performance tag (`t/`).
@@ -166,10 +166,10 @@ The course is currently empty, so let's add a few students into the list with th
 
 Lastly, we shall look into adding remarks or pending questions for the students.
 Let's add a remark "Will be 15 minutes late for tutorial" to our student *John Tan* (who is number 1 in the list)
-by typing  
+by typing
 `remark 1 r/Will be 15 minutes late for tutorial`.
 
-Likewise, let's note down Mary's pending question about "Tutorial 2 Question 4" through the command  
+Likewise, let's note down Mary's pending question about "Tutorial 2 Question 4" through the command
 `pq 2 pq/Tutorial 2 Question 4`.
 
 Your page should now be updated with the remark and pending question under the respective student's data entry.
@@ -177,7 +177,7 @@ Your page should now be updated with the remark and pending question under the r
 ![Add Remark and PQ](images/tutorial/remark_pq.png)
 
 And there you have it! Your first course created, with students' details and even extra information all noted down,
-displayed to you at a glance! 
+displayed to you at a glance!
 
 >:bulb: As a final tip, you can use the directional ***UP*** and ***DOWN*** keys on your keyboard to access the commands that
 you have previously entered.
@@ -185,7 +185,7 @@ you have previously entered.
 Feel free to explore CodeSphere's other features, such as
 [listing out all students with pending questions](#list-all-pending-questions-list),
 [sorting the students by different criteria](#sorting-all-students-sort) or even
-[finding students with certain keywords in selected field](#finding-a-student-find).  
+[finding students with certain keywords in selected field](#finding-a-student-find).
 
 There's many features specially curated for you to manage your students with ease,
 so have fun and may your administrative work be effortless!
@@ -223,9 +223,9 @@ so have fun and may your administrative work be effortless!
 ### **Accessing Input History**
 
 CodeSphere saves all inputs that you have previously entered.
-In the CLI command box, just use your 'up' and 'down' arrow keys to access any inputs that you have entered before.  
+In the CLI command box, just use your 'up' and 'down' arrow keys to access any inputs that you have entered before.
 
-> :information_source: *For your information*: Inputs that were invalid will be shown in red.  
+> :information_source: *For your information*: Inputs that were invalid will be shown in red.
 
 ---
 
@@ -288,7 +288,7 @@ Edits the details of an existing course from the list of courses.
 
 **Format:** `edit INDEX c/NEW_COURSENAME`
 * Edits the course at the specified `INDEX`. Existing course name will be updated to the input course name.
-* The index refers to the index number shown in the displayed course list. 
+* The index refers to the index number shown in the displayed course list.
 * `NEW_COURSENAME` is a string that is a valid course in the NUS School of Computing.
 * `INDEX` must be a positive integer 1, 2, 3, ...
 
@@ -363,7 +363,7 @@ Commands exclusive to the course page can help you:
 * `find` students in the course
 * `list` all existing students with pending questions
 * add a `remark` to a student
-* add a pending question `pq` to a student 
+* add a pending question `pq` to a student
 * `remove` a remark or pending question from a student
 
 [_Back to Top_](#table-of-contents)
@@ -539,7 +539,7 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 --------------------------------------------------------------------------------------------------------------------
 ## **Known Issues**
 
-1. When using multiple screens, if you move the application to a secondary screen, and later switch to using only the primary screen, 
+1. When using multiple screens, if you move the application to a secondary screen, and later switch to using only the primary screen,
 the GUI will open off-screen. The remedy is to delete the preferences.json file created by the application before running the application again.
 
 [_Back to Top_](#table-of-contents)
@@ -553,11 +553,11 @@ the GUI will open off-screen. The remedy is to delete the preferences.json file 
 
 | Action                | Format, Examples                                           |
 |-----------------------|------------------------------------------------------------|
-| **Help**              | `help`                                                     |                              
+| **Help**              | `help`                                                     |
 | **Add Course**        | `add c/COURSENAME`<br/> e.g. `add c/CS1101S`               |
 | **Edit Course**       | `edit INDEX c/NEW_COURSENAME`<br/> e.g. `edit 1 c/CS1231S` |
 | **Delete Course**     | `delete INDEX` e.g. `delete 1`                             |
-| **Clear All Courses** | `clear`                                                    |                              
+| **Clear All Courses** | `clear`                                                    |
 | **Select Course**     | `select INDEX` e.g. `select 1`                             |
 | **Find Course**       | `find KEYWORD` e.g. `find CS`                              |
 | **Exit**              | `exit`                                                     |
@@ -570,7 +570,7 @@ the GUI will open off-screen. The remedy is to delete the preferences.json file 
 
 | Action                                 | Format, Examples                                                                       |
 |----------------------------------------|----------------------------------------------------------------------------------------|
-| **Help**                               | `help`                                                                                 |                              
+| **Help**                               | `help`                                                                                 |
 | **Add Student**                        | `add n/NAME e/EMAIL t/ENUM_TAG`<br/>e.g. `add n/Susan Tan e/e0123456@u.nus.edu t/GOOD` |
 | **Edit Student**                       | `edit INDEX [n/NAME] [e/EMAIL] [t/ENUM_TAG]`<br/> e.g. `edit 1 n/JOHN`                 |
 | **Delete Student**                     | `delete INDEX` e.g. `delete 1`                                                         |
@@ -578,8 +578,8 @@ the GUI will open off-screen. The remedy is to delete the preferences.json file 
 | **Reset Student List**                 | `reset`                                                                                |
 | **Sort Students**                      | `sort`                                                                                 |                                                                                        |
 | **Find Students**                      | `find [n/KEYWORD] [t/TAG] [pg/QUESTION] [r/REMARK]` e.g. `find n/John`                 |
-| **List Students**                      | `list`                                                                                 |                              
-| **Add Remark**                         | `remark INDEX r/REMARK`<br/>e.g. `remark 1 r/needs more help`                          |                              
+| **List Students**                      | `list`                                                                                 |
+| **Add Remark**                         | `remark INDEX r/REMARK`<br/>e.g. `remark 1 r/needs more help`                          |
 | **Add Pending Question**               | `pq INDEX r/PENDINGQUESTION`<br/>e.g. `pq 1 pq/What is a logic gate?`                  |
 | **Remove Remark/<br>Pending Question** | `remove INDEX [r/] [pq/]` e.g. `remove 2 r/`                                           |
 | **Home**                               | `home`                                                                                 |

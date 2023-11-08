@@ -57,7 +57,7 @@
                            <Image url="@../images/icons/question.png" />
                         </image>
                      </ImageView>
-            
+
                   <Label fx:id="pqCount" layoutX="18.0" styleClass="cell_small_label" text="\$pqCount" translateX="2.0" />
                   </children>
                </Pane>

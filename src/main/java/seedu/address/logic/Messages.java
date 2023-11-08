@@ -23,9 +23,9 @@ public class Messages {
     public static final String MESSAGE_COURSES_LISTED_OVERVIEW = "%1$d course(s) listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
-    public static final String MESSAGE_WRONG_STAGE_HOME = 
+    public static final String MESSAGE_WRONG_STAGE_HOME =
                 "This command is for a selected course. Please select a course first!";
-    public static final String MESSAGE_WRONG_STAGE_COURSE = 
+    public static final String MESSAGE_WRONG_STAGE_COURSE =
                 "This command is for home. Please go back home first!";
 
     /**
