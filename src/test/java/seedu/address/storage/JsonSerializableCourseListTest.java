@@ -18,7 +18,7 @@ public class JsonSerializableCourseListTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableCourseListTest");
     private static final Path TYPICAL_COURSE_FILE = TEST_DATA_FOLDER.resolve("typicalCoursesCourseList.json");
     private static final Path INVALID_COURSE_FILE = TEST_DATA_FOLDER.resolve("invalidCourseCourseList.json");
-    private static final Path DUPLICATE_COURSE_FILE = TEST_DATA_FOLDER.resolve("duplicateCoursesCourseList.json");
+    private static final Path DUPLICATE_COURSE_FILE = TEST_DATA_FOLDER.resolve("duplicateCourseCourseList.json");
 
     @Test
     public void toModelType_typicalCourseFile_success() throws Exception {
@@ -40,7 +40,7 @@ public class JsonSerializableCourseListTest {
     public void toModelType_duplicateCourses_throwsIllegalValueException() throws Exception {
         JsonSerializableCourseList dataFromFile = JsonUtil.readJsonFile(DUPLICATE_COURSE_FILE,
                 JsonSerializableCourseList.class).get();
-        assertThrows(IllegalValueException.class, JsonSerializableCourseList.MESSAGE_DUPLICATE_PERSON,
+        assertThrows(IllegalValueException.class, JsonSerializableCourseList.MESSAGE_DUPLICATE_COURSE,
                 dataFromFile::toModelType);
     }
 

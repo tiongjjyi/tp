@@ -77,7 +77,7 @@ public class EditStudentDescriptorBuilder {
      * Parses the {@code tag} into a {@code Tag} and set it to the {@code EditPersonDescriptor}
      * that we are building.
      */
-    public EditStudentDescriptorBuilder withTags(StudentRank studentRank) {
+    public EditStudentDescriptorBuilder withTag(StudentRank studentRank) {
         Tag tag = new Tag(studentRank);
         descriptor.setTag(tag);
         return this;

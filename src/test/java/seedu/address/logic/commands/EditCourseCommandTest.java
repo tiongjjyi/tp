@@ -3,11 +3,13 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_CS2100;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_COURSE_NAME_2100;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_CS2100;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_CS2101;
 import static seedu.address.logic.commands.CommandTestUtil.showCourseAtIndex;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_COURSE_NAME_2100;
+import static seedu.address.testutil.TypicalCourses.CS1101S;
 import static seedu.address.testutil.TypicalCourses.getTypicalCourseList;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
@@ -17,13 +19,17 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.EditCourseCommand.EditCourseDescriptor;
+import seedu.address.logic.parser.*;
 import seedu.address.model.CourseList;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.course.Course;
+import seedu.address.model.course.CourseNameContainsKeywordsPredicate;
 import seedu.address.testutil.CourseBuilder;
 import seedu.address.testutil.EditCourseDescriptorBuilder;
+
+import java.util.*;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCourseCommand.
@@ -62,9 +68,14 @@ public class EditCourseCommandTest {
 
     @Test
     public void execute_filteredList_success() {
+        StageManager stageManager = StageManager.getInstance();
+        stageManager.setHomeStage();
+
+        model.updateFilteredCourseList(new CourseNameContainsKeywordsPredicate(Collections.singletonList(CS1101S
+                .getCourseName().fullCourseName)));
         showCourseAtIndex(model, INDEX_FIRST_STUDENT);
 
-        Course courseInFilteredList = model.getFilteredCourseList().get(INDEX_FIRST_STUDENT.getZeroBased());
+        Course courseInFilteredList = model.getFilteredCourseList().get(0);
         Course editedCourse = new CourseBuilder(courseInFilteredList).withCourseName(VALID_COURSE_NAME_2100).build();
         EditCourseCommand editCourseCommand = new EditCourseCommand(INDEX_FIRST_STUDENT,
                 new EditCourseDescriptorBuilder().withCourseName(VALID_COURSE_NAME_2100).build());
@@ -89,6 +100,11 @@ public class EditCourseCommandTest {
 
     @Test
     public void execute_duplicateCourseFilteredList_failure() {
+        StageManager stageManager = StageManager.getInstance();
+        stageManager.setHomeStage();
+
+        model.updateFilteredCourseList(new CourseNameContainsKeywordsPredicate(Collections.singletonList(CS1101S
+                .getCourseName().fullCourseName)));
         showCourseAtIndex(model, INDEX_FIRST_STUDENT);
 
         // edit Course in filtered list into a duplicate in course list
@@ -113,8 +129,14 @@ public class EditCourseCommandTest {
      * but smaller than size of course list
      */
     @Test
-    public void execute_invalidStudentIndexFilteredList_failure() {
+    public void execute_invalidCourseIndexFilteredList_failure() {
+        StageManager stageManager = StageManager.getInstance();
+        stageManager.setHomeStage();
+
+        model.updateFilteredCourseList(new CourseNameContainsKeywordsPredicate(Collections.singletonList(CS1101S
+                .getCourseName().fullCourseName)));
         showCourseAtIndex(model, INDEX_FIRST_STUDENT);
+
         Index outOfBoundIndex = INDEX_SECOND_STUDENT;
         // ensures that outOfBoundIndex is still in bounds of course list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getCourseList().getCourseList().size());
@@ -147,7 +169,7 @@ public class EditCourseCommandTest {
         assertFalse(standardCommand.equals(new EditCourseCommand(INDEX_SECOND_STUDENT, DESC_CS2100)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditCourseCommand(INDEX_FIRST_STUDENT, DESC_CS2100)));
+        assertFalse(standardCommand.equals(new EditCourseCommand(INDEX_FIRST_STUDENT, DESC_CS2101)));
     }
 
     @Test
@@ -155,7 +177,7 @@ public class EditCourseCommandTest {
         Index index = Index.fromOneBased(1);
         EditCourseDescriptor editCourseDescriptor = new EditCourseDescriptor();
         EditCourseCommand editCourseCommand = new EditCourseCommand(index, editCourseDescriptor);
-        String expected = EditCommand.class.getCanonicalName() + "{index=" + index + ", editCourseDescriptor="
+        String expected = EditCourseCommand.class.getCanonicalName() + "{index=" + index + ", editCourseDescriptor="
                 + editCourseDescriptor + "}";
         assertEquals(expected, editCourseCommand.toString());
     }

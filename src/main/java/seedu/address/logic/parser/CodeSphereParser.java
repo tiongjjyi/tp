@@ -87,7 +87,7 @@ public class CodeSphereParser {
             return new AddCourseCommandParser().parse(arguments);
 
         case ClearCourseCommand.COMMAND_WORD:
-            return new ClearCourseCommand();
+            return new ClearCourseCommandParser().parse(arguments);
 
         case DeleteCourseCommand.COMMAND_WORD:
             return new DeleteCourseCommandParser().parse(arguments);
@@ -138,7 +138,7 @@ public class CodeSphereParser {
             return new AddCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
+            return new ClearCommandParser().parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
