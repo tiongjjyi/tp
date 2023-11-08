@@ -23,27 +23,27 @@ import seedu.address.model.person.Student;
 public class TypicalStudents {
 
     public static final Student ALICE = new StudentBuilder().withName("Alice Pauline")
-            .withEmail("alice@example.com").withRemark("She likes aardvarks.")
+            .withEmail("e0000000@u.nus.edu").withRemark("She likes aardvarks.")
             .withTag(VALID_TAG_AVERAGE).build();
     public static final Student BENSON = new StudentBuilder().withName("Benson Meier")
-            .withEmail("johnd@example.com").withRemark("He can't take beer!")
+            .withEmail("e1111111@u.nus.edu").withRemark("He can't take beer!")
             .withTag(VALID_TAG_GOOD).build();
     public static final Student CARL = new StudentBuilder().withName("Carl Kurz")
-            .withEmail("heinz@example.com").build();
+            .withEmail("e2222222@u.nus.edu").build();
     public static final Student DANIEL = new StudentBuilder().withName("Daniel Meier")
-            .withEmail("cornelia@example.com").withTag(VALID_TAG_GOOD).build();
+            .withEmail("e3333333@u.nus.edu").withTag(VALID_TAG_GOOD).build();
     public static final Student ELLE = new StudentBuilder().withName("Elle Meyer")
-            .withEmail("werner@example.com").build();
+            .withEmail("e4444444@u.nus.edu").build();
     public static final Student FIONA = new StudentBuilder().withName("Fiona Kunz")
-            .withEmail("lydia@example.com").build();
+            .withEmail("e5555555@u.nus.edu").build();
     public static final Student GEORGE = new StudentBuilder().withName("George Best")
-            .withEmail("anna@example.com").build();
+            .withEmail("e6666666@u.nus.edu").build();
 
     // Manually added
     public static final Student HOON = new StudentBuilder().withName("Hoon Meier")
-            .withEmail("stefan@example.com").build();
+            .withEmail("e7777777@u.nus.edu").build();
     public static final Student IDA = new StudentBuilder().withName("Ida Mueller")
-            .withEmail("hans@example.com").build();
+            .withEmail("e8888888@u.nus.edu").build();
 
     // Manually added - Student's details found in {@code CommandTestUtil}
     public static final Student AMY = new StudentBuilder().withName(VALID_NAME_AMY)
