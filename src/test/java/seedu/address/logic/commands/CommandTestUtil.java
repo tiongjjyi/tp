@@ -79,12 +79,12 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withEmail(VALID_EMAIL_AMY).withRemark(VALID_REMARK_AMY)
-                .withPendingQuestion(VALID_PENDING_QUESTION_AMY).withTags(VALID_TAG_AVERAGE).build();
+                .withPendingQuestion(VALID_PENDING_QUESTION_AMY).withTag(VALID_TAG_AVERAGE).build();
         DESC_BOB = new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withEmail(VALID_EMAIL_BOB).withRemark(VALID_REMARK_BOB)
-                .withPendingQuestion(VALID_PENDING_QUESTION_BOB).withTags(VALID_TAG_POOR).build();
+                .withPendingQuestion(VALID_PENDING_QUESTION_BOB).withTag(VALID_TAG_POOR).build();
         DESC_CLARA = new EditStudentDescriptorBuilder().withName(VALID_NAME_CLARA)
-                    .withEmail(VALID_EMAIL_CLARA).withTags(VALID_TAG_GOOD).build();
+                    .withEmail(VALID_EMAIL_CLARA).withTag(VALID_TAG_GOOD).build();
     }
 
     public static final EditCourseCommand.EditCourseDescriptor DESC_CS2100;
@@ -164,7 +164,7 @@ public class CommandTestUtil {
         Course course = model.getFilteredCourseList().get(targetIndex.getZeroBased());
         final String[] splitName = course.getCourseName().fullCourseName.split("\\s+");
 
-        assertEquals(6, model.getFilteredCourseList().size());
+        assertEquals(1, model.getFilteredCourseList().size());
     }
 
 }

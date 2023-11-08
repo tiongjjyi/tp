@@ -165,7 +165,7 @@ public class EditCourseCommand extends Command {
         @Override
         public String toString() {
             return new ToStringBuilder(this)
-                    .add("Course Name:", courseName)
+                    .add("course name", courseName)
                     .toString();
         }
     }

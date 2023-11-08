@@ -12,6 +12,9 @@ import seedu.address.model.course.Course;
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Clears and removes all students in the student list\n"
+            + "Example: " + COMMAND_WORD;
     public static final String MESSAGE_SUCCESS = "Student list has been cleared.";
 
 

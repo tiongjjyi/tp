@@ -10,6 +10,9 @@ import seedu.address.model.Model;
  */
 public class ClearCourseCommand extends Command {
     public static final String COMMAND_WORD = "clear";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Clears and removes all courses in the course list\n"
+            + "Example: " + COMMAND_WORD;
     public static final String MESSAGE_SUCCESS = "Course list has been cleared.";
 
     @Override

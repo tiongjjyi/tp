@@ -25,7 +25,7 @@ public class AddCommandParserTest {
     @Test
     public void parse_allFieldsPresent_success() {
         Student expectedStudent = new StudentBuilder().withName(VALID_NAME_BOB).withEmail(VALID_EMAIL_BOB)
-                .withTag(VALID_TAG_AVERAGE).build();
+                .withTag(VALID_TAG_AVERAGE).withRemark("").withPendingQuestion("").build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + EMAIL_DESC_BOB

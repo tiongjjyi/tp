@@ -43,7 +43,7 @@ public class EditStudentDescriptorTest {
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different tags -> returns false
-        editedAmy = new EditStudentDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_GOOD).build();
+        editedAmy = new EditStudentDescriptorBuilder(DESC_AMY).withTag(VALID_TAG_GOOD).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
 
@@ -54,7 +54,7 @@ public class EditStudentDescriptorTest {
                 + editPersonDescriptor.getName().orElse(null) + ", email="
                 + editPersonDescriptor.getEmail().orElse(null) + ", remark="
                 + editPersonDescriptor.getRemark().orElse(null) + ", pending question="
-                + editPersonDescriptor.getPendingQuestion().orElse(null) + ", tags="
+                + editPersonDescriptor.getPendingQuestion().orElse(null) + ", tag="
                 + editPersonDescriptor.getTag().orElse(null) + "}";
         assertEquals(expected, editPersonDescriptor.toString());
     }
