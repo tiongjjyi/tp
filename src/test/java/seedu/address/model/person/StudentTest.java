@@ -18,12 +18,6 @@ import seedu.address.testutil.StudentBuilder;
 public class StudentTest {
 
     @Test
-    public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Student student = new StudentBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> student.getTag());
-    }
-
-    @Test
     public void isSameStudent() {
         // same object -> returns true
         assertTrue(ALICE.isSameStudent(ALICE));
@@ -36,18 +30,22 @@ public class StudentTest {
                 .withTag(VALID_TAG_AVERAGE).build();
         assertFalse(ALICE.isSameStudent(editedAlice));
 
-        // different name, all other attributes same -> returns false
+        // different name, all other attributes same -> returns true
         editedAlice = new StudentBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.isSameStudent(editedAlice));
+        assertTrue(ALICE.isSameStudent(editedAlice));
 
-        // name differs in case, all other attributes same -> returns false
+        // name differs in case, all other attributes same -> returns true
         Student editedBob = new StudentBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(BOB.isSameStudent(editedBob));
+        assertTrue(BOB.isSameStudent(editedBob));
 
-        // name has trailing spaces, all other attributes same -> returns false
+        // email is different, all other attributes same -> returns false
+        Student otherAlice = new StudentBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
+        assertFalse(ALICE.isSameStudent(otherAlice));
+
+        // name has trailing spaces, all other attributes same -> returns true
         String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
         editedBob = new StudentBuilder(BOB).withName(nameWithTrailingSpaces).build();
-        assertFalse(BOB.isSameStudent(editedBob));
+        assertTrue(BOB.isSameStudent(editedBob));
     }
 
     @Test
@@ -86,7 +84,8 @@ public class StudentTest {
         String expected = Student.class.getCanonicalName() + "{name=" + ALICE.getName()
                 + ", email=" + ALICE.getEmail()
                 + ", remark=" + ALICE.getRemark()
-                + ", tags=" + ALICE.getTag() + "}";
+                + ", pending question=" + ALICE.getPendingQuestion()
+                + ", tag=" + ALICE.getTag() + "}";
 
         assertEquals(expected, ALICE.toString());
     }
