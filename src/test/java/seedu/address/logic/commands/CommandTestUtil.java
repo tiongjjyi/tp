@@ -68,7 +68,7 @@ public class CommandTestUtil {
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_COURSE_NAME_DESC = " " + PREFIX_COURSE_NAME + "911CS"; // 'a' not allowed in COURSEs
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // invalid email format
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // invalid tag name
+    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // tag must be good, average or poor
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
