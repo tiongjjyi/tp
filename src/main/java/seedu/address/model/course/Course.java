@@ -231,7 +231,7 @@ public class Course {
         }
 
         Course otherCourse = (Course) other;
-        return courseName.equals(otherCourse.courseName);
+        return this.isSameCourse(otherCourse);
     }
 
     @Override
