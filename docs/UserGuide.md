@@ -110,7 +110,7 @@ Else, if you prefer exploring the app yourself, head to [Features](#features) be
 *If you are not a beginner, or would like to explore CodeSphere on your own,
 feel free to skip this tutorial or jump to whichever portion you require.*
 
-###Tutorial
+### Tutorial Contents
 1. [**Adding a course**](#tutorial-adding-a-course)
 2. [**Adding students**](#tutorial-adding-students)
 3. [**Adding remarks / pending questions**](#tutorial-adding-remarks--pending-questions)
@@ -128,7 +128,8 @@ which will tell you the outcome of any commands that you have entered.
 Lastly, underneath that is the *Display Panel*, which will be updated after each command is entered. 
 
 
-###Tutorial: Adding a course
+### Tutorial: Adding a course
+
 *(For demonstration purposes, we'll be using `CS1101S` as our chosen course.
 Feel free to replace this with any course of your choosing.)*  
 
@@ -138,7 +139,8 @@ and a result informing you that there is a *New course added: CS1101S*
 
 ![CS1101S in Homepage](images/tutorial/homepage_CS1101S.png)
 
-###Tutorial: Adding students
+### Tutorial: Adding students
+
 Let us add some students into this course.
 First, we will have to navigate into our CS1101S course by using the command
 `select 1`, which selects the first item in the course list.
@@ -156,11 +158,12 @@ The course is currently empty, so let's add a few students into the list with th
 `add n/Mary Lim e/e1234567@u.nus.edu t/average`  
 `add n/David Lee e/e2345678@u.nus.edu t/poor`
 
->Note: When creating students, you must always include their name (`n/`), email (`e/`) and performance tag (`t/`).
+>:information_source: Note: When creating students, you must always include their name (`n/`), email (`e/`) and performance tag (`t/`).
 
 ![Filled CS1101S](images/tutorial/course_students.png)
 
-###Tutorial: Adding remarks / pending questions
+### Tutorial: Adding remarks / pending questions
+
 Lastly, we shall look into adding remarks or pending questions for the students.
 Let's add a remark "Will be 15 minutes late for tutorial" to our student *John Tan* (who is number 1 in the list)
 by typing  
@@ -176,7 +179,7 @@ Your page should now be updated with the remark and pending question under the r
 And there you have it! Your first course created, with students' details and even extra information all noted down,
 displayed to you at a glance! 
 
->As a final tip, you can use the directional ***UP*** and ***DOWN*** keys on your keyboard to access the commands that
+>:bulb: As a final tip, you can use the directional ***UP*** and ***DOWN*** keys on your keyboard to access the commands that
 you have previously entered.
 
 Feel free to explore CodeSphere's other features, such as
@@ -196,7 +199,7 @@ so have fun and may your administrative work be effortless!
 
 <div markdown="block" class="alert alert-info">
 
-**Notes about the command format:**<br>
+**:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   * e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
@@ -218,9 +221,12 @@ so have fun and may your administrative work be effortless!
 
 ---
 ### **Accessing Input History**
+
 CodeSphere saves all inputs that you have previously entered.
-In the CLI command box, just use your 'up' and 'down' arrow keys to access any inputs that you have entered before.
-> *For your information*: Inputs that were invalid will be shown in red.
+In the CLI command box, just use your 'up' and 'down' arrow keys to access any inputs that you have entered before.  
+
+> :information_source: *For your information*: Inputs that were invalid will be shown in red.  
+
 ---
 
 ### **Universal Commands**
