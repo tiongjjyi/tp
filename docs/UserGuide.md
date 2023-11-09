@@ -147,7 +147,7 @@ The course's item number is displayed beside the course name (note the **1.** be
 
 Your application should update to look like something like this.
 The course entry (CS1101S) displays the summary statistics of all the students listed within the course (currently none).
-*Tip: You can always refer to the Result Box to see whether the command you entered has been successful*
+*Tip: You can always refer to the Result Box to see whether the command you entered has been successful.*
 
 ![Empty CS1101S](images/tutorial/course_CS1101S.png)
 
@@ -204,10 +204,7 @@ so have fun and may your administrative work be effortless!
     * e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-    * e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/GOOD` or as `n/John Doe`.
-
-* Items with `…` after them can be used multiple times including zero times.<br>
-    * e.g. `[t/TAG]…` can be used as ` ` (i.e. 0 times), `t/GOOD`, `t/GOOD t/AVERAGE` etc.
+    * e.g `n/NAME [r/REMARK]` can be used as `n/John Doe r/Need more help` or as `n/John Doe`.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
     * e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -292,7 +289,7 @@ Edits the details of an existing course from the list of courses.
 * `NEW_COURSENAME`: A valid course in NUS. Each course name should consist of a two or three letter prefix, four digits, and an optional one letter suffix.
 * `INDEX`: Must be a positive integer 1, 2, 3, ...
 
-**Examples:** `edit 1 c/CS1101S` Edits the course of the first course in the course list to be CS1101S.
+**Examples:** `edit 1 c/CS1101S` Edits the course of the first course in the course list to be `CS1101S`.
 
 **Command succeeds:** Success message shown, course successfully edited and updated in database, change in GUI.
 
@@ -402,7 +399,7 @@ Edits an existing student that the user is currently overseeing.
 **Format:** `edit INDEX [n/NAME] [e/EMAIL] [t/ENUM_TAG] [r/REMARK] [pq/PENDING_QUESTION]`
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed students list.
 * The index must be a positive integer (1, 2, 3, …​), and it should fall within the range of students currently displayed such that it corresponds to a valid student.
-* Optional fields are indicated by square brackets [ ], but at least one of the optional fields must be provided.
+* Optional fields are indicated by square brackets [ ], but **at least one** of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags/remarks/pending questions, the respective existing fields of the person will be removed i.e adding of tags/remarks/pending questions is not cumulative.
 
@@ -446,7 +443,8 @@ Sorts the list of students you are overseeing in the selected course **by name o
 
 **Format**: `sort s/SORT_CRITERIA`
 * Sorts the displayed student based on the specified `SORT_CRITERIA`.
-* `SORT_CRITERIA`: A pre-defined enumerated criteria. Valid sort criteria: tag, name.
+* `SORT_CRITERIA`: A pre-defined enumerated criteria. 
+* Valid sort criteria: tag, name.
 
 **Examples:** 
 * `sort s/tag` Sorts the student list by tag. Students with the GOOD tag are displayed at the top of the list. 
@@ -459,12 +457,12 @@ Sorts the list of students you are overseeing in the selected course **by name o
 ### Finding a student: `find`
 Find a student **by a certain field** from the list of students you are overseeing in the selected course.
 
-**Format:** `find [n/KEYWORD] [e/EMAIL] [t/TAG] [pq/QUESTION] [r/REMARK]`
+**Format:** `find [n/NAME] [e/EMAIL] [t/TAG] [pq/QUESTION] [r/REMARK]`
 * The search is case-insensitive. For example, hans will match Hans.
 * Only **one** prefix can be specified each time you use the command.
 * The search is dependent on the prefix.
-* The order of the keywords does not matter. For example, Hans Bo will match Bo Hans.
-* Substring search is supported. For example, `find n/Han` will return students whose name is Hans.
+* The order of the keywords does not matter. For example, `Hans Bo` will match `Bo Hans`.
+* Substring search is supported. For example, `find n/Han` will return students whose name is `Hans`.
 
 **Examples:**
 * `find n/John` returns `john` and `John Doe`.
@@ -487,6 +485,8 @@ Adds a remark to the specified student from the list of students.
 * Adds a remark for the student at the specified `INDEX`.
 * The index refers to the index number shown in the displayed students list.
 * `INDEX`: Must be a **positive integer** 1, 2, 3, …
+* The pending question must not be empty.
+* Inputting another remark will overwrite the current remark, i.e adding of remark is not cumulative.
 
 **Example:** `remark 2 r/needs more help` Adds a remark to the student at index 2 of the displayed students list saying needs more help.
 
@@ -501,6 +501,8 @@ Adds a pending question to a specified student from the list of students of a co
 * Adds a pending question for the student at the specified `INDEX`.
 * The index refers to the index number shown in the displayed students list.
 * `INDEX` must be a **positive integer** 1, 2, 3, …
+*  The pending question must not be empty.
+* Only one pending question is allowed at a time, i.e adding of pending question is not cumulative.
 
 **Example:** `pq 2 pq/What is a logic gate?` Adds a pending question to the student at index 2 of the displayed student, with the question “What is a logic gate?”. This indicates a need to follow-up with the student.
 
@@ -598,7 +600,7 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 | **Clear All Students**                   | `clear`                                                                                |
 | **Reset Student List**                   | `reset`                                                                                |
 | **Sort Students**                        | `sort s/SORT_CRITERIA` e.g. `sort s/name`                                              |                                                                                        |
-| **Find Students**                        | `find [n/KEYWORD] [e/EMAIL] [t/TAG] [pg/QUESTION] [r/REMARK]` e.g. `find n/John`       |
+| **Find Students**                        | `find [n/NAME] [e/EMAIL] [t/TAG] [pg/QUESTION] [r/REMARK]` e.g. `find n/John`          |
 | **List Students with Pending Questions** | `list pq/`                                                                             |
 | **Add Remark**                           | `remark INDEX r/REMARK`<br/>e.g. `remark 1 r/needs more help`                          |
 | **Add Pending Question**                 | `pq INDEX r/PENDINGQUESTION`<br/>e.g. `pq 1 pq/What is a logic gate?`                  |
