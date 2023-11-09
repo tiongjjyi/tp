@@ -476,7 +476,6 @@ Adds a remark to the specified student from the list of students.
 
 ### Adding a pending question for a student: `pq`
 Adds a pending question to a specified student from the list of students of a course.
-
 **Format:** `pq INDEX pq/PENDING_QUESTION`
 * Adds a pending question for the student at the specified `INDEX`.
 * The index refers to the index number shown in the displayed students list.
