@@ -21,23 +21,23 @@ It is an app targeted at Teaching Assistants (TAs) in the National University of
         * [`add` Adding a new course](#adding-a-course--add)
         * [`edit` Editing the details of a course](#editing-a-course--edit)
         * [`delete` Deleting a course](#deleting-a-course--delete)
-        * [`clear` Clearing all courses](#clearing-all-courses-clear)
-        * [`select` Selecting a course](#selecting-a-course-select)
+        * [`clear` Clearing all courses](#clearing-all-courses--clear)
+        * [`select` Selecting a course](#selecting-a-course--select)
         * [`find` Finding a course](#finding-a-course--find)
         * [`reset` Resetting the course list](#resetting-the-course-list--reset)
     * [**Course Page Commands**](#course-page-commands)
         * [`add` Adding a student](#adding-a-student--add)
         * [`edit` Editing the details of a student](#editing-a-student--edit)
-        * [`delete` Deleting a student](#deleting-a-student-delete)
-        * [`clear` Clearing all students](#clearing-all-students-clear)
-        * [`reset` Resetting student list to its original state](#resetting-student-list-reset)
-        * [`sort` Sorting all students](#sorting-all-students-sort)
-        * [`find` Finding a student and keywords for each student](#finding-a-student-find)
-        * [`list` Finding students with pending questions](#list-all-pending-questions-list)
-        * [`remark` Adding a remark for a student](#adding-a-remark-for-a-student-remark)
-        * [`pq` Adding a pending question for a student](#adding-a-pending-question-for-a-student-pq)
-        * [`remove` Removing a remark/pending question](#removing-a-remarkpending-question-of-a-student-remove)
-        * [`home` Returning to home page](#returning-to-the-home-page-home)
+        * [`delete` Deleting a student](#deleting-a-student--delete)
+        * [`clear` Clearing all students](#clearing-all-students--clear)
+        * [`reset` Resetting student list to its original state](#resetting-student-list--reset)
+        * [`sort` Sorting all students](#sorting-all-students--sort)
+        * [`find` Finding a student and keywords for each student](#finding-a-student--find)
+        * [`list` Finding students with pending questions](#list-all-pending-questions--list)
+        * [`remark` Adding a remark for a student](#adding-a-remark-for-a-student--remark)
+        * [`pq` Adding a pending question for a student](#adding-a-pending-question-for-a-student--pq)
+        * [`remove` Removing a remark/pending question](#removing-a-remarkpending-question-of-a-student--remove)
+        * [`home` Returning to home page](#returning-to-the-home-page--home)
     * [**Miscellaneous**](#miscellaneous)
         * [Saving the data](#saving-the-data)
         * [Editing the data file](#editing-the-data-file)
@@ -280,7 +280,7 @@ Adds a course to the list of courses.
 
 **Command failure:** Incorrect format results in an error message shown and the course is not added/stored in the database.
 
-### Editing a course : `edit`
+### Editing a course: `edit`
 Edits the details of an existing course from the list of courses.
 
 **Format:** `edit INDEX c/NEW_COURSENAME`
@@ -334,8 +334,9 @@ Finds a course **given a keyword** from the list of courses you are teaching.
 **Format:** `find KEYWORD`
 * The search is case-insensitive. e.g `cs` will match any course name with `CS` containted.
 * As long as the keyword is containted the course name, the course will be filtered out and displayed.
+* If there are multiple words after find, each word is searched for independently and the result contains courses containing any of the word.
 
-**Example:** `find CS` Displays all courses with CS inside their name.
+**Example:** `find CS ST` Displays all courses with `CS` or `ST` inside their name.
 
 **Command succeeds:** Success message shown, courses successfully filtered, resulting in a change in GUI.
 
@@ -413,7 +414,7 @@ Edits an existing student that the user is currently overseeing.
 
 **Command failure:** Incorrect format results in an error message shown and the student is not updated in the database.
 
-### Deleting a student: `delete`
+### Deleting a student : `delete`
 
 Deletes the specified student from the list of students you are overseeing in the selected course.
 
@@ -428,17 +429,17 @@ Deletes the specified student from the list of students you are overseeing in th
 
 **Command failure:** Incorrect format results in an error message shown and the student is not removed from the database.
 
-### Clearing all students: `clear`
+### Clearing all students : `clear`
 Clears all students in the displayed list of students in the selected course.
 
 **Format:** `clear`
 
-### Resetting student list: `reset`
+### Resetting student list : `reset`
 Shows a list of all students in the original state after filtering or sorting.
 
 **Format:** `reset`
 
-### Sorting all students: `sort`
+### Sorting all students : `sort`
 Sorts the list of students you are overseeing in the selected course **by name or by tag**.
 
 **Format**: `sort s/SORT_CRITERIA`
@@ -468,7 +469,7 @@ Find a student **by a certain field** from the list of students you are overseei
 * `find n/John` returns `john` and `John Doe`.
 * `find t/good` Find the student(s) tagged as `GOOD`, and the details of the student(s) will be displayed.
 
-### List all pending questions: `list`
+### List all pending questions : `list`
 List all the students with non-empty pending question fields.
 
 **Format:** `list pq/`
@@ -478,7 +479,7 @@ List all the students with non-empty pending question fields.
 
 **Command failure:** Users enter the command with incorrect formatting, resulting in an error message shown to the user.
 
-### Adding a remark for a student: `remark`
+### Adding a remark for a student : `remark`
 Adds a remark to the specified student from the list of students.
 
 **Format:** `remark INDEX r/REMARK`
@@ -494,7 +495,7 @@ Adds a remark to the specified student from the list of students.
 
 **Command failure:** Incorrect format results in an error message shown and the remark is not added to the student.
 
-### Adding a pending question for a student: `pq`
+### Adding a pending question for a student : `pq`
 Adds a pending question to a specified student from the list of students of a course.
 
 **Format:** `pq INDEX pq/PENDING_QUESTION`
