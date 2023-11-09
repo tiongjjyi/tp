@@ -37,7 +37,7 @@ import seedu.address.testutil.StudentBuilder;
 public class EditCommandTest {
 
     private Model model = new ModelManager(getTypicalCourseList(), new UserPrefs());
-    private Course course = model.getCourseList().getCourseList().get(0);
+    private Course course = model.getFilteredCourseList().get(0);
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -46,7 +46,7 @@ public class EditCommandTest {
 
         Index targetIndex = Index.fromZeroBased(0);
         Student student = course.getStudentList().getStudent(targetIndex);
-        Student editedStudent = new StudentBuilder().build();
+        Student editedStudent = new StudentBuilder(student).withEmail("e0122339@u.nus.edu").build();
         EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(editedStudent).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_STUDENT, descriptor);
         course.setStudent(student, editedStudent);
@@ -133,8 +133,7 @@ public class EditCommandTest {
         StageManager stageManager = StageManager.getInstance();
         stageManager.setCourseStage(course);
 
-        Index firstIndex = Index.fromZeroBased(0);
-        Student firstStudent = course.getStudentList().getStudent(firstIndex);
+        Student firstStudent = course.getStudentList().getStudent(INDEX_FIRST_STUDENT);
         EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(firstStudent).build();
         EditCommand editCommand = new EditCommand(INDEX_SECOND_STUDENT, descriptor);
 

@@ -30,12 +30,12 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_validIndex_success() throws CommandException {
-        Course course = model.getCourseList().getCourseList().get(1);
+        Course course = model.getFilteredCourseList().get(0);
         Index targetIndex = Index.fromZeroBased(1);
-        Student targetStudent = course.getStudentList().getStudent(targetIndex);
 
         StageManager stageManager = StageManager.getInstance();
         stageManager.setCourseStage(course);
+        Student targetStudent = course.getStudentList().getStudent(targetIndex);
         CommandResult commandResult = new DeleteCommand(targetIndex).execute(model);
 
         assertEquals(String.format(DeleteCommand.MESSAGE_DELETE_STUDENT_SUCCESS, Messages.format(targetStudent)),
