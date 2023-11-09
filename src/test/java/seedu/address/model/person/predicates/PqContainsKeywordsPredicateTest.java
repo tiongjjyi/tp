@@ -55,7 +55,6 @@ public class PqContainsKeywordsPredicateTest {
 
     @Test
     public void test_pqDoesNotContainKeywords_returnsFalse() {
-        
         PqContainsKeywordsPredicate predicate;
 
         // Only one matching keyword does not find

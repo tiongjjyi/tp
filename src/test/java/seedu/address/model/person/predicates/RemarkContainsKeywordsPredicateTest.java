@@ -21,14 +21,17 @@ public class RemarkContainsKeywordsPredicateTest {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        RemarkContainsKeywordsPredicate firstPredicate = new RemarkContainsKeywordsPredicate(firstPredicateKeywordList);
-        RemarkContainsKeywordsPredicate secondPredicate = new RemarkContainsKeywordsPredicate(secondPredicateKeywordList);
+        RemarkContainsKeywordsPredicate firstPredicate =
+                new RemarkContainsKeywordsPredicate(firstPredicateKeywordList);
+        RemarkContainsKeywordsPredicate secondPredicate =
+                new RemarkContainsKeywordsPredicate(secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        RemarkContainsKeywordsPredicate firstPredicateCopy = new RemarkContainsKeywordsPredicate(firstPredicateKeywordList);
+        RemarkContainsKeywordsPredicate firstPredicateCopy =
+                new RemarkContainsKeywordsPredicate(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -44,7 +47,8 @@ public class RemarkContainsKeywordsPredicateTest {
     @Test
     public void test_remarkContainsKeywords_returnsTrue() {
         // One keyword
-        RemarkContainsKeywordsPredicate predicate = new RemarkContainsKeywordsPredicate(Collections.singletonList("aardvarks"));
+        RemarkContainsKeywordsPredicate predicate =
+                new RemarkContainsKeywordsPredicate(Collections.singletonList("aardvarks"));
         assertTrue(predicate.test(TypicalStudents.ALICE));
 
         // Mixed-case keywords
@@ -55,7 +59,6 @@ public class RemarkContainsKeywordsPredicateTest {
 
     @Test
     public void test_remarkDoesNotContainKeywords_returnsFalse() {
-        
         RemarkContainsKeywordsPredicate predicate;
 
         // Only one matching keyword does not find

@@ -5,6 +5,7 @@ import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.commands.ClearCommand;
 
 public class ClearCommandParserTest {

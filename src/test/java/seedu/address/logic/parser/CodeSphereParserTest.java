@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.commands.AddCourseCommand;
 import seedu.address.logic.commands.ClearCourseCommand;
 import seedu.address.logic.commands.DeleteCourseCommand;
