@@ -250,18 +250,17 @@ Exits the program.
 <div style="page-break-after: always"></div>
 
 ### **Home Page Commands**
-CodeSphere has a home page that displays the list of courses you are currently overseeing and have stored in the app.
+CodeSphere has a home page that displays the list of courses you are currently overseeing and have stored in the application.
 
 *{screenshot to be added}*
 
 Commands exclusive to the home page can help you:
-* `add` new courses
-* `edit` the details of existing courses
-* `delete` existing courses
+* `add` a new course
+* `edit` the details of an existing course
+* `delete` an existing course
 * `clear` all existing courses
-* `find` finding a course
-* `reset` resetting the course list to original state
-
+* `find` all courses with course name containing the keyword specified
+* `reset` the course list displayed to its original order
 
 The `select` command brings you to the Course page of the selected course.
 
@@ -273,11 +272,12 @@ The `select` command brings you to the Course page of the selected course.
 Adds a course to the list of courses.
 
 **Format:** `add c/COURSENAME`
-* `COURSENAME` is a string that is a valid course in the NUS School of Computing.
+* `COURSENAME`: A valid course in NUS. Each course name should consist of a two or three letter prefix, four digits, and an optional one letter suffix.
 
 **Examples:**
-* `add c/CS1101S`
-* `add c/CS1231S`
+* `add c/CS2103T`
+* `add c/CS2100`
+* `add c/GEA1000`
 
 **Command succeeds:** Success message shown, course successfully added and stored in database, change in GUI.
 
@@ -289,8 +289,8 @@ Edits the details of an existing course from the list of courses.
 **Format:** `edit INDEX c/NEW_COURSENAME`
 * Edits the course at the specified `INDEX`. Existing course name will be updated to the input course name.
 * The index refers to the index number shown in the displayed course list.
-* `NEW_COURSENAME` is a string that is a valid course in the NUS School of Computing.
-* `INDEX` must be a positive integer 1, 2, 3, ...
+* `NEW_COURSENAME`: A valid course in NUS. Each course name should consist of a two or three letter prefix, four digits, and an optional one letter suffix.
+* `INDEX`: Must be a positive integer 1, 2, 3, ...
 
 **Examples:** `edit 1 c/CS1101S` Edits the course of the first course in the course list to be CS1101S.
 
@@ -304,7 +304,7 @@ Deletes the specified course from the list of courses.
 **Format:** `delete INDEX`
 * Deletes the course at the specified `INDEX`.
 * The index refers to the index number shown in the displayed course list.
-* `INDEX` must be a positive integer 1, 2, 3, ...
+* `INDEX`: Must be a positive integer 1, 2, 3, ...
 
 **Command succeeds:** Success message shown, course successfully deleted and removed from database, change in GUI.
 
@@ -323,7 +323,7 @@ Selects the specified course from the list of courses.
 **Format:** `select INDEX`
 * Selects the course at the specified `INDEX`.
 * The index refers to the index number shown in the displayed course list.
-* `INDEX` must be a positive integer 1, 2, 3, ...
+* `INDEX`: Must be a positive integer 1, 2, 3, ...
 
 **Example:** `select 2` Selects the course at index 2 of the displayed course list.
 
@@ -332,7 +332,7 @@ Selects the specified course from the list of courses.
 **Command failure:** Incorrect format/index results in an error message shown and the course is not selected.
 
 ### Finding a course: `find`
-Find a course **given a keyword** from the list of courses you are teaching.
+Finds a course **given a keyword** from the list of courses you are teaching.
 
 **Format:** `find KEYWORD`
 * The search is case-insensitive. e.g `cs` will match any course name with `CS` containted.
@@ -345,7 +345,7 @@ Find a course **given a keyword** from the list of courses you are teaching.
 **Command failure:** Incorrect format results in an error message shown and the course is not filtered.
 
 ### Resetting the course list: `reset`
-Shows a list of all courses in the original state after filtering.
+Resets a filtered or sorted course list to its original order, where courses are arranged chronologically based on when they were added, with the first course added at the top of the displayed list. 
 
 **Format:** `reset`
 
@@ -355,24 +355,24 @@ Shows a list of all courses in the original state after filtering.
 <div style="page-break-after: always"></div>
 
 ### **Course Page Commands**
-Once you have created and selected a course to manage, you can now start adding your students in the course that you wish to track!
-The Course page of a course displays the list of students that you are overseeing in your course (added by you).
-Students are arranged in order of addition.
+Once you have created and selected a course to manage, you can now start adding your students in the course that you wish to track.
+The course page of a course displays the list of students that you are overseeing in your course (added by you).
+Students are arranged in order of addition, with the first student added at the top of the list.
 
 *{screenshot to be added}*
 
 Commands exclusive to the course page can help you:
-* `add` new students
-* `edit` the details of existing students
-* `delete` existing students
+* `add` a new student
+* `edit` the details of an existing student
+* `delete` an existing student
 * `clear` all existing students
-* `reset` the student list back to its original state
-* `sort` students by certain fields
-* `find` students in the course
-* `list` all existing students with pending questions
-* add a `remark` to a student
-* add a pending question `pq` to a student
-* `remove` a remark or pending question from a student
+* `reset` the student list displayed to its original order
+* `sort` the displayed student list by the specified field
+* `find` students in the course according to the specified field and keywords
+* `list` all existing students with a non-empty pending question field
+* add a `remark` to an existing student
+* add a pending question `pq` to an existing student
+* `remove` a remark or pending question from an existing student
 
 [_Back to Top_](#table-of-contents)
 
@@ -384,7 +384,7 @@ Adds a student to the list of students in the selected course that the user is o
 **Format:** `add n/NAME e/EMAIL t/ENUM_TAG`
 * `NAME`: Student names are case-sensitive and should only contain alphabets and some specified special characters (, / - ‘).
 * `EMAIL`: NUS undergraduate student’s email, in the format of exxxxxxx@u.nus.edu. Alphabets in the email are case-insensitive.
-* `ENUM_TAG`: a pre-defined enumerated tag definitions GOOD, AVERAGE, POOR. Inputs for tags are case-insensitive.
+* `ENUM_TAG`: A pre-defined enumerated tag. Valid tags: good, average, poor. Inputs for tags are case-insensitive.
 
 **Examples:**
 * `add n/Susan Tan e/e0946283@u.nus.edu t/GOOD`
@@ -399,7 +399,7 @@ Adds a student to the list of students in the selected course that the user is o
 
 Edits an existing student that the user is currently overseeing.
 
-**Format:** `edit INDEX [n/NAME] [e/EMAIL] [r/REMARK] [pq/PENDING_QUESTION]`
+**Format:** `edit INDEX [n/NAME] [e/EMAIL] [t/ENUM_TAG] [r/REMARK] [pq/PENDING_QUESTION]`
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed students list.
 * The index must be a positive integer (1, 2, 3, …​), and it should fall within the range of students currently displayed such that it corresponds to a valid student.
 * Optional fields are indicated by square brackets [ ], but at least one of the optional fields must be provided.
@@ -425,7 +425,7 @@ Deletes the specified student from the list of students you are overseeing in th
 * The index refers to the index number shown in the displayed students list.
 * The index must be a positive integer (1, 2, 3, …​), and it should fall within the range of students currently displayed such that it corresponds to a valid student.
 
-**Examples:** `delete 2` Deletes the student at index 2 of the displayed students list.
+**Example:** `delete 2` Deletes the student at index 2 of the displayed students list.
 
 **Command succeeds:** Success message shown, student successfully removed from database, change in GUI.
 
@@ -444,19 +444,29 @@ Shows a list of all students in the original state after filtering or sorting.
 ### Sorting all students: `sort`
 Sorts the list of students you are overseeing in the selected course **by name or by tag**.
 
-**Format**: `sort`
+**Format**: `sort s/SORT_CRITERIA`
+* Sorts the displayed student based on the specified `SORT_CRITERIA`.
+* `SORT_CRITERIA`: A pre-defined enumerated criteria. Valid sort criteria: tag, name.
+
+**Examples:** 
+* `sort s/tag` Sorts the student list by tag. Students with the GOOD tag are displayed at the top of the list. 
+* `sort s/name` Sorts the student list by name in alphabetical order.
+
+**Command succeeds:** Success message shown, student successfully removed from database, change in GUI.
+
+**Command failure:** Incorrect format results in an error message shown and the student list is not sorted.
 
 ### Finding a student: `find`
 Find a student **by a certain field** from the list of students you are overseeing in the selected course.
 
-**Format:** `find [n/KEYWORD] [t/TAG] [pq/QUESTION] [r/REMARK]`
-* The search is case-insensitive. e.g hans will match Hans.
-* Only ONE prefix can be specified each time you use the command.
+**Format:** `find [n/KEYWORD] [e/EMAIL] [t/TAG] [pq/QUESTION] [r/REMARK]`
+* The search is case-insensitive. For example, hans will match Hans.
+* Only **one** prefix can be specified each time you use the command.
 * The search is dependent on the prefix.
-* The order of the keywords does not matter. e.g. Hans Bo will match Bo Hans.
-* Only full words will be matched e.g. Han will not match Hans.
+* The order of the keywords does not matter. For example, Hans Bo will match Bo Hans.
+* Substring search is supported. For example, `find n/Han` will return students whose name is Hans.
 
-**Example:**
+**Examples:**
 * `find n/John` returns `john` and `John Doe`.
 * `find t/good` Find the student(s) tagged as `GOOD`, and the details of the student(s) will be displayed.
 
@@ -464,6 +474,7 @@ Find a student **by a certain field** from the list of students you are overseei
 List all the students with non-empty pending question fields.
 
 **Format:** `list pq/`
+* Nothing should be specified after `pq/`.
 
 **Command succeeds:** Success message shown to user, no change in the database, a change in GUI is displayed.
 
@@ -475,7 +486,7 @@ Adds a remark to the specified student from the list of students.
 **Format:** `remark INDEX r/REMARK`
 * Adds a remark for the student at the specified `INDEX`.
 * The index refers to the index number shown in the displayed students list.
-* `INDEX` must be a **positive integer** 1, 2, 3, …
+* `INDEX`: Must be a **positive integer** 1, 2, 3, …
 
 **Example:** `remark 2 r/needs more help` Adds a remark to the student at index 2 of the displayed students list saying needs more help.
 
@@ -485,13 +496,13 @@ Adds a remark to the specified student from the list of students.
 
 ### Adding a pending question for a student: `pq`
 Adds a pending question to a specified student from the list of students of a course.
+
 **Format:** `pq INDEX pq/PENDING_QUESTION`
 * Adds a pending question for the student at the specified `INDEX`.
 * The index refers to the index number shown in the displayed students list.
 * `INDEX` must be a **positive integer** 1, 2, 3, …
 
-**Example:**
-* `pq 2 pq/What is a logic gate?` Adds a pending question to the student at index 2 of the displayed student ,with the question “What is a logic gate?”. This indicates a need to follow-up with the student.
+**Example:** `pq 2 pq/What is a logic gate?` Adds a pending question to the student at index 2 of the displayed student, with the question “What is a logic gate?”. This indicates a need to follow-up with the student.
 
 **Command succeeds:** Success message shown, pending question successfully added and updated in database, change in GUI.
 
@@ -504,9 +515,10 @@ Removes a remark or pending question of a specified student from the list of stu
 * Removes a pending question of the student at the specified `INDEX`.
 * At least one of the optional fields must be provided.
 * The index refers to the index number shown in the displayed students list.
+* Nothing should be specified after `r/` or `pq/`.
 * `INDEX` must be a **positive integer** 1, 2, 3, …
 
-**Example:**
+**Examples:**
 * `remove 2 pq/` Removes a pending question of the student at index 2 of the displayed students list.
 * `remove 2 r/` Removes a remark of the student at index 2 of the displayed students list.
 
@@ -585,8 +597,8 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 | **Delete Student**                       | `delete INDEX` e.g. `delete 1`                                                         |
 | **Clear All Students**                   | `clear`                                                                                |
 | **Reset Student List**                   | `reset`                                                                                |
-| **Sort Students**                        | `sort`                                                                                 |                                                                                        |
-| **Find Students**                        | `find [n/KEYWORD] [t/TAG] [pg/QUESTION] [r/REMARK]` e.g. `find n/John`                 |
+| **Sort Students**                        | `sort s/SORT_CRITERIA` e.g. `sort s/name`                                              |                                                                                        |
+| **Find Students**                        | `find [n/KEYWORD] [e/EMAIL] [t/TAG] [pg/QUESTION] [r/REMARK]` e.g. `find n/John`       |
 | **List Students with Pending Questions** | `list pq/`                                                                             |
 | **Add Remark**                           | `remark INDEX r/REMARK`<br/>e.g. `remark 1 r/needs more help`                          |
 | **Add Pending Question**                 | `pq INDEX r/PENDINGQUESTION`<br/>e.g. `pq 1 pq/What is a logic gate?`                  |
