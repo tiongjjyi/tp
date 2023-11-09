@@ -66,7 +66,7 @@ public class EditCommand extends Command {
         requireNonNull(editStudentDescriptor);
 
         this.index = index;
-        this.editStudentDescriptor = new EditStudentDescriptor(editStudentDescriptor);
+        this.editStudentDescriptor = editStudentDescriptor;
     }
 
     @Override
