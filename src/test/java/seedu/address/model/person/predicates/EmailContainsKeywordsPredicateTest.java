@@ -28,7 +28,8 @@ public class EmailContainsKeywordsPredicateTest {
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        EmailContainsKeywordsPredicate firstPredicateCopy = new EmailContainsKeywordsPredicate(firstPredicateKeywordList);
+        EmailContainsKeywordsPredicate firstPredicateCopy =
+                new EmailContainsKeywordsPredicate(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -44,7 +45,8 @@ public class EmailContainsKeywordsPredicateTest {
     @Test
     public void test_emailContainsKeywords_returnsTrue() {
         // One keyword
-        EmailContainsKeywordsPredicate predicate = new EmailContainsKeywordsPredicate(Collections.singletonList("e0000000"));
+        EmailContainsKeywordsPredicate predicate =
+                new EmailContainsKeywordsPredicate(Collections.singletonList("e0000000"));
         assertTrue(predicate.test(TypicalStudents.ALICE));
 
         // Mixed-case keywords
@@ -55,7 +57,6 @@ public class EmailContainsKeywordsPredicateTest {
 
     @Test
     public void test_emailDoesNotContainKeywords_returnsFalse() {
-        
         EmailContainsKeywordsPredicate predicate;
 
         // Only one matching keyword does not find
