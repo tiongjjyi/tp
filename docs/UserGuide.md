@@ -3,9 +3,8 @@ layout: page
 title: User Guide
 ---
 
-CodeSphere is a **desktop contact management app, optimised for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI).
-It is an app targeted at helping Teaching Assistants (TAs) of the NUS School of Computing manage the administration of their students better.
-
+CodeSphere is a **desktop contact management app, optimised for use via a Command Line Interface [(CLI)](#glossary)** while still having the benefits of a Graphical User Interface [(GUI)](#glossary).
+It is an app targeted at Teaching Assistants (TAs) in the National University of Singapore (NUS) School of Computing (SoC) to help them better manage administration of their students.
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always"></div>
 
@@ -80,27 +79,26 @@ It is an app targeted at helping Teaching Assistants (TAs) of the NUS School of 
 
 ## **Quick Start**
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your Computer. If you do not have Java `11`, follow [this](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html#GUID-8677A77F-231A-40F7-98B9-1FD0B48C346A) installation guide.
 2. Download the latest `codesphere.jar` from [here](https://github.com/AY2324S1-CS2103T-W15-4/tp/releases).
-3. Copy the file to the folder you want to use as the _home folder_ for the CodeSphere app.
-4. Double-click the file to run the app. A GUI similar to the below should appear in a few seconds. This is the home page. Note how the app contains some sample data.
+3. Copy the file to the folder you want to use as the _home folder_ for your CodeSphere application.
+4. Open your command terminal, then `cd` into the _home folder.
+5. Use the `java -jar CodeSphere.jar` command to run the CodeSphere application.
+6. The CodeSphere home page, similar to the [GUI](#glossary) displayed below, should appear in a few seconds. Note how the app contains some sample data.
 
    ![Ui](images/HomePage.png)
 
-In the command box, type in any command and hit enter to execute the command!
-Eg. typing `help` and hitting enter after will show the Help window. Some other example commands you can try:
-* `help` : View help.
-* `select 1` :  Selects the first course and navigates to the list of students in this course.
+7. In the command box, type in any command and press <kbd>Enter</kbd> to execute the command. For example, typing `help` then pressing <kbd>Enter</kbd> will show the help window. Some other example commands you can try:
+* `select 1` :  Selects the first course from the list of courses currently displayed in the home page. The [GUI](#glossary) changes to show the list of students in the selected course.
 * `add c/CS1101S` : Adds a course named `CS1101S` to the course list.
-* `edit 1 c/CS1231S` : Updates the first course in the course list with the edited course name.
+* `edit 1 c/CS1231S` : Updates the course name of the first course displayed with the new course name specified.
 * `delete 3` :
     * If you are currently on the home page, it deletes the third course shown in the current list.
     * If you are currently on the course page, it deletes the third student shown in the current list.
+* `exit` : Exits the application.
 
-* `exit` : Exits the app.
-
-For a more detailed walk-through on how to use CodeSphere to start managing your students, head to [Tutorial for Beginners](#tutorial-for-beginners).
-Else, if you prefer exploring the app yourself, head to [Features](#features) below for the list of commands.
+For a more detailed walk-through on how to use CodeSphere to start managing your students as a TA, head to [Tutorial for Beginners](#tutorial-for-beginners).
+Else, if you prefer exploring the application yourself, head to [Features](#features) below for the detailed usage of each command.
 
 [_Back to Top_](#table-of-contents)
 
