@@ -1,23 +1,18 @@
 package seedu.address.logic.commands;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.TypicalCourses.getTypicalCourseList;
 
+import org.junit.jupiter.api.Test;
 import seedu.address.logic.parser.StageManager;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.course.Course;
-import seedu.address.model.person.Field;
-import seedu.address.model.person.Remark;
-import seedu.address.model.person.SortCriteria;
 import seedu.address.testutil.CourseBuilder;
-import seedu.address.testutil.SortCriteriaBuilder;
 import seedu.address.testutil.TypicalStudents;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.TypicalCourses.getTypicalCourseList;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ResetCommand.
