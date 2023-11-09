@@ -24,7 +24,7 @@ It is an app targeted at helping Teaching Assistants (TAs) of the NUS School of 
         * [`delete` Deleting a course](#deleting-a-course--delete)
         * [`clear` Clearing all courses](#clearing-all-courses-clear)
         * [`select` Selecting a course](#selecting-a-course-select)
-        * [`find` Finding a course](#finding-a-student-find)
+        * [`find` Finding a course](#finding-a-course--find)
         * [`reset` Resetting the course list](#resetting-the-course-list--reset)
     * [**Course Page Commands**](#course-page-commands)
         * [`add` Adding a student](#adding-a-student--add)
@@ -570,6 +570,7 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 | **Clear All Courses** | `clear`                                                    |
 | **Select Course**     | `select INDEX` e.g. `select 1`                             |
 | **Find Course**       | `find KEYWORD` e.g. `find CS`                              |
+| **Reset Courses**     | `reset`                                                    |
 | **Exit**              | `exit`                                                     |
 
 [_Back to Top_](#table-of-contents)
@@ -578,22 +579,22 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 
 ### Course Page
 
-| Action                                 | Format, Examples                                                                       |
-|----------------------------------------|----------------------------------------------------------------------------------------|
-| **Help**                               | `help`                                                                                 |
-| **Add Student**                        | `add n/NAME e/EMAIL t/ENUM_TAG`<br/>e.g. `add n/Susan Tan e/e0123456@u.nus.edu t/GOOD` |
-| **Edit Student**                       | `edit INDEX [n/NAME] [e/EMAIL] [t/ENUM_TAG]`<br/> e.g. `edit 1 n/JOHN`                 |
-| **Delete Student**                     | `delete INDEX` e.g. `delete 1`                                                         |
-| **Clear All Students**                 | `clear`                                                                                |
-| **Reset Student List**                 | `reset`                                                                                |
-| **Sort Students**                      | `sort`                                                                                 |                                                                                        |
-| **Find Students**                      | `find [n/KEYWORD] [t/TAG] [pg/QUESTION] [r/REMARK]` e.g. `find n/John`                 |
-| **List Students**                      | `list`                                                                                 |
-| **Add Remark**                         | `remark INDEX r/REMARK`<br/>e.g. `remark 1 r/needs more help`                          |
-| **Add Pending Question**               | `pq INDEX r/PENDINGQUESTION`<br/>e.g. `pq 1 pq/What is a logic gate?`                  |
-| **Remove Remark/<br>Pending Question** | `remove INDEX [r/] [pq/]` e.g. `remove 2 r/`                                           |
-| **Home**                               | `home`                                                                                 |
-| **Exit**                               | `exit`                                                                                 |
+| Action                                   | Format, Examples                                                                       |
+|------------------------------------------|----------------------------------------------------------------------------------------|
+| **Help**                                 | `help`                                                                                 |
+| **Add Student**                          | `add n/NAME e/EMAIL t/ENUM_TAG`<br/>e.g. `add n/Susan Tan e/e0123456@u.nus.edu t/GOOD` |
+| **Edit Student**                         | `edit INDEX [n/NAME] [e/EMAIL] [t/ENUM_TAG]`<br/> e.g. `edit 1 n/JOHN`                 |
+| **Delete Student**                       | `delete INDEX` e.g. `delete 1`                                                         |
+| **Clear All Students**                   | `clear`                                                                                |
+| **Reset Student List**                   | `reset`                                                                                |
+| **Sort Students**                        | `sort`                                                                                 |                                                                                        |
+| **Find Students**                        | `find [n/KEYWORD] [t/TAG] [pg/QUESTION] [r/REMARK]` e.g. `find n/John`                 |
+| **List Students with Pending Questions** | `list pq/`                                                                             |
+| **Add Remark**                           | `remark INDEX r/REMARK`<br/>e.g. `remark 1 r/needs more help`                          |
+| **Add Pending Question**                 | `pq INDEX r/PENDINGQUESTION`<br/>e.g. `pq 1 pq/What is a logic gate?`                  |
+| **Remove Remark/<br>Pending Question**   | `remove INDEX [r/] [pq/]` e.g. `remove 2 r/`                                           |
+| **Home**                                 | `home`                                                                                 |
+| **Exit**                                 | `exit`                                                                                 |
 
 [_Back to Top_](#table-of-contents)
 
@@ -602,9 +603,10 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 
 ## **Glossary**
 
-| Term/Keyword                           | Definition                                                                                                 |
-|----------------------------------------|------------------------------------------------------------------------------------------------------------|
-| **Command Line Interface (CLI)**       | An interface that allows you to interact with our program by inputting lines of text called command-lines. |
+| Term/Keyword                       | Definition                                                                                                 |
+|------------------------------------|------------------------------------------------------------------------------------------------------------|
+| **Command Line Interface (CLI)**   | An interface that allows you to interact with our program by inputting lines of text called command-lines. |
+| **Graphical User Interface (GUI)** | An interface that displays information to you and allows you to interact with visual elements.             |
 
 
 [_Back to Top_](#table-of-contents)
