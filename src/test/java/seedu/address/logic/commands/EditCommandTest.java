@@ -132,7 +132,6 @@ public class EditCommandTest {
     public void execute_duplicateStudentUnfilteredList_failure() {
         StageManager stageManager = StageManager.getInstance();
         stageManager.setCourseStage(course);
-
         Student firstStudent = course.getStudentList().getStudent(INDEX_FIRST_STUDENT);
         EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(firstStudent).build();
         EditCommand editCommand = new EditCommand(INDEX_SECOND_STUDENT, descriptor);
