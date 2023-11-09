@@ -57,11 +57,11 @@ public class LogicManagerTest {
         assertParseException(invalidCommand, MESSAGE_UNKNOWN_COMMAND);
     }
 
-//    @Test
-//    public void execute_commandExecutionError_throwsCommandException() {
-//        String deleteCommand = "delete 9";
-//        assertCommandException(deleteCommand, MESSAGE_INVALID_COURSE_DISPLAYED_INDEX);
-//    }
+    @Test
+    public void execute_commandExecutionError_throwsCommandException() {
+        String deleteCommand = "delete 9";
+        assertCommandException(deleteCommand, MESSAGE_INVALID_COURSE_DISPLAYED_INDEX);
+    }
 
     @Test
     public void execute_validCommand_success() throws Exception {
@@ -69,17 +69,17 @@ public class LogicManagerTest {
         assertCommandSuccess(exitCommand, ExitCommand.MESSAGE_EXIT_ACKNOWLEDGEMENT, model);
     }
 
-//    @Test
-//    public void execute_storageThrowsIoException_throwsCommandException() {
-//        assertCommandFailureForExceptionFromStorage(DUMMY_IO_EXCEPTION, String.format(
-//                LogicManager.FILE_OPS_ERROR_FORMAT, DUMMY_IO_EXCEPTION.getMessage()));
-//    }
-//
-//    @Test
-//    public void execute_storageThrowsAdException_throwsCommandException() {
-//        assertCommandFailureForExceptionFromStorage(DUMMY_AD_EXCEPTION, String.format(
-//                LogicManager.FILE_OPS_PERMISSION_ERROR_FORMAT, DUMMY_AD_EXCEPTION.getMessage()));
-//    }
+    @Test
+    public void execute_storageThrowsIoException_throwsCommandException() {
+        assertCommandFailureForExceptionFromStorage(DUMMY_IO_EXCEPTION, String.format(
+                LogicManager.FILE_OPS_ERROR_FORMAT, DUMMY_IO_EXCEPTION.getMessage()));
+    }
+
+    @Test
+    public void execute_storageThrowsAdException_throwsCommandException() {
+        assertCommandFailureForExceptionFromStorage(DUMMY_AD_EXCEPTION, String.format(
+                LogicManager.FILE_OPS_PERMISSION_ERROR_FORMAT, DUMMY_AD_EXCEPTION.getMessage()));
+    }
 
     @Test
     public void getFilteredCourseList_modifyList_throwsUnsupportedOperationException() {

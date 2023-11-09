@@ -28,15 +28,15 @@ class StageManagerTest {
         assertEquals(stageManager, sameInstance, "getInstance should return the same instance");
     }
 
-//    @Test
-//    void testGetStage() {
-//        assertEquals(Stages.HOME, stageManager.getStage(), "Initial stage should be HOME");
-//    }
-//
-//    @Test
-//    void testGetSelectedCourse() {
-//        assertNull(stageManager.getSelectedCourse(), "Selected course should be null initially");
-//    }
+    @Test
+    void testGetStage() {
+        assertEquals(Stages.HOME, stageManager.getStage(), "Initial stage should be HOME");
+    }
+
+    @Test
+    void testGetSelectedCourse() {
+        assertNull(stageManager.getSelectedCourse(), "Selected course should be null initially");
+    }
 
     @Test
     void testGetCurrentCourse() {
@@ -66,12 +66,12 @@ class StageManagerTest {
                 "Selected course should be null after setting to HOME stage");
     }
 
-//    @Test
-//    void testIsSelectedCourseNull() {
-//        assertTrue(stageManager.isSelectedCourseNull(), "Selected course should be null initially");
-//        Course course = new CourseBuilder().build();
-//        stageManager.setCourseStage(course);
-//        assertFalse(stageManager.isSelectedCourseNull(),
-//                "Selected course should not be null after setting a course");
-//    }
+    @Test
+    void testIsSelectedCourseNull() {
+        assertTrue(stageManager.isSelectedCourseNull(), "Selected course should be null initially");
+        Course course = new CourseBuilder().build();
+        stageManager.setCourseStage(course);
+        assertFalse(stageManager.isSelectedCourseNull(),
+                "Selected course should not be null after setting a course");
+    }
 }
