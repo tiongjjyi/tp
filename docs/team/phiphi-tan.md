@@ -14,15 +14,6 @@ Given below are my contributions to the project.
   Commands that result in an error will be shown in red. 
   * Justification: This feature allows the user to be able to access and edit erroneous commands or repeat previous actions
   without having to re-type the entire command again
-  
-* **UI Feature**: Combined Panel
-  * What it does: Provides a sidebar of all courses alongside the view of the particular student list of a selected course
-    The selected course in the side panel is highlighted while the other courses are faded.
-  * Justification: The combined panel serves as a direct upgrade to the previous 'Student List' panel
-  by creating a 'sidebar' that allows users to still see summary statistics of other courses while viewing students in 
-  a certain course
-  * Highlights: To be added soon.
-  * Credits: *{To be added soon.}*
 
 * **UI Feature**: Display Panel
   * What it does: Attached to the 'Main Window' as part of the application's UI, this display panel provides an easy way
@@ -39,20 +30,32 @@ Given below are my contributions to the project.
   * To be added soon.
 
 * **Enhancements to existing features**:
-  * **UI Features**: Introduced the course list panel
-  * Justification: With the enhancements made over the AB3 codebase, the User Interface had to be updated respectively
-    to fit with the new changes and features added.
-  * Highlights: To be added soon.
+  * **UI Enhancement**: Course list panel
+    * With the enhancements made over the AB3 codebase, the User Interface had to be updated respectively
+      to fit with the new changes and features added.
+  * **UI Enhancement**: Combined panel sidebar
+    * Provides a sidebar of all courses alongside the view of the particular student list of a selected course
+      The selected course in the side panel is highlighted while the other courses are faded.
+    * The combined panel serves as a direct upgrade to the previous 'Student List' panel 
+      by creating a 'sidebar' that allows users to still see summary statistics of other courses while viewing students in
+      a certain course.
+  * **UI Enhancement**: CodeSphere UI Upgrades
+    * User Interface was updated from AB3 to better fit our CodeSphere application (fonts, team logo, icons etc.) 
+  * Modified existing test cases and added new tests.
 
 
 * **Documentation**:
   * User Guide:
-    * To be added soon.
+    * Added in a Beginner's Tutorial that walked new users through navigating the application and 
+      how to use some of the more basic functions in CodeSphere.
   * Developer Guide:
-    * To be added soon.
+    * Updated the DG regarding Storage as CodeSphere introduced a new 'InputStorage' class
+    * Updated and rewrote the portion on User Interface (UI) with new class diagrams as well as in-depth
+      explanations regarding the different UI components that were added in.
 
 * **Community**:
-  * To be added soon.
-
+  * Reviewed PRs, and suggested improvements for things like Javadoc style and code quality.
+  * Reported bugs for team CS2103T-W13-3 during PE-D and suggested possible areas of improvements
+  
 * **Tools**:
   * To be added soon.
