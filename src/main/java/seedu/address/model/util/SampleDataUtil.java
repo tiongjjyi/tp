@@ -6,11 +6,11 @@ import seedu.address.model.ReadOnlyStudentList;
 import seedu.address.model.StudentList;
 import seedu.address.model.course.Course;
 import seedu.address.model.course.CourseName;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.PendingQuestion;
-import seedu.address.model.person.Remark;
-import seedu.address.model.person.Student;
+import seedu.address.model.student.Email;
+import seedu.address.model.student.Name;
+import seedu.address.model.student.PendingQuestion;
+import seedu.address.model.student.Remark;
+import seedu.address.model.student.Student;
 import seedu.address.model.tag.StudentRank;
 import seedu.address.model.tag.Tag;
 

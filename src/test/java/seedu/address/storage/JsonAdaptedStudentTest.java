@@ -8,8 +8,8 @@ import static seedu.address.testutil.TypicalStudents.BENSON;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
+import seedu.address.model.student.Email;
+import seedu.address.model.student.Name;
 import seedu.address.model.tag.Tag;
 
 public class JsonAdaptedStudentTest {

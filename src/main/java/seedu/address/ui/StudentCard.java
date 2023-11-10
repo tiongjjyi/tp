@@ -8,7 +8,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
-import seedu.address.model.person.Student;
+import seedu.address.model.student.Student;
 
 /**
  * A UI component that displays information of a {@code Student}.

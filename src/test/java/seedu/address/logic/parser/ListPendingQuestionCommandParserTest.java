@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.ListPendingQuestionsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.predicates.AllPendingQuestionPredicate;
+import seedu.address.model.student.predicates.AllPendingQuestionPredicate;
 
 public class ListPendingQuestionCommandParserTest {
 

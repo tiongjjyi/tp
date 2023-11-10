@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.ListPendingQuestionsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.predicates.AllPendingQuestionPredicate;
+import seedu.address.model.student.predicates.AllPendingQuestionPredicate;
 
 /**
  * Parses input arguments and creates a new ListPendingQuestionsCommand object

@@ -5,8 +5,8 @@ import javafx.collections.transformation.SortedList;
 import seedu.address.model.StudentList;
 import seedu.address.model.course.Course;
 import seedu.address.model.course.CourseName;
-import seedu.address.model.person.Student;
-import seedu.address.model.person.UniqueStudentList;
+import seedu.address.model.student.Student;
+import seedu.address.model.student.UniqueStudentList;
 
 /**
  * A utility class to help with building Person objects.

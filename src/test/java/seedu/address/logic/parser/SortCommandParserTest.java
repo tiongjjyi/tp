@@ -8,8 +8,8 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.SortCommand;
-import seedu.address.model.person.Field;
-import seedu.address.model.person.SortCriteria;
+import seedu.address.model.student.Field;
+import seedu.address.model.student.SortCriteria;
 
 public class SortCommandParserTest {
     private SortCommandParser parser = new SortCommandParser();

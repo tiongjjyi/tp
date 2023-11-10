@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.Prefix;
-import seedu.address.model.person.Student;
+import seedu.address.model.student.Student;
 import seedu.address.testutil.StudentBuilder;
 
 public class MessagesTest {

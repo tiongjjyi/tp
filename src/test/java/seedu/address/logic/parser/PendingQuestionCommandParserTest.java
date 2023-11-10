@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.PendingQuestionCommand;
-import seedu.address.model.person.PendingQuestion;
+import seedu.address.model.student.PendingQuestion;
 
 public class PendingQuestionCommandParserTest {
     private PendingQuestionCommandParser parser = new PendingQuestionCommandParser();

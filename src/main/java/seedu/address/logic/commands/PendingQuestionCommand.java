@@ -11,8 +11,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.StageManager;
 import seedu.address.model.Model;
 import seedu.address.model.course.Course;
-import seedu.address.model.person.PendingQuestion;
-import seedu.address.model.person.Student;
+import seedu.address.model.student.PendingQuestion;
+import seedu.address.model.student.Student;
 
 /**
  * Changes the pending question of an existing person in the address book.
