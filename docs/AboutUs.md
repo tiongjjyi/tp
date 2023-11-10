@@ -27,8 +27,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/phiphi-tan)]
 [[portfolio](team/phiphi-tan.md)]
 
-* Role: Deliverables and Deadlines
-* Responsibilities: Ensure project deliverables are done on time and in the right format
+* Role: User Interface (UI), Deliverables and Deadlines
+* Responsibilities: Implement user-interface related features for the application,
+ and ensure project deliverables are done on time and in the right format
 
 ### Sun Zihan
 
