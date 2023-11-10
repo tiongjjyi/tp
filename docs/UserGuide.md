@@ -280,7 +280,7 @@ Adds a course to the list of courses.
 
 **Command failure:** Incorrect format results in an error message shown and the course is not added/stored in the database.
 
-### Editing a course: `edit`
+### Editing a course : `edit`
 Edits the details of an existing course from the list of courses.
 
 **Format:** `edit INDEX c/NEW_COURSENAME`
@@ -309,12 +309,12 @@ Deletes the specified course from the list of courses.
 
 **Examples:** `delete 2` Deletes the course at index 2 of the displayed course list.
 
-### Clearing all courses: `clear`
+### Clearing all courses : `clear`
 Clears all courses in the displayed list of courses.
 
 Format: `clear`
 
-### Selecting a course: `select`
+### Selecting a course : `select`
 Selects the specified course from the list of courses.
 
 **Format:** `select INDEX`
@@ -328,7 +328,7 @@ Selects the specified course from the list of courses.
 
 **Command failure:** Incorrect format/index results in an error message shown and the course is not selected.
 
-### Finding a course: `find`
+### Finding a course : `find`
 Finds a course **given a keyword** from the list of courses you are teaching.
 
 **Format:** `find KEYWORD`
@@ -342,7 +342,7 @@ Finds a course **given a keyword** from the list of courses you are teaching.
 
 **Command failure:** Incorrect format results in an error message shown and the course is not filtered.
 
-### Resetting the course list: `reset`
+### Resetting the course list : `reset`
 Resets a filtered or sorted course list to its original order, where courses are arranged chronologically based on when they were added, with the first course added at the top of the displayed list. 
 
 **Format:** `reset`
@@ -455,7 +455,7 @@ Sorts the list of students you are overseeing in the selected course **by name o
 
 **Command failure:** Incorrect format results in an error message shown and the student list is not sorted.
 
-### Finding a student: `find`
+### Finding a student : `find`
 Find a student **by a certain field** from the list of students you are overseeing in the selected course.
 
 **Format:** `find [n/NAME] [e/EMAIL] [t/TAG] [pq/QUESTION] [r/REMARK]`
@@ -511,7 +511,7 @@ Adds a pending question to a specified student from the list of students of a co
 
 **Command failure:** Incorrect format results in an error message shown and pending question is not added to the student.
 
-### Removing a remark/pending question of a student: `remove`
+### Removing a remark/pending question of a student : `remove`
 Removes a remark or pending question of a specified student from the list of students.
 
 **Format:** `remove INDEX [r/] [pq/]`
@@ -529,7 +529,7 @@ Removes a remark or pending question of a specified student from the list of stu
 
 **Command failure:** Incorrect format results in an error message shown and the remark/pending question is not removed from the student.
 
-### Returning to the home page: `home`
+### Returning to the home page : `home`
 Returns to the [home page](#home-page-commands) showing the list of courses you are overseeing.
 
 **Format:** `home`
