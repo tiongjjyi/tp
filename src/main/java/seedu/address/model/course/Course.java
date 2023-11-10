@@ -10,10 +10,10 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.person.Field;
-import seedu.address.model.person.SortCriteria;
-import seedu.address.model.person.Student;
-import seedu.address.model.person.UniqueStudentList;
+import seedu.address.model.student.Field;
+import seedu.address.model.student.SortCriteria;
+import seedu.address.model.student.Student;
+import seedu.address.model.student.UniqueStudentList;
 
 /**
  * Represents a Course in the course list.

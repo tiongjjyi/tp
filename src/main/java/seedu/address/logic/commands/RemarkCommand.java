@@ -11,8 +11,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.stagemanager.StageManager;
 import seedu.address.model.Model;
 import seedu.address.model.course.Course;
-import seedu.address.model.person.Remark;
-import seedu.address.model.person.Student;
+import seedu.address.model.student.Remark;
+import seedu.address.model.student.Student;
 
 /**
  * Changes the remark of an existing student in the student list.

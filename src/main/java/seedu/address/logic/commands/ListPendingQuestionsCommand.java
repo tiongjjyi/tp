@@ -10,7 +10,7 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.stagemanager.StageManager;
 import seedu.address.model.Model;
 import seedu.address.model.course.Course;
-import seedu.address.model.person.Student;
+import seedu.address.model.student.Student;
 
 /**
  * Finds and lists all students in the class whose pending question field is not empty.

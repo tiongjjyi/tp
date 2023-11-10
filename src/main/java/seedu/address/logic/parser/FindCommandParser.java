@@ -14,11 +14,11 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.predicates.EmailContainsKeywordsPredicate;
-import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
-import seedu.address.model.person.predicates.PqContainsKeywordsPredicate;
-import seedu.address.model.person.predicates.RemarkContainsKeywordsPredicate;
-import seedu.address.model.person.predicates.TagFilterPredicate;
+import seedu.address.model.student.predicates.EmailContainsKeywordsPredicate;
+import seedu.address.model.student.predicates.NameContainsKeywordsPredicate;
+import seedu.address.model.student.predicates.PqContainsKeywordsPredicate;
+import seedu.address.model.student.predicates.RemarkContainsKeywordsPredicate;
+import seedu.address.model.student.predicates.TagFilterPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object

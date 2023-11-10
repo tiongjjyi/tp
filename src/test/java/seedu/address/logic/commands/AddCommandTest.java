@@ -21,7 +21,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyCourseList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.course.Course;
-import seedu.address.model.person.Student;
+import seedu.address.model.student.Student;
 import seedu.address.testutil.CourseBuilder;
 import seedu.address.testutil.StudentBuilder;
 

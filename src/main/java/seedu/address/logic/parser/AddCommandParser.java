@@ -9,11 +9,11 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.PendingQuestion;
-import seedu.address.model.person.Remark;
-import seedu.address.model.person.Student;
+import seedu.address.model.student.Email;
+import seedu.address.model.student.Name;
+import seedu.address.model.student.PendingQuestion;
+import seedu.address.model.student.Remark;
+import seedu.address.model.student.Student;
 import seedu.address.model.tag.Tag;
 
 /**

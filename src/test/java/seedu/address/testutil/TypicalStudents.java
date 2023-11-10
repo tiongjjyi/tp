@@ -16,7 +16,7 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.StudentList;
-import seedu.address.model.person.Student;
+import seedu.address.model.student.Student;
 
 /**
  * A utility class containing a list of {@code Student} objects to be used in tests.

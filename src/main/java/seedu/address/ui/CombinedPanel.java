@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import seedu.address.model.course.Course;
-import seedu.address.model.person.Student;
+import seedu.address.model.student.Student;
 
 /**
  * CombinedPanel containing a side panel of Courses and a main panel of Students

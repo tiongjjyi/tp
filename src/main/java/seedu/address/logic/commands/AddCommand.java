@@ -11,8 +11,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.stagemanager.StageManager;
 import seedu.address.model.Model;
 import seedu.address.model.course.Course;
-import seedu.address.model.person.Student;
-import seedu.address.model.person.exceptions.DuplicateStudentException;
+import seedu.address.model.student.Student;
+import seedu.address.model.student.exceptions.DuplicateStudentException;
 
 /**
  * Adds a student to the student list.

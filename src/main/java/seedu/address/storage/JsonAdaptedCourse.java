@@ -9,8 +9,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.course.Course;
 import seedu.address.model.course.CourseName;
-import seedu.address.model.person.Student;
-import seedu.address.model.person.exceptions.DuplicateStudentException;
+import seedu.address.model.student.Student;
+import seedu.address.model.student.exceptions.DuplicateStudentException;
 
 /**
  * Jackson-friendly version of {@link Course}.

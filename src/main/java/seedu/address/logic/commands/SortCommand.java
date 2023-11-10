@@ -8,7 +8,7 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.stagemanager.StageManager;
 import seedu.address.model.Model;
 import seedu.address.model.course.Course;
-import seedu.address.model.person.SortCriteria;
+import seedu.address.model.student.SortCriteria;
 
 /**
  * Sorts the student list based on specified sort criteria.
