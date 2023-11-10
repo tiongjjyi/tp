@@ -330,15 +330,37 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. CodeSphere displays an error message.
       Use case resumes at step 1.
 
+**Use case: UC05 - Sort the student list**
+
+**MSS**
+
+1. User requests to sort the student list by tag or by name.
+2. CodeSphere sorts the students and displays all students in the order specified by the user.
+   Use Case Ends.
+
+**Extensions**
+
+* 1a. User enters an invalid sort criteria.
+    * 1a1. CodeSphere displays an error message.
+      Use case resumes at step 1.
+
+* 1b. No sort criteria was specified.
+    * 1b1. CodeSphere displays an error message.
+      Use case resumes at step 1.
+
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  The application should be able to handle an increasing number of profiles and users without a significant degradation in performance.
-3.  The application should gracefully handle errors, providing informative error messages to users in case of failures.
-4.  Code should be organized into reusable and maintainable modules, making it easier to enhance and extend the application in the future.
-5.  Maintain comprehensive documentation for developers.
-6.  The application should run smoothly on different operating systems commonly used by the target users.
-7.  Ensure that only authorized users can access and manipulate profile information.
+2.  The application should be able to hold up to 100 courses and 1000 student contacts without a noticeable sluggishness in performance for typical usage.
+3.  The application should be intuitive enough for a beginner who is new to Command Line Interfaces to be able to use easily. 
+4.  The application should respond to any commands carried out by the user should become visible within 5 seconds.
+5.  The application should gracefully handle errors, providing informative error messages to users in case of failures.
+6.  Code should be organized into reusable and maintainable modules, making it easier to enhance and extend the application in the future.
+7.  Comprehension documentation should be maintained for developers.
+8.  The application should run smoothly on different operating systems commonly used by the target users.
+9.  A user who can type fast should be able to accomplish tasks faster via a Command Line Interface as compared to a hypothetical Graphical User Interface version of the app.
+10. The application should not depend on a remote server so that users can use the application at anytime.
+11. The application is not required to support multiple users on a single device.
 
 *{More to be added}*
 
