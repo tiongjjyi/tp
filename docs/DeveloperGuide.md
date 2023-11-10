@@ -249,74 +249,86 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `CodeSphere` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Edit student’s information**
-
-**Preconditions**: The student has already been added into the app.
-
-**Guarantees**: Unchanged fields during the edit will remain the same as before.
+**Use case: UC01 - Add a course**
 
 **MSS**
 
-1. User chooses to edit a student’s information.
-2. CodeSphere displays the student’s current information.
-3. User edits the fields that need to be changed.
-4. User saves the changes.
-5. CodeSphere updates the student’s information.
+1. User requests to add a new course.
+2. CodeSphere creates the course and provides confirmation to the user.
+   Use case ends.
+
+**Extensions**
+
+* 1a. The course name is missing.
+    * 1a1. CodeSphere displays an error message.
+      Use case resumes at step 1.
+
+* 1b. The course name has an invalid format.
+  * 1b1. CodeSphere displays an error message.
+    Use case resumes at step 1.
+
+**Use case: UC02 - Edit a student’s information**
+
+**Preconditions**: The student has already been added into CodeSphere.
+
+**Guarantees**: Unchanged fields during the edit will remain the same as before the edit.
+
+**MSS**
+
+1. User requests to edit a student’s information.
+2. User enters new details for the field(s) that need to be changed.
+3. CodeSphere updates the student’s information and provides confirmation to the user.
     Use case ends.
 
 **Extensions**
 
-* 3a. CodeSphere detects incorrect format for the new changes.
-    * 3a1. CodeSphere prompts the User to enter details in the correct format.
-    * 3a2. User enters details again.</br>
-    Use case resumes at step 4.
+* 1a. The given index of the student is invalid.
+    * 1a1. CodeSphere displays an error message.
+    Use case resumes at step 1.
 
-*  *a. At any time, the User chooses to cancel the edit.
-    * *a1. CodeSphere requests to confirm the cancellation.
-    * *a2. User confirms the cancellation.
-    Use case ends.
+* 1b. No field to be edited was specified by the user.
+    * 1b1. CodeSphere displays an error message.
+      Use case resumes at step 1.
 
-**Use case: Delete a student**
+* 1c. Invalid format for detail(s) entered.
+    * 1c1. CodeSphere displays an error message.
+      Use case resumes at step 1.
 
-**Preconditions**: The student has already been added into the app.
+**Use case: UC03 - Delete a student**
+
+**Preconditions**: The student has already been added into CodeSphere.
 
 **MSS**
 
-1. User chooses to delete a student.
-2. CodeSphere displays the student’s current information.
-3. CodeSphere prompts the user to confirm the deletion.
-4. User confirms the deletion.
-5. CodeSphere deletes the student.
+1. User requests to delete a student.
+2. CodeSphere deletes the specified student and no longer display that student in the student list.
    Use Case Ends.
 
 **Extensions**
 
-* 1a. CodeSphere detects that the target student does not exist.
-    * 1a1. CodeSphere prompts the user to choose an existing student to be deleted.
-    * 1a2. User chooses an existing student to be deleted.</br>
-    Use case resumes at step 4
+* 1a. The given index of the student is invalid.
+    * 1a1. CodeSphere displays an error message.
+    Use case resumes at step 1.
 
-**Use case: Add a pending question for a student**
+**Use case: UC04 - Add a pending question for a student**
 
-**Preconditions**: User has an existing profile.
+**Preconditions**: The student has already been added into CodeSphere.
 
 **MSS**
 
-1. User chooses to delete a student.
-2. CodeSphere displays the student’s current information.
-3. CodeSphere prompts the user to confirm the addition.
-4. User confirms the addition.
-5. CodeSphere adds a pending question tag to the student.
+1. User requests to add a pending question to a student.
+2. CodeSphere adds a pending question to the student.
    Use Case Ends.
 
 **Extensions**
 
-* 1a. CodeSphere detects that the target student does not exist.
-    * 1a1. CodeSphere prompts the user to choose an existing student to be tagged with a pending question.
-    * 1a2. User chooses an existing student to be tagged.</br>
-    Use case resumes at step 4
+* 1a. The given index of the student is invalid.
+    * 1a1. CodeSphere displays an error message.
+      Use case resumes at step 1.
 
-*{More to be added}*
+* 1b. Pending question field is left empty.
+    * 1b1. CodeSphere displays an error message.
+      Use case resumes at step 1.
 
 ### Non-Functional Requirements
 
