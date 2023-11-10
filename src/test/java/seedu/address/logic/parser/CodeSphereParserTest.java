@@ -31,6 +31,7 @@ import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.logic.commands.ResetCommand;
 import seedu.address.logic.commands.ResetCourseCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.stagemanager.StageManager;
 import seedu.address.model.course.Course;
 import seedu.address.model.course.CourseNameContainsKeywordsPredicate;
 import seedu.address.model.person.Remark;

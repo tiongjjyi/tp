@@ -6,8 +6,8 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 import seedu.address.logic.Logic;
-import seedu.address.logic.parser.StageManager;
-import seedu.address.logic.parser.Stages;
+import seedu.address.logic.stagemanager.StageManager;
+import seedu.address.logic.stagemanager.Stages;
 
 /**
  * A UI for the center display panel that displays the splash panel, course list and combined list.

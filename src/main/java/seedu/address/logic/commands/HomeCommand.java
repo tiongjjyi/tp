@@ -1,8 +1,8 @@
 package seedu.address.logic.commands;
 
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.StageManager;
-import seedu.address.logic.parser.Stages;
+import seedu.address.logic.stagemanager.StageManager;
+import seedu.address.logic.stagemanager.Stages;
 import seedu.address.model.Model;
 
 /**

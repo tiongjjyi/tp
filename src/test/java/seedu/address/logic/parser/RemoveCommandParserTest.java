@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.logic.commands.RemoveCommand;
+import seedu.address.logic.stagemanager.StageManager;
 import seedu.address.model.course.Course;
 import seedu.address.model.person.Remark;
 import seedu.address.testutil.CourseBuilder;
