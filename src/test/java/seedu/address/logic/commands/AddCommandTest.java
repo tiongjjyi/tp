@@ -16,7 +16,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.StageManager;
+import seedu.address.logic.stagemanager.StageManager;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyCourseList;
 import seedu.address.model.ReadOnlyUserPrefs;

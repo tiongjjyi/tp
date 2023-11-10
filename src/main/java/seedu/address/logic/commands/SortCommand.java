@@ -5,7 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SORT;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
-import seedu.address.logic.parser.StageManager;
+import seedu.address.logic.stagemanager.StageManager;
 import seedu.address.model.Model;
 import seedu.address.model.course.Course;
 import seedu.address.model.person.SortCriteria;

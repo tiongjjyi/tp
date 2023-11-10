@@ -1,4 +1,4 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.stagemanager;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -9,6 +9,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.stagemanager.StageManager;
+import seedu.address.logic.stagemanager.Stages;
 import seedu.address.model.course.Course;
 import seedu.address.testutil.CourseBuilder;
 

@@ -33,6 +33,8 @@ import seedu.address.logic.commands.ResetCourseCommand;
 import seedu.address.logic.commands.SelectCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.stagemanager.StageManager;
+import seedu.address.logic.stagemanager.Stages;
 
 /**
  * Parses user input.

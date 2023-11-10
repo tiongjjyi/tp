@@ -1,4 +1,4 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.stagemanager;
 
 /**
  * Enumerates the stages of the application.
