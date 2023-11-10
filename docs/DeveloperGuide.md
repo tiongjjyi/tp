@@ -227,20 +227,23 @@ Given below is an example usage scenario and how the adding pending question mec
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                 | I want to …​                                   | So that I can…​                                                 |
-| ------ |-------------------------|------------------------------------------------|-----------------------------------------------------------------|
-| `* * *` | user                    | add student profiles                           | keep track of the students in my class.                         |
-| `* * *` | user                    | edit student profiles                          | keep accurate and up-to-date information on each student.       |
-| `* * *` | user                    | delete a student profile                       | remove a student if the student is no longer in my class.       |
-| `* * *` | user                    | tag students based on how well they are coping | I can easily identify students who may need additional support. |
-| `* *`  | user                    | add remarks for individual students            | maintain a log of anything noteworthy.                          |
-| `* *`  | user                    | add pending question for individual students   | efficiently manage and respond to their queries.                |
-| `* *`  | user                    | see a filtered view of students for each class | efficiently manage my classes and students.                     |
-| `* *`  | user                    | sort students by their tag level               | see which students need more of my help                         |
-| `*`    | user with many students | sort students by name                          | locate a student easily.                                        |
-
-
-*{More to be added}*
+| Priority | As a …​                 | I want to …​                                                           | So that I can…​                                                         |
+|-------|-------------------------|------------------------------------------------------------------------|-------------------------------------------------------------------------|
+| `* * *` | user                    | add a new course                                                       | keep track of the courses I teach                                       |
+| `* * *` | user                    | add a new student to an existing course                                | keep track of the students in each of the courses I teach               |
+| `* * *` | user                    | edit a course                                                          | keep accurate and up-to-date information on each course                 |
+| `* * *` | user                    | edit a student's profile                                               | keep accurate and up-to-date information on each student                |
+| `* * *` | user                    | delete s course                                                        | remove a course I am no longer teaching                                 |
+| `* * *` | user                    | delete a student's profile                                             | remove a student if the student is no longer in a course                |
+| `* * *` | user                    | assign a performance tag to a student based on how well they are coping | I can easily identify students who may need additional support          |
+| `* *` | user                    | add remarks for a student                                              | keep track of miscallaneous things                                      |
+| `* *` | user                    | add pending questions for a students                                   | keep track of unanswered queries from students                          |
+| `* *` | user                    | search for courses based on the course name                            | easily find courses I need                                              |
+| `* *` | user                    | search for students using the specified field                          | easily find students who belong in the criteria that I am interested in |
+| `* *` | user                    | sort students by the specified field                                   | view the list of students in the order I require                        |
+| `* * ` | user                    | view usage instructions                                                | know how to use the app when I am unfamiliar with it                    |
+| `*`   | user                    | list out all students in a course with unanswered pending questions    | efficiently manage and respond to queries                               |
+| `*`   | user                    | reset the student list to its original order            | view the original student list after filtering or sorting               |
 
 ### Use cases
 
