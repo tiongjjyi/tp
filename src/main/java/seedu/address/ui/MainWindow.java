@@ -1,5 +1,9 @@
 package seedu.address.ui;
 
+import static seedu.address.ui.ExternalLinks.DEVELOPERGUIDE_URL;
+import static seedu.address.ui.ExternalLinks.GITHUB_URL;
+import static seedu.address.ui.ExternalLinks.USERGUIDE_URL;
+
 import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
@@ -22,10 +26,6 @@ import seedu.address.logic.parser.StageManager;
 import seedu.address.logic.parser.Stages;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.storage.Storage;
-
-import static seedu.address.ui.ExternalLinks.DEVELOPERGUIDE_URL;
-import static seedu.address.ui.ExternalLinks.GITHUB_URL;
-import static seedu.address.ui.ExternalLinks.USERGUIDE_URL;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -50,11 +50,12 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane commandBoxPlaceholder;
 
     @FXML
-    private MenuItem UGMenuItem;
+    private MenuItem ugMenuItem;
     @FXML
-    private MenuItem DGMenuItem;
+
+    private MenuItem dgMenuItem;
     @FXML
-    private MenuItem GHMenuItem;
+    private MenuItem ghMenuItem;
 
     @FXML
     private StackPane panelPlaceholder;
@@ -88,9 +89,9 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private void setAccelerators() {
-        setAccelerator(UGMenuItem, KeyCombination.valueOf("F1"));
-        setAccelerator(DGMenuItem, KeyCombination.valueOf("F2"));
-        setAccelerator(GHMenuItem, KeyCombination.valueOf("F3"));
+        setAccelerator(ugMenuItem, KeyCombination.valueOf("F1"));
+        setAccelerator(dgMenuItem, KeyCombination.valueOf("F2"));
+        setAccelerator(ghMenuItem, KeyCombination.valueOf("F3"));
     }
 
     /**

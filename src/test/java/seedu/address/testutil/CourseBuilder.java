@@ -1,12 +1,7 @@
 package seedu.address.testutil;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
-import seedu.address.model.CourseList;
 import seedu.address.model.StudentList;
 import seedu.address.model.course.Course;
 import seedu.address.model.course.CourseName;
@@ -54,6 +49,9 @@ public class CourseBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code UniqueStudentList} of the {@code Course} that we are building.
+     */
     public CourseBuilder withStudents(StudentList studentList) {
         for (Student student : studentList.getStudentList()) {
             this.students.add(student);
@@ -61,6 +59,9 @@ public class CourseBuilder {
         return this;
     }
 
+    /**
+     * Builds a {@code Course} with the given courseName and students (if present).
+     */
     public Course build() {
         Course course = new Course(courseName);
         if (students != null) {

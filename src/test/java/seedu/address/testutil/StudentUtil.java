@@ -1,14 +1,14 @@
 package seedu.address.testutil;
 
-import java.util.Set;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PENDING_QUESTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditStudentDescriptor;
-import seedu.address.model.person.PendingQuestion;
 import seedu.address.model.person.Student;
-import seedu.address.model.tag.Tag;
-
-import static seedu.address.logic.parser.CliSyntax.*;
 
 /**
  * A utility class for Student.
@@ -43,7 +43,8 @@ public class StudentUtil {
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getTag().ifPresent(tag -> sb.append(PREFIX_TAG).append(tag.getRanking()).append(" "));
         descriptor.getRemark().ifPresent(remark -> sb.append(PREFIX_REMARK).append(remark.value).append(" "));
-        descriptor.getPendingQuestion().ifPresent(pendingQuestion -> sb.append(PREFIX_PENDING_QUESTION).append(pendingQuestion.value).append(" "));
+        descriptor.getPendingQuestion().ifPresent(pendingQuestion -> sb.append(PREFIX_PENDING_QUESTION)
+                .append(pendingQuestion.value).append(" "));
         return sb.toString();
     }
 }

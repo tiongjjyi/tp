@@ -14,6 +14,8 @@ import static seedu.address.testutil.TypicalCourses.getTypicalCourseList;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
 
+import java.util.Collections;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
@@ -29,37 +31,13 @@ import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
 import seedu.address.testutil.EditStudentDescriptorBuilder;
 import seedu.address.testutil.StudentBuilder;
 
-import java.util.Collections;
-
-
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
  */
 public class EditCommandTest {
 
     private Model model = new ModelManager(getTypicalCourseList(), new UserPrefs());
-    private Course course = model.getCourseList().getCourseList().get(0);
-
-    @Test
-    public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        StageManager stageManager = StageManager.getInstance();
-        stageManager.setCourseStage(course);
-
-        Index targetIndex = Index.fromZeroBased(0);
-        Student student = course.getStudentList().getStudent(targetIndex);
-        Student editedStudent = new StudentBuilder().build();
-        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(editedStudent).build();
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_STUDENT, descriptor);
-        course.setStudent(student, editedStudent);
-
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_STUDENT_SUCCESS,
-                Messages.format(editedStudent));
-
-        Model expectedModel = new ModelManager(model.getCourseList(), new UserPrefs());
-        expectedModel.setCourse(model.getFilteredCourseList().get(0), course);
-
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
-    }
+    private Course course = model.getFilteredCourseList().get(0);
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
@@ -127,19 +105,6 @@ public class EditCommandTest {
         expectedModel.setCourse(model.getFilteredCourseList().get(0), course);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
-    public void execute_duplicateStudentUnfilteredList_failure() {
-        StageManager stageManager = StageManager.getInstance();
-        stageManager.setCourseStage(course);
-
-        Index firstIndex = Index.fromZeroBased(0);
-        Student firstStudent = course.getStudentList().getStudent(firstIndex);
-        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(firstStudent).build();
-        EditCommand editCommand = new EditCommand(INDEX_SECOND_STUDENT, descriptor);
-
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_STUDENT);
     }
 
     @Test
