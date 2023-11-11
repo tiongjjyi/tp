@@ -34,7 +34,7 @@ Given below are my contributions to the project.
     * Delete existing labels and add all the issue type labels, priority labels and bug severity labels.
 
 * **Enhancements to existing features**:
-    * 
+    *
 
 * **Documentation**:
     * User Guide:

@@ -343,7 +343,7 @@ Finds a course **given a keyword** from the list of courses you are teaching.
 **Command failure:** Incorrect format results in an error message shown and the course is not filtered.
 
 ### Resetting the course list : `reset`
-Resets a filtered or sorted course list to its original order, where courses are arranged chronologically based on when they were added, with the first course added at the top of the displayed list. 
+Resets a filtered or sorted course list to its original order, where courses are arranged chronologically based on when they were added, with the first course added at the top of the displayed list.
 
 **Format:** `reset`
 
@@ -444,11 +444,11 @@ Sorts the list of students you are overseeing in the selected course **by name o
 
 **Format**: `sort s/SORT_CRITERIA`
 * Sorts the displayed student based on the specified `SORT_CRITERIA`.
-* `SORT_CRITERIA`: A pre-defined enumerated criteria. 
+* `SORT_CRITERIA`: A pre-defined enumerated criteria.
 * Valid sort criteria: tag, name.
 
-**Examples:** 
-* `sort s/tag` Sorts the student list by tag. Students with the GOOD tag are displayed at the top of the list. 
+**Examples:**
+* `sort s/tag` Sorts the student list by tag. Students with the GOOD tag are displayed at the top of the list.
 * `sort s/name` Sorts the student list by name in alphabetical order.
 
 **Command succeeds:** Success message shown, student successfully removed from database, change in GUI.
