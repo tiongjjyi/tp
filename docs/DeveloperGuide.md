@@ -254,17 +254,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to add a new course.
-2. CodeSphere creates the course and provides confirmation to the user.
+2. CodeSphere creates the course and provides confirmation to the user.</br>
+
    Use case ends.
 
 **Extensions**
 
 * 1a. The course name is missing.
-    * 1a1. CodeSphere displays an error message.
+    * 1a1. CodeSphere displays an error message.</br>
       Use case resumes at step 1.
 
 * 1b. The course name has an invalid format.
-  * 1b1. CodeSphere displays an error message.
+  * 1b1. CodeSphere displays an error message.</br>
     Use case resumes at step 1.
 
 **Use case: UC02 - Edit a student’s information**
@@ -277,21 +278,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to edit a student’s information.
 2. User enters new details for the field(s) that need to be changed.
-3. CodeSphere updates the student’s information and provides confirmation to the user.
+3. CodeSphere updates the student’s information and provides confirmation to the user.</br>
     Use case ends.
 
 **Extensions**
 
 * 1a. The given index of the student is invalid.
-    * 1a1. CodeSphere displays an error message.
+    * 1a1. CodeSphere displays an error message.</br>
     Use case resumes at step 1.
 
 * 1b. No field to be edited was specified by the user.
-    * 1b1. CodeSphere displays an error message.
+    * 1b1. CodeSphere displays an error message.</br>
       Use case resumes at step 1.
 
 * 1c. Invalid format for detail(s) entered.
-    * 1c1. CodeSphere displays an error message.
+    * 1c1. CodeSphere displays an error message.</br>
       Use case resumes at step 1.
 
 **Use case: UC03 - Delete a student**
@@ -301,13 +302,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to delete a student.
-2. CodeSphere deletes the specified student and no longer display that student in the student list.
+2. CodeSphere deletes the specified student and no longer display that student in the student list.</br>
    Use Case Ends.
 
 **Extensions**
 
 * 1a. The given index of the student is invalid.
-    * 1a1. CodeSphere displays an error message.
+    * 1a1. CodeSphere displays an error message.</br>
     Use case resumes at step 1.
 
 **Use case: UC04 - Add a pending question for a student**
@@ -317,17 +318,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to add a pending question to a student.
-2. CodeSphere adds a pending question to the student.
+2. CodeSphere adds a pending question to the student.</br>
    Use Case Ends.
 
 **Extensions**
 
 * 1a. The given index of the student is invalid.
-    * 1a1. CodeSphere displays an error message.
+    * 1a1. CodeSphere displays an error message.</br>
       Use case resumes at step 1.
 
 * 1b. Pending question field is left empty.
-    * 1b1. CodeSphere displays an error message.
+    * 1b1. CodeSphere displays an error message.</br>
       Use case resumes at step 1.
 
 **Use case: UC05 - Sort the student list**
@@ -335,17 +336,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to sort the student list by tag or by name.
-2. CodeSphere sorts the students and displays all students in the order specified by the user.
+2. CodeSphere sorts the students and displays all students in the order specified by the user.</br>
    Use Case Ends.
 
 **Extensions**
 
 * 1a. User enters an invalid sort criteria.
-    * 1a1. CodeSphere displays an error message.
+    * 1a1. CodeSphere displays an error message.</br>
       Use case resumes at step 1.
 
 * 1b. No sort criteria was specified.
-    * 1b1. CodeSphere displays an error message.
+    * 1b1. CodeSphere displays an error message.</br>
       Use case resumes at step 1.
 
 ### Non-Functional Requirements
@@ -397,13 +398,30 @@ testers are expected to do more *exploratory* testing.
 
 ### Deleting a Course
 
-1. Deleting a course while all courses are being shown
-
+1. Deleting a course while all courses are being shown</br>
+<br>
     1. Test case: `delete 1`<br>
-       Expected: First course is deleted from the list. Details of the deleted course shown in the status message.
-
+       Expected: First course is deleted from the list. Details of the deleted course shown in the status message.<br>
+<br>
     2. Test case: `delete 0`<br>
-        Expected: No course is deleted. Error details shown in the status message.
+        Expected: No course is deleted. Error details shown in the status message.<br>
+<br>
 
     3. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Adding a Remark to a Student
+
+1. Adding a remark to a student while all students in the selected course are being shown</br>
+<br>
+    1. Test case: `remark 1 r/Needs more help`<br>
+       Expected: The remark `Needs more help` is added to the first student from the list. Details of the student shown in the status message.</br>
+<br>
+    2. Test case: `remark 0 r/Needs more help`</br>
+       Expected: No remark is added. Error details shown in the status message.<br>
+<br>
+    3. Test case: `remark 1 r/`<br>
+       Expected: No remark is added. Error details shown in the status message.<br>
+<br>
+    4. Other incorrect remark commands to try: `remark`, `remark x`, `...` (where x is larger than the list size)
        Expected: Similar to previous.
