@@ -74,6 +74,7 @@ The sections below give more details of each component.
 ### UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2324S1-CS2103T-W15-4/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
+
 ![Interactions Inside the Ui Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `CourseListPanel`, `CombinedPanel`, `StatusBarFooter` etc.
@@ -81,8 +82,8 @@ All these, including the `MainWindow`, inherit from the abstract `UiPart` class 
 
 The `MainWindow` includes a `DisplayPanel`, which has three different states it can toggle between
 1. The `SplashPanel` for the opening splash window
-2. The `CombinedPanel` that displays the student list and a course list sidebar
-3. The `CoursePanel` that displays the course list
+2. The `CombinedPanel` that displays the student list and a course list sidebar 
+3. The `CoursePanel` that displays the course list (this is otherwise known as the `home` screen)
 
 The `UI` component uses the JavaFx UI framework.
 The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder.
@@ -94,7 +95,26 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute the commands.
 * keeps a reference to the `StageManager` to update the `UI` with its corresponding display panel.
 * depends on some classes in the `Model` component, as it displays `Course` and `Student` objects residing in the `Model`.
-* depdnds on some classes in the `Storage` component, as it updates to and retrieves user inputs from the `Storage`.
+* depends on some classes in the `Storage` component, as it updates to and retrieves user inputs from the `Storage`.
+
+The typical flow of a user's interaction with the UI is as follows.
+
+![Standard action flow of Ui Component](images/UiActivityDiagram.png)
+
+During startup, the MainWindow will be displayed and all components loaded into it, with a splash screen showing before
+entering the course list display.
+
+For user commands, there are two commands which separate actions to be performed:
+* `exit`, which immediately closes the application.
+* `help`, which displays the help window pop-up.
+
+After each command that does not close the application, the UI will check with the StageManager to see which stage it is set to,
+(either StageManager.HOME or StageManager.SELECTED_COURSE) and displays the corresponding panel (CourseListPanel for `HOME`
+and CombinedPanel for `SELECTED_COURSE`).
+
+This action flow will loop until the user decides to exit the application.
+During the application's runtime, the user may  also exit the application through the MainWindow's top panel buttons (File -> Exit)
+or the red '**x**' button on the top right of the application screen. 
 
 ### Logic component
 
@@ -108,7 +128,7 @@ How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `CodeSphereParser` class to parse the user command.
 2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 3. The command can communicate with the `Model` when it is executed (e.g. to add an item).
-4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
@@ -148,6 +168,13 @@ The `Storage` component,
 * can save user inputs and retrieve them in the future
 * inherits from both `CourseListStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+
+The Storage component builds upon the AB-3 Storage component by adding an InputStorage, which encapsulates the concept of 
+storing user inputs. 
+These user inputs are stored in chronological order and are accessed through the StorageManager.
+All user inputs will be stored in the InputStorage, and will also contain the data whether the input was accepted as a
+valid command or not. Handling of this input validity will be done by the UI component. 
+
 
 ### Common classes
 
