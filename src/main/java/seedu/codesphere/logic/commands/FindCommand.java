@@ -32,6 +32,9 @@ public class FindCommand extends Command {
             + "Note: You can only use one prefix at a time.\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "Alice";
 
+    public static final String MESSAGE_NO_DESCRIPTION = "Description should not be blank."
+            + "\nExample: find n/Alice";
+
     private final Predicate<Student> predicate;
 
     /**
