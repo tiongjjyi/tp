@@ -51,7 +51,7 @@ public class AddCommand extends Command {
         requireNonNull(model);
 
         StageManager stageManager = StageManager.getInstance();
-        Course course = stageManager.getCurrentCourse();
+        Course course = stageManager.getSelectedCourse();
         course.resetFilteredStudentList();
 
         try {

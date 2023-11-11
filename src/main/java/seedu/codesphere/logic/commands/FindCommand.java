@@ -1,3 +1,4 @@
+//@@author devanshubisht
 package seedu.codesphere.logic.commands;
 
 import static java.util.Objects.requireNonNull;
@@ -51,7 +52,7 @@ public class FindCommand extends Command {
         requireNonNull(model);
 
         StageManager stageManager = StageManager.getInstance();
-        Course course = stageManager.getCurrentCourse();
+        Course course = stageManager.getSelectedCourse();
 
         course.updateFilteredStudentList(predicate);
         return new CommandResult(

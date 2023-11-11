@@ -38,6 +38,7 @@ public class StringUtil {
                 .anyMatch(preppedWord::equalsIgnoreCase);
     }
 
+    //@@author devanshubisht
     /**
      * Returns true if the {@code sentence} contains the {@code word}.
      *   Ignores case, and a full word match is not required.
