@@ -52,7 +52,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         Optional<String> remarkPrefixValue = argMultimap.getValue(PREFIX_REMARK);
         Optional<String> emailPrefixValue = argMultimap.getValue(PREFIX_EMAIL);
 
-        if (namePrefixValue.isPresent()) {
+        if (namePrefixValue.isPresent() && !namePrefixValue.get().isEmpty()) {
             return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(namePrefixValue.get())));
         } else if (tagPrefixValue.isPresent()) {
             return new FindCommand(new TagFilterPredicate(Arrays.asList(tagPrefixValue.get())));
@@ -63,9 +63,8 @@ public class FindCommandParser implements Parser<FindCommand> {
         } else if (emailPrefixValue.isPresent()) {
             return new FindCommand(new EmailContainsKeywordsPredicate(Arrays.asList(emailPrefixValue.get())));
         } else {
-            // Handle the case where no prefix is present (this should not happen if you
-            // check prefixes before calling parse)
-            throw new ParseException("Invalid command format");
+            // Handle the case where no prefix is present
+            throw new ParseException(FindCommand.MESSAGE_NO_DESCRIPTION);
         }
     }
 
