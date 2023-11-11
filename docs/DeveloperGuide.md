@@ -353,7 +353,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  The application should be able to hold up to 100 courses and 1000 student contacts without a noticeable sluggishness in performance for typical usage.
-3.  The application should be intuitive enough for a beginner who is new to Command Line Interfaces to be able to use easily. 
+3.  The application should be intuitive enough for a beginner who is new to Command Line Interfaces to be able to use easily.
 4.  The application should respond to any commands carried out by the user should become visible within 5 seconds.
 5.  The application should gracefully handle errors, providing informative error messages to users in case of failures.
 6.  Code should be organized into reusable and maintainable modules, making it easier to enhance and extend the application in the future.

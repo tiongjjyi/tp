@@ -11,7 +11,7 @@ Given below are my contributions to the project.
 * **New Feature**: Command History.
   * What it does: Through utilising the 'UP' and 'DOWN' arrows on the keyboard,
   users can access commands that were previously inputted into the application.
-  Commands that result in an error will be shown in red. 
+  Commands that result in an error will be shown in red.
   * Justification: This feature allows the user to be able to access and edit erroneous commands or repeat previous actions
   without having to re-type the entire command again
 
@@ -25,7 +25,7 @@ Given below are my contributions to the project.
   gives the app a more 'polished' feel and improves the general user experience
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=phiphi-tan&breakdown=true)
-  
+
 * **Project management**:
   * To be added soon.
 
@@ -36,17 +36,17 @@ Given below are my contributions to the project.
   * **UI Enhancement**: Combined panel sidebar
     * Provides a sidebar of all courses alongside the view of the particular student list of a selected course
       The selected course in the side panel is highlighted while the other courses are faded.
-    * The combined panel serves as a direct upgrade to the previous 'Student List' panel 
+    * The combined panel serves as a direct upgrade to the previous 'Student List' panel
       by creating a 'sidebar' that allows users to still see summary statistics of other courses while viewing students in
       a certain course.
   * **UI Enhancement**: CodeSphere UI Upgrades
-    * User Interface was updated from AB3 to better fit our CodeSphere application (fonts, team logo, icons etc.) 
+    * User Interface was updated from AB3 to better fit our CodeSphere application (fonts, team logo, icons etc.)
   * Modified existing test cases and added new tests.
 
 
 * **Documentation**:
   * User Guide:
-    * Added in a Beginner's Tutorial that walked new users through navigating the application and 
+    * Added in a Beginner's Tutorial that walked new users through navigating the application and
       how to use some of the more basic functions in CodeSphere.
   * Developer Guide:
     * Updated the DG regarding Storage as CodeSphere introduced a new 'InputStorage' class
@@ -56,6 +56,6 @@ Given below are my contributions to the project.
 * **Community**:
   * Reviewed PRs, and suggested improvements for things like Javadoc style and code quality.
   * Reported bugs for team CS2103T-W13-3 during PE-D and suggested possible areas of improvements
-  
+
 * **Tools**:
   * To be added soon.
