@@ -65,7 +65,7 @@ public class SampleDataUtil {
 
         for (Student sampleStudent : sampleStudents) {
             targetCourse.addStudent(sampleStudent);
-        }    
+        }
         for (Course sampleCourse : sampleCourses) {
             sampleCl.addCourse(sampleCourse);
         }
