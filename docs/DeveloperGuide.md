@@ -78,7 +78,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 ![Interactions Inside the Ui Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `CourseListPanel`, `CombinedPanel`, `StatusBarFooter` etc.
-All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+All these, including the `MainWindow`, inherit from the abstract `UiComponent` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `MainWindow` includes a `DisplayPanel`, which has three different states it can toggle between
 1. The `SplashPanel` for the opening splash window
@@ -86,7 +86,7 @@ The `MainWindow` includes a `DisplayPanel`, which has three different states it 
 3. The `CoursePanel` that displays the course list (this is otherwise known as the `home` screen)
 
 The `UI` component uses the JavaFx UI framework.
-The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder.
+The layout of these UI components are defined in matching `.fxml` files that are in the `src/main/resources/view` folder.
 For example, the layout of the [`MainWindow`](https://github.com/AY2324S1-CS2103T-W15-4/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2324S1-CS2103T-W15-4/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,

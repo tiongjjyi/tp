@@ -13,7 +13,7 @@ import seedu.codesphere.model.student.Student;
 /**
  * A UI component that displays information of a {@code Student}.
  */
-public class StudentCard extends UiPart<Region> {
+public class StudentCard extends UiComponent<Region> {
 
     private static final String FXML = "StudentListCard.fxml";
 

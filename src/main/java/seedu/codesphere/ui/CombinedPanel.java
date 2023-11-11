@@ -10,7 +10,7 @@ import seedu.codesphere.model.student.Student;
 /**
  * CombinedPanel containing a side panel of Courses and a main panel of Students
  */
-public class CombinedPanel extends UiPart<Region> {
+public class CombinedPanel extends UiComponent<Region> {
     private static final String FXML = "CombinedPanel.fxml";
 
     private StudentListPanel studentListPanel;

@@ -12,7 +12,7 @@ import seedu.codesphere.logic.stagemanager.Stages;
 /**
  * A UI for the center display panel that displays the splash panel, course list and combined list.
  */
-public class DisplayPanel extends UiPart<Region> {
+public class DisplayPanel extends UiComponent<Region> {
 
     private static final String FXML = "DisplayPanel.fxml";
 
