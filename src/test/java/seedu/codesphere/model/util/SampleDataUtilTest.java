@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.codesphere.model.ReadOnlyCourseList;
 import seedu.codesphere.model.ReadOnlyStudentList;
 import seedu.codesphere.model.course.Course;
