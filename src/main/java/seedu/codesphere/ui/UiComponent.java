@@ -12,7 +12,7 @@ import seedu.codesphere.MainApp;
  * Represents a distinct part of the UI. e.g. Windows, dialogs, panels, status bars, etc.
  * It contains a scene graph with a root node of type {@code T}.
  */
-public abstract class UiPart<T> {
+public abstract class UiComponent<T> {
 
     /** Resource folder where FXML files are stored. */
     public static final String FXML_FILE_FOLDER = "/view/";
@@ -20,39 +20,39 @@ public abstract class UiPart<T> {
     private final FXMLLoader fxmlLoader = new FXMLLoader();
 
     /**
-     * Constructs a UiPart with the specified FXML file URL.
+     * Constructs a UiComponent with the specified FXML file URL.
      * The FXML file must not specify the {@code fx:controller} attribute.
      */
-    public UiPart(URL fxmlFileUrl) {
+    public UiComponent(URL fxmlFileUrl) {
         loadFxmlFile(fxmlFileUrl, null);
     }
 
     /**
-     * Constructs a UiPart using the specified FXML file within {@link #FXML_FILE_FOLDER}.
-     * @see #UiPart(URL)
+     * Constructs a UiComponent using the specified FXML file within {@link #FXML_FILE_FOLDER}.
+     * @see #UiComponent(URL)
      */
-    public UiPart(String fxmlFileName) {
+    public UiComponent(String fxmlFileName) {
         this(getFxmlFileUrl(fxmlFileName));
     }
 
     /**
-     * Constructs a UiPart with the specified FXML file URL and root object.
+     * Constructs a UiComponent with the specified FXML file URL and root object.
      * The FXML file must not specify the {@code fx:controller} attribute.
      */
-    public UiPart(URL fxmlFileUrl, T root) {
+    public UiComponent(URL fxmlFileUrl, T root) {
         loadFxmlFile(fxmlFileUrl, root);
     }
 
     /**
-     * Constructs a UiPart with the specified FXML file within {@link #FXML_FILE_FOLDER} and root object.
-     * @see #UiPart(URL, T)
+     * Constructs a UiComponent with the specified FXML file within {@link #FXML_FILE_FOLDER} and root object.
+     * @see #UiComponent(URL, T)
      */
-    public UiPart(String fxmlFileName, T root) {
+    public UiComponent(String fxmlFileName, T root) {
         this(getFxmlFileUrl(fxmlFileName), root);
     }
 
     /**
-     * Returns the root object of the scene graph of this UiPart.
+     * Returns the root object of the scene graph of this UiComponent.
      */
     public T getRoot() {
         return fxmlLoader.getRoot();

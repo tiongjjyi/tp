@@ -11,7 +11,7 @@ import seedu.codesphere.model.course.Course;
 /**
  * A UI component that displays information of a {@code Course}.
  */
-public class CourseCard extends UiPart<Region> {
+public class CourseCard extends UiComponent<Region> {
 
     private static final String FXML = "CourseListCard.fxml";
 
