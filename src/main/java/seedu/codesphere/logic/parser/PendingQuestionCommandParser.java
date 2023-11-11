@@ -29,7 +29,7 @@ public class PendingQuestionCommandParser implements Parser<PendingQuestionComma
         Index index;
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (IllegalValueException ive) {
+        } catch (ParseException ive) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                             PendingQuestionCommand.MESSAGE_USAGE), ive);
