@@ -20,19 +20,20 @@ import seedu.codesphere.model.tag.Tag;
 public class SampleDataUtil {
     public static final Remark EMPTY_REMARK = new Remark("");
     public static final PendingQuestion EMPTY_PENDING_QUESTION = new PendingQuestion("");
+
     public static Student[] getSampleStudents() {
         return new Student[] {
-            new Student(new Name("Alex Yeoh"), new Email("alexyeoh@u.nus.edu"), EMPTY_REMARK, EMPTY_PENDING_QUESTION,
+            new Student(new Name("Alex Yeoh"), new Email("e1234567@u.nus.edu"), EMPTY_REMARK, EMPTY_PENDING_QUESTION,
                     new Tag(StudentRank.GOOD)),
-            new Student(new Name("Bernice Yu"), new Email("berniceyu@u.nus.edu"),
+            new Student(new Name("Bernice Yu"), new Email("e2345678@u.nus.edu"),
                     EMPTY_REMARK, EMPTY_PENDING_QUESTION, new Tag(StudentRank.POOR)),
-            new Student(new Name("Charlotte Oliveiro"), new Email("charlotte@u.nus.edu"),
+            new Student(new Name("Charlotte Oliveiro"), new Email("e2545678@u.nus.edu"),
                     EMPTY_REMARK, EMPTY_PENDING_QUESTION, new Tag(StudentRank.POOR)),
-            new Student(new Name("David Li"), new Email("lidavid@u.nus.edu"), EMPTY_REMARK, EMPTY_PENDING_QUESTION,
+            new Student(new Name("David Li"), new Email("e0145679@u.nus.edu"), EMPTY_REMARK, EMPTY_PENDING_QUESTION,
                     new Tag(StudentRank.AVERAGE)),
-            new Student(new Name("Irfan Ibrahim"), new Email("irfan@u.nus.edu"),
+            new Student(new Name("Irfan Ibrahim"), new Email("e0125679@u.nus.edu"),
                     EMPTY_REMARK, EMPTY_PENDING_QUESTION, new Tag(StudentRank.GOOD)),
-            new Student(new Name("Roy Balakrishnan"), new Email("royb@u.nus.edu"),
+            new Student(new Name("Roy Balakrishnan"), new Email("e0145619@u.nus.edu"),
                     EMPTY_REMARK, EMPTY_PENDING_QUESTION, new Tag(StudentRank.GOOD))
         };
     }
@@ -59,9 +60,16 @@ public class SampleDataUtil {
     public static ReadOnlyCourseList getSampleCourseList() {
         CourseList sampleCl = new CourseList();
         Course[] sampleCourses = getSampleCourses();
+        Student[] sampleStudents = getSampleStudents();
+        Course targetCourse = sampleCourses[0];
+
+        for (Student sampleStudent : sampleStudents) {
+            targetCourse.addStudent(sampleStudent);
+        }
         for (Course sampleCourse : sampleCourses) {
             sampleCl.addCourse(sampleCourse);
         }
+
         return sampleCl;
     }
 }
