@@ -43,9 +43,9 @@ Given below are my contributions to the project.
     * User Guide:
         * Update first version of UserGuide after project refinement.(PR [#55](https://github.com/AY2324S1-CS2103T-W15-4/tp/pull/55), [#57](https://github.com/AY2324S1-CS2103T-W15-4/tp/pull/57))
     * Developer Guide:
-        * Added use case for `PendingQuestionCommand`.
-        * Added implementation for `PendingQuestionCommand`.
-        * Added instructions for manual testing for `RemarkCommand`
+        * Added use case for `PendingQuestionCommand`.(PR [#117](https://github.com/AY2324S1-CS2103T-W15-4/tp/pull/117))
+        * Added implementation for `PendingQuestionCommand`. (PR [#124](https://github.com/AY2324S1-CS2103T-W15-4/tp/pull/124))
+        * Added instructions for manual testing for `RemarkCommand`(PR [#137](https://github.com/AY2324S1-CS2103T-W15-4/tp/pull/317))
 
 * **Community**:
     * Reported 25 bugs for team CCS2103T-T09-1 during PE-D and suggested possible improvements.
