@@ -227,103 +227,140 @@ Given below is an example usage scenario and how the adding pending question mec
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                 | I want to …​                                   | So that I can…​                                                 |
-| ------ |-------------------------|------------------------------------------------|-----------------------------------------------------------------|
-| `* * *` | user                    | add student profiles                           | keep track of the students in my class.                         |
-| `* * *` | user                    | edit student profiles                          | keep accurate and up-to-date information on each student.       |
-| `* * *` | user                    | delete a student profile                       | remove a student if the student is no longer in my class.       |
-| `* * *` | user                    | tag students based on how well they are coping | I can easily identify students who may need additional support. |
-| `* *`  | user                    | add remarks for individual students            | maintain a log of anything noteworthy.                          |
-| `* *`  | user                    | add pending question for individual students   | efficiently manage and respond to their queries.                |
-| `* *`  | user                    | see a filtered view of students for each class | efficiently manage my classes and students.                     |
-| `* *`  | user                    | sort students by their tag level               | see which students need more of my help                         |
-| `*`    | user with many students | sort students by name                          | locate a student easily.                                        |
-
-
-*{More to be added}*
+| Priority | As a …​                 | I want to …​                                                           | So that I can…​                                                         |
+|-------|-------------------------|------------------------------------------------------------------------|-------------------------------------------------------------------------|
+| `* * *` | user                    | add a new course                                                       | keep track of the courses I teach                                       |
+| `* * *` | user                    | add a new student to an existing course                                | keep track of the students in each of the courses I teach               |
+| `* * *` | user                    | edit a course                                                          | keep accurate and up-to-date information on each course                 |
+| `* * *` | user                    | edit a student's profile                                               | keep accurate and up-to-date information on each student                |
+| `* * *` | user                    | delete s course                                                        | remove a course I am no longer teaching                                 |
+| `* * *` | user                    | delete a student's profile                                             | remove a student if the student is no longer in a course                |
+| `* * *` | user                    | assign a performance tag to a student based on how well they are coping | I can easily identify students who may need additional support          |
+| `* *` | user                    | add remarks for a student                                              | keep track of miscallaneous things                                      |
+| `* *` | user                    | add pending questions for a students                                   | keep track of unanswered queries from students                          |
+| `* *` | user                    | search for courses based on the course name                            | easily find courses I need                                              |
+| `* *` | user                    | search for students using the specified field                          | easily find students who belong in the criteria that I am interested in |
+| `* *` | user                    | sort students by the specified field                                   | view the list of students in the order I require                        |
+| `* * ` | user                    | view usage instructions                                                | know how to use the app when I am unfamiliar with it                    |
+| `*`   | user                    | list out all students in a course with unanswered pending questions    | efficiently manage and respond to queries                               |
+| `*`   | user                    | reset the student list to its original order            | view the original student list after filtering or sorting               |
 
 ### Use cases
 
 (For all use cases below, the **System** is the `CodeSphere` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Edit student’s information**
-
-**Preconditions**: The student has already been added into the app.
-
-**Guarantees**: Unchanged fields during the edit will remain the same as before.
+**Use case: UC01 - Add a course**
 
 **MSS**
 
-1. User chooses to edit a student’s information.
-2. CodeSphere displays the student’s current information.
-3. User edits the fields that need to be changed.
-4. User saves the changes.
-5. CodeSphere updates the student’s information.
+1. User requests to add a new course.
+2. CodeSphere creates the course and provides confirmation to the user.
+   Use case ends.
+
+**Extensions**
+
+* 1a. The course name is missing.
+    * 1a1. CodeSphere displays an error message.
+      Use case resumes at step 1.
+
+* 1b. The course name has an invalid format.
+  * 1b1. CodeSphere displays an error message.
+    Use case resumes at step 1.
+
+**Use case: UC02 - Edit a student’s information**
+
+**Preconditions**: The student has already been added into CodeSphere.
+
+**Guarantees**: Unchanged fields during the edit will remain the same as before the edit.
+
+**MSS**
+
+1. User requests to edit a student’s information.
+2. User enters new details for the field(s) that need to be changed.
+3. CodeSphere updates the student’s information and provides confirmation to the user.
     Use case ends.
 
 **Extensions**
 
-* 3a. CodeSphere detects incorrect format for the new changes.
-    * 3a1. CodeSphere prompts the User to enter details in the correct format.
-    * 3a2. User enters details again.</br>
-    Use case resumes at step 4.
+* 1a. The given index of the student is invalid.
+    * 1a1. CodeSphere displays an error message.
+    Use case resumes at step 1.
 
-*  *a. At any time, the User chooses to cancel the edit.
-    * *a1. CodeSphere requests to confirm the cancellation.
-    * *a2. User confirms the cancellation.
-    Use case ends.
+* 1b. No field to be edited was specified by the user.
+    * 1b1. CodeSphere displays an error message.
+      Use case resumes at step 1.
 
-**Use case: Delete a student**
+* 1c. Invalid format for detail(s) entered.
+    * 1c1. CodeSphere displays an error message.
+      Use case resumes at step 1.
 
-**Preconditions**: The student has already been added into the app.
+**Use case: UC03 - Delete a student**
+
+**Preconditions**: The student has already been added into CodeSphere.
 
 **MSS**
 
-1. User chooses to delete a student.
-2. CodeSphere displays the student’s current information.
-3. CodeSphere prompts the user to confirm the deletion.
-4. User confirms the deletion.
-5. CodeSphere deletes the student.
+1. User requests to delete a student.
+2. CodeSphere deletes the specified student and no longer display that student in the student list.
    Use Case Ends.
 
 **Extensions**
 
-* 1a. CodeSphere detects that the target student does not exist.
-    * 1a1. CodeSphere prompts the user to choose an existing student to be deleted.
-    * 1a2. User chooses an existing student to be deleted.</br>
-    Use case resumes at step 4
+* 1a. The given index of the student is invalid.
+    * 1a1. CodeSphere displays an error message.
+    Use case resumes at step 1.
 
-**Use case: Add a pending question for a student**
+**Use case: UC04 - Add a pending question for a student**
 
-**Preconditions**: User has an existing profile.
+**Preconditions**: The student has already been added into CodeSphere.
 
 **MSS**
 
-1. User chooses to delete a student.
-2. CodeSphere displays the student’s current information.
-3. CodeSphere prompts the user to confirm the addition.
-4. User confirms the addition.
-5. CodeSphere adds a pending question tag to the student.
+1. User requests to add a pending question to a student.
+2. CodeSphere adds a pending question to the student.
    Use Case Ends.
 
 **Extensions**
 
-* 1a. CodeSphere detects that the target student does not exist.
-    * 1a1. CodeSphere prompts the user to choose an existing student to be tagged with a pending question.
-    * 1a2. User chooses an existing student to be tagged.</br>
-    Use case resumes at step 4
+* 1a. The given index of the student is invalid.
+    * 1a1. CodeSphere displays an error message.
+      Use case resumes at step 1.
 
-*{More to be added}*
+* 1b. Pending question field is left empty.
+    * 1b1. CodeSphere displays an error message.
+      Use case resumes at step 1.
+
+**Use case: UC05 - Sort the student list**
+
+**MSS**
+
+1. User requests to sort the student list by tag or by name.
+2. CodeSphere sorts the students and displays all students in the order specified by the user.
+   Use Case Ends.
+
+**Extensions**
+
+* 1a. User enters an invalid sort criteria.
+    * 1a1. CodeSphere displays an error message.
+      Use case resumes at step 1.
+
+* 1b. No sort criteria was specified.
+    * 1b1. CodeSphere displays an error message.
+      Use case resumes at step 1.
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  The application should be able to handle an increasing number of profiles and users without a significant degradation in performance.
-3.  The application should gracefully handle errors, providing informative error messages to users in case of failures.
-4.  Code should be organized into reusable and maintainable modules, making it easier to enhance and extend the application in the future.
-5.  Maintain comprehensive documentation for developers.
-6.  The application should run smoothly on different operating systems commonly used by the target users.
-7.  Ensure that only authorized users can access and manipulate profile information.
+2.  The application should be able to hold up to 100 courses and 1000 student contacts without a noticeable sluggishness in performance for typical usage.
+3.  The application should be intuitive enough for a beginner who is new to Command Line Interfaces to be able to use easily. 
+4.  The application should respond to any commands carried out by the user should become visible within 5 seconds.
+5.  The application should gracefully handle errors, providing informative error messages to users in case of failures.
+6.  Code should be organized into reusable and maintainable modules, making it easier to enhance and extend the application in the future.
+7.  Comprehension documentation should be maintained for developers.
+8.  The application should run smoothly on different operating systems commonly used by the target users.
+9.  A user who can type fast should be able to accomplish tasks faster via a Command Line Interface as compared to a hypothetical Graphical User Interface version of the app.
+10. The application should not depend on a remote server so that users can use the application at anytime.
+11. The application is not required to support multiple users on a single device.
 
 *{More to be added}*
 
