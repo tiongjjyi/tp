@@ -73,7 +73,7 @@ public class EditCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         StageManager stageManager = StageManager.getInstance();
-        Course course = stageManager.getCurrentCourse();
+        Course course = stageManager.getSelectedCourse();
         List<Student> lastShownList = course.getFilteredStudentList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
