@@ -1,0 +1,21 @@
+@startuml
+!define COMMAND_COLOR #A9A9A9
+!define ATTRIBUTE_COLOR #FFFFFF
+!define METHOD_COLOR #FFFFFF
+
+class FindCommand{
+    - predicate: Predicate<Student>
+    + FindCommand(predicate: Predicate<Student>)
+    + execute(model: Model): CommandResult
+    + equals(other: Object): boolean
+    + toString(): String
+}
+
+class Course{
+    + updateFilteredStudentList(predicate: Predicate<Student>): void
+    + getFilteredStudentList(): List<Student>
+}
+
+Command <|-- FindCommand
+FindCommand ..> Course : calls
+@enduml

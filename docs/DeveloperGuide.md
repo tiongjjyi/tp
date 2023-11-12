@@ -19,6 +19,9 @@
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
+
 ## **Design**
 
 <div markdown="span" class="alert alert-primary">
@@ -64,6 +67,7 @@ Each of the other four main components (also shown in the diagram above),
 * implements its functionality using a concrete `{Component Name}Manager` class which follows the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface.
+
 Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component),
 as illustrated in the (partial) class diagram below.
 
@@ -82,7 +86,7 @@ All these, including the `MainWindow`, inherit from the abstract `UiComponent` c
 
 The `MainWindow` includes a `DisplayPanel`, which has three different states it can toggle between
 1. The `SplashPanel` for the opening splash window
-2. The `CombinedPanel` that displays the student list and a course list sidebar 
+2. The `CombinedPanel` that displays the student list and a course list sidebar
 3. The `CoursePanel` that displays the course list (this is otherwise known as the `home` screen)
 
 The `UI` component uses the JavaFx UI framework.
@@ -114,7 +118,7 @@ After each command (assuming the application is not closed), the UI will check w
 
 This action flow will loop until the user decides to exit the application.
 During the application's runtime, the user may  also exit the application through the MainWindow's top panel buttons (File -> Exit)
-or the red '**x**' button on the top right of the application screen. 
+or the red '**x**' button on the top right of the application screen.
 
 ### Logic component
 
@@ -124,15 +128,15 @@ Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
+The sequence diagram bellow ilustrates the interactions within the `Logic` componenet, using `execute("delete 1")` API call as an example.
+
+![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `CodeSphereParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, it uses the `CodeSphereParser` object to parse the user command. This in turns creates a parser that matches the command (e.g., `DeleteCourseCommandParser`) which will parse the relevant arguments in the user input.
 2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 3. The command can communicate with the `Model` when it is executed (e.g. to add an item).
 4. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
-
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
-
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCourseCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -153,8 +157,9 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the app data i.e., all `Course` objects (which are contained in a `UniqueCourseList` object).
+* stores the app data i.e., all `Course` and `Student` objects (which are contained in a `UniqueCourseList` and `UniqueStudentList` objects respectively).
 * stores the currently 'selected' `Course` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Course>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the currently 'selected course's' `Student` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components).
 
@@ -169,8 +174,8 @@ The `Storage` component,
 * inherits from both `CourseListStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
-The Storage component builds upon the AB-3 Storage component by adding an InputStorage, which encapsulates the concept of 
-storing user inputs. 
+The Storage component builds upon the AB-3 Storage component by adding an InputStorage, which encapsulates the concept of
+storing user inputs.
 These user inputs are stored in chronological order and are accessed through the StorageManager.
 All user inputs will be stored in the InputStorage, and will also contain the data whether the input was accepted as a
 valid command or not. Handling of this input validity will be done by the UI component. 
@@ -226,6 +231,83 @@ Given below is an example usage scenario and how the adding pending question mec
 * Step 4. A check for index from user input will be done. If the index is invalid,  a `CommandException` will be thrown.
 * Step 5. A new `Student` object is created by passing in the `PendingQuestion` instance to the `Student` constructor.
 * Step 6. Update the newly created `Student` instance to replace the old `Student` instance.
+
+### Finding a student from a selected course
+
+#### About the find feature
+
+The `find` command allows users to search for relevant students based on details of the specified criteria in their input. For example, a user could use `find n/KEYWORDS` to find a students names which contain or match that with the keywords.
+They can use keywords in `NAME`, `EMAIL`, `TAG`, `REMARK` to find students with words or phrases containing all of the words mentioned in keywords.
+Do note that only 1 criteria can be used at one time.
+
+#### Implementation Details
+
+The partial class diagram of the `find` command can be seen. What is important to note here is the use of a `Predicate` class and the `updateFilteredStudentList` method which utilises the predicate class.
+
+![FindCommandPartial](images/FindCommandClassDiagram.png)
+
+Their are multiple different predicate classes created to accurately filter through the student list. Below, is the example usage scenario and how the `find` mechanism behaves at each step.
+
+#### Parsing user input
+
+1. The user inputs the `find` command and provide the input with the attribute of the student contact and its respective prefix (eg. `n/NAME` or `r/REMARK`) in which the user wants to find the student.
+
+2. The `CodeSphereParser` then does preliminary processing to the user input and creates a new `FindCommandParser`.
+
+3. The `FindCommandParser` parses the user inputs and checks for whether the input is the correct format. The input needs to contain only 1 prefix and the keywords cannot be empty.
+
+If the conditions are not met a `ParseException` is thrown.
+
+4. If the format is valid, a predicate class matching the prefix is created. For example, for `NAME`, the predicate object created is `NameContainsKeywordsPredicate`. This class takes in the values of the keywords and the object is passed into the newly created `FindCommand` object.
+
+#### Command execution
+
+1. The `LogicManager` executes the `FindCommand`.
+
+2. The `FindCommand` calls the `Model#updateFilteredPersonList()` to update the filtered person list based on predicate class.
+
+3. The `FindCommand` then calls the `Model#getFilteredPersonList()#size()` to get the size of the person list. The size will correspond to the number of persons listed.
+
+#### Displaying of result
+
+1. The `FindCommand` will create a `CommandResult` with a success message and return it to the `LogicManager` to complete the command execution. The GUI will also be updated accordingly as it calls the `filteredStudentList` which was updated during the execution of the command.
+
+The following sequence diagram shows how the `find` mechanism works:
+
+![](images/FindCommandSequenceDiagram.png)
+
+#### Design Considerations
+
+**Aspect:** How should multiple keywords be considered
+
+- *Currently:* Whether all keywords are contained in any order in the specified criteria
+- *Alternative 1:* At least 1 keyword is contained
+
+**Pros and Cons:**
+- *Currently:*
+  - **Pros:** Provides a more specific and refined search.
+  - **Cons:** May result in fewer matches if all keywords are not present.
+
+- *Alternative 1:*
+  - **Pros:** Increases the likelihood of finding matches.
+  - **Cons:** Might lead to less precise results if only one keyword is present.
+
+**Aspect:** How should the filtered list be filtered based on the keywords
+
+- *Currently:* As long as keywords are contained inside
+- *Alternative 1:* Instead of contains, do a complete word match
+
+**Pros and Cons:**
+- *Currently:*
+  - **Pros:** More flexible and tolerant to variations in keyword placement.
+  - **Cons:** May include irrelevant matches if keywords are part of larger words.
+
+- *Alternative 1:*
+  - **Pros:** Provides more precise matching by requiring complete word matches.
+  - **Cons:** May exclude relevant matches if keywords are not complete words.
+
+These considerations and alternatives should be weighed based on the specific requirements and expected user experience in your application.
+You can copy and paste this code into a Markdown editor or file to render the formatted text.
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Documentation, logging, testing, configurations, dev-ops**
@@ -402,15 +484,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 This is a list of prefixes used for manual testing.
 
-| Prefix | Representation     | 
+| Prefix | Representation     |
 |--------|--------------------|
 | `c/`   | `COURSE_NAME`      |
-| `n/`   | `NAME`             | 
-| `e/`   | `EMAIL`            | 
-| `t/`   | `TAG`              | 
-| `r/`   | `REMARK`           | 
-| `pq/`  | `PENDING_QUESTION` | 
-| `s/`   | `SORT`             | 
+| `n/`   | `NAME`             |
+| `e/`   | `EMAIL`            |
+| `t/`   | `TAG`              |
+| `r/`   | `REMARK`           |
+| `pq/`  | `PENDING_QUESTION` |
+| `s/`   | `SORT`             |
 
 Given below are instructions to test the app manually.
 
