@@ -295,6 +295,7 @@ Adds a course you teach to the list of courses.
   *![Add_Course](images/CommandSuccessScreenshots/AddCourseSuccess.png)*
 
 **Command succeeds:** Success message shown, course successfully added and stored in database, change in GUI.
+
 **Command failure:** Incorrect format results in an error message shown and the course is not added/stored in the database.
 
 
@@ -316,6 +317,7 @@ Edits the details of an existing course you teach from the list of courses.
 
 
 **Command succeeds:** Success message shown, course successfully edited and updated in database, change in GUI.
+
 **Command failure:** Incorrect format results in an error message shown and the course is not edited in the database.
 
 
@@ -334,6 +336,7 @@ Deletes the specified course from the list of courses.
   *![Delete_Course](images/CommandSuccessScreenshots/DeleteCourseSuccess.png)*
 
 **Command succeeds:** Success message shown, course successfully deleted and removed from database, change in GUI.
+
 **Command failure:** Incorrect format results in an error message shown and the course is not removed from the database.
 
 
@@ -364,6 +367,7 @@ Selects the specified course from the list of courses.
 
 
 **Command succeeds:** Success message shown, course successfully selected,resulting in a change in GUI.
+
 **Command failure:** Incorrect format/index results in an error message shown and the course is not selected.
 
 
@@ -382,6 +386,7 @@ Finds a course **given a keyword** from the list of courses you are teaching.
 
 
 **Command succeeds:** Success message shown, courses successfully filtered, resulting in a change in GUI.
+
 **Command failure:** Incorrect format results in an error message shown and the course is not filtered.
 
 
