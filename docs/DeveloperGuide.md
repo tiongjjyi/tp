@@ -104,13 +104,13 @@ The typical flow of a user's interaction with the UI is as follows.
 During startup, the MainWindow will be displayed and all components loaded into it, with a splash screen showing before
 entering the course list display.
 
-For user commands, there are two commands which separate actions to be performed:
+For user commands, there are two unique commands which cause separate actions to be performed:
 * `exit`, which immediately closes the application.
 * `help`, which displays the help window pop-up.
 
-After each command that does not close the application, the UI will check with the StageManager to see which stage it is set to,
-(either StageManager.HOME or StageManager.SELECTED_COURSE) and displays the corresponding panel (CourseListPanel for `HOME`
-and CombinedPanel for `SELECTED_COURSE`).
+After each command (assuming the application is not closed), the UI will check with the StageManager to see which stage it is set to,
+(either StageManager.HOME or StageManager.SELECTED_COURSE) and displays the corresponding panel
+(CourseListPanel for `HOME` and CombinedPanel for `SELECTED_COURSE`).
 
 This action flow will loop until the user decides to exit the application.
 During the application's runtime, the user may  also exit the application through the MainWindow's top panel buttons (File -> Exit)
