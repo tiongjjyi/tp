@@ -12,8 +12,6 @@ import seedu.codesphere.model.student.Student;
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
-    Predicate<Student> PREDICATE_SHOW_ALL_STUDENTS = unused -> true;
 
     /** {@code Predicate} that always evaluate to true */
     Predicate<Course> PREDICATE_SHOW_ALL_COURSES = unused -> true;
