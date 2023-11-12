@@ -1,3 +1,4 @@
+//@@author sunzihan23
 package seedu.codesphere.model.student;
 
 import static java.util.Objects.requireNonNull;
