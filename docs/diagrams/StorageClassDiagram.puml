@@ -46,7 +46,7 @@ JsonCourseListStorage .up.|> CourseListStorage
 JsonCourseListStorage ..> JsonSerializableCourseList
 JsonSerializableCourseList --> "*" JsonAdaptedCourse
 JsonAdaptedCourse --> "*" JsonAdaptedStudent
-JsonAdaptedStudent --> "*" JsonAdaptedTag
+JsonAdaptedStudent --> "1" JsonAdaptedTag
 
 InputHistory .up.> InputStorage
 

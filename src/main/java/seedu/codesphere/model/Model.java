@@ -6,7 +6,6 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.codesphere.commons.core.GuiSettings;
 import seedu.codesphere.model.course.Course;
-import seedu.codesphere.model.student.Student;
 
 /**
  * The API of the Model component.
