@@ -1,3 +1,4 @@
+//@@author tiongjjyi
 package seedu.codesphere.model.course;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;

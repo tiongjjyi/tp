@@ -8,7 +8,7 @@ import static seedu.codesphere.testutil.Assert.assertThrows;
 import org.junit.jupiter.api.Test;
 
 public class RemarkTest {
-
+    //@@author tiongjjyi
     @Test
     public void toString_test() {
         Remark remark1 = new Remark("Remark 1");
@@ -19,6 +19,7 @@ public class RemarkTest {
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Remark(null));
     }
+    //@@author tiongjjyi
     @Test
     public void equals() {
         Remark remark = new Remark("Hello");

@@ -1,3 +1,4 @@
+//@@author tiongjjyi
 package seedu.codesphere.model.course;
 
 import java.util.List;

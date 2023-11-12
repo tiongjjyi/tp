@@ -38,7 +38,7 @@ public class RemoveCommandTest {
     public void constructor_nullStudentDescriptor_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new RemoveCommand(Index.fromZeroBased(0), null));
     }
-
+    //@@author tiongjjyi
     @Test
     public void execute_removeRemarkUnfilteredList_success() throws CommandException {
         Course validCourse = new CourseBuilder().build();
@@ -92,7 +92,7 @@ public class RemoveCommandTest {
 
         assertEquals(commandResult, expectedResult);
     }
-
+    //@@author tiongjjyi
     @Test
     public void equals() {
         RemoveCommand.EditStudentDescriptor editStudentDescriptor = new RemoveCommand.EditStudentDescriptor();
