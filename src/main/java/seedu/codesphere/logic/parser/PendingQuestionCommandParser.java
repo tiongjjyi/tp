@@ -5,7 +5,6 @@ import static seedu.codesphere.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.codesphere.logic.parser.CliSyntax.PREFIX_PENDING_QUESTION;
 
 import seedu.codesphere.commons.core.index.Index;
-import seedu.codesphere.commons.exceptions.IllegalValueException;
 import seedu.codesphere.logic.commands.PendingQuestionCommand;
 import seedu.codesphere.logic.parser.exceptions.ParseException;
 import seedu.codesphere.model.student.PendingQuestion;
@@ -29,10 +28,10 @@ public class PendingQuestionCommandParser implements Parser<PendingQuestionComma
         Index index;
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (IllegalValueException ive) {
+        } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                            PendingQuestionCommand.MESSAGE_USAGE), ive);
+                            PendingQuestionCommand.MESSAGE_USAGE), pe);
         }
 
         String pendingQuestion = argMultimap.getAllValuesAsString(PREFIX_PENDING_QUESTION).orElse("");

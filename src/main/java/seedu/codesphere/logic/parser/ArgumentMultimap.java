@@ -43,16 +43,22 @@ public class ArgumentMultimap {
         return values.isEmpty() ? Optional.empty() : Optional.of(values.get(values.size() - 1));
     }
 
+    //@@author devanshubisht
     /**
      * Returns the concatenated values of {@code prefix}.
      */
     public Optional<String> getAllValuesAsString(Prefix prefix) {
         List<String> values = getAllValues(prefix);
+
+        if (values.isEmpty()) {
+            return Optional.empty();
+        }
+
         StringBuilder concatenatedValues = new StringBuilder(values.get(0));
         for (int i = 1; i < values.size(); i++) {
             concatenatedValues.append(" ").append(prefix.getPrefix()).append(values.get(i));
         }
-        return values.isEmpty() ? Optional.empty() : Optional.ofNullable(concatenatedValues.toString());
+        return Optional.ofNullable(concatenatedValues.toString());
     }
 
     /**

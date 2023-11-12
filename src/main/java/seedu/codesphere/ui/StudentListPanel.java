@@ -14,7 +14,7 @@ import seedu.codesphere.model.student.Student;
 /**
  * Panel containing the list of students.
  */
-public class StudentListPanel extends UiPart<Region> {
+public class StudentListPanel extends UiComponent<Region> {
     private static final String FXML = "StudentListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(StudentListPanel.class);
 

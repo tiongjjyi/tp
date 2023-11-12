@@ -38,16 +38,10 @@ class StageManagerTest {
     @Test
     void testGetSelectedCourse() {
         stageManager.setHomeStage();
-        assertNull(stageManager.getSelectedCourse(), "Selected course should be null initially");
-    }
-
-    @Test
-    void testGetCurrentCourse() {
-        stageManager.setHomeStage();
-        assertNull(stageManager.getCurrentCourse(), "Current course should be null initially");
+        assertNull(stageManager.getSelectedCourse(), "Current course should be null initially");
         Course course = new CourseBuilder().build();
         stageManager.setCourseStage(course);
-        assertEquals(course, stageManager.getCurrentCourse(),
+        assertEquals(course, stageManager.getSelectedCourse(),
                 "Current course should be the same as the selected course");
     }
 

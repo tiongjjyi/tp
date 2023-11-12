@@ -42,7 +42,7 @@ public class ListPendingQuestionsCommand extends Command {
         requireNonNull(model);
 
         StageManager stageManager = StageManager.getInstance();
-        Course course = stageManager.getCurrentCourse();
+        Course course = stageManager.getSelectedCourse();
 
         course.updateFilteredStudentList(predicate);
         return new CommandResult(

@@ -1,3 +1,4 @@
+//@@author devanshubisht
 package seedu.codesphere.logic.commands;
 
 import static java.util.Objects.requireNonNull;
@@ -32,6 +33,9 @@ public class FindCommand extends Command {
             + "Note: You can only use one prefix at a time.\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "Alice";
 
+    public static final String MESSAGE_NO_DESCRIPTION = "Description should not be blank."
+            + "\nExample: find n/Alice";
+
     private final Predicate<Student> predicate;
 
     /**
@@ -48,7 +52,7 @@ public class FindCommand extends Command {
         requireNonNull(model);
 
         StageManager stageManager = StageManager.getInstance();
-        Course course = stageManager.getCurrentCourse();
+        Course course = stageManager.getSelectedCourse();
 
         course.updateFilteredStudentList(predicate);
         return new CommandResult(

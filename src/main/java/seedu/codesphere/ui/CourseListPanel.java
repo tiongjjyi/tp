@@ -17,7 +17,7 @@ import seedu.codesphere.model.course.Course;
 /**
  * Panel containing the list of courses.
  */
-public class CourseListPanel extends UiPart<Region> {
+public class CourseListPanel extends UiComponent<Region> {
     private static final String FXML = "CourseListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(CourseListPanel.class);
 
