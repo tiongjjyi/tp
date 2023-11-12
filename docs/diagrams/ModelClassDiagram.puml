@@ -8,12 +8,9 @@ Package Model as ModelPackage <<Rectangle>>{
 Class "<<interface>>\nReadOnlyCourseList" as ReadOnlyCourseList
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
-Class "<<interface>>\nReadOnlyStudentList" as ReadOnlyStudentList
 Class CourseList
 Class ModelManager
 Class UserPrefs
-Class StudentList
-
 
 Class UniqueCourseList
 Class UniqueStudentList
@@ -53,7 +50,6 @@ Course *-down-> SortedList
 CourseName -right[hidden]-> FilteredList
 FilteredList -right-> UniqueStudentList
 SortedList -right-> UniqueStudentList
-
 
 UniqueStudentList -down-> "~* all" Student
 FilteredList -left-> "~* filtered" Student
