@@ -12,7 +12,7 @@ public class Tag {
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
     public static final String MESSAGE_CONSTRAINTS_ENUMS = "Tags names should be good/average/poor";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
-
+    //@@author tiongjjyi
     public final StudentRank ranking;
 
     /**
@@ -25,7 +25,7 @@ public class Tag {
         checkArgument(isValidTagName(ranking.toString()), MESSAGE_CONSTRAINTS);
         this.ranking = ranking;
     }
-
+    //@@author tiongjjyi
     /**
      * Returns true if a given string is a valid tag name.
      */
@@ -39,14 +39,14 @@ public class Tag {
     public String getStringRanking() {
         return this.ranking.toString();
     }
-
+    //@@author tiongjjyi
     /**
      * Returns value of the enumerations.
      */
     public StudentRank getRanking() {
         return this.ranking;
     }
-
+    //@@author tiongjjyi
     @Override
     public boolean equals(Object other) {
         if (other == this) {
