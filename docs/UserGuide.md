@@ -247,7 +247,7 @@ However, commands in this section can be used on either page at any time.
 ### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
-
+*![Help](images/HelpScreen.png)*
 **Format:** `help`
 
 ### Exiting the program : `exit`
@@ -291,9 +291,10 @@ Adds a course you teach to the list of courses.
 * `add c/CS2103T`
 * `add c/CS2100`
 * `add c/GEA1000`
+* `add c/ST2334` returns the following result:
+  *![Add_Course](images/AddCourseSuccess.png)*
 
 **Command succeeds:** Success message shown, course successfully added and stored in database, change in GUI.
-
 **Command failure:** Incorrect format results in an error message shown and the course is not added/stored in the database.
 
 
@@ -308,10 +309,13 @@ Edits the details of an existing course you teach from the list of courses.
 * `INDEX`: Must be a positive integer (1, 2, 3, ...), and it should fall within the range of courses currently displayed such that it corresponds to a valid course.
 * Existing `COURSENAME` will be updated to the `NEW_COURSENAME`.
 
-**Examples:** `edit 1 c/CS1101S` Edits the course of the first course in the course list to be `CS1101S`.
+**Examples:**
+* `edit 1 c/CS1101` Edits the course of the first course in the course list to be `CS1101`.
+* `edit 1 c/CS1101` return the following result:
+  *![Edit_Course](images/EditCourseSuccess.png)*
+
 
 **Command succeeds:** Success message shown, course successfully edited and updated in database, change in GUI.
-
 **Command failure:** Incorrect format results in an error message shown and the course is not edited in the database.
 
 
@@ -324,11 +328,14 @@ Deletes the specified course from the list of courses.
 * The index refers to the index number shown in the displayed course list.
 * `INDEX`: Must be a positive integer (1, 2, 3, ...), and it should fall within the range of courses currently displayed such that it corresponds to a valid course.
 
-**Command succeeds:** Success message shown, course successfully deleted and removed from database, change in GUI.
+**Examples:** 
+* `delete 4` Deletes the course at index 4 of the displayed course list.
+* `delete 2 ` returns the following result:
+  *![Delete_Course](images/DeleteCourseSuccess.png)*
 
+**Command succeeds:** Success message shown, course successfully deleted and removed from database, change in GUI.
 **Command failure:** Incorrect format results in an error message shown and the course is not removed from the database.
 
-**Examples:** `delete 2` Deletes the course at index 2 of the displayed course list.
 
 
 ### Clearing all courses : `clear`
@@ -347,10 +354,13 @@ Selects the specified course from the list of courses.
 * The index refers to the index number shown in the displayed course list.
 * `INDEX`: Must be a positive integer (1, 2, 3, ...), and it should fall within the range of courses currently displayed such that it corresponds to a valid course.
 
-**Example:** `select 2` Selects the course at index 2 of the displayed course list.
+**Example:** 
+* `select 2` Selects the course at index 2 of the displayed course list.
+* `select 1` returns the following result:
+*![Select](images/SelectSuccess.png)*
+
 
 **Command succeeds:** Success message shown, course successfully selected,resulting in a change in GUI.
-
 **Command failure:** Incorrect format/index results in an error message shown and the course is not selected.
 
 
@@ -362,10 +372,13 @@ Finds a course **given a keyword** from the list of courses you are teaching.
 * As long as the keyword is contained in the course name, that course will be displayed.
 * If there are multiple words after find, each word is searched for independently and the result contains courses containing any of the word.
 
-**Example:** `find CS ST` Displays all courses with `CS` or `ST` in their course name.
+**Example:** 
+* `find CS GEA` Displays all courses with `CS` or `GEA` in their course name.
+* `find st CS1101` returns the following result:
+*![Find_Course](images/FindCourseSuccess.png)*
+
 
 **Command succeeds:** Success message shown, courses successfully filtered, resulting in a change in GUI.
-
 **Command failure:** Incorrect format results in an error message shown and the course is not filtered.
 
 
@@ -373,6 +386,10 @@ Finds a course **given a keyword** from the list of courses you are teaching.
 Resets a filtered or sorted course list to its original order, where courses are arranged chronologically based on when they were added, with the first course added at the top of the displayed list.
 
 **Format:** `reset`
+<br>
+* `reset` returns the following result:
+*![Reset](images/ResetSuccess.png)*
+
 
 [_Back to Top_](#table-of-contents)
 
@@ -414,7 +431,9 @@ Adds a student to the list of students in the selected course that the user is o
 **Examples:**
 * `add n/Susan Tan e/e0946283@u.nus.edu t/GOOD`
 * `add n/Koh Mei Ling, Mary e/e9739423@u.nus.edu t/AVERAGE`
-* `add n/Ashley-Jane Lim e/E9739153@U.NUS.EDU t/poor`
+* `add n/Ashley-Jane Lim e/E9739153@U.NUS.EDU t/poor` returns the following result:
+*![Add_Student](images/AddStudentSuccess.png)*
+
 
 **Command succeeds:** Success message shown, student successfully added and stored in database, change in GUI.
 
@@ -437,7 +456,8 @@ Edits an existing student that the user is currently overseeing.
 * `edit 1 t/good` Edits the tag of the first student in the displayed student list to be GOOD.
 * `edit 2 n/Alex Yeoh t/average` Edits the name of the second student to be Alex Yeoh and changes the tag to AVERAGE.
 * `edit 3 r/participative` Edits the remark of the third student to be "participative".
-* `edit 4 pq/what is a logic gate?` Edits the pending question field of the fourth student to be "what is a logic gate?".
+* `edit 4 pq/what is a logic gate? n/David Lee` returns the following result:
+*![Edit_Student](images/EditStudentSuccess.png)*
 
 **Command succeeds:** Success message shown, student successfully edited and updated in database, change in GUI.
 
@@ -453,7 +473,10 @@ Deletes the specified student from the list of students you are overseeing in th
 * The index refers to the index number shown in the displayed students list.
 * `INDEX`: Must be a **positive integer** (1, 2, 3, ...), and it should fall within the range of students currently displayed such that it corresponds to a valid student.
 
-**Example:** `delete 2` Deletes the student at index 2 of the displayed students list.
+**Example:** 
+* `delete 2` Deletes the student at index 2 of the displayed students list.
+* `delete 1` returns the following result:
+*![Delete_Student](images/DeleteStudentSuccess.png)*
 
 **Command succeeds:** Success message shown, student successfully removed from database, change in GUI.
 
@@ -486,6 +509,9 @@ Sorts the list of students you are overseeing in the selected course **by name o
 **Examples:**
 * `sort s/tag` Sorts the student list by tag. Students with the GOOD tag are displayed at the top of the list.
 * `sort s/name` Sorts the student list by name in alphabetical order.
+* `sort s/tag` returns the following result:
+*![Sort_Student](images/SortSuccess.png)*
+
 
 **Command succeeds:** Success message shown, sorted student list is updated in the database, change in GUI.
 
@@ -506,6 +532,9 @@ Find a student **by a certain field** from the list of students you are overseei
 **Examples:**
 * `find n/John` returns `john` and `John Doe`.
 * `find t/good` Find the student(s) tagged as `GOOD`, and the details of the student(s) will be displayed.
+* `find pq/logic` returns the following result:
+*![Find_Student](images/FindStudentSuccess.png)*
+
 
 **Command succeeds:** Success message shown to user, no change in the database, a change in GUI is displayed.
 
@@ -518,6 +547,9 @@ List all the students with non-empty pending question fields.
 
 **Format:** `list pq/`
 * Nothing should be specified after `pq/`.
+* `list pq/` returns the following result:
+*![List_PQ](images/ListPQSuccess.png)*
+
 
 **Command succeeds:** Success message shown to user, no change in the database, a change in GUI is displayed.
 
@@ -535,7 +567,11 @@ Adds a remark to the specified student from the list of students.
 * The input remark must not be empty.
 * Inputting another remark will overwrite the current remark, i.e. adding of remark is not cumulative.
 
-**Example:** `remark 2 r/needs more help` Adds a remark to the student at index 2 of the displayed students list saying needs more help.
+**Example:** 
+* `remark 2 r/needs more help` Adds a remark to the student at index 2 of the displayed students list saying needs more help.
+* `remark 1 r/late submission` returns the following result:
+*![Add_Remark](images/RemarkSuccess.png)*
+
 
 **Command succeeds:** Success message shown, remark successfully added to student and updated in database, change in GUI.
 
@@ -553,7 +589,11 @@ Adds a pending question to a specified student from the list of students of a co
 * The input pending question must not be empty.
 * Only one pending question is allowed at a time, i.e. adding of pending question is not cumulative.
 
-**Example:** `pq 2 pq/What is a logic gate?` Adds a pending question to the student at index 2 of the displayed student, with the question “What is a logic gate?”. This indicates a need to follow-up with the student.
+**Example:** 
+* `pq 2 pq/What is a logic gate?` Adds a pending question to the student at index 2 of the displayed student, with the question “What is a logic gate?”. This indicates a need to follow-up with the student.
+* `pq 1 pq/Tut 10 Qns 8` returns the following result:
+*![Add_PQ](images/PQSuccess.png)*
+
 
 **Command succeeds:** Success message shown, pending question successfully added and updated in database, change in GUI.
 
