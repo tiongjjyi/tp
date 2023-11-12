@@ -67,6 +67,7 @@ Each of the other four main components (also shown in the diagram above),
 * implements its functionality using a concrete `{Component Name}Manager` class which follows the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface.
+
 Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component),
 as illustrated in the (partial) class diagram below.
 
@@ -85,7 +86,7 @@ All these, including the `MainWindow`, inherit from the abstract `UiComponent` c
 
 The `MainWindow` includes a `DisplayPanel`, which has three different states it can toggle between
 1. The `SplashPanel` for the opening splash window
-2. The `CombinedPanel` that displays the student list and a course list sidebar 
+2. The `CombinedPanel` that displays the student list and a course list sidebar
 3. The `CoursePanel` that displays the course list (this is otherwise known as the `home` screen)
 
 The `UI` component uses the JavaFx UI framework.
@@ -117,7 +118,7 @@ After each command (assuming the application is not closed), the UI will check w
 
 This action flow will loop until the user decides to exit the application.
 During the application's runtime, the user may  also exit the application through the MainWindow's top panel buttons (File -> Exit)
-or the red '**x**' button on the top right of the application screen. 
+or the red '**x**' button on the top right of the application screen.
 
 ### Logic component
 
@@ -173,8 +174,8 @@ The `Storage` component,
 * inherits from both `CourseListStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
-The Storage component builds upon the AB-3 Storage component by adding an InputStorage, which encapsulates the concept of 
-storing user inputs. 
+The Storage component builds upon the AB-3 Storage component by adding an InputStorage, which encapsulates the concept of
+storing user inputs.
 These user inputs are stored in chronological order and are accessed through the StorageManager.
 All user inputs will be stored in the InputStorage, and will also contain the data whether the input was accepted as a
 valid command or not. Handling of this input validity will be done by the UI component. 
@@ -483,15 +484,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 This is a list of prefixes used for manual testing.
 
-| Prefix | Representation     | 
+| Prefix | Representation     |
 |--------|--------------------|
 | `c/`   | `COURSE_NAME`      |
-| `n/`   | `NAME`             | 
-| `e/`   | `EMAIL`            | 
-| `t/`   | `TAG`              | 
-| `r/`   | `REMARK`           | 
-| `pq/`  | `PENDING_QUESTION` | 
-| `s/`   | `SORT`             | 
+| `n/`   | `NAME`             |
+| `e/`   | `EMAIL`            |
+| `t/`   | `TAG`              |
+| `r/`   | `REMARK`           |
+| `pq/`  | `PENDING_QUESTION` |
+| `s/`   | `SORT`             |
 
 Given below are instructions to test the app manually.
 
