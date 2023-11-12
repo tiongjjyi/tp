@@ -11,7 +11,6 @@ import static seedu.codesphere.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import org.junit.jupiter.api.Test;
 
 import seedu.codesphere.commons.core.index.Index;
-import seedu.codesphere.logic.commands.EditCourseCommand;
 import seedu.codesphere.logic.commands.RemarkCommand;
 import seedu.codesphere.logic.commands.RemoveCommand;
 import seedu.codesphere.logic.stagemanager.StageManager;
