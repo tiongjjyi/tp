@@ -8,24 +8,31 @@ Package Model as ModelPackage <<Rectangle>>{
 Class "<<interface>>\nReadOnlyCourseList" as ReadOnlyCourseList
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
-Class CourseList
 Class ModelManager
 Class UserPrefs
 
+Class I #FFFFFF
+
+
+Package Course <<Rectangle>>{
+Class CourseList
 Class UniqueCourseList
+Class Course
+Class CourseName
+}
+
+Package Student <<Rectangle>>{
 Class UniqueStudentList
 Class FilteredList
 Class SortedList
-Class Course
-Class CourseName
 Class Student
 Class Name
 Class Email
 Class Remark
 Class Tag
 Class PendingQuestion
+}
 
-Class I #FFFFFF
 }
 
 Class HiddenOutside #FFFFFF
@@ -59,5 +66,4 @@ Student *-down-> Email
 Student *-down-> Remark
 Student *-down-> Tag
 Student *-down-> PendingQuestion
-
 @enduml

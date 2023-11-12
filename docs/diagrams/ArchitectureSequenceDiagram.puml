@@ -15,13 +15,13 @@ activate ui UI_COLOR
 ui -[UI_COLOR]> logic : execute("delete 1")
 activate logic LOGIC_COLOR
 
-logic -[LOGIC_COLOR]> stage : getCurrent()
+logic -[LOGIC_COLOR]> stage : getInstance()
 activate stage STAGE_COLOR
 
 stage -[STAGE_COLOR]->logic
 deactivate stage
 
-logic -[LOGIC_COLOR]> stage : current.getCurrentCourse()
+logic -[LOGIC_COLOR]> stage : instance.getStage()
 activate stage STAGE_COLOR
 
 stage -[STAGE_COLOR]->logic
