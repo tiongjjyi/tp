@@ -457,6 +457,7 @@ Edits an existing student that the user is currently overseeing.
 * The index refers to the index number shown in the displayed students list.
 * `INDEX`: Must be a **positive integer** (1, 2, 3, ...), and it should fall within the range of students currently displayed such that it corresponds to a valid student.
 * Optional fields are indicated by square brackets [ ], but **at least one** of the optional fields must be provided.
+* Field inputs **should not contain other prefixes**, e.g. `edit 1 r/new remark e/o` is not allowed as the prefix `e/` is contained in the input.
 * Existing values will be updated to the input values.
 * When editing tags/remarks/pending questions, the respective existing fields of the person will be removed i.e. adding of tags/remarks/pending questions is not cumulative.
 

@@ -14,6 +14,8 @@ Class UserPrefs
 
 Class UniqueCourseList
 Class UniqueStudentList
+Class FilteredList
+Class SortedList
 Class Course
 Class CourseName
 Class Student
@@ -36,15 +38,22 @@ Model .right.> ReadOnlyUserPrefs
 Model .left.> ReadOnlyCourseList
 ModelManager -left-> "1" CourseList
 ModelManager -right-> "1" UserPrefs
-ModelManager --> "~* filtered" Course
+ModelManager --> "~* all" Course
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 CourseList *--> "1" UniqueCourseList
-UniqueCourseList -right-> "~* all" Course
-Course *-down-> CourseName
-Course *-right-> UniqueStudentList
-Course --> "~* filtered" Student
-UniqueStudentList -down-> "*" Student
+UniqueCourseList -right--> "~* filtered" Course
+Course *-right-> CourseName
+Course *-down-> FilteredList
+Course *-down-> UniqueStudentList
+Course *-down-> SortedList
+CourseName -right[hidden]-> FilteredList
+FilteredList -right-> UniqueStudentList
+SortedList -right-> UniqueStudentList
+
+UniqueStudentList -down-> "~* all" Student
+FilteredList -left-> "~* filtered" Student
+SortedList -down-> "~* sorted" Student
 Student *-down-> Name
 Student *-down-> Email
 Student *-down-> Remark
