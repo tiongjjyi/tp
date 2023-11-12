@@ -11,6 +11,7 @@ import static seedu.codesphere.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import org.junit.jupiter.api.Test;
 
 import seedu.codesphere.commons.core.index.Index;
+import seedu.codesphere.logic.commands.EditCourseCommand;
 import seedu.codesphere.logic.commands.RemarkCommand;
 import seedu.codesphere.logic.commands.RemoveCommand;
 import seedu.codesphere.logic.stagemanager.StageManager;
@@ -63,5 +64,17 @@ public class RemoveCommandParserTest {
 
         // invalid prefix being parsed as preamble
         assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_FORMAT);
+    }
+
+    @Test
+    public void parse_missingParts_failure() {
+        // no index specified
+        assertParseFailure(parser, "something", MESSAGE_INVALID_FORMAT);
+
+        // no field specified
+        assertParseFailure(parser, "1", RemoveCommand.MESSAGE_NOT_EDITED);
+
+        // no index and no field specified
+        assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
     }
 }
