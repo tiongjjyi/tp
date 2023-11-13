@@ -13,7 +13,7 @@ Given below are my contributions to the project.
   * What it does: The user can add text as a Remark to a Student, which will be displayed on the student's list entry
   * Justification: This feature allows the user to store additional information regarding students,
     which benefits their student management significantly
-  
+
 * **New Feature**: Command History (PRs [#158](https://github.com/AY2324S1-CS2103T-W15-4/tp/pull/158), [#184](https://github.com/AY2324S1-CS2103T-W15-4/tp/pull/184)).
   * What it does: Through utilising the *UP* and *DOWN* arrows on the keyboard,
     users can access commands that were previously inputted into the application.
@@ -71,4 +71,3 @@ Given below are my contributions to the project.
 * **Community**:
   * Reviewed PRs, and suggested improvements for things like Javadoc style and code quality.
   * Reported bugs for team *CS2103T-W13-3* during PE-D and suggested possible areas of improvements
- 

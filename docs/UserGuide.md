@@ -14,11 +14,11 @@ It doesn't matter if you're a new or experienced TA, with CodeSphere, you can:
 * Then, add students in that class.
 
 We provide this all-encompassing user guide for you to find out more about CodeSphere and its features!
-Simply refer to the table of contents below for the full list of sections. 
+Simply refer to the table of contents below for the full list of sections.
 
 1. Don't really understand how to use the guide? Simply refer to [User Guide Tips](#user-guide-tips)!
 2. How do you set up CodeSphere? [Quick Start](#quick-start) it!
-3. And to basically begin your student management journey? Check out the [Tutorial for Beginners](#tutorial-for-beginners)!  
+3. And to basically begin your student management journey? Check out the [Tutorial for Beginners](#tutorial-for-beginners)!
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always"></div>
@@ -330,7 +330,7 @@ Deletes the specified course from the list of courses.
 * The index refers to the index number shown in the displayed course list.
 * `INDEX`: Must be a positive integer (1, 2, 3, ...), and it should fall within the range of courses currently displayed such that it corresponds to a valid course.
 
-**Examples:** 
+**Examples:**
 * `delete 4` Deletes the course at index 4 of the displayed course list.
 * `delete 2 ` returns the following result:
   *![Delete_Course](images/CommandSuccessScreenshots/DeleteCourseSuccess.png)*
@@ -360,7 +360,7 @@ Selects the specified course from the list of courses.
 * The index refers to the index number shown in the displayed course list.
 * `INDEX`: Must be a positive integer (1, 2, 3, ...), and it should fall within the range of courses currently displayed such that it corresponds to a valid course.
 
-**Example:** 
+**Example:**
 * `select 2` Selects the course at index 2 of the displayed course list.
 * `select 1` returns the following result:
 *![Select](images/CommandSuccessScreenshots/SelectSuccess.png)*
@@ -379,7 +379,7 @@ Finds a course **given a keyword** from the list of courses you are teaching.
 * As long as the keyword is contained in the course name, that course will be displayed.
 * If there are multiple words after find, each word is searched for independently and the result contains courses containing any of the word.
 
-**Example:** 
+**Example:**
 * `find CS GEA` Displays all courses with `CS` or `GEA` in their course name.
 * `find st CS1101` returns the following result:
 *![Find_Course](images/CommandSuccessScreenshots/FindCourseSuccess.png)*
@@ -482,7 +482,7 @@ Deletes the specified student from the list of students you are overseeing in th
 * The index refers to the index number shown in the displayed students list.
 * `INDEX`: Must be a **positive integer** (1, 2, 3, ...), and it should fall within the range of students currently displayed such that it corresponds to a valid student.
 
-**Example:** 
+**Example:**
 * `delete 2` Deletes the student at index 2 of the displayed students list.
 * `delete 1` returns the following result:
 *![Delete_Student](images/CommandSuccessScreenshots/DeleteStudentSuccess.png)*
@@ -582,7 +582,7 @@ Adds a remark to the specified student from the list of students.
 * The input remark must not be empty.
 * Inputting another remark will overwrite the current remark, i.e. adding of remark is not cumulative.
 
-**Example:** 
+**Example:**
 * `remark 2 r/needs more help` Adds a remark to the student at index 2 of the displayed students list saying needs more help.
 * `remark 1 r/late submission` returns the following result:
 *![Add_Remark](images/CommandSuccessScreenshots/RemarkSuccess.png)*
@@ -604,7 +604,7 @@ Adds a pending question to a specified student from the list of students of a co
 * The input pending question must not be empty.
 * Only one pending question is allowed at a time, i.e. adding of pending question is not cumulative.
 
-**Example:** 
+**Example:**
 * `pq 2 pq/What is a logic gate?` Adds a pending question to the student at index 2 of the displayed student, with the question “What is a logic gate?”. This indicates a need to follow-up with the student.
 * `pq 1 pq/Tut 10 Qns 8` returns the following result:
 *![Add_PQ](images/CommandSuccessScreenshots/PQSuccess.png)*

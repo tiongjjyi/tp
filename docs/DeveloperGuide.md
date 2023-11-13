@@ -178,7 +178,7 @@ The Storage component builds upon the AB-3 Storage component by adding an InputS
 storing user inputs.
 These user inputs are stored in chronological order and are accessed through the StorageManager.
 All user inputs will be stored in the InputStorage, and will also contain the data whether the input was accepted as a
-valid command or not. Handling of this input validity will be done by the UI component. 
+valid command or not. Handling of this input validity will be done by the UI component.
 
 
 ### Common classes
@@ -200,7 +200,7 @@ The `add` command here is supported by the `AddCourseCommand` and `AddCourseComm
 non-duplicate course to the existing course list.
 
 #### Parsing user input
-1. The user inputs `add` and provides a `c/COURSENAME` that they teach. 
+1. The user inputs `add` and provides a `c/COURSENAME` that they teach.
 2. The `CodeSphereParser` then does preliminary processing to the user input and creates a new `AddCourseCommandParser`.
 3. The `AddCourseCommandParser` parses the user input and checks if the prefix `c/` is present and there is only one such prefix present. If not, a `ParseException` is thrown.
 4. `AddCourseCommandParser` will then call `ParserUtil#parseCourseName()` to verify if the input `COURSENAME` is valid. If invalid, a `ParseException` is thrown.
@@ -235,7 +235,7 @@ a course as long as the new course name is not a duplicate in the existing cours
 4. `EditCourseCommandParesr` then checks if the prefix `c/` is present and there is only one such prefix present. If not, a `ParseException` will be thrown.
 5. `EditCourseCommandParser` will then call `ParserUtil#parseCourseName` to verify if the input `NEW_COURSENAME` is valid. If invalid, a `ParseException` will be thrown.
 6. An `EditCourseDescriptor` is then created with the `NEW_COURSENAME`.
-7. A check will be done to see if there was a change in the course name. If not, a `ParseException` is thrown. 
+7. A check will be done to see if there was a change in the course name. If not, a `ParseException` is thrown.
 8. An `EditCourseCommand` is then created with the respective index and `EditCourseDescriptor`.
 
 #### Command Execution
@@ -603,7 +603,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy it into an empty folder.
 
-   2. Open a command terminal, then `cd` into the folder containing the jar file. 
+   2. Open a command terminal, then `cd` into the folder containing the jar file.
 
    3. Use the `java -jar CodeSphere.jar` command to run the CodeSphere application.
 
@@ -624,7 +624,7 @@ More information on usages: [clear courses command](UserGuide.html#clearing-all-
 1. Clearing all courses while all courses are being shown.
 
    1. Prerequisites: Ensure the current page is the home page using the `home` command. List all courses using the `reset` command.
-   
+
    2. Test case: `clear`<br>
       Expected: All courses are cleared from the course list.
 
@@ -712,7 +712,7 @@ More information on usage: [find course command](UserGuide.html#finding-a-course
 
     1. Prerequisites: Ensure the current page is the home page using the `home` command. Filter the courses by course name using the `find` command.
 
-    2. Test case: `find 20`<br> 
+    2. Test case: `find 20`<br>
        Expected: If the course list was initially filtered with `find s` before `find 20`, all courses with course name containing `s` and `20` are shown.
 
     3. Incorrect find commands to try: `find`, `find c/`, etc.<br>
@@ -846,7 +846,7 @@ More information on usage: [sort students command](UserGuide.html#sorting-all-st
 
     2. Test case: Similar to previous.<br>
        Expected: Similar to previous.<br>
-       Note that the student list will only be sorted by one sort criteria. The new sort criteria overrides the previous sort criteria. 
+       Note that the student list will only be sorted by one sort criteria. The new sort criteria overrides the previous sort criteria.
 
 3. Sorting the student list by the specified sort criteria while the student list is already being filtered.
 
