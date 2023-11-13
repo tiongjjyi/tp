@@ -14,10 +14,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("find n/john")
+[-> LogicManager : execute("pq 1 pq/Tut 10 Question 1")
 activate LogicManager
 
-LogicManager -> CodeSphereParser : parseCommand("pq 1 pq/"Tut 10 Question 1")
+LogicManager -> CodeSphereParser : parseCommand("pq 1 pq/Tut 10 Question 1")
 activate CodeSphereParser
 
 create PendingQuestionCommandParser
@@ -27,7 +27,7 @@ activate PendingQuestionCommandParser
 PendingQuestionCommandParser --> CodeSphereParser
 deactivate PendingQuestionCommandParser
 
-CodeSphereParser -> PendingQuestionCommandParser : parse("1 pq/"Tut 10 Question 1")
+CodeSphereParser -> PendingQuestionCommandParser : parse("1 pq/Tut 10 Question 1")
 activate PendingQuestionCommandParser
 
 create PendingQuestionCommand
@@ -50,6 +50,12 @@ LogicManager -> PendingQuestionCommand : execute()
 activate PendingQuestionCommand
 
 PendingQuestionCommand -> Model : getFilteredStudentList()
+activate Model
+
+Model --> PendingQuestionCommand
+deactivate Model
+
+PendingQuestionCommand -> Model : course.setStudent(studentToEdit, editedStudent)
 activate Model
 
 Model --> PendingQuestionCommand
