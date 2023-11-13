@@ -10,7 +10,8 @@
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* [AB-3](https://nus-cs2103-ay2324s1.github.io/tp/)
+* [Waddle](https://ay2223s1-cs2103t-w11-4.github.io/tp/)
 
 --------------------------------------------------------------------------------------------------------------------
 
