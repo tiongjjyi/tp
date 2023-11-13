@@ -122,7 +122,7 @@ feel free to skip this tutorial or jump to whichever portion you require.*
 2. [**Adding students**](#tutorial-adding-students)
 3. [**Adding remarks / pending questions**](#tutorial-adding-remarks--pending-questions)
 
-**Let's explore CodeSphere's features through the eyes of a TA.**
+**Let's explore CodeSphere's features through the eyes of a teaching assistant.**
 When you open up the application for the first time, after a brief splash screen of the CodeSphere logo,
 you will see CodeSphere's `home` page, with 6 pre-populated sample courses.
 
