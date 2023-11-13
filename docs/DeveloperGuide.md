@@ -233,7 +233,7 @@ Below is a partial class diagram containing the all the fields and relevant meth
 
 The following sequence diagram shows how the `sort` mechanism works:
 
-![](images/SortCommandSequenceDiagram.png)
+![SortCommandSequenceDiagram](images/SortCommandSequenceDiagram.png)
 
 #### Parsing user input
 1. The user inputs the `sort` command and specifies the sort criteria after the sort command prefix, in the format of `sort s/SORT_CRITERIA` (eg. `sort s/tag` or `sort s/name).
