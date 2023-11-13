@@ -6,19 +6,15 @@ title: User Guide
 CodeSphere is a **desktop contact management app, optimised for use via a Command Line Interface [(CLI)](#glossary)** while still having the benefits of a Graphical User Interface [(GUI)](#glossary).
 It is an app targeted at Teaching Assistants (TAs) in the National University of Singapore (NUS) School of Computing (SoC) to help them better manage administration of their students.
 
-Often as a TA, it can be difficult for you to keep track of all your students' progress and administrative matters.
-CodeSphere provides a way to properly manage your students, allowing for customised support to keep tabs on each student.
+We understand that as a TA, you might often find it difficult to keep track of all your students' progress and administrative matters.
+And that is why we have developed CodeSphere for you. With CodeSphere, you will have a simple and effect way to manage your students, allowing for customised support to keep tabs on each student.
 
-It doesn't matter if you're a new or experienced TA, with CodeSphere, you can:
-* Add a course/class that you teach.
-* Then, add students in that class.
+It doesn't matter if you are a new or experienced TA, with CodeSphere, you can easily:
+* Add a course that you teach.
+* Then, add students into that course.
 
-We provide this all-encompassing user guide for you to find out more about CodeSphere and its features!
-Simply refer to the table of contents below for the full list of sections.
+And to find out more about what else CodeSphere can do for you, continue to read the rest of this all-encompassing user guide.
 
-1. Don't really understand how to use the guide? Simply refer to [User Guide Tips](#user-guide-tips)!
-2. How do you set up CodeSphere? [Quick Start](#quick-start) it!
-3. And to basically begin your student management journey? Check out the [Tutorial for Beginners](#tutorial-for-beginners)!
 <div style="page-break-after: always"></div>
 
 ## Table of Contents
@@ -67,13 +63,13 @@ Simply refer to the table of contents below for the full list of sections.
 
 ### Finding what you need
 
-1. [Quick start](#quick-start) will help you set up CodeSphere.
-2. [Tutorial for Beginners](#tutorial-for-beginners) walks you through our graphical interface and also guides you on managing a course on CodeSphere.
-3. [Features](#features) will help you understand how our features can be useful for your management.
-4. [FAQ](#faq) answers the most common questions from our users. If you have questions for us, this section might just prove extremely useful!
+1. [Quick Start](#quick-start) helps you set up CodeSphere.
+2. [Tutorial for Beginners](#tutorial-for-beginners) walks you through our graphical interface and also guides you on managing a course in CodeSphere.
+3. [Features](#features) helps you understand how all the features work.
+4. [FAQ](#faq) answers the most common questions from our users. If you have questions for us, this section might prove extremely useful.
 5. [Command Summary](#command-summary) provides a summarised list of our features for your easy reference.
-6. [Glossary](#glossary) explains some of the more complicated terms we used in the guide. If you do not understand some terms, this section might help!
-7. Return to the table of contents by using [_Back to Top_](#table-of-contents) at the bottom of each page.
+6. [Glossary](#glossary) explains some of the more complicated terms we used in the guide.
+7. [_Back to Top_](#table-of-contents) provides you with a quick shortcut to return to the table of contents.
 
 ### Understanding symbols and syntax
 
@@ -91,26 +87,26 @@ Simply refer to the table of contents below for the full list of sections.
 
 ## **Quick Start**
 
-1. Ensure you have Java `11` or above installed in your Computer. If you do not have Java `11`, follow [this](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html#GUID-8677A77F-231A-40F7-98B9-1FD0B48C346A) installation guide.
+1. Ensure you have Java `11` or above installed in your computer. If you do not have Java `11`, follow [this](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html#GUID-8677A77F-231A-40F7-98B9-1FD0B48C346A) installation guide.
 2. Download the latest `codesphere.jar` from [here](https://github.com/AY2324S1-CS2103T-W15-4/tp/releases).
 3. Copy the file to the folder you want to use as the _home folder_ for your CodeSphere application.
-4. Open your command terminal, then `cd` into the _home folder.
+4. Open your command terminal, then `cd` into the _home folder_.
 5. Use the `java -jar CodeSphere.jar` command to run the CodeSphere application.
 6. The CodeSphere home page, similar to the [GUI](#glossary) displayed below, should appear in a few seconds. Note how the app contains some sample data.
 
    ![Ui](images/HomePage.png)
 
-7. In the command box, type in any command and press <kbd>Enter</kbd> to execute the command. For example, typing `help` then pressing <kbd>Enter</kbd> will show the help window. Some other example commands you can try:
-* `select 1` :  Selects the first course from the list of courses currently displayed in the home page. The [GUI](#glossary) changes to show the list of students in the selected course.
+7. In the command box, type in a command and press <kbd>Enter</kbd> to execute the command. For example, typing `help` then pressing <kbd>Enter</kbd> will show the help window. Below are some other example commands you can try:
+* `select 1` :  Selects the first course from the list of courses currently displayed on the home page. The [GUI](#glossary) changes to show the list of students in the selected course.
 * `add c/CS1101S` : Adds a course named `CS1101S` to the course list.
 * `edit 1 c/CS1231S` : Updates the course name of the first course displayed with the new course name specified.
 * `delete 3` :
-    * If you are currently on the home page, it deletes the third course shown in the current list.
-    * If you are currently on the course page, it deletes the third student shown in the current list.
+  1. If you are currently on the home page, it deletes the third course shown in the current list.
+  2. If you are currently on the course page, it deletes the third student shown in the current list.
 * `exit` : Exits the application.
 
 For a more detailed walk-through on how to use CodeSphere to start managing your students as a TA, head to [Tutorial for Beginners](#tutorial-for-beginners).
-Else, if you prefer exploring the application yourself, head to [Features](#features) below for the detailed usage of each command.
+Else, if you prefer exploring the application on your own, head to [Features](#features) below for more details on each command.
 
 [_Back to Top_](#table-of-contents)
 
@@ -126,14 +122,14 @@ feel free to skip this tutorial or jump to whichever portion you require.*
 2. [**Adding students**](#tutorial-adding-students)
 3. [**Adding remarks / pending questions**](#tutorial-adding-remarks--pending-questions)
 
-**Let's explore CodeSphere's features through the eyes of a typical TA.**
-As you enter into the application for the first time, after a brief splash screen of the CodeSphere logo,
-you will see an empty page. This is our `home` page, used to display a list of all the courses that you wish to manage.
+**Let's explore CodeSphere's features through the eyes of a TA.**
+When you open up the application for the first time, after a brief splash screen of the CodeSphere logo,
+you will see CodeSphere's `home` page, with 6 pre-populated sample courses.
 
-![Empty Homepage](images/tutorial/homepage_empty.png)
+![Ui](images/HomePage.png)
 
 At the top of the application, there is an underlined portion that we will refer to as the *Command Line*.
-This is where your commands are typed, and they are confirmed by pressing the ***ENTER*** key on your keyboard.
+This is where your commands are typed, and they are confirmed by pressing the <kbd>Enter</kbd> key on your keyboard.
 Below the Command Line is the *Result Box* (which is the outlined box),
 which will tell you the outcome of any commands that you have entered.
 Lastly, underneath that is the *Display Panel*, which will be updated after each command is entered.
@@ -141,29 +137,28 @@ Lastly, underneath that is the *Display Panel*, which will be updated after each
 
 ### Tutorial: Adding a course
 
-*(For demonstration purposes, we'll be using `CS1101S` as our chosen course.
-Feel free to replace this with any course of your choosing.)*
+*(For demonstration purposes, we'll be using `CS2101` as our chosen course.
+Feel free to replace this with any other course.)*
 
-Let's begin by adding our course into our home page with the command `add c/CS1101S`.
-You should see the course immediately appear in the list,
-and a result informing you that there is a *New course added: CS1101S*
+Let's begin by adding our course into the home page with the command `add c/CS2101`.
+After pressing <kbd>Enter</kbd>, you will see a message informing you that there is a *New course added: CS2101* in the *Result Box* and the course `CS2101` will appear at the bottom of the list.
+You will notice that an item number is displayed beside the course name (note the **7.** beside *CS2101* in the image), as well as some other information being displayed for each course, like the total number of students and total number of pending questions.
 
 ![CS1101S in Homepage](images/tutorial/homepage_CS1101S.png)
 
 ### Tutorial: Adding students
 
-Let us add some students into this course.
-First, we will have to navigate into our CS1101S course by using the command
-`select 1`, which selects the first item in the course list.
-The course's item number is displayed beside the course name (note the **1.** beside *CS1101S* in the picture)
+Next, let us add some students into our `CS2101` course.
+To do that, we will first need to navigate into our `CS2101` course by using the command `select 7`, which selects the seventh course in the course list.
 
-Your application should update to look like something like this.
-The course entry (CS1101S) displays the summary statistics of all the students listed within the course (currently none).
+This will bring you to the course page for `CS2101` and your application should now change to look like the image below.
+In the course page, the course list is now being displayed in the left column, while the right column that will be used to display students added to the selected course is currently empty because students have not been added into `CS2101`.
+
 *Tip: You can always refer to the Result Box to see whether the command you entered has been successful.*
 
 ![Empty CS1101S](images/tutorial/course_CS1101S.png)
 
-The course is currently empty, so let's add a few students into the list with the following commands:
+The student list for `CS2101` is currently empty, so let's add a few students into the list with the following commands:
 *(Remember to press 'Enter' after each command)*
 `add n/John Tan e/e0123456@u.nus.edu t/good`
 `add n/Mary Lim e/e1234567@u.nus.edu t/average`
@@ -175,31 +170,25 @@ The course is currently empty, so let's add a few students into the list with th
 
 ### Tutorial: Adding remarks / pending questions
 
-Lastly, we shall look into adding remarks or pending questions for the students.
-Let's add a remark "Will be 15 minutes late for tutorial" to our student *John Tan* (who is number 1 in the list)
-by typing
-`remark 1 r/Will be 15 minutes late for tutorial`.
+Lastly, let's take a look at how we can add remarks or pending questions for a student.
+To start, try adding the remark "Will be 15 minutes late for tutorial" to *John Tan* who is the first student in the list, 
+by typing `remark 1 r/Will be 15 minutes late for tutorial`.
 
-Likewise, let's note down Mary's pending question about "Tutorial 2 Question 4" through the command
-`pq 2 pq/Tutorial 2 Question 4`.
+Similarly, let's note down Mary's pending question about "Tutorial 2 Question 4" through the command `pq 2 pq/Tutorial 2 Question 4`.
 
-Your page should now be updated with the remark and pending question under the respective student's data entry.
+Your page should now be updated with the remark and pending question added to John and Mary respectively.
 
 ![Add Remark and PQ](images/tutorial/remark_pq.png)
 
-And there you have it! Your first course created, with students' details and even extra information all noted down,
-displayed to you at a glance!
+And with that, you have now successfully created your first course, added a few students, and even noted down some extra information for your students.
 
 >:bulb: As a final tip, you can use the directional ***UP*** and ***DOWN*** keys on your keyboard to access the commands that
 you have previously entered.
 
-Feel free to explore CodeSphere's other features, such as
+Now that you know how CodeSphere works, feel free to explore some other features that have been specially curated for you to manage your students with ease, such as
 [listing out all students with pending questions](#list-all-pending-questions-list),
 [sorting the students by different criteria](#sorting-all-students-sort) or even
 [finding students with certain keywords in selected field](#finding-a-student-find).
-
-There's many features specially curated for you to manage your students with ease,
-so have fun and may your administrative work be effortless!
 
 [_Back to Top_](#table-of-contents)
 <div style="page-break-after: always"></div>
@@ -216,12 +205,7 @@ so have fun and may your administrative work be effortless!
 * Items in square brackets are optional.<br>
     * e.g. `n/NAME [r/REMARK]` can be used as `n/John Doe r/Need more help` or as `n/John Doe`.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-    * e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
 </div>
-
-[_Back to Top_](#table-of-contents)
 
 <div style="page-break-after: always"></div>
 
@@ -232,7 +216,9 @@ In the CLI command box, just use your 'up' and 'down' arrow keys to access any i
 
 > :information_source: *For your information*: Inputs that were invalid will be shown in red.
 
----
+[_Back to Top_](#table-of-contents)
+
+<div style="page-break-after: always"></div>
 
 ### **Universal Commands**
 Commands in CodeSphere are mostly only used exclusively on the [home page](#home-page-commands) or the [course page](#course-page-commands).
@@ -241,8 +227,12 @@ However, commands in this section can be used on either page at any time.
 ### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
-*![Help](images/CommandSuccessScreenshots/HelpScreen.png)*
+
 **Format:** `help`
+
+Entering the `help` command returns the following result:
+
+*![Help](images/CommandSuccessScreenshots/HelpScreen.png)*
 
 ### Exiting the program : `exit`
 
@@ -252,11 +242,10 @@ Exits the program.
 
 [_Back to Top_](#table-of-contents)
 
----
 <div style="page-break-after: always"></div>
 
 ### **Home Page Commands**
-CodeSphere has a home page that displays the list of courses you are currently overseeing and have stored in the application.
+The home page in CodeSphere displays the list of courses that you are currently overseeing and have stored in the application.
 
 *![Home Page](images/HomePage.png)*
 
@@ -266,9 +255,9 @@ Commands exclusive to the home page can help you:
 * `delete` an existing course
 * `clear` all existing courses
 * `find` all courses with course name containing the keyword specified
-* `reset` the course list displayed to its original order
+* `reset` the course list being displayed to its original order
 
-The `select` command brings you to the Course page of the selected course.
+There is also a `select` command that brings you to the course page of the selected course.
 
 [_Back to Top_](#table-of-contents)
 
@@ -278,62 +267,50 @@ The `select` command brings you to the Course page of the selected course.
 
 Adds a course you teach to the list of courses.
 
-**Format:** `add c/COURSENAME`
-* `COURSENAME`: A valid course in NUS. Each course name should consist of a two or three letter prefix, four digits, and an optional one letter suffix.
+**Format:** `add c/COURSE_NAME`
+* `COURSE_NAME`: A valid course in NUS. Each course name should consist of a two or three letter prefix, four digits, and an optional one letter suffix.
+* Note that the letters in the `COURSE_NAME` are case-insensitive, and they will all be stored and displayed as uppercase letters.
 
 **Examples:**
 * `add c/CS2103T`
-* `add c/CS2100`
+* `add c/cs2100`
 * `add c/GEA1000`
-* `add c/ST2334` returns the following result:
+* `add c/st2334` returns the following result:
   *![Add_Course](images/CommandSuccessScreenshots/AddCourseSuccess.png)*
 
-**Command succeeds:** Success message shown, course successfully added and stored in database, change in GUI.
-
-**Command failure:** Incorrect format results in an error message shown and the course is not added/stored in the database.
-
+<div style="page-break-after: always"></div>
 
 ### Editing a course : `edit`
 
-Edits the details of an existing course you teach from the list of courses.
+Edits the details of an existing course from the list of courses.
 
-**Format:** `edit INDEX c/NEW_COURSENAME`
-* Edits the course at the specified `INDEX`. Existing course name will be updated to the input course name.
-* The index refers to the index number shown in the displayed course list.
-* `NEW_COURSENAME`: A valid course in NUS. Each course name should consist of a two or three letter prefix, four digits, and an optional one letter suffix.
-* `INDEX`: Must be a positive integer (1, 2, 3, ...), and it should fall within the range of courses currently displayed such that it corresponds to a valid course.
-* Existing `COURSENAME` will be updated to the `NEW_COURSENAME`.
+**Format:** `edit INDEX c/NEW_COURSE_NAME`
+* `INDEX`: Refers to the index number shown in the displayed course list. It must be a positive integer (1, 2, 3, ...), and it should fall within the range of courses currently displayed such that it corresponds to a valid course.
+* `NEW_COURSE_NAME`: A valid course in NUS. Each course name should consist of a two or three letter prefix, four digits, and an optional one letter suffix.
+* The existing `COURSE_NAME` for the course at the specified `INDEX` will be updated to the input `NEW_COURSE_NAME`.
+* Note that the letters in the `NEW_COURSE_NAME` are case-insensitive, and they will all be stored and displayed as uppercase letters.
 
 **Examples:**
-* `edit 1 c/CS1101` Edits the course of the first course in the course list to be `CS1101`.
+* `edit 1 c/cs1231` edits the `COURSE_NAME` of the first course in the course list to become `CS1231`.
 * `edit 1 c/CS1101` return the following result:
   *![Edit_Course](images/CommandSuccessScreenshots/EditCourseSuccess.png)*
 
-
-**Command succeeds:** Success message shown, course successfully edited and updated in database, change in GUI.
-
-**Command failure:** Incorrect format results in an error message shown and the course is not edited in the database.
-
+<div style="page-break-after: always"></div>
 
 ### Deleting a course : `delete`
 
 Deletes the specified course from the list of courses.
 
 **Format:** `delete INDEX`
-* Deletes the course at the specified `INDEX`.
-* The index refers to the index number shown in the displayed course list.
-* `INDEX`: Must be a positive integer (1, 2, 3, ...), and it should fall within the range of courses currently displayed such that it corresponds to a valid course.
+* `INDEX`: Refers to the index number shown in the displayed course list. It must be a positive integer (1, 2, 3, ...), and it should fall within the range of courses currently displayed such that it corresponds to a valid course.
+* The course at the specified `INDEX` will be deleted.
 
 **Examples:**
-* `delete 4` Deletes the course at index 4 of the displayed course list.
-* `delete 2 ` returns the following result:
+* `delete 4` deletes the course at index 4 in the displayed course list.
+* `delete 2` returns the following result:
   *![Delete_Course](images/CommandSuccessScreenshots/DeleteCourseSuccess.png)*
 
-**Command succeeds:** Success message shown, course successfully deleted and removed from database, change in GUI.
-
-**Command failure:** Incorrect format results in an error message shown and the course is not removed from the database.
-
-
+<div style="page-break-after: always"></div>
 
 ### Clearing all courses : `clear`
 
@@ -343,52 +320,44 @@ Format: `clear`
 * `clear` returns the following result:
 *![Clear_Course](images/CommandSuccessScreenshots/ClearCourseSuccess.png)*
 
-
+<div style="page-break-after: always"></div>
 
 ### Selecting a course : `select`
 
 Selects the specified course from the list of courses.
 
 **Format:** `select INDEX`
-* Selects the course at the specified `INDEX`.
-* The index refers to the index number shown in the displayed course list.
-* `INDEX`: Must be a positive integer (1, 2, 3, ...), and it should fall within the range of courses currently displayed such that it corresponds to a valid course.
+* `INDEX`: Refers to the index number shown in the displayed course list. It must be a positive integer (1, 2, 3, ...), and it should fall within the range of courses currently displayed such that it corresponds to a valid course.
+* The course at the specified `INDEX` will be selected. 
 
 **Example:**
-* `select 2` Selects the course at index 2 of the displayed course list.
+* `select 2` selects the course at index 2 of the displayed course list.
 * `select 1` returns the following result:
 *![Select](images/CommandSuccessScreenshots/SelectSuccess.png)*
 
-
-**Command succeeds:** Success message shown, course successfully selected,resulting in a change in GUI.
-
-**Command failure:** Incorrect format/index results in an error message shown and the course is not selected.
-
+<div style="page-break-after: always"></div>
 
 ### Finding a course : `find`
-Finds a course **given a keyword** from the list of courses you are teaching.
+Finds courses from the list of courses that match a given a keyword.
 
 **Format:** `find KEYWORD`
-* The search is case-insensitive. e.g. `cs` will match any course name containing `CS`.
-* As long as the keyword is contained in the course name, that course will be displayed.
-* If there are multiple words after find, each word is searched for independently and the result contains courses containing any of the word.
+* As long as the `KEYWORD` is contained in the course name, that course will be displayed.
+* The search for `KEYWORD` is case-insensitive. For example, `cs` will match any course name containing `CS`.
+* If there are multiple words specified for `KEYWORD`, each word is searched for independently. The final result contains courses that contain any of the words specified for `KEYWORD`.
 
 **Example:**
+* `find S` Displays all courses with `S` in their course name.
 * `find CS GEA` Displays all courses with `CS` or `GEA` in their course name.
 * `find st CS1101` returns the following result:
 *![Find_Course](images/CommandSuccessScreenshots/FindCourseSuccess.png)*
 
-
-**Command succeeds:** Success message shown, courses successfully filtered, resulting in a change in GUI.
-
-**Command failure:** Incorrect format results in an error message shown and the course is not filtered.
-
+<div style="page-break-after: always"></div>
 
 ### Resetting the course list : `reset`
-Resets a filtered or sorted course list to its original order, where courses are arranged chronologically based on when they were added, with the first course added at the top of the displayed list.
+Resets a filtered course list to its original order, where courses are arranged chronologically based on when they were added, with the first course added at the top of the displayed list.
 
 **Format:** `reset`
-<br>
+
 * `reset` returns the following result:
 *![Reset](images/CommandSuccessScreenshots/ResetSuccess.png)*
 
