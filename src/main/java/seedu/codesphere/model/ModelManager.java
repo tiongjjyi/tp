@@ -64,14 +64,14 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getStudentListFilePath();
+    public Path getCodeSphereFilePath() {
+        return userPrefs.getCourseListFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setCodeSphereFilePath(Path codeSphereFilePath) {
+        requireNonNull(codeSphereFilePath);
+        userPrefs.setCodeSphereFilePath(codeSphereFilePath);
     }
 
     //=========== CodeSphere ================================================================================
