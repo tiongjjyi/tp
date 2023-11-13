@@ -1,4 +1,5 @@
 //@@author devanshubisht
+// Solution below inspired by github.com/AY2223S1-CS2103T-W11-4/tp
 package seedu.codesphere.logic.stagemanager;
 
 import static java.util.Objects.requireNonNull;
