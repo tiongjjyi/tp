@@ -220,17 +220,36 @@ Given below is an example usage scenario and how the editing mechanism is carrie
 * Step 4. A check for duplicates in the model is done. If there is a duplicate, a `CommandException` is thrown.
 * Step 5. The original course is replaced with `editedCourse`.
 
-### Add a Pending Question to a Student
-After selecting a list of `Students` of the current `Course`, the targeted `Student` object is identified from the list of `Students`.
-A new `Student` object is created , and it will replace the old `Student` object in the list.
-Given below is an example usage scenario and how the adding pending question mechanism works. We will skip to where the `PendingQuestionCommand#execute()` method is called.
+### Add a Pending Question to a Student from a selected Course
 
-* Step 1. The `execute()` method of the `PendingQuestionCommand` object is invoked.
-* Step 2. `StageManager` is used to retrieve the current `Course` by calling `StageManager#getCurrentCourse()`.
-* Step 3. The list of `Student` belong to the course object will be obtained by calling `Course#getFilteredStudentList()` and identify the targeted `Student` from the list.
-* Step 4. A check for index from user input will be done. If the index is invalid,  a `CommandException` will be thrown.
-* Step 5. A new `Student` object is created by passing in the `PendingQuestion` instance to the `Student` constructor.
-* Step 6. Update the newly created `Student` instance to replace the old `Student` instance.
+#### About the adding a pending question feature
+
+The `pq` command allows the user to add a pending question to a student based on the index input from the user.
+For example, a user could add a pending question such as `Tutorial 1 Question 10` to the second student from the list by using `pq 2 pq/Tutorial 1 Question 10`.
+It's important to note that adding a pending question to a student is not cumulative. In other words, adding another pending question to a student with an existing pending question will replace the old pending question with the new one.
+
+#### Implementation Details
+The partial class diagram of the `pq` command can be seen.
+
+#### Parsing user input
+1. The user inputs the `pq` command, provides the index of the targeted student, and follows it by the pending question using the prefix `pq`.
+2. The `CodeSphereParser` then does preliminary processing to the user input and creates a new `PendingQuestionCommandParser`.
+3. The `PendingQuestionCommandParser` parses the user input and checks whether the input is the correct format. For example, the index must be valid and the input after `pq` cannot be empty.
+<br>
+If the conditions are not met, a `ParseException` is thrown.
+
+#### Command execution
+1. The `LogicManager` executes the `PendingQuestionCommand`.
+2. `StageManager` is used to retrieve the current `Course` by calling `StageManager#getCurrentCourse()`.
+3. The `PendingQuestionCommand` calls the `Course#getFilteredStudentList()` to obtain a list of `Student` belonging to the course object and identify the targeted `Student` from the list.
+4. A check for index from the user input will be done.If the index is invalid, a `CommandException` will be thrown.
+5. A new `Student` object is created by passing in the `PendingQuestion` instance to the Student constructor.
+6. Update the newly created Student instance to replace the old Student instance.
+
+#### Displaying of result
+1. The `PendingQuestionCommand` will create a `CommandResult` with a success message and return it to the LogicManager to complete the command execution. The GUI will also be updated accordingly as it calls the `filteredStudentList` which was updated during the execution of the command.
+
+The following sequence diagram shows how the `pq` mechanism works:
 
 ### Finding a student from a selected course
 
