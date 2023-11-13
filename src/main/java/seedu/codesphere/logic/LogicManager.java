@@ -73,7 +73,7 @@ public class LogicManager implements Logic {
 
     @Override
     public Path getCourseListFilePath() {
-        return model.getAddressBookFilePath();
+        return model.getCodeSphereFilePath();
     }
 
     @Override
