@@ -433,7 +433,11 @@ If the conditions are not met a `ParseException` is thrown.
 
 The following sequence diagram shows how the `find` mechanism works:
 
-![](images/FindCommandSequenceDiagram.png)
+![FindCommandSequenceDiagram](images/FindCommandSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes the `pq` command:
+
+![FindCommandActivityDiagram](images/FindCommandActivityDiagram.png)
 
 #### Design considerations
 
