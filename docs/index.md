@@ -3,14 +3,14 @@ layout: page
 title: CodeSphere
 ---
 
-[![CI Status](https://github.com/AY2324S1-CS2103T-W15-4/tp/workflows/gradle.yml/badge.svg)](https://github.com/AY2324S1-CS2103T-W15-4/tp/actions)
+[![Java CI](https://github.com/AY2324S1-CS2103T-W15-4/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/AY2324S1-CS2103T-W15-4/tp/actions/workflows/gradle.yml)
 [![codecov](https://codecov.io/gh/AY2324S1-CS2103T-W15-4/tp/branch/master/graph/badge.svg)](https://codecov.io/gh/AY2324S1-CS2103T-W15-4/tp)
 
 ![Ui](images/Ui.png)
 
 ## About CodeSphere
 CodeSphere is a desktop contact management app, optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
-It is an app targeted at connecting Year 1 Computer Science students in the NUS School of Computing.
+It is an app targeted at Teaching Assistants (TAs) in the National University of Singapore (NUS) School of Computing (SoC) to help them better manage administration of their students.
 
 * If you are interested in using CodeSphere, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
 * If you are interested about developing CodeSphere, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.

@@ -3,11 +3,9 @@
   title: "About Us"
 ---
 
-# About Us
-
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the email `devanshu[at]comp.nus.edu.sg`
 
 ## Project team
 
@@ -18,7 +16,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/devanshubisht)]
 [[portfolio](team/devanshubisht.md)]
 
-* Role: Project Advisor
+* Role: Team Lead
+* Responsibilities: In charge of integration and overall logic of the application.
 
 ### Phinehas Tan
 
