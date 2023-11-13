@@ -10,7 +10,8 @@
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* [AB-3](https://nus-cs2103-ay2324s1.github.io/tp/)
+* [Waddle](https://ay2223s1-cs2103t-w11-4.github.io/tp/)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -218,6 +219,9 @@ non-duplicate course to the existing course list.
 The following sequence diagram shows how the `add` mechanism in the home page works:
 ![AddCourseSequenceDiagram](images/AddCourseSequenceDiagram.png)
 
+The following activity diagram summaries what happens when a user executes the `add` command:
+![AddCourseActivityDiagram](images/AddCourseActivityDiagram.png)
+
 
 ### Edit a course
 #### About the edit course feature
@@ -252,6 +256,9 @@ a course as long as the new course name is not a duplicate in the existing cours
 The following sequence diagram shows how the `edit` mechanism in the home page works:
 ![EditCourseSequenceDiagram](images/EditCourseSequenceDiagram.png)
 
+The following activity diagram summarises what happens when a user executes the `edit` command:
+![EditCourseActivityDiagram](images/EditCourseActivityDiagram.png)
+
 
 ### Delete a course
 #### About the delete course feature
@@ -280,6 +287,9 @@ a course as long as the index is valid.
 
 The following sequence diagram shows how the `delete` mechanism in the home page works:
 ![DeleteCourseSequenceDiagram](images/DeleteCourseSequenceDiagram.png)
+
+The following activity diagram summarises what happens when a user executes the `delete` command:
+![DeleteCourseActivityDiagram](images/DeleteCourseActivityDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Implementation of Course Commands**
@@ -334,11 +344,9 @@ The sort mechanism is facilitated mainly by the `SortCommand`, `SortCommandParse
 2. The GUI is updated following the changes in the student list and the display of the student list is updated accordingly.
 
 Below is a sequence diagram that shows how the `sort` mechanism works:
-
 ![SortCommandSequenceDiagram](images/SortCommandSequenceDiagram.png)
 
 The following activity diagram summaries what happens when a user executes the `sort` command:
-
 ![SortCommandActivityDiagram](images/SortCommandActivityDiagram.png)
 
 #### Design considerations
@@ -398,10 +406,9 @@ If the conditions are not met, a `ParseException` is thrown.
 1. The `PendingQuestionCommand` will create a `CommandResult` with a success message and return it to the LogicManager to complete the command execution. The GUI will also be updated accordingly as it calls the `filteredStudentList` which was updated during the execution of the command.
 
 The following sequence diagram shows how the `pq` mechanism works:
-
 ![PqSequenceDiagram](images/PendingQuestionSequenceDiagram.png)
 
-The following activity diagram summarizes what happens when a user executes the `pq` command:
+The following activity diagram summarises what happens when a user executes the `pq` command:
 ![PqActivityDiagram](images/PendingQuestionCommandActivityDiagram.png)
 
 ### Finding a student from a selected course

@@ -32,7 +32,7 @@ Given below are my contributions to the project.
   * Highlights: as our app was updated to rely on two stages, Home and Course, this enhancement had to be properly implemented to switch correctly.
 
 
-* **Code contributed**: [Refer to this RepoSense Link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=gongg21&breakdown=false&sort=groupTitle%20dsc&sortWithin=title&since=2023-09-22&timeframe=commit&mergegroup=&groupSelect=groupByRepos)
+* **Code contributed**: [RepoSense Link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=gongg21&breakdown=false&sort=groupTitle%20dsc&sortWithin=title&since=2023-09-22&timeframe=commit&mergegroup=&groupSelect=groupByRepos)
 
 
 * **Project management**:
@@ -52,9 +52,8 @@ Given below are my contributions to the project.
     * Developer Guide:
         * Created UML diagrams for the app ([#110](https://github.com/AY2324S1-CS2103T-W15-4/tp/pull/110/files))
         * Added documentation for all components of the app ([#110](https://github.com/AY2324S1-CS2103T-W15-4/tp/pull/110/files))
+        * Added implementation details and diagrams for Add, Edit, and Delete Course commands ([#345](https://github.com/AY2324S1-CS2103T-W15-4/tp/pull/345), [#356](https://github.com/AY2324S1-CS2103T-W15-4/tp/pull/356))
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments) ([#77](https://github.com/AY2324S1-CS2103T-W15-4/tp/pull/77), [#97](https://github.com/AY2324S1-CS2103T-W15-4/tp/pull/113), [#112](https://github.com/AY2324S1-CS2103T-W15-4/tp/pull/112), [#113](https://github.com/AY2324S1-CS2103T-W15-4/tp/pull/113))
-
-* **Tools**:
-    * To be added soon.
+    * Reported bugs for team CS2103T-F08-3 during PE-D and suggested possible improvements [here](https://github.com/gongg21/ped)
