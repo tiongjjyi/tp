@@ -34,8 +34,11 @@ Given below are my contributions to the project.
       * Added documentation for the features `list` and `reset` (PR [\#293](https://github.com/AY2324S1-CS2103T-W15-4/tp/pull/293)).
       * Improved documentation for the introduction and quick start sections, and the `add`, `edit`, `delete` and `find` commands.
   * Developer Guide:
+      * Described the implementation of the `sort` command (PR [\#349](https://github.com/AY2324S1-CS2103T-W15-4/tp/pull/349)).
+      * Created the sequence and activity diagrams for the `sort` command (PR [\#350](https://github.com/AY2324S1-CS2103T-W15-4/tp/pull/350)).
       * Added user stories, use cases and non-functional requirements (PR [\#316](https://github.com/AY2324S1-CS2103T-W15-4/tp/pull/316)).
-      * Wrote the section on instructions for manual testing (PR [\#332](https://github.com/AY2324S1-CS2103T-W15-4/tp/pull/332)).
+      * Added instructions for manual testing (PR [\#332](https://github.com/AY2324S1-CS2103T-W15-4/tp/pull/332)).
+
 * **Team-tasks**:
   * Set up the GitHub team organisation and repository.
   * Set up Codecov in the team repository (PR [\#36](https://github.com/AY2324S1-CS2103T-W15-4/tp/pull/36)).

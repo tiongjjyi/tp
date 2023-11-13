@@ -305,10 +305,9 @@ Given below is an example usage scenario and how the editing mechanism is carrie
 * Step 5. The original student in the current course’s student list is replaced with `editedStudent`.
 
 
-
 ### Sort student list for a selected course feature
 
-#### About the adding a pending question feature
+#### About the sort student list for a selected course feature
 
 The sort student list feature allows users to sort the student list for a selected course in the order specified as the `SORT_CRITERIA`, which can either be `NAME` or `TAG`.
 
@@ -375,6 +374,10 @@ The following activity diagram summaries what happens when a user executes the `
 The `pq` command allows the user to add a pending question to a student based on the index input from the user.
 For example, a user could add a pending question such as `Tutorial 1 Question 10` to the second student from the list by using `pq 2 pq/Tutorial 1 Question 10`.
 It's important to note that adding a pending question to a student is not cumulative. In other words, adding another pending question to a student with an existing pending question will replace the old pending question with the new one.
+
+#### Implementation Details
+The `pq` command here is supported by the `PendingQuestionCommand` and `PendingQuestionCommandParser`. Users are able to add
+a pending question to a student as long as the index provided is valid.
 
 #### Parsing user input
 1. The user inputs the `pq` command, provides the index of the targeted student, and follows it by the pending question using the prefix `pq`.
