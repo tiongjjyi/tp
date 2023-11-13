@@ -55,6 +55,12 @@ activate Model
 Model --> PendingQuestionCommand
 deactivate Model
 
+PendingQuestionCommand -> Model : course.setStudent(studentToEdit, editedStudent)
+activate Model
+
+Model --> PendingQuestionCommand
+deactivate Model
+
 create CommandResult
 PendingQuestionCommand -> CommandResult
 activate CommandResult
