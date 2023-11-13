@@ -205,12 +205,7 @@ Now that you know how CodeSphere works, feel free to explore some other features
 * Items in square brackets are optional.<br>
     * e.g. `n/NAME [r/REMARK]` can be used as `n/John Doe r/Need more help` or as `n/John Doe`.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-    * e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
 </div>
-
-[_Back to Top_](#table-of-contents)
 
 <div style="page-break-after: always"></div>
 
@@ -221,7 +216,9 @@ In the CLI command box, just use your 'up' and 'down' arrow keys to access any i
 
 > :information_source: *For your information*: Inputs that were invalid will be shown in red.
 
----
+[_Back to Top_](#table-of-contents)
+
+<div style="page-break-after: always"></div>
 
 ### **Universal Commands**
 Commands in CodeSphere are mostly only used exclusively on the [home page](#home-page-commands) or the [course page](#course-page-commands).
@@ -230,8 +227,12 @@ However, commands in this section can be used on either page at any time.
 ### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
-*![Help](images/CommandSuccessScreenshots/HelpScreen.png)*
+
 **Format:** `help`
+
+Entering the `help` command returns the following result:
+
+*![Help](images/CommandSuccessScreenshots/HelpScreen.png)*
 
 ### Exiting the program : `exit`
 
@@ -241,11 +242,10 @@ Exits the program.
 
 [_Back to Top_](#table-of-contents)
 
----
 <div style="page-break-after: always"></div>
 
 ### **Home Page Commands**
-CodeSphere has a home page that displays the list of courses you are currently overseeing and have stored in the application.
+The home page in CodeSphere displays the list of courses that you are currently overseeing and have stored in the application.
 
 *![Home Page](images/HomePage.png)*
 
@@ -255,9 +255,9 @@ Commands exclusive to the home page can help you:
 * `delete` an existing course
 * `clear` all existing courses
 * `find` all courses with course name containing the keyword specified
-* `reset` the course list displayed to its original order
+* `reset` the course list being displayed to its original order
 
-The `select` command brings you to the Course page of the selected course.
+There is also a `select` command that brings you to the course page of the selected course.
 
 [_Back to Top_](#table-of-contents)
 
@@ -267,62 +267,50 @@ The `select` command brings you to the Course page of the selected course.
 
 Adds a course you teach to the list of courses.
 
-**Format:** `add c/COURSENAME`
-* `COURSENAME`: A valid course in NUS. Each course name should consist of a two or three letter prefix, four digits, and an optional one letter suffix.
+**Format:** `add c/COURSE_NAME`
+* `COURSE_NAME`: A valid course in NUS. Each course name should consist of a two or three letter prefix, four digits, and an optional one letter suffix.
+* Note that the letters in the `COURSE_NAME` are case-insensitive, and they will all be stored and displayed as uppercase letters.
 
 **Examples:**
 * `add c/CS2103T`
-* `add c/CS2100`
+* `add c/cs2100`
 * `add c/GEA1000`
-* `add c/ST2334` returns the following result:
+* `add c/st2334` returns the following result:
   *![Add_Course](images/CommandSuccessScreenshots/AddCourseSuccess.png)*
 
-**Command succeeds:** Success message shown, course successfully added and stored in database, change in GUI.
-
-**Command failure:** Incorrect format results in an error message shown and the course is not added/stored in the database.
-
+<div style="page-break-after: always"></div>
 
 ### Editing a course : `edit`
 
-Edits the details of an existing course you teach from the list of courses.
+Edits the details of an existing course from the list of courses.
 
-**Format:** `edit INDEX c/NEW_COURSENAME`
-* Edits the course at the specified `INDEX`. Existing course name will be updated to the input course name.
-* The index refers to the index number shown in the displayed course list.
-* `NEW_COURSENAME`: A valid course in NUS. Each course name should consist of a two or three letter prefix, four digits, and an optional one letter suffix.
-* `INDEX`: Must be a positive integer (1, 2, 3, ...), and it should fall within the range of courses currently displayed such that it corresponds to a valid course.
-* Existing `COURSENAME` will be updated to the `NEW_COURSENAME`.
+**Format:** `edit INDEX c/NEW_COURSE_NAME`
+* `INDEX`: Refers to the index number shown in the displayed course list. It must be a positive integer (1, 2, 3, ...), and it should fall within the range of courses currently displayed such that it corresponds to a valid course.
+* `NEW_COURSE_NAME`: A valid course in NUS. Each course name should consist of a two or three letter prefix, four digits, and an optional one letter suffix.
+* The existing `COURSE_NAME` for the course at the specified `INDEX` will be updated to the input `NEW_COURSE_NAME`.
+* Note that the letters in the `NEW_COURSE_NAME` are case-insensitive, and they will all be stored and displayed as uppercase letters.
 
 **Examples:**
-* `edit 1 c/CS1101` Edits the course of the first course in the course list to be `CS1101`.
+* `edit 1 c/cs1231` edits the `COURSE_NAME` of the first course in the course list to become `CS1231`.
 * `edit 1 c/CS1101` return the following result:
   *![Edit_Course](images/CommandSuccessScreenshots/EditCourseSuccess.png)*
 
-
-**Command succeeds:** Success message shown, course successfully edited and updated in database, change in GUI.
-
-**Command failure:** Incorrect format results in an error message shown and the course is not edited in the database.
-
+<div style="page-break-after: always"></div>
 
 ### Deleting a course : `delete`
 
 Deletes the specified course from the list of courses.
 
 **Format:** `delete INDEX`
-* Deletes the course at the specified `INDEX`.
-* The index refers to the index number shown in the displayed course list.
-* `INDEX`: Must be a positive integer (1, 2, 3, ...), and it should fall within the range of courses currently displayed such that it corresponds to a valid course.
+* `INDEX`: Refers to the index number shown in the displayed course list. It must be a positive integer (1, 2, 3, ...), and it should fall within the range of courses currently displayed such that it corresponds to a valid course.
+* The course at the specified `INDEX` will be deleted.
 
 **Examples:**
-* `delete 4` Deletes the course at index 4 of the displayed course list.
-* `delete 2 ` returns the following result:
+* `delete 4` deletes the course at index 4 in the displayed course list.
+* `delete 2` returns the following result:
   *![Delete_Course](images/CommandSuccessScreenshots/DeleteCourseSuccess.png)*
 
-**Command succeeds:** Success message shown, course successfully deleted and removed from database, change in GUI.
-
-**Command failure:** Incorrect format results in an error message shown and the course is not removed from the database.
-
-
+<div style="page-break-after: always"></div>
 
 ### Clearing all courses : `clear`
 
@@ -332,52 +320,44 @@ Format: `clear`
 * `clear` returns the following result:
 *![Clear_Course](images/CommandSuccessScreenshots/ClearCourseSuccess.png)*
 
-
+<div style="page-break-after: always"></div>
 
 ### Selecting a course : `select`
 
 Selects the specified course from the list of courses.
 
 **Format:** `select INDEX`
-* Selects the course at the specified `INDEX`.
-* The index refers to the index number shown in the displayed course list.
-* `INDEX`: Must be a positive integer (1, 2, 3, ...), and it should fall within the range of courses currently displayed such that it corresponds to a valid course.
+* `INDEX`: Refers to the index number shown in the displayed course list. It must be a positive integer (1, 2, 3, ...), and it should fall within the range of courses currently displayed such that it corresponds to a valid course.
+* The course at the specified `INDEX` will be selected. 
 
 **Example:**
-* `select 2` Selects the course at index 2 of the displayed course list.
+* `select 2` selects the course at index 2 of the displayed course list.
 * `select 1` returns the following result:
 *![Select](images/CommandSuccessScreenshots/SelectSuccess.png)*
 
-
-**Command succeeds:** Success message shown, course successfully selected,resulting in a change in GUI.
-
-**Command failure:** Incorrect format/index results in an error message shown and the course is not selected.
-
+<div style="page-break-after: always"></div>
 
 ### Finding a course : `find`
-Finds a course **given a keyword** from the list of courses you are teaching.
+Finds courses from the list of courses that match a given a keyword.
 
 **Format:** `find KEYWORD`
-* The search is case-insensitive. e.g. `cs` will match any course name containing `CS`.
-* As long as the keyword is contained in the course name, that course will be displayed.
-* If there are multiple words after find, each word is searched for independently and the result contains courses containing any of the word.
+* As long as the `KEYWORD` is contained in the course name, that course will be displayed.
+* The search for `KEYWORD` is case-insensitive. For example, `cs` will match any course name containing `CS`.
+* If there are multiple words specified for `KEYWORD`, each word is searched for independently. The final result contains courses that contain any of the words specified for `KEYWORD`.
 
 **Example:**
+* `find S` Displays all courses with `S` in their course name.
 * `find CS GEA` Displays all courses with `CS` or `GEA` in their course name.
 * `find st CS1101` returns the following result:
 *![Find_Course](images/CommandSuccessScreenshots/FindCourseSuccess.png)*
 
-
-**Command succeeds:** Success message shown, courses successfully filtered, resulting in a change in GUI.
-
-**Command failure:** Incorrect format results in an error message shown and the course is not filtered.
-
+<div style="page-break-after: always"></div>
 
 ### Resetting the course list : `reset`
-Resets a filtered or sorted course list to its original order, where courses are arranged chronologically based on when they were added, with the first course added at the top of the displayed list.
+Resets a filtered course list to its original order, where courses are arranged chronologically based on when they were added, with the first course added at the top of the displayed list.
 
 **Format:** `reset`
-<br>
+
 * `reset` returns the following result:
 *![Reset](images/CommandSuccessScreenshots/ResetSuccess.png)*
 
