@@ -220,7 +220,62 @@ Given below is an example usage scenario and how the editing mechanism is carrie
 * Step 4. A check for duplicates in the model is done. If there is a duplicate, a `CommandException` is thrown.
 * Step 5. The original course is replaced with `editedCourse`.
 
-### Add a Pending Question to a Student from a selected Course
+### Sort student list for a selected course feature
+
+#### About the adding a pending question feature
+
+The sort student list feature allows users to sort the student list for a selected course in the order specified as the `SORT_CRITERIA`, which can either be `NAME` or `TAG`.
+
+#### Implementation details
+
+The sort mechanism is facilitated mainly by the `SortCommand`, `SortCommandParser` and `SortCriteria`.
+Below is a partial class diagram containing the all the fields and relevant methods needed to understand the sort student list implementation.
+
+#### Parsing user input
+1. The user inputs the `sort` command and specifies the sort criteria after the sort command prefix, in the format of `sort s/SORT_CRITERIA` (eg. `sort s/tag` or `sort s/name).
+2. The `CodeSphereParser` then does preliminary processing to the user input and creates a new `SortCommandParser`.
+3. The `SortCommandParser` then parses the user input and first checks whether the sort prefix `/s` is present. It also checks that there are no prefix duplicates.
+   At this stage, if the sort prefix is not present or if the input contains multiple sort prefixes, `ParseException` would be thrown.
+4. Next, `ParsetUtil#parseSortCriteria()` is called to check the validity of the input `SORT_CRITERIA` input.
+   At this stage, `ParseException` would be thrown if the `SORT_CRITERIA` specified is invalid.
+5. The `SortCommandParser` then creates the `SortCommand` based on the processed inputs.
+
+#### Command execution
+1. The `LogicManager` executes the `SortCommand`.
+2. The `SortCommand` object’s `execute()` method is called. `SortCommand` first gets the singleton instance of `StageManager` through `StageManager#getInstance()`, then gets the current selected `Course` object through `StageManager#getSelectedCourse()`.
+3. Finally, `SortCommand` calls `Course#sortStudentsBy()` to sort the student list based on the `SORT_CRITERIA` specified, and updates the displayed student list accordingly.
+
+#### Displaying of result
+1. `SortCommand` creates a `CommandResult` with a success message and returns it to the `LogicManager` to complete the command execution.
+2. The GUI is updated following the changes in the student list and the display of the student list is updated accordingly.
+
+#### Design considerations
+
+##### Aspect: Command syntax
+
+- **Alternative 1 (current choice):** `sort s/SORT_CRITERIA`.
+    - **Pros:** Simple command with minimal fields, where only a single sort prefix is needed.
+    - **Cons:** Users do not have a choice for sorting by ascending or descending order. When the `SORT_CRITERIA` is `NAME`, student names are displayed in ascending order, with names starting with ‘A’ at the top of the list. For `TAG`, students with performance tag `GOOD` are at the top of the list.
+
+- **Alternative 2:** `sort s/SORT_CRITERIA o/SORT_ORDER`.
+    - **Pros:** Provides users with more options which allows for greater flexibility.
+    - **Cons:** Users are required to use a second `SORT_ORDER` prefix `/o` in addition to the `SORT_CRITERIA` prefix `s/`, which can slow down the use of the command.
+
+- **Alternative 3:** `sort s/SORT_CRITERIA [o/desc]`, where `[o/desc]` is optional.
+    - **Pros:** Retains the flexibility provided by Alternative 2, but also the conciseness of Alternative 1 should they wish to leave the `SORT_ORDER` empty.
+    - **Cons:** Users who are not aware of the optional `[o/desc]` field may not use it.
+
+##### Aspect: Which fields should be considered as a valid sort criteria
+
+- **Alternative 1 (current choice):** `NAME` and `TAG` are the only two valid criteria.
+    - **Pros:** Users can easily remember the valid criteria as there are only two options. `NAME` and `TAG` are also the two criteria that are likely to be the most useful criteria to sort students by.
+    - **Cons:** Users do not have the choice to sort by other criteria.
+
+- **Alternative 2:** All student fields are considered to be a valid.
+    - **Pros:** Users have the ability to sort by any field.
+    - **Cons:** Allowing sorting by the other student fields add very little value to the users. Sorting by `NAME` can be useful for administrative purposes, while sorting by `TAG` can be useful in helping the user identify the group of weaker students. However, it is unlikely that users will need to see the student list sorted by`EMAIL`, `PENDING_QUESTION` or `REMARK` fields.
+
+### Add a pending question to a student from a selected course
 
 #### About the adding a pending question feature
 
@@ -228,7 +283,7 @@ The `pq` command allows the user to add a pending question to a student based on
 For example, a user could add a pending question such as `Tutorial 1 Question 10` to the second student from the list by using `pq 2 pq/Tutorial 1 Question 10`.
 It's important to note that adding a pending question to a student is not cumulative. In other words, adding another pending question to a student with an existing pending question will replace the old pending question with the new one.
 
-#### Implementation Details
+#### Implementation details
 The partial class diagram of the `pq` command can be seen.
 
 #### Parsing user input
@@ -259,7 +314,7 @@ The `find` command allows users to search for relevant students based on details
 They can use keywords in `NAME`, `EMAIL`, `TAG`, `REMARK` to find students with words or phrases containing all of the words mentioned in keywords.
 Do note that only 1 criteria can be used at one time.
 
-#### Implementation Details
+#### Implementation details
 
 The partial class diagram of the `find` command can be seen. What is important to note here is the use of a `Predicate` class and the `updateFilteredStudentList` method which utilises the predicate class.
 
@@ -295,7 +350,7 @@ The following sequence diagram shows how the `find` mechanism works:
 
 ![](images/FindCommandSequenceDiagram.png)
 
-#### Design Considerations
+#### Design considerations
 
 **Aspect:** How should multiple keywords be considered
 
