@@ -14,14 +14,14 @@ Class UserPrefs
 Class I #FFFFFF
 
 
-Package Course <<Rectangle>>{
+Package Course as CoursePackage <<Rectangle>>{
 Class CourseList
 Class UniqueCourseList
 Class Course
 Class CourseName
 }
 
-Package Student <<Rectangle>>{
+Package Student as StudentPackage <<Rectangle>>{
 Class UniqueStudentList
 Class FilteredList
 Class SortedList
