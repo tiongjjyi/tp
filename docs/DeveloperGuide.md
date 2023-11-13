@@ -315,11 +315,6 @@ The sort student list feature allows users to sort the student list for a select
 #### Implementation details
 
 The sort mechanism is facilitated mainly by the `SortCommand`, `SortCommandParser` and `SortCriteria`.
-Below is a partial class diagram containing the all the fields and relevant methods needed to understand the sort student list implementation.
-
-The following sequence diagram shows how the `sort` mechanism works:
-
-![SortCommandSequenceDiagram](images/SortCommandSequenceDiagram.png)
 
 #### Parsing user input
 1. The user inputs the `sort` command and specifies the sort criteria after the sort command prefix, in the format of `sort s/SORT_CRITERIA` (eg. `sort s/tag` or `sort s/name).
@@ -338,6 +333,14 @@ The following sequence diagram shows how the `sort` mechanism works:
 #### Displaying of result
 1. `SortCommand` creates a `CommandResult` with a success message and returns it to the `LogicManager` to complete the command execution.
 2. The GUI is updated following the changes in the student list and the display of the student list is updated accordingly.
+
+Below is a sequence diagram that shows how the `sort` mechanism works:
+
+![SortCommandSequenceDiagram](images/SortCommandSequenceDiagram.png)
+
+The following activity diagram summaries what happens when a user executes the `sort` command:
+
+![SortCommandActivityDiagram](images/SortCommandActivityDiagram.png)
 
 #### Design considerations
 
