@@ -1,3 +1,4 @@
+//@@author tiongjjyi
 package seedu.codesphere.logic.commands;
 
 import static java.util.Objects.requireNonNull;
@@ -26,6 +27,7 @@ import seedu.codesphere.model.student.PendingQuestion;
 import seedu.codesphere.model.student.Remark;
 import seedu.codesphere.model.student.Student;
 import seedu.codesphere.model.tag.Tag;
+//@@author tiongjjyi
 
 /**
  * Edits the details of an existing person in the address book.
@@ -68,7 +70,6 @@ public class EditCommand extends Command {
         this.index = index;
         this.editStudentDescriptor = editStudentDescriptor;
     }
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -92,6 +93,7 @@ public class EditCommand extends Command {
         return new CommandResult(String.format(MESSAGE_EDIT_STUDENT_SUCCESS, Messages.format(editedStudent)));
     }
 
+    //@@author tiongjjyi
     /**
      * Creates and returns a {@code Student} with the details of {@code studentToEdit}
      * edited with {@code editStudentDescriptor}.
@@ -108,6 +110,7 @@ public class EditCommand extends Command {
 
         return new Student(updatedName, updatedEmail, updatedRemark, updatedPq, updatedTag);
     }
+    //@@author tiongjjyi
 
     @Override
     public boolean equals(Object other) {
@@ -189,7 +192,7 @@ public class EditCommand extends Command {
         public Optional<Remark> getRemark() {
             return Optional.ofNullable(remark);
         }
-
+        //@@author tiongjjyi
         public void setPendingQuestion(PendingQuestion pq) {
             this.pendingQuestion = pq;
         }
@@ -197,7 +200,7 @@ public class EditCommand extends Command {
         public Optional<PendingQuestion> getPendingQuestion() {
             return Optional.ofNullable(pendingQuestion);
         }
-
+        //@@author tiongjjyi
 
         /**
          * Sets {@code tags} to this object's {@code tags}.
