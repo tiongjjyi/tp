@@ -305,10 +305,9 @@ Given below is an example usage scenario and how the editing mechanism is carrie
 * Step 5. The original student in the current course’s student list is replaced with `editedStudent`.
 
 
-
 ### Sort student list for a selected course feature
 
-#### About the adding a pending question feature
+#### About the sort student list for a selected course feature
 
 The sort student list feature allows users to sort the student list for a selected course in the order specified as the `SORT_CRITERIA`, which can either be `NAME` or `TAG`.
 
