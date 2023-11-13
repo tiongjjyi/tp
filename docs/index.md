@@ -12,7 +12,6 @@ title: CodeSphere
 CodeSphere is a desktop contact management app, optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 It is an app targeted at Teaching Assistants (TAs) in the National University of Singapore (NUS) School of Computing (SoC) to help them better manage administration of their students.
 
-
 * If you are interested in using CodeSphere, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
 * If you are interested about developing CodeSphere, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
 
