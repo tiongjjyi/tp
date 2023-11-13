@@ -130,7 +130,7 @@ Here's a (partial) class diagram of the `Logic` component:
 
 The sequence diagram bellow ilustrates the interactions within the `Logic` componenet, using `execute("delete 1")` API call as an example.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteCourseSequenceDiagram.png)
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `CodeSphereParser` object to parse the user command. This in turns creates a parser that matches the command (e.g., `DeleteCourseCommandParser`) which will parse the relevant arguments in the user input.
@@ -186,9 +186,103 @@ valid command or not. Handling of this input validity will be done by the UI com
 Classes used by multiple components are in the `seedu.codesphere.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
-## **Implementation**
+## **Implementation of Home Commands**
 
-This section describes some noteworthy details on how certain features are implemented.
+This section describes some noteworthy details on how certain features on the Home Page are implemented.
+
+### Add a course
+#### About the add course feature
+The `add` command on the home page allows users to add a course/class that they teach as a TA. For example,
+a user can use `add CS2103T` to add the course CS2103T onto the home page for their management.
+
+#### Implementation Details
+The `add` command here is supported by the `AddCourseCommand` and `AddCourseCommandParser`. Users are able to add a
+non-duplicate course to the existing course list.
+
+#### Parsing user input
+1. The user inputs `add` and provides a `c/COURSENAME` that they teach. 
+2. The `CodeSphereParser` then does preliminary processing to the user input and creates a new `AddCourseCommandParser`.
+3. The `AddCourseCommandParser` parses the user input and checks if the prefix `c/` is present and there is only one such prefix present. If not, a `ParseException` is thrown.
+4. `AddCourseCommandParser` will then call `ParserUtil#parseCourseName()` to verify if the input `COURSENAME` is valid. If invalid, a `ParseException` is thrown.
+5. An `AddCourseCommand` will then be created with the respective input.
+
+#### Command Execution
+1. The `LogicManager` executes the `AddCourseCommand`.
+2. The `AddCourseCommand` calls `Model#hasCourse()` to check for duplicate courses. If duplicate present, a `CommandException` is thrown.
+3. `Model#addCourse()` will then be called to add the input course to the course list.
+
+#### Displaying of result
+1. Lastly, the `AddCourseCommand` creates a `CommandResult` with a success message and return it to the `LogicManager` to complete the command execution.
+   The GUI will also be updated accordingly as it calls the `filteredCourseList` which was updated during the execution of the command.
+
+The following sequence diagram shows how the `add` mechanism in the home page works:
+![AddCourseSequenceDiagram](images/AddCourseSequenceDiagram.png)
+
+
+### Edit a course
+#### About the edit course feature
+The `edit` command on the home page allows users to edit the course name a course/class that they teach as a TA. For example,
+a user can use `edit 1 c/CS2103T` to edit the course at the first index of the displayed list to have course name CS2103T.
+
+#### Implementation Details
+The `add` command here is supported by the `EditCourseCommand` and `EditCourseCommandParser`. Users are able to edit
+a course as long as the new course name is not a duplicate in the existing course list.
+
+#### Parsing user input
+1. The user inputs `edit` and provides the `INDEX` of the course to edit, and the `c/NEW_COURSENAME` of the existing course.
+2. The `CodeSphereParser` then does preliminary processing to the user input and creates a new `EditCourseCommandParser`.
+3. The `EditCourseCommandParesr` parses the user input and checks if the input `INDEX` is valid by calling `ParserUtil#parseIndex()`. If invalid, a `ParseException` is thrown.
+4. `EditCourseCommandParesr` then checks if the prefix `c/` is present and there is only one such prefix present. If not, a `ParseException` will be thrown.
+5. `EditCourseCommandParser` will then call `ParserUtil#parseCourseName` to verify if the input `NEW_COURSENAME` is valid. If invalid, a `ParseException` will be thrown.
+6. An `EditCourseDescriptor` is then created with the `NEW_COURSENAME`.
+7. A check will be done to see if there was a change in the course name. If not, a `ParseException` is thrown. 
+8. An `EditCourseCommand` is then created with the respective index and `EditCourseDescriptor`.
+
+#### Command Execution
+1. The `LogicManager` executes the `EditCourseCommand`.
+2. The `EditCourseCommand` creates an `editedCourse` with the new course name.
+3. `EditCourseCommand` then calls `Model#hasCourse()` to check for duplicate courses. If duplicate present, a `CommandException` is thrown.
+4. `Model#setCourse()` will then be called to replace the existing course with the `editedCourse`.
+5. `Model#updateFilteredList()` will then be called to update the filtered course list.
+
+#### Displaying of result
+1. Lastly, the `EditCourseCommand` creates a `CommandResult` with a success message and return it to the `LogicManager` to complete the command execution.
+   The GUI will also be updated accordingly as it calls the `filteredCourseList` which was updated during the execution of the command.
+
+The following sequence diagram shows how the `edit` mechanism in the home page works:
+![EditCourseSequenceDiagram](images/EditCourseSequenceDiagram.png)
+
+
+### Delete a course
+#### About the delete course feature
+The `delete` command on the home page allows users to delete an existing course in the displayed course list. For example,
+a user can use `delete 1` to delete the course at the first index of the displayed list.
+
+#### Implementation Details
+The `delete` command here is supported by the `DeleteCourseCommand` and `DeleteCourseCommandParser`. Users are able to delete
+a course as long as the index is valid.
+
+#### Parsing user input
+1. The user inputs `delete` and provides the `INDEX` of the existing course to delete.
+2. The `CodeSphereParser` then does preliminary processing to the user input and creates a new `DeleteCourseCommandParser`.
+3. The `DeleteCourseCommandParser` parses the user input and checks if the input `INDEX` is valid by calling `ParserUtil#parseIndex()`. If invalid, a `ParseException` is thrown.
+4. A `DeleteCourseCommand` is then created with the respective index.
+
+#### Command Execution
+1. The `LogicManager` executes the `DeleteCourseCommand`.
+2. The `DeleteCourseCommand` calls `Model#getFilteredCourseList()` to get an unmodifiable view of the filtered course list to determine the course to delete based on the input INDEX.
+3. `Model#deleteCourse()` will then be called to delete the target course from the displayed course list.
+4. `Model#resetFilteredList()` will then be called to update the filtered course list.
+
+#### Displaying of result
+1. Lastly, the `DeleteCourseCommand` creates a `CommandResult` with a success message and return it to the `LogicManager` to complete the command execution.
+   The GUI will also be updated accordingly as it calls the `filteredCourseList` which was updated during the execution of the command.
+
+The following sequence diagram shows how the `delete` mechanism in the home page works:
+![DeleteCourseSequenceDiagram](images/DeleteCourseSequenceDiagram.png)
+
+--------------------------------------------------------------------------------------------------------------------
+## **Implementation of Course Commands**
 
 ### Add a student
 After selecting a `Course` from the `UniqueCourseList`,  `Student` objects can be added into the `UniqueStudentList` of the `Course`.  Compulsory fields for the `AddCommand` include `Name`, `Email` and a performance `Tag`. The optional `Remark` and `PendingQuestion` fields cannot be added using the `AddCommand`.
@@ -210,15 +304,7 @@ Given below is an example usage scenario and how the editing mechanism is carrie
 * Step 4. A check for duplicates in the current course is done. If there is a duplicate, a `CommandException` is thrown.
 * Step 5. The original student in the current course’s student list is replaced with `editedStudent`.
 
-### Edit a course
-A course’s course name can be edited by changing the `CourseName` field of a `Course` object.
-Given below is an example usage scenario and how the editing mechanism is carried out. As per the examples above, we will skip to where the `EditCourseCommand#execute()` method is called.
 
-* Step 1. The `EditCourseCommand` object’s `execute()` method is called.
-* Step 2. The index provided is checked to be within bounds of the course’s student list. If it is not, a `CommandException` is thrown.
-* Step 3. A new `Course` object, `editedCourse` is created with the edited course name.
-* Step 4. A check for duplicates in the model is done. If there is a duplicate, a `CommandException` is thrown.
-* Step 5. The original course is replaced with `editedCourse`.
 
 ### Add a Pending Question to a Student from a selected Course
 
@@ -229,7 +315,8 @@ For example, a user could add a pending question such as `Tutorial 1 Question 10
 It's important to note that adding a pending question to a student is not cumulative. In other words, adding another pending question to a student with an existing pending question will replace the old pending question with the new one.
 
 #### Implementation Details
-The partial class diagram of the `pq` command can be seen.
+The `delete` command here is supported by the `PendingQuestionCommand` and `PendingQuestionCommandParser`. Users are able to add
+a pending question to a student as long as the index provided is valid.
 
 #### Parsing user input
 1. The user inputs the `pq` command, provides the index of the targeted student, and follows it by the pending question using the prefix `pq`.
@@ -251,44 +338,36 @@ If the conditions are not met, a `ParseException` is thrown.
 
 The following sequence diagram shows how the `pq` mechanism works:
 
+![PqSequenceDiagram](images/PendingQuestionSequenceDiagram.png)
+
+
 ### Finding a student from a selected course
 
 #### About the find feature
-
 The `find` command allows users to search for relevant students based on details of the specified criteria in their input. For example, a user could use `find n/KEYWORDS` to find a students names which contain or match that with the keywords.
 They can use keywords in `NAME`, `EMAIL`, `TAG`, `REMARK` to find students with words or phrases containing all of the words mentioned in keywords.
-Do note that only 1 criteria can be used at one time.
+Do note that only 1 criterion can be used at one time.
 
 #### Implementation Details
-
 The partial class diagram of the `find` command can be seen. What is important to note here is the use of a `Predicate` class and the `updateFilteredStudentList` method which utilises the predicate class.
 
 ![FindCommandPartial](images/FindCommandClassDiagram.png)
 
-Their are multiple different predicate classes created to accurately filter through the student list. Below, is the example usage scenario and how the `find` mechanism behaves at each step.
+There are multiple different predicate classes created to accurately filter through the student list. Below, is the example usage scenario and how the `find` mechanism behaves at each step.
 
 #### Parsing user input
-
 1. The user inputs the `find` command and provide the input with the attribute of the student contact and its respective prefix (eg. `n/NAME` or `r/REMARK`) in which the user wants to find the student.
-
 2. The `CodeSphereParser` then does preliminary processing to the user input and creates a new `FindCommandParser`.
-
 3. The `FindCommandParser` parses the user inputs and checks for whether the input is the correct format. The input needs to contain only 1 prefix and the keywords cannot be empty.
-
 If the conditions are not met a `ParseException` is thrown.
-
 4. If the format is valid, a predicate class matching the prefix is created. For example, for `NAME`, the predicate object created is `NameContainsKeywordsPredicate`. This class takes in the values of the keywords and the object is passed into the newly created `FindCommand` object.
 
 #### Command execution
-
 1. The `LogicManager` executes the `FindCommand`.
-
 2. The `FindCommand` calls the `Model#updateFilteredPersonList()` to update the filtered person list based on predicate class.
-
 3. The `FindCommand` then calls the `Model#getFilteredPersonList()#size()` to get the size of the person list. The size will correspond to the number of persons listed.
 
 #### Displaying of result
-
 1. The `FindCommand` will create a `CommandResult` with a success message and return it to the `LogicManager` to complete the command execution. The GUI will also be updated accordingly as it calls the `filteredStudentList` which was updated during the execution of the command.
 
 The following sequence diagram shows how the `find` mechanism works:
@@ -355,23 +434,23 @@ You can copy and paste this code into a Markdown editor or file to render the fo
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                 | I want to …​                                                           | So that I can…​                                                         |
-|-------|-------------------------|------------------------------------------------------------------------|-------------------------------------------------------------------------|
-| `* * *` | user                    | add a new course                                                       | keep track of the courses I teach                                       |
-| `* * *` | user                    | add a new student to an existing course                                | keep track of the students in each of the courses I teach               |
-| `* * *` | user                    | edit a course                                                          | keep accurate and up-to-date information on each course                 |
-| `* * *` | user                    | edit a student's profile                                               | keep accurate and up-to-date information on each student                |
-| `* * *` | user                    | delete s course                                                        | remove a course I am no longer teaching                                 |
-| `* * *` | user                    | delete a student's profile                                             | remove a student if the student is no longer in a course                |
-| `* * *` | user                    | assign a performance tag to a student based on how well they are coping | I can easily identify students who may need additional support          |
-| `* *` | user                    | add remarks for a student                                              | keep track of miscallaneous things                                      |
-| `* *` | user                    | add pending questions for a students                                   | keep track of unanswered queries from students                          |
-| `* *` | user                    | search for courses based on the course name                            | easily find courses I need                                              |
-| `* *` | user                    | search for students using the specified field                          | easily find students who belong in the criteria that I am interested in |
-| `* *` | user                    | sort students by the specified field                                   | view the list of students in the order I require                        |
-| `* * ` | user                    | view usage instructions                                                | know how to use the app when I am unfamiliar with it                    |
-| `*`   | user                    | list out all students in a course with unanswered pending questions    | efficiently manage and respond to queries                               |
-| `*`   | user                    | reset the student list to its original order            | view the original student list after filtering or sorting               |
+| Priority | As a ...  | I want to ...                                                           | So that I can ...                                                       |
+|----------|-----------|-------------------------------------------------------------------------|-------------------------------------------------------------------------|
+| `* * *`  | user      | add a new course                                                        | keep track of the courses I teach                                       |
+| `* * *`  | user      | add a new student to an existing course                                 | keep track of the students in each of the courses I teach               |
+| `* * *`  | user      | edit a course                                                           | keep accurate and up-to-date information on each course                 |
+| `* * *`  | user      | edit a student's profile                                                | keep accurate and up-to-date information on each student                |
+| `* * *`  | user      | delete s course                                                         | remove a course I am no longer teaching                                 |
+| `* * *`  | user      | delete a student's profile                                              | remove a student if the student is no longer in a course                |
+| `* * *`  | user      | assign a performance tag to a student based on how well they are coping | I can easily identify students who may need additional support          |
+| `* *`    | user      | add remarks for a student                                               | keep track of miscallaneous things                                      |
+| `* *`    | user      | add pending questions for a students                                    | keep track of unanswered queries from students                          |
+| `* *`    | user      | search for courses based on the course name                             | easily find courses I need                                              |
+| `* *`    | user      | search for students using the specified field                           | easily find students who belong in the criteria that I am interested in |
+| `* *`    | user      | sort students by the specified field                                    | view the list of students in the order I require                        |
+| `* * `   | user      | view usage instructions                                                 | know how to use the app when I am unfamiliar with it                    |
+| `*`      | user      | list out all students in a course with unanswered pending questions     | efficiently manage and respond to queries                               |
+| `*`      | user      | reset the student list to its original order                            | view the original student list after filtering or sorting               |
 
 ### Use cases
 
