@@ -126,7 +126,7 @@ feel free to skip this tutorial or jump to whichever portion you require.*
 When you open up the application for the first time, after a brief splash screen of the CodeSphere logo,
 you will see CodeSphere's `home` page, with 6 pre-populated sample courses.
 
-![Ui](images/HomePage.png)
+![Ui](images/tutorial/Tutorial_HomePage.png)
 
 At the top of the application, there is an underlined portion that we will refer to as the *Command Line*.
 This is where your commands are typed, and they are confirmed by pressing the <kbd>Enter</kbd> key on your keyboard.
@@ -144,7 +144,7 @@ Let's begin by adding our course into the home page with the command `add c/CS21
 After pressing <kbd>Enter</kbd>, you will see a message informing you that there is a *New course added: CS2101* in the *Result Box* and the course `CS2101` will appear at the bottom of the list.
 You will notice that an item number is displayed beside the course name (note the **7.** beside *CS2101* in the image), as well as some other information being displayed for each course, like the total number of students and total number of pending questions.
 
-![CS1101S in Homepage](images/tutorial/homepage_CS1101S.png)
+![CS1101S in Homepage](images/tutorial/AddCS2101.png)
 
 ### Tutorial: Adding students
 
@@ -156,7 +156,7 @@ In the course page, the course list is now being displayed in the left column, w
 
 *Tip: You can always refer to the Result Box to see whether the command you entered has been successful.*
 
-![Empty CS1101S](images/tutorial/course_CS1101S.png)
+![Empty CS1101S](images/tutorial/SelectCS2101.png)
 
 The student list for `CS2101` is currently empty, so let's add a few students into the list with the following commands:
 *(Remember to press 'Enter' after each command)*
