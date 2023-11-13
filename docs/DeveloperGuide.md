@@ -315,8 +315,8 @@ For example, a user could add a pending question such as `Tutorial 1 Question 10
 It's important to note that adding a pending question to a student is not cumulative. In other words, adding another pending question to a student with an existing pending question will replace the old pending question with the new one.
 
 #### Implementation Details
-The `pq` command here is supported by the `PendingQuestionCommand` and `PendingQuestionCommandParser`. Users are able to add
-a pending question to a student as long as the index provided is valid.
+The `pq` command here is supported by the `PendingQuestionCommand` and `PendingQuestionCommandParser`.
+Users are able to add a pending question to a student as long as the index provided is valid.
 
 #### Parsing user input
 1. The user inputs the `pq` command, provides the index of the targeted student, and follows it by the pending question using the prefix `pq`.
