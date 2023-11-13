@@ -11,14 +11,9 @@ It is an app targeted at enabling Teaching Assistants in NUS School of Computing
 
 Given below are my contributions to the project.
 
-* **New Feature**: AddCourse Command
-    * What it does: allows users to add a new course to the home page.
-    * Justification: our app is intended for target users, Teaching Assistants, to be able to better manage the classes that they teach. Hence, there is a need for users to add the courses they teach into the app.
-    * Highlights: this enhancement affected the existing Model and Storage components. Implementation required clear understanding of the synergy between components and thus changes accordingly.
-
 * **New Feature**: EditCourse Command
-  * What it does: allows users to edit an existing course on the home page.
-  * Justification: in the case where the user has a change in detail they wish to make to an existing course, this is the command to use.
+  * What it does: allows users to edit the course name of an existing course on the home page.
+  * Justification: in the case where the user has a change in course name they wish to make to an existing course, this is the command to use.
   * Highlights: this enhancement had to be implemented carefully to align with the updated Model component of the app.
 
 * **New Feature**: DeleteCourse Command
@@ -42,7 +37,7 @@ Given below are my contributions to the project.
     * Updated Storage component for the app (pull request [#37](https://github.com/AY2324S1-CS2103T-W15-4/tp/pull/78))
     * Updated Model component for the app ([#37](https://github.com/AY2324S1-CS2103T-W15-4/tp/pull/78))
     * Updated Logic component for the app ([#37](https://github.com/AY2324S1-CS2103T-W15-4/tp/pull/78))
-    * Added and updated test files for several classes and existing features to align with the app's functions ([#37](https://github.com/AY2324S1-CS2103T-W15-4/tp/pull/78), [268](https://github.com/AY2324S1-CS2103T-W15-4/tp/pull/268/files#diff-1ec9267e3dde0569a3b06f8201aef7d83b34bcde507697075f92a4758e7e041d))
+    * Added and updated test files for several classes and existing features to align with the app's functions ([#37](https://github.com/AY2324S1-CS2103T-W15-4/tp/pull/78), [#268](https://github.com/AY2324S1-CS2103T-W15-4/tp/pull/268/files#diff-1ec9267e3dde0569a3b06f8201aef7d83b34bcde507697075f92a4758e7e041d))
 
 * **Documentation**:
     * User Guide:
