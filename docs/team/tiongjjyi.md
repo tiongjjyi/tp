@@ -13,8 +13,8 @@ Given below are my contributions to the project.
 
 * **New Feature**: Implement Adding Pending Question Command (PR [#88](https://github.com/AY2324S1-CS2103T-W15-4/tp/pull/88))
     * What it does: Adds a pending question to a student.
-    * Justification: This feature allows TAs to keep track and manage questions from their students more effectively. When a student approaches with a question, the TA can use this command to record the question under the student, making it easier for TAs to address each inquiry.
-    * Highlights: Pending question is optional to a student. Recognizing that not every student may have pending questions, this feature allows TAs to decide whether to include pending questions when recording a student's information in the system. We have also enhanced the command to ensure that every pending question must be non-empty. This improvement eliminates meaningless or incomplete queries.
+    * Justification: This feature allows TAs to keep track and manage questions from their students more effectively. When a student approaches with a question, the TA can use this command to record the question under the student.
+    * Highlights: Pending question is optional to a student. This feature allows TAs to decide whether to include pending questions when recording a student's information in the system. We have also enhanced the command to ensure that every pending question must be non-empty.
 
 * **New Feature**: Implement Remove Command to Remove Remark and Pending Question (PR [#113](https://github.com/AY2324S1-CS2103T-W15-4/tp/pull/113))
     * What it does: This feature enables TAs to efficiently manage and maintain student records by removing remarks and pending questions associated with a student's profile.
@@ -46,7 +46,8 @@ Given below are my contributions to the project.
 * **Documentation**:
     * User Guide:
         * Update first version of UserGuide after project refinement.(PR [#55](https://github.com/AY2324S1-CS2103T-W15-4/tp/pull/55), [#57](https://github.com/AY2324S1-CS2103T-W15-4/tp/pull/57))
-        * Add all the screenshots in User Guide to help users understand the features and functionality of our app. (PR [#344](https://github.com/AY2324S1-CS2103T-W15-4/tp/pull/344))
+        * Add all the command success screenshots in User Guide to help users understand the features and functionality of our app. (PR [#344](https://github.com/AY2324S1-CS2103T-W15-4/tp/pull/344))
+        * Annotate and add the screenshots to Tutorial for Beginners.(PR [#365](https://github.com/AY2324S1-CS2103T-W15-4/tp/pull/365))
     * Developer Guide:
         * Added use case for `PendingQuestionCommand`.(PR [#117](https://github.com/AY2324S1-CS2103T-W15-4/tp/pull/117))
         * Described implementation for `PendingQuestionCommand`. (PR [#124](https://github.com/AY2324S1-CS2103T-W15-4/tp/pull/124))
