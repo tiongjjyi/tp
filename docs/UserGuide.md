@@ -19,8 +19,6 @@ Simply refer to the table of contents below for the full list of sections.
 1. Don't really understand how to use the guide? Simply refer to [User Guide Tips](#user-guide-tips)!
 2. How do you set up CodeSphere? [Quick Start](#quick-start) it!
 3. And to basically begin your student management journey? Check out the [Tutorial for Beginners](#tutorial-for-beginners)!
-
---------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always"></div>
 
 ## Table of Contents
@@ -63,7 +61,6 @@ Simply refer to the table of contents below for the full list of sections.
     * [**Course Page**](#course-page)
 8. [**Glossary**](#glossary)
 
---------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always"></div>
 
 ## **User Guide Tips**
@@ -89,7 +86,7 @@ Simply refer to the table of contents below for the full list of sections.
 
 [_Back to Top_](#table-of-contents)
 
---------------------------------------------------------------------------------------------------------------------
+
 <div style="page-break-after: always"></div>
 
 ## **Quick Start**
@@ -117,7 +114,7 @@ Else, if you prefer exploring the application yourself, head to [Features](#feat
 
 [_Back to Top_](#table-of-contents)
 
---------------------------------------------------------------------------------------------------------------------
+
 <div style="page-break-after: always"></div>
 
 ## **Tutorial for Beginners**
@@ -205,8 +202,6 @@ There's many features specially curated for you to manage your students with eas
 so have fun and may your administrative work be effortless!
 
 [_Back to Top_](#table-of-contents)
-
---------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always"></div>
 
 ## **Features**
@@ -230,7 +225,6 @@ so have fun and may your administrative work be effortless!
 
 <div style="page-break-after: always"></div>
 
----
 ### **Accessing Input History**
 
 CodeSphere saves all inputs that you have previously entered.
@@ -258,7 +252,7 @@ Exits the program.
 
 [_Back to Top_](#table-of-contents)
 
---------------------------------------------------------------------------------------------------------------------
+---
 <div style="page-break-after: always"></div>
 
 ### **Home Page Commands**
@@ -401,7 +395,6 @@ Resets a filtered or sorted course list to its original order, where courses are
 
 [_Back to Top_](#table-of-contents)
 
---------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always"></div>
 
 ### **Course Page Commands**
@@ -646,7 +639,6 @@ Returns to the [home page](#home-page-commands) showing the list of courses you 
 
 [_Back to Top_](#table-of-contents)
 
---------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always"></div>
 
 ### **Miscellaneous**
@@ -667,7 +659,6 @@ If your changes to the data file makes it invalid, CodeSphere will overwrite all
 
 [_Back to Top_](#table-of-contents)
 
---------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always"></div>
 
 ## **FAQ**
@@ -684,7 +675,7 @@ If your changes to the data file makes it invalid, CodeSphere will overwrite all
 
 [_Back to Top_](#table-of-contents)
 
---------------------------------------------------------------------------------------------------------------------
+
 <div style="page-break-after: always"></div>
 
 ## **Command Summary**
@@ -728,7 +719,6 @@ If your changes to the data file makes it invalid, CodeSphere will overwrite all
 
 [_Back to Top_](#table-of-contents)
 
---------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always"></div>
 
 ## **Glossary**
