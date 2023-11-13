@@ -343,7 +343,7 @@ The following activity diagram summaries what happens when a user executes the `
 
 #### Design considerations
 
-##### Aspect: Command syntax
+**Aspect: Command syntax**
 
 - **Alternative 1 (current choice):** `sort s/SORT_CRITERIA`.
     - **Pros:** Simple command with minimal fields, where only a single sort prefix is needed.
@@ -357,7 +357,7 @@ The following activity diagram summaries what happens when a user executes the `
     - **Pros:** Retains the flexibility provided by Alternative 2, but also the conciseness of Alternative 1 should they wish to leave the `SORT_ORDER` empty.
     - **Cons:** Users who are not aware of the optional `[o/desc]` field may not use it.
 
-##### Aspect: Which fields should be considered as a valid sort criteria
+**Aspect: Which fields should be considered as a valid sort criteria**
 
 - **Alternative 1 (current choice):** `NAME` and `TAG` are the only two valid criteria.
     - **Pros:** Users can easily remember the valid criteria as there are only two options. `NAME` and `TAG` are also the two criteria that are likely to be the most useful criteria to sort students by.
@@ -414,8 +414,6 @@ Do note that only 1 criterion can be used at one time.
 #### Implementation Details
 The partial class diagram of the `find` command can be seen. What is important to note here is the use of a `Predicate` class and the `updateFilteredStudentList` method which utilises the predicate class.
 
-![FindCommandPartial](images/FindCommandClassDiagram.png)
-
 There are multiple different predicate classes created to accurately filter through the student list. Below, is the example usage scenario and how the `find` mechanism behaves at each step.
 
 #### Parsing user input
@@ -439,31 +437,21 @@ The following sequence diagram shows how the `find` mechanism works:
 
 #### Design considerations
 
-**Aspect:** How should multiple keywords be considered
+**Aspect: How should multiple keywords be considered**
 
-- *Currently:* Whether all keywords are contained in any order in the specified criteria
-- *Alternative 1:* At least 1 keyword is contained
-
-**Pros and Cons:**
-- *Currently:*
+- **Alternative 1 (current choice):** Whether all keywords are contained in any order in the specified criteria
   - **Pros:** Provides a more specific and refined search.
   - **Cons:** May result in fewer matches if all keywords are not present.
-
-- *Alternative 1:*
+- **Alternative 2:** At least 1 keyword is contained
   - **Pros:** Increases the likelihood of finding matches.
   - **Cons:** Might lead to less precise results if only one keyword is present.
 
-**Aspect:** How should the filtered list be filtered based on the keywords
+**Aspect: How should the filtered list be filtered based on the keywords**
 
-- *Currently:* As long as keywords are contained inside
-- *Alternative 1:* Instead of contains, do a complete word match
-
-**Pros and Cons:**
-- *Currently:*
+- **Alternative 1 (current choice):** As long as keywords are contained inside
   - **Pros:** More flexible and tolerant to variations in keyword placement.
   - **Cons:** May include irrelevant matches if keywords are part of larger words.
-
-- *Alternative 1:*
+- **Alternative 2:** Instead of contains, do a complete word match
   - **Pros:** Provides more precise matching by requiring complete word matches.
   - **Cons:** May exclude relevant matches if keywords are not complete words.
 
